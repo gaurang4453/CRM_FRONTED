@@ -10,6 +10,8 @@ function App() {
     <>
       <div>
         {/* <a href="https://vite.dev" target="_blank">
+      {/* <div>
+        <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
         <a href="https://react.dev" target="_blank">
@@ -30,6 +32,8 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+
+      <h1>Hellocxc</h1>
     </>
   )
 }
