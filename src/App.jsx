@@ -7,9 +7,6 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-<<<<<<< HEAD
-    
-=======
     <>
       <div>
         {/* <a href="https://vite.dev" target="_blank">
@@ -37,8 +34,8 @@ function App() {
       </p>
 
       <h1>Hellocxc</h1>
+      <h2>fsdfnskfn</h2>
     </>
->>>>>>> d82508fa45663c50d035617bfccbddde9d1af563
   )
 }
 
