@@ -81,140 +81,140 @@
 
 // export default Form;
 
-import React, { useState } from "react";
-import AxiosInstance from "../../AxiosInstance.js";
+// import React, { useState } from "react";
+// import AxiosInstance from "../../AxiosInstance.js";
 
-const Form = () => {
-  const [formData, setFormData] = useState({
-    PropTypeName: "",
-    PropName: "",
-    PropValue: "",
-    Status: "",
-    CUID: "",
-  });
+// const Form = () => {
+//   const [formData, setFormData] = useState({
+//     PropTypeName: "",
+//     PropName: "",
+//     PropValue: "",
+//     Status: "",
+//     CUID: "",
+//   });
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+//   const handleChange = (e) => {
+//     setFormData({ ...formData, [e.target.name]: e.target.value });
+//   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevents page reload
+//   const handleSubmit = async (e) => {
+//     e.preventDefault(); // Prevents page reload
 
-    try {
-      const response = await AxiosInstance.post("/PropMaster", formData);
-      console.log("Successfully submitted data:", response.data);
-      alert("Successfully submitted data");
-    } catch (error) {
-      console.log("Error:", error);
-      alert("Error submitting data");
-    }
-  };
-
-  return (
-    <div className="container">
-      <h1>PropMaster Form</h1>
-      <br />
-      <form onSubmit={handleSubmit} className="form">
-        <div className="form-group">
-          <label>Property Type Name:</label>
-          <br />
-          <input type="text" name="PropTypeName" value={formData.PropTypeName} onChange={handleChange} required />
-        </div>
-        <div className="form-group">
-          <label>Property Name:</label>
-          <br />
-          <input type="text" name="PropName" value={formData.PropName} onChange={handleChange} required />
-        </div>
-        <div className="form-group">
-          <label>Property Value:</label>
-          <br />
-          <input type="text" name="PropValue" value={formData.PropValue} onChange={handleChange} />
-        </div>
-        <div className="form-group">
-          <label>Status:</label>
-          <br />
-          <input type="text" name="Status" value={formData.Status} onChange={handleChange} />
-        </div>
-        <div className="form-group">
-          <label>Created User ID:</label>
-          <br />
-          <input type="number" name="CUID" value={formData.CUID} onChange={handleChange} />
-        </div>
-        <button type="submit" className="submit-button">Submit</button>
-      </form>
-    </div>
-  );
-};
-
-export default Form;
-
-
-
-
-
-// import './App.css'
-// import { useForm } from "react-hook-form";
-
-// function App() {
-  
-//   const { 
-//     register, 
-//     handleSubmit, 
-//     watch, 
-//     formState: { errors },
-//    } = useForm();
-
-//    function onSubmit(data) {
-//     console.log("Submitting the form",data);
-//    }
+//     try {
+//       const response = await AxiosInstance.post("/PropMaster", formData);
+//       console.log("Successfully submitted data:", response.data);
+//       alert("Successfully submitted data");
+//     } catch (error) {
+//       console.log("Error:", error);
+//       alert("Error submitting data");
+//     }
+//   };
 
 //   return (
+//     <div className="container">
+//       <h1>PropMaster Form</h1>
+//       <br />
+//       <form onSubmit={handleSubmit} className="form">
+//         <div className="form-group">
+//           <label>Property Type Name:</label>
+//           <br />
+//           <input type="text" name="PropTypeName" value={formData.PropTypeName} onChange={handleChange} required />
+//         </div>
+//         <div className="form-group">
+//           <label>Property Name:</label>
+//           <br />
+//           <input type="text" name="PropName" value={formData.PropName} onChange={handleChange} required />
+//         </div>
+//         <div className="form-group">
+//           <label>Property Value:</label>
+//           <br />
+//           <input type="text" name="PropValue" value={formData.PropValue} onChange={handleChange} />
+//         </div>
+//         <div className="form-group">
+//           <label>Status:</label>
+//           <br />
+//           <input type="text" name="Status" value={formData.Status} onChange={handleChange} />
+//         </div>
+//         <div className="form-group">
+//           <label>Created User ID:</label>
+//           <br />
+//           <input type="number" name="CUID" value={formData.CUID} onChange={handleChange} />
+//         </div>
+//         <button type="submit" className="submit-button">Submit</button>
+//       </form>
+//     </div>
+//   );
+// };
+
+// export default Form;
+
+
+
+
+
+// import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+
+function App() {
+  
+  const { 
+    register, 
+    handleSubmit, 
+    watch, 
+    formState: { errors },
+   } = useForm();
+
+   function onSubmit(data) {
+    console.log("Submitting the form",data);
+   }
+
+  return (
     
-//     <form onSubmit={handleSubmit(onSubmit)}>
-//       <div>
-//         <label>propid</label>
-//         <input {...register('propid',
-//           { 
-//             required: true,
-//              maxLength:{value:4, message:'no more than 4 dgits'} })}/>
-//              {errors.propid && <p>{errors.propid.message}</p>}
-//       </div>
-//       <br/>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <div>
+        <label>propid</label>
+        <input {...register('propid',
+          { 
+            required: true,
+             maxLength:{value:4, message:'no more than 4 digits'} })}/>
+             {errors.propid && <p>{errors.propid.message}</p>}
+      </div>
+      <br/>
 
-//       <div>
-//         <label>proptypename</label>
-//         <input {...register('proptypename')}/>
-//       </div>
-//       <br/>
+      <div>
+        <label>proptypename</label>
+        <input {...register('proptypename')}/>
+      </div>
+      <br/>
 
-//       <div>
-//         <label>propname</label>
-//         <input {...register('propname')}/>
-//       </div>
-//       <br/>
+      <div>
+        <label>propname</label>
+        <input {...register('propname')}/>
+      </div>
+      <br/>
 
-//       <div>
-//         <label>propvalue</label>
-//         <input {...register('propvalue')}/>
-//       </div>
-//       <br/>
+      <div>
+        <label>propvalue</label>
+        <input {...register('propvalue')}/>
+      </div>
+      <br/>
 
-//       <div>
-//         <label>status</label>
-//         <input {...register('status')}/>
-//       </div>
-//       <br/>
+      <div>
+        <label>status</label>
+        <input {...register('status')}/>
+      </div>
+      <br/>
 
-//       <div>
-//         <label>CUID </label>
-//         <input {...register('CUID')}/>
-//       </div>
-//       <br/>
+      <div>
+        <label>CUID </label>
+        <input {...register('CUID')}/>
+      </div>
+      <br/>
 
-//         <input type='submit'/>
-//     </form>
+        <input type='submit'/>
+    </form>
    
-//   )
-// }
+  )
+}
 
-// export default App
+export default App
