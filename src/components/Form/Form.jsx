@@ -215,7 +215,9 @@ function App() {
       </div>
       <br/>
 
-        <input type='submit'/>
+      <div className="submit-container">
+    <input type="submit" value="Submit" />
+  </div>
 
     </form>
    

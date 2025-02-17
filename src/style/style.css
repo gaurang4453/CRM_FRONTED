@@ -6,23 +6,26 @@
   }
   
   body {
+    font-size: 13px;
     font-family: Arial, sans-serif;
     background-color: #9bbbf3;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    padding: 40px;
+    padding: 10px;
   }
   
   form {
     background-color: #fff;
-    padding: 10px;
+    padding: 20px;
     border-radius: 30px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0 , 0.5);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     width: 100%;
     max-width: 900px;
-    
+    display: flex;
+    flex-direction: column; /* Stack form elements vertically */
+    align-items: flex-start; /* Keep textboxes aligned to the left */
   }
   
   h1 {
@@ -42,8 +45,7 @@
     margin-bottom: 5px;
   }
   
-  input[type="text"],
-  input[type="submit"] {
+  input[type="text"] {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
@@ -56,12 +58,16 @@
     color: white;
     cursor: pointer;
     border: none;
-    
     transition: background-color 0.3s;
+    padding: 8px 50px; /* Decrease padding for a smaller button */
+    font-size: 14px; /* Smaller text */
+    border-radius: 4px; /* Rounded corners */
+    width: auto; /* Adjust width to fit content */
+    margin-top: 10px; /* Space between input fields and submit button */
   }
   
   input[type="submit"]:hover {
-    background-color: #6ea7e4;
+    background-color: #143e6c;
   }
   
   p {
@@ -73,42 +79,27 @@
   br {
     margin: 10px 0;
   }
-
-  input[type="submit"] {
-    width: auto; /* Adjust the width to auto or specify a smaller width */
-    padding: 8px 50px; /* Decrease padding to make the button smaller */
-    font-size: 14px; /* Smaller text */
-    border-radius: 4px; /* Rounded corners */
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-    border: none;
-    transition: background-color 0.3s;
-    position:relative
-  }
   
-  input[type="submit"]:hover {
-    background-color: #143e6c;
-  }
-   
   .rounded-textbox {
     border: 1px solid #ccc;
     padding: 8px;
-    border-radius: 100000px; /* Adjust as needed */
+    border-radius: 100000px;
     outline: none;
   }
-
-  /* /src/style/style.css */
-input {
-    border-radius: 7px; /* Adjust this value to control the roundness */
-    padding: 8px; /* Optional: Adds some padding for better text alignment */
-    border: 1px solid #ccc; /* Optional: Adds a light border */
+  
+  input {
+    border-radius: 7px;
+    padding: 8px;
+    border: 1px solid #ccc;
     background-color: #9b9ea0;
-    color: #0d0606
+    color: #0d0606;
   }
   
-  form {
-    width: 300px; /* Optional: You can set a width to control the form's size */
-    margin: 0 auto; /* Center the form */
+  /* This div will center the submit button */
+  .submit-container {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Center the button horizontally */
+    margin-top: 20px; /* Add some space above the button */
   }
   
