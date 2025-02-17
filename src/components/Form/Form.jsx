@@ -154,7 +154,7 @@
 
 // import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import 'App.css'; 
+import "/src/style/style.css";
 function App() {
   
   const { 
@@ -172,7 +172,7 @@ function App() {
 
   return (
     
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} >
       <div>
         <label>propid</label>
         <input {...register('propid', 
