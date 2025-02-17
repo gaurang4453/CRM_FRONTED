@@ -172,9 +172,10 @@ function App() {
 
   return (
     
-    <form onSubmit={handleSubmit(onSubmit)} >
+    <form onSubmit={handleSubmit(onSubmit)} className="form" >
+        <h1>PropMaster Form</h1>
       <div>
-        <label>propid</label>
+        <label>PropID : </label>
         <input {...register('propid', 
           { 
             required: { value: true, message: 'fill above feild' } 
@@ -184,36 +185,38 @@ function App() {
       <br/>
 
       <div>
-        <label>proptypename</label>
+        <label>PropTypeName : </label>
         <input {...register('proptypename')}/>
       </div>
       <br/>
 
       <div>
-        <label>propname</label>
+        <label>PropName : </label>
         <input {...register('propname')}/>
       </div>
       <br/>
 
       <div>
-        <label>propvalue</label>
+        <label>PropValue :</label>
         <input {...register('propvalue')}/>
       </div>
       <br/>
 
       <div>
-        <label>status</label>
+        <label>Status : </label>
         <input {...register('status')}/>
       </div>
       <br/>
 
       <div>
-        <label>CUID </label>
-        <input {...register('CUID')}/>
+        <label>CUID :</label>
+        <input {...register('CUID') }/>
+       
       </div>
       <br/>
 
         <input type='submit'/>
+
     </form>
    
   )

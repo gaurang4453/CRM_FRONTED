@@ -1,3 +1,114 @@
-.body {
-    color: blue;
-}
+/* Reset some default margins/paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #9bbbf3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px;
+  }
+  
+  form {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0 , 0.5);
+    width: 100%;
+    max-width: 900px;
+    
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #4d44eb;
+  }
+  
+  div {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    font-weight: bold;
+    color: #255ad4;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input[type="text"],
+  input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border: none;
+    
+    transition: background-color 0.3s;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #6ea7e4;
+  }
+  
+  p {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  
+  br {
+    margin: 10px 0;
+  }
+
+  input[type="submit"] {
+    width: auto; /* Adjust the width to auto or specify a smaller width */
+    padding: 8px 50px; /* Decrease padding to make the button smaller */
+    font-size: 14px; /* Smaller text */
+    border-radius: 4px; /* Rounded corners */
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s;
+    position:relative
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #143e6c;
+  }
+   
+  .rounded-textbox {
+    border: 1px solid #ccc;
+    padding: 8px;
+    border-radius: 100000px; /* Adjust as needed */
+    outline: none;
+  }
+
+  /* /src/style/style.css */
+input {
+    border-radius: 7px; /* Adjust this value to control the roundness */
+    padding: 8px; /* Optional: Adds some padding for better text alignment */
+    border: 1px solid #ccc; /* Optional: Adds a light border */
+    background-color: #9b9ea0;
+    color: #0d0606
+  }
+  
+  form {
+    width: 300px; /* Optional: You can set a width to control the form's size */
+    margin: 0 auto; /* Center the form */
+  }
+  
