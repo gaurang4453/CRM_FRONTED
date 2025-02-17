@@ -162,10 +162,12 @@ function App() {
     handleSubmit, 
     watch, 
     formState: { errors },
+    reset 
    } = useForm();
 
    function onSubmit(data) {
     console.log("Submitting the form",data);
+    reset();
    }
 
   return (
@@ -173,10 +175,10 @@ function App() {
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
         <label>propid</label>
-        <input {...register('propid',
+        <input {...register('propid', 
           { 
-            required: true,
-             maxLength:{value:4, message:'no more than 4 digits'} })}/>
+            required: { value: true, message: 'fill above Field' } 
+          })}/>
              {errors.propid && <p>{errors.propid.message}</p>}
       </div>
       <br/>
