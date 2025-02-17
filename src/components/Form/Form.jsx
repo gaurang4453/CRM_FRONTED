@@ -177,7 +177,7 @@ function App() {
         <label>propid</label>
         <input {...register('propid', 
           { 
-            required: { value: true, message: 'fill above Field' } 
+            required: { value: true, message: 'fill above feild' } 
           })}/>
              {errors.propid && <p>{errors.propid.message}</p>}
       </div>
