@@ -5,9 +5,15 @@ import "/src/style/style.css";
 import Navbar from "../Navbar/Navbar";
 
 function PropMasterForm() {
+<<<<<<< HEAD
   const {
     register,
     handleSubmit,
+=======
+  const { 
+    register, 
+    handleSubmit, 
+>>>>>>> 547ba51a25b4175a12a550d9b74f293b86719cd4
     formState: { errors },
     reset,
   } = useForm();
@@ -37,6 +43,7 @@ function PropMasterForm() {
 
   return (
     <form onSubmit={handleSubmit(handleFormSubmit)} className="form">
+<<<<<<< HEAD
       <h1>
         Property Master <h />
         <h>
@@ -46,34 +53,34 @@ function PropMasterForm() {
       </h1>
 
       <div>
+=======
+      <h1>Property Master Form</h1>
+
+      <div className="form-field">
+>>>>>>> 547ba51a25b4175a12a550d9b74f293b86719cd4
         <label>Property Type Name : </label>
         <input {...register("propTypeName")} />
       </div>
-      <br />
 
-      <div>
+      <div className="form-field">
         <label>Property Name : </label>
         <input {...register("propName")} />
       </div>
-      <br />
 
-      <div>
+      <div className="form-field">
         <label>Property Value :</label>
         <input {...register("propValue")} />
       </div>
-      <br />
 
-      <div>
+      <div className="form-field">
         <label>Status : </label>
         <input {...register("status")} />
       </div>
-      <br />
 
-      <div>
+      <div className="form-field">
         <label>CUID :</label>
         <input {...register("CUID")} placeholder="Numbers only" />
       </div>
-      <br />
 
       <div className="submit-container">
         <input type="submit" value="Submit" />
