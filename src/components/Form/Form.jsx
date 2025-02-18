@@ -1,73 +1,4 @@
 
-
-// export default Form;
-
-// import React, { useState } from "react";
-// import AxiosInstance from "../../AxiosInstance.js";
-
-// const Form = () => {
-//   const [formData, setFormData] = useState({
-//     PropTypeName: "",
-//     PropName: "",
-//     PropValue: "",
-//     Status: "",
-//     CUID: "",
-//   });
-
-//   const handleChange = (e) => {
-//     setFormData({ ...formData, [e.target.name]: e.target.value });
-//   };
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault(); // Prevents page reload
-
-//     try {
-//       const response = await AxiosInstance.post("/PropMaster", formData);
-//       console.log("Successfully submitted data:", response.data);
-//       alert("Successfully submitted data");
-//     } catch (error) {
-//       console.log("Error:", error);
-//       alert("Error submitting data");
-//     }
-//   };
-
-//   return (
-//     <div className="container">
-//       <h1>PropMaster Form</h1>
-//       <br />
-//       <form onSubmit={handleSubmit} className="form">
-//         <div className="form-group">
-//           <label>Property Type Name:</label>
-//           <br />
-//           <input type="text" name="PropTypeName" value={formData.PropTypeName} onChange={handleChange} required />
-//         </div>
-//         <div className="form-group">
-//           <label>Property Name:</label>
-//           <br />
-//           <input type="text" name="PropName" value={formData.PropName} onChange={handleChange} required />
-//         </div>
-//         <div className="form-group">
-//           <label>Property Value:</label>
-//           <br />
-//           <input type="text" name="PropValue" value={formData.PropValue} onChange={handleChange} />
-//         </div>
-//         <div className="form-group">
-//           <label>Status:</label>
-//           <br />
-//           <input type="text" name="Status" value={formData.Status} onChange={handleChange} />
-//         </div>
-//         <div className="form-group">
-//           <label>Created User ID:</label>
-//           <br />
-//           <input type="number" name="CUID" value={formData.CUID} onChange={handleChange} />
-//         </div>
-//         <button type="submit" className="submit-button">Submit</button>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default Form;
 import React from "react";
 import { useForm } from "react-hook-form";
 import AxiosInstance from "../../AxiosInstance";
@@ -84,9 +15,17 @@ function Form() {
   // Function to submit form data
   const handleFormSubmit = async (data) => {
     console.log("Submitting the form:", data);
+    const payload = {
+      propID: 0,
+      propTypeName: data.propTypeName,
+      propName: data.propName,
+      propValue: data.propValue,
+      status: data.status,
+      CUID: data.CUID,
+    }
     
     try {
-      const response = await AxiosInstance.post("/PropMaster", data);
+      const response = await AxiosInstance.post("/PropMaster", payload);
       console.log("Successfully submitted data:", response);
       alert("Successfully submitted data");
       reset(); // Reset form after submission
@@ -98,30 +37,27 @@ function Form() {
 
   return (
     <form onSubmit={handleSubmit(handleFormSubmit)} className="form">
-      <h1>PropMaster Form</h1>
+      <h1>Property Master <h/><h>
+        <br></br>
+      </h>Form</h1>
+
+     
 
       <div>
-        <label>PropID : </label>
-        <input {...register("propid", { required: "Fill above field" })} />
-        {errors.propid && <p>{errors.propid.message}</p>}
+        <label>Property Type Name : </label>
+        <input {...register("propTypeName")} />
       </div>
       <br />
 
       <div>
-        <label>PropTypeName : </label>
-        <input {...register("proptypename")} />
+        <label>Property Name : </label>
+        <input {...register("propName")} />
       </div>
       <br />
 
       <div>
-        <label>PropName : </label>
-        <input {...register("propname")} />
-      </div>
-      <br />
-
-      <div>
-        <label>PropValue :</label>
-        <input {...register("propvalue")} />
+        <label>Property Value :</label>
+        <input {...register("propValue")} />
       </div>
       <br />
 
@@ -133,7 +69,7 @@ function Form() {
 
       <div>
         <label>CUID :</label>
-        <input {...register("CUID")} />
+        <input {...register("CUID" )} placeholder="Numbers only" />
       </div>
       <br />
 
