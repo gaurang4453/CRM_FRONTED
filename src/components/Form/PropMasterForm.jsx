@@ -82,3 +82,4 @@ function PropMasterForm() {
 }
 
 export default PropMasterForm;
+export default PropMasterForm;
