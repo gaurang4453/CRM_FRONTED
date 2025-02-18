@@ -5,12 +5,11 @@ import "/src/style/style.css";
 import Navbar from "../Navbar/Navbar";
 
 function PropMasterForm() {
- 
-  const { 
-    register, 
-    handleSubmit, 
+  const {
+    register,
+    handleSubmit,
     formState: { errors },
-    reset 
+    reset,
   } = useForm();
 
   // Function to submit form data
@@ -23,8 +22,8 @@ function PropMasterForm() {
       propValue: data.propValue,
       status: data.status,
       CUID: data.CUID,
-    }
-    
+    };
+
     try {
       const response = await AxiosInstance.post("/PropMaster", payload);
       console.log("Successfully submitted data:", response);
@@ -38,11 +37,13 @@ function PropMasterForm() {
 
   return (
     <form onSubmit={handleSubmit(handleFormSubmit)} className="form">
-      <h1>Property Master <h/><h>
-        <br></br>
-      </h>Form</h1>
-
-     
+      <h1>
+        Property Master <h />
+        <h>
+          <br></br>
+        </h>
+        Form
+      </h1>
 
       <div>
         <label>Property Type Name : </label>
@@ -70,7 +71,7 @@ function PropMasterForm() {
 
       <div>
         <label>CUID :</label>
-        <input {...register("CUID" )} placeholder="Numbers only" />
+        <input {...register("CUID")} placeholder="Numbers only" />
       </div>
       <br />
 
