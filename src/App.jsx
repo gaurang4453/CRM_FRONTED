@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Home from './components/Home'
+import Routing from "./Routing"
 
 
 import Form from './components/Form/PropMasterForm'
@@ -8,8 +9,8 @@ function App() {
 
   return (
     <>
-     {/* <Form/> */}
-     <Home/>
+     
+   <Routing/>
     </>
     
     
