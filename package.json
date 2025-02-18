@@ -16,10 +16,7 @@
     "react-bootstrap": "^2.10.9",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.54.2",
-<<<<<<< HEAD
     "react-icons": "^5.4.0",
-=======
->>>>>>> 0c905e39e348ec35d0bbae6bde7419ef7f28edc9
     "react-router-dom": "^7.1.5"
   },
   "devDependencies": {
