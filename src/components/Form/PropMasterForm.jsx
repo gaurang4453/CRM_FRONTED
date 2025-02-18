@@ -1,10 +1,11 @@
-
 import React from "react";
 import { useForm } from "react-hook-form";
 import AxiosInstance from "../../AxiosInstance";
 import "/src/style/style.css";
+import Navbar from "../Navbar/Navbar";
 
-function Form() {
+function PropMasterForm() {
+ 
   const { 
     register, 
     handleSubmit, 
@@ -80,4 +81,4 @@ function Form() {
   );
 }
 
-export default Form;
+export default PropMasterForm;
