@@ -1,82 +1,85 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
-import AxiosInstance from "../../AxiosInstance"; // Ensure this path is correct
-
+import { useNavigate } from "react-router-dom";
+import AxiosInstance from "../../AxiosInstance";
+import { Spinner, Table, Container } from "react-bootstrap";
+import EditPropertyMst from "../../Edit/EditPropertyMst";
 function PropMasterTable() {
   const [tableData, setTableData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const navigate = useNavigate(); // Initialize navigation
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        const response = await AxiosInstance.get("/PropMaster");
-        console.log("API Response:", response.data);
-
-        if (response.data && Array.isArray(response.data.data)) {
-          setTableData(response.data.data);
-        } else if (Array.isArray(response.data)) {
-          setTableData(response.data);
-        } else {
-          setError("Invalid data format received from API.");
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        setError(error.message || "Something went wrong!");
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchData();
   }, []);
 
-  // Function to handle row click
-  const handleRowClick = (propID) => {
-    navigate(`/edit-property/${propID}`); // Redirects to edit page
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      const response = await AxiosInstance.get("/PropMaster");
+      setTableData(response.data.data || response.data);
+    } catch (error) {
+      setError("Something went wrong!");
+    } finally {
+      setLoading(false);
+    }
   };
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
+  // Navigate to Edit Page when clicking on a row
+  const handleRowClick = (propID) => {
+    navigate(`/EditPropertyMst/${propID}`);
+  };
 
   return (
-    <div>
-      <h2>Propmaster Table</h2>
-      {tableData.length > 0 ? (
-        <table className="table mt-4 table-hover">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Property Type Name</th>
-              <th>Property Name</th>
-              <th>Property Value</th>
-              <th>Status</th>
-              <th>CUID</th>
-            </tr>
-          </thead>
-          <tbody>
-            {tableData.map((item, index) => (
-              <tr
-                key={item.propID || index}
-                onClick={() => handleRowClick(item.propID)}
-                style={{ cursor: "pointer" }} // Change cursor to indicate clickability
-              >
-                <td>{index + 1}</td>
-                <td>{item.propTypeName}</td>
-                <td>{item.propName}</td>
-                <td>{item.propValue}</td>
-                <td>{item.status}</td>
-                <td>{item.CUID}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      ) : (
-        <p>No data available.</p>
+    <Container className="mt-5">
+      <h2 className="text-center text-primary">Property Master Table</h2>
+
+      {loading && (
+        <Spinner
+          animation="border"
+          variant="primary"
+          className="d-block mx-auto"
+        />
       )}
-    </div>
+
+      {error && <p className="text-danger text-center">{error}</p>}
+
+      {tableData.length > 0 && !loading ? (
+        <div className="table-responsive shadow-lg rounded bg-white p-3">
+          <Table bordered hover className="mt-3">
+            <thead className="bg-primary text-white text-center">
+              <tr>
+                <th>#</th>
+                <th>Property Type Name</th>
+                <th>Property Name</th>
+                <th>Property Value</th>
+                <th>Status</th>
+                <th>CUID</th>
+              </tr>
+            </thead>
+            <tbody>
+              {tableData.map((item, index) => (
+                <tr
+                  key={item.propID || index}
+                  onClick={() => handleRowClick(item.propID)}
+                  style={{ cursor: "pointer" }}
+                  className="text-center table-row-hover"
+                >
+                  <td>{index + 1}</td>
+                  <td>{item.propTypeName}</td>
+                  <td>{item.propName}</td>
+                  <td>{item.propValue}</td>
+                  <td>{item.status}</td>
+                  <td>{item.CUID}</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </div>
+      ) : (
+        !loading && <p className="text-center text-muted">No data available.</p>
+      )}
+    </Container>
   );
 }
 
