@@ -71,6 +71,25 @@ function EditPropertyMst() {
     }
   };
 
+  ////delete code
+
+  const handleDelete = async () => {
+    if (!window.confirm("Are you sure you want to delete this property?"))
+      return;
+
+    try {
+      await AxiosInstance.delete(`/PropMaster/${id}`);
+      alert("Property deleted successfully!");
+      navigate("/PropMasterTable");
+    } catch (error) {
+      console.error(
+        "Error deleting property:",
+        error.response?.data || error.message
+      );
+      alert("Failed to delete property.");
+    }
+  };
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p className="error">{error}</p>;
 
@@ -108,6 +127,13 @@ function EditPropertyMst() {
 
       <div className="submit-container">
         <input type="submit" value="Update" />
+        <button
+          className="delete-button mx-1 btn btn-warning"
+          type="button"
+          onClick={handleDelete}
+        >
+          🗑️ Delete
+        </button>
         <button
           className="cancel-button mx-1 btn btn-danger size "
           type="button"
