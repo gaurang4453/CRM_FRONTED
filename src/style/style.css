@@ -3,53 +3,70 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  
 }
 
 body {
-  font-size: 13px;
+  font-size: 15px;
   font-family: Arial, sans-serif;
-  background-color: #9bbbf3;
+  background-color: #1a1b14;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   padding: 10px;
+  
 }
 
 form {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 30px;
+  background-color: #ffffff;
+  padding: 110px; /* Reduced padding for better layout */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   width: 100%;
-  max-width: 1200px; /* Increase width for horizontal layout */
+  max-width: 1600px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
   display: flex;
-  flex-wrap: wrap; /* Allow items to wrap if they exceed container width */
-  justify-content: space-between; /* Space items evenly */
+  flex-wrap: wrap;
+  justify-content: flex-start; /* Start alignment to prevent stretching */
 }
 
-h1 {
-  text-align: center;
+form h1 {
+  text-align: left;
+  background-color: #007bff;
   margin-bottom: 20px;
-  color: #4d44eb;
-  width: 100%; /* Ensure header spans full width */
+  margin-left: 10px;
+  color: rgb(255, 254, 254);
+  width: 250px;
+  font-size: 20px; /* Increase the size of the title */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  padding-left: 10px;
+         /* Dark shadow for depth */
+  position: relative;
+  overflow: hidden;
+ 
 }
 
+
+/* Align form fields with the label on the left */
 .form-field {
   display: flex;
   flex-direction: column;
-  width: 45%; /* Set each field to take up 45% of the width */
   margin-bottom: 20px;
 }
 
 label {
-  font-weight: bold;
-  color: #255ad4;
-  margin-bottom: 5px;
+  color: #444649;
+  margin-bottom: 10px;  /* Space between label and input */
+  font-size: 14px;      /* Increase the font size */
+  white-space: nowrap;  /* Optional: Make the label text bold */
 }
 
+/* Input styles */
 input[type="text"],
-input[type="number"] {
+input[type="number"],
+select.form-select {
   width: 100%;
   padding: 10px;
   margin-top: 5px;
@@ -57,6 +74,7 @@ input[type="number"] {
   border-radius: 4px;
 }
 
+/* Submit button styles */
 input[type="submit"] {
   background-color: #007bff;
   color: white;
@@ -74,19 +92,39 @@ input[type="submit"]:hover {
   background-color: #143e6c;
 }
 
-p {
-  color: red;
-  font-size: 12px;
-  margin-top: 5px;
-}
-
-br {
-  margin: 10px 0;
-}
-
 .submit-container {
   width: 100%;
   display: flex;
-  justify-content: center; /* Center the button horizontally */
+  justify-content: center;
   margin-top: 20px;
 }
+
+.line-textbox {
+  border: none;             
+  border-bottom: 2px solid rgb(243, 185, 78); /* Solid line at the bottom */
+  outline: none;            /* Remove outline (focus ring) */
+  padding: 8px;             /* Space inside the textbox */
+  font-size: 13px;          /* Text size */
+  width: 100%;              /* Ensure it takes the full available width in its container */
+  max-width: 500px; 
+}
+.line-textbox:focus {
+  border-bottom: 2px solid blue;
+}
+
+/* Adjust spacing between form fields */
+.form-field {
+  display: flex;
+  align-items: center; /* Aligns label and input vertically */
+  margin-bottom: 1rem; /* Space between fields */
+}
+
+/* Adjust space between the dropdown and submit button */
+select.form-select {
+  margin-bottom: 20px; /* Adding space below the dropdown */
+}
+
+form {
+   /* Increased padding for a larger form */
+}
+
