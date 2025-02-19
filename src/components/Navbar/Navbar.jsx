@@ -15,10 +15,25 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-right">
+<<<<<<< HEAD
           <Link className="nav-link" to="/PropMasterForm" >Property Master</Link>
           <Link className="nav-link" to="/clients">Clients</Link>
           <Link className="nav-link" to="/reports">Reports</Link>
           <Link className="nav-link" to="/settings">Settings</Link>
+=======
+          <Link className="nav-link" to="/PropMasterTable">
+            Property Master
+          </Link>
+          <Link className="nav-link" to="/clients">
+            Clients
+          </Link>
+          <Link className="nav-link" to="/reports">
+            Reports
+          </Link>
+          <Link className="nav-link" to="/settings">
+            Settings
+          </Link>
+>>>>>>> cde5b6ecaf13716591663fbc77f607ca9742e82c
 
           <div className="dropdown">
             <button className="dropdown-toggle">Profile</button>
