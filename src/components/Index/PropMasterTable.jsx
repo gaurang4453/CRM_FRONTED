@@ -33,9 +33,14 @@ function PropMasterTable() {
     fetchData();
   }, []);
 
-  // Function to handle row click
+  // Function to handle row click for editing
   const handleRowClick = (propID) => {
-    navigate(`/edit-property/${propID}`); // Redirects to edit page
+    navigate(`/EditProperty/${propID}`); // Redirects to edit page
+  };
+
+  // Function to handle Create New button
+  const handleCreateNew = () => {
+    navigate("/PropMasterForm"); // Redirects to PropMasterForm for new entry
   };
 
   if (loading) return <p>Loading...</p>;
@@ -44,6 +49,15 @@ function PropMasterTable() {
   return (
     <div>
       <h2>Propmaster Table</h2>
+
+      {/* Create New Button */}
+      <button 
+        onClick={handleCreateNew} 
+        style={{ marginBottom: "15px", padding: "10px 15px", background: "#28a745", color: "white", border: "none", cursor: "pointer", borderRadius: "5px" }}
+      >
+        + Create New
+      </button>
+
       {tableData.length > 0 ? (
         <table className="table mt-4 table-hover">
           <thead>

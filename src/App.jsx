@@ -7,7 +7,7 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
+import PropMasterForm from "./components/Form/PropMasterForm";
 function App() {
   return (
     <>
@@ -16,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/PropMasterTable" element={<PropMasterTable />} />
+          <Route path="/PropMasterForm" element={<PropMasterForm />} />
         </Routes>
       </Router>
     </>

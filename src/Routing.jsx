@@ -1,19 +1,19 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Navbar from './components/Navbar/Navbar'; // Adjust the path if needed
-import PropMasterForm from './components/Form/PropMasterForm'; // This is the form component
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import PropMasterTable from "./components/PropMasterTable";
+import CreateProperty from "./components/CreateProperty";
+import EditProperty from "./components/EditProperty"; 
 
-const App = () => {
+function App() {
   return (
     <Router>
-      <Navbar />
       <Routes>
-        {/* Define your routes here */}
+        <Route path="/propmaster-table" element={<PropMasterTable />} />
         <Route path="/PropMasterForm" element={<PropMasterForm />} />
-        {/* Add more routes for other components/pages if needed */}
+        <Route path="/EditProperty/:propID" element={<EditProperty />} />
+        <Route path="/" element={<PropMasterTable />} /> {/* Default Route */}
       </Routes>
     </Router>
   );
-};
+}
 
 export default App;
