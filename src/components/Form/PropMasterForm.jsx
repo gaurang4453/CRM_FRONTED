@@ -5,15 +5,9 @@ import "/src/style/style.css";
 import Navbar from "../Navbar/Navbar";
 
 function PropMasterForm() {
-<<<<<<< HEAD
   const {
     register,
     handleSubmit,
-=======
-  const { 
-    register, 
-    handleSubmit, 
->>>>>>> 547ba51a25b4175a12a550d9b74f293b86719cd4
     formState: { errors },
     reset,
   } = useForm();
@@ -43,21 +37,9 @@ function PropMasterForm() {
 
   return (
     <form onSubmit={handleSubmit(handleFormSubmit)} className="form">
-<<<<<<< HEAD
-      <h1>
-        Property Master <h />
-        <h>
-          <br></br>
-        </h>
-        Form
-      </h1>
-
-      <div>
-=======
       <h1>Property Master Form</h1>
 
       <div className="form-field">
->>>>>>> 547ba51a25b4175a12a550d9b74f293b86719cd4
         <label>Property Type Name : </label>
         <input {...register("propTypeName")} />
       </div>

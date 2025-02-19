@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import AxiosInstance from "../../AxiosInstance"; // Ensure this path is correct
 
-function PropmasterTable() {
+function PropMasterTable() {
   const [tableData, setTableData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -80,4 +80,4 @@ function PropmasterTable() {
   );
 }
 
-export default PropmasterTable;
+export default PropMasterTable;
