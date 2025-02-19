@@ -15,12 +15,6 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-right">
-<<<<<<< HEAD
-          <Link className="nav-link" to="/PropMasterForm" >Property Master</Link>
-          <Link className="nav-link" to="/clients">Clients</Link>
-          <Link className="nav-link" to="/reports">Reports</Link>
-          <Link className="nav-link" to="/settings">Settings</Link>
-=======
           <Link className="nav-link" to="/PropMasterTable">
             Property Master
           </Link>
@@ -33,7 +27,6 @@ const Navbar = () => {
           <Link className="nav-link" to="/settings">
             Settings
           </Link>
->>>>>>> 7a703fa95667ef4b10eb31ec2e6d6b272bbe4c22
 
           <div className="dropdown">
             <button className="dropdown-toggle">Profile</button>
