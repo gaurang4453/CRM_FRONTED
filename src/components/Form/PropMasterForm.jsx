@@ -5,9 +5,9 @@ import { Row, Col, Container } from "react-bootstrap"; // Importing Bootstrap co
 import "/src/style/style.css"; // Ensure this file exists and has no errors
 
 function PropMasterForm() {
-  const {
-    register,
-    handleSubmit,
+  const { 
+    register, 
+    handleSubmit, 
     formState: { errors },
     reset,
   } = useForm();
@@ -36,14 +36,29 @@ function PropMasterForm() {
   };
 
   return (
-    <Container>
     <form onSubmit={handleSubmit(handleFormSubmit)} className="form">
-      <h1>Property Master Form</h1>
+      <h1>Property Master Form</h1 >
 
-      <div className="form-field">
-        <label>Property Type Name : </label>
-        <input {...register("propTypeName")} />
-      </div>
+      <Container>
+        {/* Property Type Name */}
+        <Row className="mb-3">
+          <Col md={3} className="d-flex align-items-center">
+            <label>Property Type Name: </label>
+          </Col>
+          <Col md={9}>
+            <input {...register("propTypeName")} className="line-textbox" />
+          </Col>
+        </Row>
+
+        {/* Property Name */}
+        <Row className="mb-3">
+          <Col md={3} className="d-flex align-items-center">
+            <label>Property Name: </label>
+          </Col>
+          <Col md={9}>
+            <input {...register("propName")} className="line-textbox" />
+          </Col>
+        </Row>
 
         {/* Property Value */}
         <Row className="mb-3">
@@ -94,8 +109,8 @@ function PropMasterForm() {
         <div className="submit-container">
           <input type="submit" value="Submit" />
         </div>
-      </form>
-    </Container>
+      </Container>
+    </form>
   );
 }
 
