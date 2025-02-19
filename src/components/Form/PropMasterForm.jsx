@@ -5,15 +5,9 @@ import { Row, Col, Container } from "react-bootstrap"; // Importing Bootstrap co
 import "/src/style/style.css"; // Ensure this file exists and has no errors
 
 function PropMasterForm() {
-<<<<<<< HEAD
   const { 
     register, 
     handleSubmit, 
-=======
-  const {
-    register,
-    handleSubmit,
->>>>>>> 7a703fa95667ef4b10eb31ec2e6d6b272bbe4c22
     formState: { errors },
     reset,
   } = useForm();
@@ -43,7 +37,6 @@ function PropMasterForm() {
 
   return (
     <form onSubmit={handleSubmit(handleFormSubmit)} className="form">
-<<<<<<< HEAD
       <h1>Property Master Form</h1 >
 
       <Container>
@@ -66,14 +59,6 @@ function PropMasterForm() {
             <input {...register("propName")} className="line-textbox" />
           </Col>
         </Row>
-=======
-      <h1>Property Master Form</h1>
-
-      <div className="form-field">
-        <label>Property Type Name : </label>
-        <input {...register("propTypeName")} />
-      </div>
->>>>>>> 7a703fa95667ef4b10eb31ec2e6d6b272bbe4c22
 
         {/* Property Value */}
         <Row className="mb-3">
