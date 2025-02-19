@@ -1,13 +1,13 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import AxiosInstance from "../../AxiosInstance";
-import "/src/style/style.css";
-import Navbar from "../Navbar/Navbar";
+import { Row, Col, Container } from "react-bootstrap"; // Importing Bootstrap components
+import "/src/style/style.css"; // Ensure this file exists and has no errors
 
 function PropMasterForm() {
-  const {
-    register,
-    handleSubmit,
+  const { 
+    register, 
+    handleSubmit, 
     formState: { errors },
     reset,
   } = useForm();
@@ -37,36 +37,79 @@ function PropMasterForm() {
 
   return (
     <form onSubmit={handleSubmit(handleFormSubmit)} className="form">
-      <h1>Property Master Form</h1>
+      <h1>Property Master Form</h1 >
 
-      <div className="form-field">
-        <label>Property Type Name : </label>
-        <input {...register("propTypeName")} />
-      </div>
+      <Container>
+        {/* Property Type Name */}
+        <Row className="mb-3">
+          <Col md={3} className="d-flex align-items-center">
+            <label>Property Type Name: </label>
+          </Col>
+          <Col md={9}>
+            <input {...register("propTypeName")} className="line-textbox" />
+          </Col>
+        </Row>
 
-      <div className="form-field">
-        <label>Property Name : </label>
-        <input {...register("propName")} />
-      </div>
+        {/* Property Name */}
+        <Row className="mb-3">
+          <Col md={3} className="d-flex align-items-center">
+            <label>Property Name: </label>
+          </Col>
+          <Col md={9}>
+            <input {...register("propName")} className="line-textbox" />
+          </Col>
+        </Row>
 
-      <div className="form-field">
-        <label>Property Value :</label>
-        <input {...register("propValue")} />
-      </div>
+        {/* Property Value */}
+        <Row className="mb-3">
+          <Col md={3} className="d-flex align-items-center">
+            <label>Property Value: </label>
+          </Col>
+          <Col md={9}>
+            <input {...register("propValue")} className="line-textbox" />
+          </Col>
+        </Row>
 
-      <div className="form-field">
-        <label>Status : </label>
-        <input {...register("status")} />
-      </div>
+        {/* Status Dropdown */}
+        <Row className="mb-3">
+          <Col md={3} className="d-flex align-items-center">
+            <label>Status: </label>
+          </Col>
+          <Col md={9}>
+            <select id="status" name="status" className="form-select">
+              <option value="Active">Active</option>
+              <option value="Deactive">Deactive</option>
+            </select>
+          </Col>
+        </Row>
 
-      <div className="form-field">
-        <label>CUID :</label>
-        <input {...register("CUID")} placeholder="Numbers only" />
-      </div>
+        {/* CUID */}
+        <Row className="mb-3">
+          <Col md={3} className="d-flex align-items-center">
+            <label>CUID: </label>
+          </Col>
+          <Col md={9}>
+            <input 
+              {...register("CUID", {
+                // required: "CUID is required", 
+                pattern: {
+                  value: /^[0-9]+$/,  // Regex to allow only numbers
+                  message: "CUID must be a number.",
+                }
+              })} 
+              placeholder="Enter in numbers only." 
+              className="line-textbox" 
+            />
+            {/* Display error message if CUID is not a number */}
+            {errors.CUID && <p style={{ color: 'red' }}>{errors.CUID.message}</p>}
+          </Col>
+        </Row>
 
-      <div className="submit-container">
-        <input type="submit" value="Submit" />
-      </div>
+        {/* Submit Button */}
+        <div className="submit-container">
+          <input type="submit" value="Submit" />
+        </div>
+      </Container>
     </form>
   );
 }

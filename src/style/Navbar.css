@@ -5,9 +5,10 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  background-color: #2874f0; /* Flipkart-style blue */
+  background-color: #0d254b; /* Flipkart-style blue */
   padding: 10px 20px;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  font-weight: normal;
+  color: white;
 }
 
 /* Navbar Flexbox Layout */
@@ -18,35 +19,11 @@
 }
 
 /* Logo */
-.navbar-brand {
+.navbar-container .navbar-brand {
   font-size: 22px;
-  font-weight: bold;
-  color: white;
+  color: white; /* Set the logo color to white */
   text-decoration: none;
 }
-/* 
-Search Bar
-.search-bar {
-  display: flex;
-  align-items: center;
-}
-.search-bar input {
-  padding: 8px;
-  border: none;
-  border-radius: 4px 0 0 4px;
-  width: 250px;
-}
-.search-bar button {
-  background-color: #ff9f00;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 0 4px 4px 0;
-  cursor: pointer;
-}
-.search-bar button:hover {
-  background-color: #e38d00;
-} */
 
 /* Navbar Links */
 .navbar-right {
@@ -54,6 +31,7 @@ Search Bar
   align-items: center;
   gap: 20px;
 }
+
 .nav-link {
   color: white;
   text-decoration: none;
@@ -61,16 +39,18 @@ Search Bar
   font-weight: 500;
   padding: 8px 12px;
 }
+
 .nav-link:hover {
   background-color: #ffcc00;
   border-radius: 5px;
-  color: black;
+  color: rgb(236, 221, 221);
 }
 
 /* Profile Dropdown */
 .dropdown {
   position: relative;
 }
+
 .dropdown-toggle {
   background-color: transparent;
   color: white;
@@ -78,6 +58,7 @@ Search Bar
   font-size: 16px;
   cursor: pointer;
 }
+
 .dropdown-menu {
   display: none;
   position: absolute;
@@ -89,15 +70,18 @@ Search Bar
   z-index: 1050;
   min-width: 150px;
 }
+
 .dropdown:hover .dropdown-menu {
   display: block;
 }
+
 .dropdown-item {
   display: block;
   padding: 10px;
   text-decoration: none;
   color: black;
 }
+
 .dropdown-item:hover {
   background: #2874f0;
   color: white;
@@ -113,6 +97,7 @@ body {
   .search-bar input {
     width: 150px;
   }
+
   .navbar-right {
     gap: 10px;
   }
