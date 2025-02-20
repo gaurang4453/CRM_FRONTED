@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useParams, useNavigate } from "react-router-dom";
 import AxiosInstance from "../AxiosInstance";
-import { Row, Col, Button, Container } from "react-bootstrap"; // Importing Bootstrap components
+
 import "/src/style/style.css";
 import Footer from "../components/footer/Footer";
 function EditPropertyMst() {
@@ -48,8 +48,10 @@ function EditPropertyMst() {
     fetchProperty();
   }, [id, setValue]);
 
-  // Handle form submission
-  const handleFormSubmit = async (data) => {
+  const onSubmit = async (data, event) => {
+    event.preventDefault(); // Prevent double execution
+    console.log("Form Submitted:", data);
+
     const payload = {
       propID: id,
       propTypeName: data.propTypeName,
@@ -76,88 +78,86 @@ function EditPropertyMst() {
   ////delete code
 
   const handleDelete = async () => {
-    if (!window.confirm("Are you sure you want to delete this property?"))
-     
+    if (window.confirm("Are you sure you want to delete this property?")) {
+      try {
+        const response = await AxiosInstance.delete(`/PropMaster/${id}`);
+        console.log("Delete Response:", response.data);
 
-    try {
-      await AxiosInstance.delete(`/PropMaster/${id}`);
-      alert("Property deleted successfully!");
-      navigate("/PropMasterTable");
-    } catch (error) {
-      console.error(
-        "Error deleting property:",
-        error.response?.data || error.message
-      );
-      alert("Failed to delete property.");
+        alert("Property deleted successfully!");
+        navigate("/PropMasterTable");
+      } catch (error) {
+        console.error(
+          "Error deleting property:",
+          error.response?.data || error.message
+        );
+        alert("Failed to delete property.");
+      }
     }
   };
-
+  const handleCancel = () => {
+    //  navigate("/PropMasterTable");
+    navigate(-1);
+  };
   if (loading) return <p>Loading...</p>;
   if (error) return <p className="error">{error}</p>;
 
   return (
-    <form onSubmit={handleSubmit(handleFormSubmit)}  className="form">
-      <h1 className="ribbon">Edit Property</h1>
+    <>
+      <form onSubmit={handleSubmit(onSubmit)} className="form">
+        <h1>Edit Property</h1>
 
-      <Container className="container">
-        <Row className="mb-3">
-          <Col md={3} className="d-flex align-items-center">
-            <label>Property Type Name :</label>
-          </Col>
-          <Col md={9}>
-            <input {...register("propTypeName")} className="line-textbox" />
-          </Col>
-        </Row>
+        <div className="form-field">
+          <label>Property Type Name :</label>
+          <input {...register("propTypeName")} />
+        </div>
 
-        <Row className="mb-3">
-          <Col md={3} className="d-flex align-items-center">
-            <label>Property Name :</label>
-          </Col>
-          <Col md={9}>
-            <input {...register("propName")} className="line-textbox" />
-          </Col>
-        </Row>
+        <div className="form-field">
+          <label>Property Name :</label>
+          <input {...register("propName")} />
+        </div>
 
-        <Row className="mb-3">
-          <Col md={3} className="d-flex align-items-center">
-            <label>Property Value :</label>
-          </Col>
-          <Col md={9}>
-            <input {...register("propValue")} className="line-textbox" />
-          </Col>
-        </Row>
+        <div className="form-field">
+          <label>Property Value :</label>
+          <input {...register("propValue")} />
+        </div>
 
-        <Row className="mb-3">
-          <Col md={3} className="d-flex align-items-center" >
-            <label className="select.form-select">Status :</label>
-          </Col>
-          <Col md={9}>
-            <select {...register("status")} className="form-select">
-              <option value="Active">Active</option>
-              <option value="Deactive">Deactive</option>
-            </select>
-          </Col>
-        </Row>
+        <div className="form-field">
+          <label>Status :</label>
+          <select {...register("status")}>
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+          </select>
+        </div>
 
-        <Row className="mb-3">
-          <Col md={3} className="d-flex align-items-center">
-            <label>CUID :</label>
-          </Col>
-          <Col md={9}>
-            <input
-              {...register("CUID")}
-              className="line-textbox"
-              placeholder="Numbers only"
-            />
-          </Col>
-        </Row>
-      </Container>
-      <Footer className="footer"
-        onSave={handleSubmit(handleFormSubmit)}
+        <div className="form-field">
+          <label>CUID :</label>
+          <input {...register("CUID")} placeholder="Numbers only" />
+        </div>
+
+        {/* <button type="submit" className="btn btn-success">
+          Save
+        </button>
+        <button
+          type="button"
+          className="btn btn-danger mx-1"
+          onClick={handleDelete}
+        >
+          Delete
+        </button>
+        <button
+          type="button"
+          className="btn btn-secondary"
+          onClick={() => navigate("/PropMasterTable")}
+        >
+          Cancel
+        </button> */}
+      </form>
+      <Footer
+        onSave={handleSubmit(onSubmit)}
         onDelete={handleDelete}
-        onCancel={() => navigate("/PropMasterTable")}
+        onCancel={handleCancel}
       />
-    </form>
+    </>
   );
 }
 

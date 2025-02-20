@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "/src/style/Navbar.css";
-import PropMasterForm from "../Form/PropMasterForm";
-import PropMasterTable from "../Index/PropMasterTable";
 
 const Navbar = () => {
   return (
