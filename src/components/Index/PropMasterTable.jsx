@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import AxiosInstance from "../../AxiosInstance";
 import { Spinner, Table, Container, Button } from "react-bootstrap";
 import Footer from "../footer/Footer";
+import PropMasterForm from "../Form/PropMasterForm";
 
 function PropMasterTable() {
   const [tableData, setTableData] = useState([]);
@@ -33,7 +34,7 @@ function PropMasterTable() {
 
   // Navigate to PropMasterForm Page
   const handleCreateNew = () => {
-    navigate("/PropMasterForm");  // Redirects to PropMasterForm
+    navigate("/PropMasterForm"); // Redirects to PropMasterForm
   };
 
   return (
@@ -42,9 +43,9 @@ function PropMasterTable() {
 
       {/* Create New Button */}
       <div className="d-flex justify-content-end mb-3">
-        <Button 
-          onClick={handleCreateNew} 
-          variant="success" 
+        <Button
+          onClick={handleCreateNew}
+          variant="success"
           className="px-4 py-2"
         >
           + Create New
@@ -96,7 +97,6 @@ function PropMasterTable() {
       ) : (
         !loading && <p className="text-center text-muted">No data available.</p>
       )}
-      
     </Container>
   );
 }
