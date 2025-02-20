@@ -2,13 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useParams, useNavigate } from "react-router-dom";
 import AxiosInstance from "../AxiosInstance";
-<<<<<<< HEAD
 import { Row, Col, Button, Container } from "react-bootstrap"; // Importing Bootstrap components
 import "/src/style/style.css";
 
-=======
 import Footer from "../components/footer/Footer";
->>>>>>> 5070d114b4b7b69fb518b0f5fa5c04bef8980f86
 function EditPropertyMst() {
   const { id } = useParams(); // Get ID from URL
   const navigate = useNavigate();

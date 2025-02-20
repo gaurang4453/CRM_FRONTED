@@ -44,11 +44,7 @@ function PropMasterForm() {
 
   return (
     <form onSubmit={handleSubmit(handleFormSubmit)} className="form">
-<<<<<<< HEAD
       <h1 className="ribbon">Prop Master Form</h1 >
-=======
-      <h1>Property Master Form</h1>
->>>>>>> 5070d114b4b7b69fb518b0f5fa5c04bef8980f86
 
       <Container>
         {/* Property Type Name */}
