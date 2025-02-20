@@ -84,6 +84,7 @@ function PropMasterForm() {
           </Col>
           <Col md={9}>
             <select {...register("status")} className="form-select">
+            <option value="" disabled selected>--Select--</option>
               <option value="Active">Active</option>
               <option value="Deactive">Deactive</option>
             </select>

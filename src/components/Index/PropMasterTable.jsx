@@ -37,18 +37,17 @@ function PropMasterTable() {
 
   return (
     <Container className="mt-5">
-      <h2 className="text-center text-primary">Property Master Table</h2>
-
+      
       {/* Create New Button */}
-      <div className="d-flex justify-content-end mb-3">
-        <Button
-          onClick={handleCreateNew}
-          variant="success"
-          className="px-4 py-2"
-        >
-          + Create New
-        </Button>
-      </div>
+      <div className="d-flex justify-content-end mb-3" style={{ marginTop: "65px" }}>
+  <Button
+    onClick={handleCreateNew}
+    variant="success"
+    className="px-7 py-2"
+  >
+    + Create New
+  </Button>
+</div>
 
       {loading && (
         <Spinner
@@ -62,6 +61,7 @@ function PropMasterTable() {
 
       {tableData.length > 0 && !loading ? (
         <div className="table-responsive shadow-lg rounded bg-white p-3">
+           <h3 className="text-center mb-2 text-primary">Property Master Table</h3>
           <Table bordered hover className="mt-3">
             <thead className="bg-primary text-white text-center">
               <tr>
