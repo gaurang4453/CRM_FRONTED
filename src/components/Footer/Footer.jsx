@@ -5,17 +5,27 @@ const Footer = () => {
   // Function to handle Save button click
   const handleSave = async () => {
     try {
-      const response = await AxiosInstance.post("/save-property", { 
-        // Include necessary data
-        propertyData: { name: "New Property", value: 1000 } 
+      const response = await fetch("/save-property", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ propertyData: { name: "New Property", value: 1000 } }),
       });
-      console.log("Save Successful:", response.data);
-      alert("Property saved successfully!");
+  
+      const data = await response.json();
+      console.log("Fetch response:", data);
+  
+      if (response.ok) {
+        alert("Property saved successfully!");
+      } else {
+        console.error("Fetch error:", data);
+        alert("Failed to save property.");
+      }
     } catch (error) {
-      console.error("Error saving property:", error);
+      console.error("Fetch error:", error);
       alert("Failed to save property.");
     }
   };
+ 
 
   // Function to handle Delete button click
   const handleDelete = async () => {

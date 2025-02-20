@@ -1,8 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PropMasterTable from "./components/PropMasterTable";
-import CreateProperty from "./components/CreateProperty";
-import EditProperty from "./components/EditProperty"; 
-
+import EditProperty from "./components/EditProperty";
+import PropMasterForm from "./components/Form/PropMasterForm";
 function App() {
   return (
     <Router>

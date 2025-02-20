@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useParams, useNavigate } from "react-router-dom";
 import AxiosInstance from "../AxiosInstance";
-
+import Footer from "../components/footer/Footer";
 function EditPropertyMst() {
   const { id } = useParams(); // Get ID from URL
   const navigate = useNavigate();
@@ -125,23 +125,12 @@ function EditPropertyMst() {
         <input {...register("CUID")} placeholder="Numbers only" />
       </div>
 
-      <div className="submit-container">
-        <input type="submit" value="Update" />
-        <button
-          className="delete-button mx-1 btn btn-warning"
-          type="button"
-          onClick={handleDelete}
-        >
-          🗑️ Delete
-        </button>
-        <button
-          className="cancel-button mx-1 btn btn-danger size "
-          type="button"
-          onClick={() => navigate("/PropMasterTable")}
-        >
-          Cancel
-        </button>
-      </div>
+      
+      <Footer
+          onSave={handleSubmit(handleFormSubmit)}
+          onDelete={handleDelete}
+          onCancel={() => navigate("/PropMasterTable")}
+        />
     </form>
   );
 }
