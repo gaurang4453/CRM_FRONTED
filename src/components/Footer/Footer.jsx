@@ -1,16 +1,12 @@
 import React from "react";
 
-const Footer = ({ onSave, onCancel, onDelete, showDeleteButton }) => {
+const Footer = ({ onSave, onCancel, onDelete }) => {
   // Function to handle Save button click
 
   return (
-    <footer
-      className="py-1 fixed-bottom"
-      style={{ backgroundColor: "#0d254b", height: "120px" }}
-    >
-      <div className="container d-flex justify-content-between align-items-center">
-        <span className="text-white"></span>
-        <div>
+    <footer className="position-fixed start-0 end-0 bottom-0 d-flex flex-row justify-content-end align-items-end" style={{ backgroundColor: '#0d254b' , height:"50px" }}>
+        {/* <span className="text-white"></span> */}
+        <div className="py-1 px-lg-5">
           <button className="btn btn-light mx-1" onClick={onSave}>
             Save
           </button>
@@ -23,7 +19,7 @@ const Footer = ({ onSave, onCancel, onDelete, showDeleteButton }) => {
             Cancel
           </button>
         </div>
-      </div>
+      {/* </div> */}
     </footer>
   );
 };
