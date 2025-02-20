@@ -4,7 +4,7 @@ import AxiosInstance from "../../AxiosInstance";
 import { Row, Col, Container } from "react-bootstrap";
 import "/src/style/style.css";
 import { useNavigate } from "react-router-dom";
-import PropMasterTable from "../Index/PropMasterTable";
+
 
 function PropMasterForm() {
   const {
