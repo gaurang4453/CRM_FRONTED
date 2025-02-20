@@ -88,7 +88,7 @@ function PropMasterTable() {
                   <td>{item.propName}</td>
                   <td>{item.propValue}</td>
                   <td>{item.status}</td>
-                  <td>{item.CUID}</td>
+                  <td>{item.CUID || item.cuid}</td>
                 </tr>
               ))}
             </tbody>
