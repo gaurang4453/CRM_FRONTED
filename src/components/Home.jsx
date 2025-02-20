@@ -7,8 +7,8 @@ import PropMasterForm from "./Form/PropMasterForm";
 const Home = () => {
   return (
     <>
-      {/* <h1>Home</h1> */}
-      <PropMasterForm/>
+      <h1>Home</h1>
+     
     </>
   );
 };

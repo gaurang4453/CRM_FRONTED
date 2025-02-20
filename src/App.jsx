@@ -13,19 +13,7 @@ import Routing from "./Routing";
 function App() {
   return (
     <>
-<<<<<<< HEAD
-      <Router>
-        <Navbar /> {/* Navbar should be within Router */}
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/PropMasterTable" element={<PropMasterTable />} />
-          <Route path="/EditPropertyMst/:id" element={<EditPropertyMst />} />
-          
-       </Routes>    
-      </Router>
-=======
       <Routing />
->>>>>>> 5070d114b4b7b69fb518b0f5fa5c04bef8980f86
     </>
   );
 }

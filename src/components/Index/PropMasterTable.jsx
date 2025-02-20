@@ -4,7 +4,7 @@ import AxiosInstance from "../../AxiosInstance";
 import { Spinner, Table, Container, Button } from "react-bootstrap";
 import Footer from "../footer/Footer";
 import PropMasterForm from "../Form/PropMasterForm";
-
+import EditPropertyMst from "../../Edit/EditPropertyMst";   
 function PropMasterTable() {
   const [tableData, setTableData] = useState([]);
   const [loading, setLoading] = useState(true);
