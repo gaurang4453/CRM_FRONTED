@@ -75,7 +75,7 @@ function EditPropertyMst() {
 
   const handleDelete = async () => {
     if (!window.confirm("Are you sure you want to delete this property?"))
-      return;
+     
 
     try {
       await AxiosInstance.delete(`/PropMaster/${id}`);
