@@ -125,12 +125,11 @@ function EditPropertyMst() {
         <input {...register("CUID")} placeholder="Numbers only" />
       </div>
 
-      
       <Footer
-          onSave={handleSubmit(handleFormSubmit)}
-          onDelete={handleDelete}
-          onCancel={() => navigate("/PropMasterTable")}
-        />
+        onSave={handleSubmit(handleFormSubmit)}
+        onDelete={handleDelete}
+        onCancel={() => navigate("/PropMasterTable")}
+      />
     </form>
   );
 }
