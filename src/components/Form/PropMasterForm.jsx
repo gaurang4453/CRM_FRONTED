@@ -1,16 +1,20 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import AxiosInstance from "../../AxiosInstance";
-import { Row, Col, Container } from "react-bootstrap"; // Importing Bootstrap components
-import "/src/style/style.css"; // Ensure this file exists and has no errors
+import { Row, Col, Container } from "react-bootstrap";
+import "/src/style/style.css";
+import { useNavigate } from "react-router-dom";
+import PropMasterTable from "../Index/PropMasterTable";
 
 function PropMasterForm() {
-  const { 
-    register, 
-    handleSubmit, 
+  const {
+    register,
+    handleSubmit,
     formState: { errors },
     reset,
   } = useForm();
+
+  const navigate = useNavigate(); // Initialize useNavigate
 
   // Function to submit form data
   const handleFormSubmit = async (data) => {
@@ -27,8 +31,11 @@ function PropMasterForm() {
     try {
       const response = await AxiosInstance.post("/PropMaster", payload);
       console.log("Successfully submitted data:", response);
+
       alert("Successfully submitted data");
       reset(); // Reset form after submission
+
+      navigate("/PropMasterTable"); // Redirect after submission
     } catch (error) {
       console.error("Error:", error);
       alert("Error submitting data");
@@ -37,7 +44,11 @@ function PropMasterForm() {
 
   return (
     <form onSubmit={handleSubmit(handleFormSubmit)} className="form">
+<<<<<<< HEAD
       <h1 className="ribbon">Prop Master Form</h1 >
+=======
+      <h1>Property Master Form</h1>
+>>>>>>> 5070d114b4b7b69fb518b0f5fa5c04bef8980f86
 
       <Container>
         {/* Property Type Name */}
@@ -76,7 +87,7 @@ function PropMasterForm() {
             <label>Status: </label>
           </Col>
           <Col md={9}>
-            <select id="status" name="status" className="form-select">
+            <select {...register("status")} className="form-select">
               <option value="Active">Active</option>
               <option value="Deactive">Deactive</option>
             </select>
@@ -89,19 +100,19 @@ function PropMasterForm() {
             <label>CUID: </label>
           </Col>
           <Col md={9}>
-            <input 
+            <input
               {...register("CUID", {
-                // required: "CUID is required", 
                 pattern: {
-                  value: /^[0-9]+$/,  // Regex to allow only numbers
+                  value: /^[0-9]+$/, // Allow only numbers
                   message: "CUID must be a number.",
-                }
-              })} 
-              placeholder="Enter in numbers only." 
-              className="line-textbox" 
+                },
+              })}
+              placeholder="Enter in numbers only."
+              className="line-textbox"
             />
-            {/* Display error message if CUID is not a number */}
-            {errors.CUID && <p style={{ color: 'red' }}>{errors.CUID.message}</p>}
+            {errors.CUID && (
+              <p style={{ color: "red" }}>{errors.CUID.message}</p>
+            )}
           </Col>
         </Row>
 

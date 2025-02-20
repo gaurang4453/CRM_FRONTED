@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AxiosInstance from "../../AxiosInstance";
-import { Spinner, Table, Container } from "react-bootstrap";
-import EditPropertyMst from "../../Edit/EditPropertyMst";
+import { Spinner, Table, Container, Button } from "react-bootstrap";
+import Footer from "../footer/Footer";
+import PropMasterForm from "../Form/PropMasterForm";
+
 function PropMasterTable() {
   const [tableData, setTableData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -30,9 +32,25 @@ function PropMasterTable() {
     navigate(`/EditPropertyMst/${propID}`);
   };
 
+  // Navigate to PropMasterForm Page
+  const handleCreateNew = () => {
+    navigate("/PropMasterForm"); // Redirects to PropMasterForm
+  };
+
   return (
     <Container className="mt-5">
       <h2 className="text-center text-primary">Property Master Table</h2>
+
+      {/* Create New Button */}
+      <div className="d-flex justify-content-end mb-3">
+        <Button
+          onClick={handleCreateNew}
+          variant="success"
+          className="px-4 py-2"
+        >
+          + Create New
+        </Button>
+      </div>
 
       {loading && (
         <Spinner

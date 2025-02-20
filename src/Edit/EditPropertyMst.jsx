@@ -2,9 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useParams, useNavigate } from "react-router-dom";
 import AxiosInstance from "../AxiosInstance";
+<<<<<<< HEAD
 import { Row, Col, Button, Container } from "react-bootstrap"; // Importing Bootstrap components
 import "/src/style/style.css";
 
+=======
+import Footer from "../components/footer/Footer";
+>>>>>>> 5070d114b4b7b69fb518b0f5fa5c04bef8980f86
 function EditPropertyMst() {
   const { id } = useParams(); // Get ID from URL
   const navigate = useNavigate();
@@ -77,7 +81,7 @@ function EditPropertyMst() {
 
   const handleDelete = async () => {
     if (!window.confirm("Are you sure you want to delete this property?"))
-      return;
+     
 
     try {
       await AxiosInstance.delete(`/PropMaster/${id}`);
@@ -152,27 +156,11 @@ function EditPropertyMst() {
           </Col>
         </Row>
 
-        <div className="submit-container">
-          {/* <Button variant="primary" type="submit">
-            Update
-          </Button> */}
-          {/* <Button
-            variant="danger"
-            className="mx-2"
-            onClick={handleDelete}
-            type="button"
-          >
-            🗑️ Delete
-          </Button> */}
-          {/* <Button
-            variant="secondary"
-            onClick={() => navigate("/PropMasterTable")}
-            type="button"
-          >
-            Cancel
-          </Button> */}
-        </div>
-      </Container>
+      <Footer
+        onSave={handleSubmit(handleFormSubmit)}
+        onDelete={handleDelete}
+        onCancel={() => navigate("/PropMasterTable")}
+      />
     </form>
   );
 }
