@@ -28,7 +28,7 @@ form {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  height: 570px;
+  height: 530px;
 }
 
 form h1 {
@@ -51,38 +51,35 @@ form h1 {
 /* Ribbon effect for the h1 element */
 .ribbon {
   position: absolute; /* Position the ribbon absolutely */
-  top: 0px;          /* Space from the top of the form */
-  left: -15px;        /* Position it to the left outside the form */
-  transform: rotate(-0deg); /* Rotate the ribbon */
+  top: 0px;          /* Space from the top of the container */
+  left: -20px;        /* Position it to the left outside the form */
+  transform: rotate(deg); /* Rotate the ribbon for a diagonal effect */
   display: inline-block;
   padding: 10px;
   background-color: #007bff; /* Ribbon color */
   color: #fff;
   font-size: 15px;
-  /* font-weight: bold; */
   text-transform: uppercase;
   white-space: nowrap;
 }
 
-.ribbon::after {
+.ribbon::after, .ribbon::before {
   content: '';
   position: absolute;
   top: 0;
-  right: -10px;
   border-top: 20px solid #007bff;  /* Same as ribbon color */
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
 }
 
-.ribbon::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -10px;
-  border-top: 20px solid #007bff;  /* Same as ribbon color */
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
+.ribbon::after {
+  right: -10px; /* Right triangle part */
 }
+
+.ribbon::before {
+  left: -10px;  /* Left triangle part */
+}
+
 
 /* Align form fields with the label on the left */
 .form-field {
