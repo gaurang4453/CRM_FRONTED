@@ -2,10 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useParams, useNavigate } from "react-router-dom";
 import AxiosInstance from "../AxiosInstance";
-import { Container, Row, Col } from "react-bootstrap";
-
+import { Row, Col, Button, Container } from "react-bootstrap"; // Importing Bootstrap components
 import "/src/style/style.css";
-import Footer from "../components/footer/Footer";
+import Footer from "../components/Footer/Footer";
 function EditPropertyMst() {
   const { id } = useParams(); // Get ID from URL
   const navigate = useNavigate();
@@ -49,32 +48,30 @@ function EditPropertyMst() {
     fetchProperty();
   }, [id, setValue]);
 
-  const onSubmit = async (data, event) => {
-    event.preventDefault(); // Prevent double execution
-    console.log("Form Submitted:", data);
-
-    const payload = {
-      propID: id,
-      propTypeName: data.propTypeName,
-      propName: data.propName,
-      propValue: data.propValue,
-      status: data.status,
-      CUID: data.CUID,
+  // Handle form submission
+   const onsubmit = async (data) => {
+      const payload = {
+        propID: id,
+        propTypeName: data.propTypeName,
+        propName: data.propName,
+        propValue: data.propValue,
+        status: data.status,
+        CUID: data.CUID,
+      };
+  
+      try {
+        const response = await AxiosInstance.post(`/PropMaster`, payload);
+        console.log("Update Response:", response);
+        alert("Property updated successfully!");
+        navigate("/PropMasterTable");
+      } catch (error) {
+        console.error(
+          "Error updating property:",
+          error.response ? error.response.data : error.message
+        );
+        alert("Failed to update property.");
+      }
     };
-
-    try {
-      const response = await AxiosInstance.post(`/PropMaster`, payload);
-      console.log("Update Response:", response);
-      alert("Property updated successfully!");
-      navigate("/PropMasterTable");
-    } catch (error) {
-      console.error(
-        "Error updating property:",
-        error.response ? error.response.data : error.message
-      );
-      alert("Failed to update property.");
-    }
-  };
 
   ////delete code
   const handleDelete = async () => {
@@ -93,17 +90,11 @@ function EditPropertyMst() {
       }
     }
   };
-
-  const handleCancel = () => {
-    //  navigate("/PropMasterTable");
-    navigate(-1);
-  };
   if (loading) return <p>Loading...</p>;
   if (error) return <p className="error">{error}</p>;
 
   return (
-    <>
-    <form onSubmit={handleSubmit(onSubmit)} className="form">
+    <form onSubmit={handleSubmit(onsubmit)} className="form">
       <h1 className="ribbon">Edit Property</h1>
 
       <Container className="container">
@@ -140,6 +131,8 @@ function EditPropertyMst() {
           </Col>
           <Col md={9}>
             <select {...register("status")} className="form-select">
+              
+              
               <option value="Active">Active</option>
               <option value="Deactive">Deactive</option>
             </select>
@@ -159,19 +152,20 @@ function EditPropertyMst() {
           </Col>
         </Row>
       </Container>
-      
-    </form>
-    <Footer
+      <Footer
         className="footer"
-        onSave={handleSubmit(onSubmit)}
+        onSave={handleSubmit(onsubmit)}
         onDelete={handleDelete}
-        onCancel={handleCancel}
+        onCancel={() => navigate("/PropMasterTable")}
       />
-      </>
+    </form>
   );
 }
 
 export default EditPropertyMst;
+
+
+
 
 
 
