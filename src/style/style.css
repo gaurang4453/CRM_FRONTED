@@ -169,3 +169,15 @@ select.form-select {
   width: 55%; /* You can change this to a percentage or a fixed value like 200px */
   margin-bottom: 20px; /* Optional: Adjust the margin if needed */
 }
+
+footer{
+  height: 130px;
+  
+}
+
+.custom-footer {
+  background-color: #143e6c;
+  padding-top: 20px;  /* Adjust top padding */
+  padding-bottom: 20px;  /* Adjust bottom padding */
+  height: auto;  /* Ensure the height adjusts based on padding */
+}

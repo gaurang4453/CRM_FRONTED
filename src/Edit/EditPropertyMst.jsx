@@ -152,7 +152,7 @@ function EditPropertyMst() {
           </Col>
         </Row>
       </Container>
-      <Footer
+      <Footer className="footer"
         onSave={handleSubmit(handleFormSubmit)}
         onDelete={handleDelete}
         onCancel={() => navigate("/PropMasterTable")}
