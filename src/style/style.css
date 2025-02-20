@@ -15,30 +15,30 @@ body {
   align-items: center;
   min-height: 100vh;
   padding: 10px;
-  
 }
 
 form {
+  position: relative; /* Make form the parent container for absolute positioning */
   background-color: #ffffff;
-  padding: 110px; /* Reduced padding for better layout */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-  width: 100%;
-  max-width: 1600px;
+  width: 1200px;
   margin-top: 0px;
   margin-bottom: 0px;
-  margin-left: 0px;
+  /* margin-right: 100px; */
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start; /* Start alignment to prevent stretching */
+  justify-content: flex-start;
+  height: 570px;
 }
 
 form h1 {
-  text-align: left;
+  text-align: center;
   background-color: #007bff;
   margin-bottom: 20px;
   margin-left: 10px;
   color: rgb(255, 254, 254);
-  width: 250px;
+  width: 170px;
+  height: 40px;
   font-size: 20px; /* Increase the size of the title */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   padding-left: 10px;
@@ -48,6 +48,41 @@ form h1 {
  
 }
 
+/* Ribbon effect for the h1 element */
+.ribbon {
+  position: absolute; /* Position the ribbon absolutely */
+  top: 0px;          /* Space from the top of the form */
+  left: -15px;        /* Position it to the left outside the form */
+  transform: rotate(-0deg); /* Rotate the ribbon */
+  display: inline-block;
+  padding: 10px;
+  background-color: #007bff; /* Ribbon color */
+  color: #fff;
+  font-size: 15px;
+  /* font-weight: bold; */
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.ribbon::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -10px;
+  border-top: 20px solid #007bff;  /* Same as ribbon color */
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+}
+
+.ribbon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -10px;
+  border-top: 20px solid #007bff;  /* Same as ribbon color */
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+}
 
 /* Align form fields with the label on the left */
 .form-field {
@@ -60,10 +95,11 @@ label {
   color: #444649;
   margin-bottom: 10px;  /* Space between label and input */
   font-size: 14px;      /* Increase the font size */
-  white-space: nowrap;  /* Optional: Make the label text bold */
+  white-space: nowrap;
+  
 }
 
-/* Input styles */
+Input styles
 input[type="text"],
 input[type="number"],
 select.form-select {
@@ -105,8 +141,8 @@ input[type="submit"]:hover {
   outline: none;            /* Remove outline (focus ring) */
   padding: 8px;             /* Space inside the textbox */
   font-size: 13px;          /* Text size */
-  width: 100%;              /* Ensure it takes the full available width in its container */
-  max-width: 500px; 
+  width: 55%;              /* Ensure it takes the full available width in its container */
+  /* max-width: 500px;  */
 }
 .line-textbox:focus {
   border-bottom: 2px solid blue;
@@ -124,7 +160,12 @@ select.form-select {
   margin-bottom: 20px; /* Adding space below the dropdown */
 }
 
-form {
-   /* Increased padding for a larger form */
+.container{
+  margin-top: 50px;
 }
 
+/* Adjust the width of the dropdown */
+select.form-select {
+  width: 55%; /* You can change this to a percentage or a fixed value like 200px */
+  margin-bottom: 20px; /* Optional: Adjust the margin if needed */
+}

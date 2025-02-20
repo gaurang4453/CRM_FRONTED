@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useParams, useNavigate } from "react-router-dom";
 import AxiosInstance from "../AxiosInstance";
+import { Row, Col, Button, Container } from "react-bootstrap"; // Importing Bootstrap components
+import "/src/style/style.css";
 
 function EditPropertyMst() {
   const { id } = useParams(); // Get ID from URL
@@ -94,54 +96,83 @@ function EditPropertyMst() {
   if (error) return <p className="error">{error}</p>;
 
   return (
-    <form onSubmit={handleSubmit(handleFormSubmit)} className="form">
-      <h1>Edit Property</h1>
+    <form onSubmit={handleSubmit(handleFormSubmit)}  className="form">
+      <h1 className="ribbon">Edit Property</h1>
 
-      <div className="form-field">
-        <label>Property Type Name :</label>
-        <input {...register("propTypeName")} />
-      </div>
+      <Container className="container">
+        <Row className="mb-3">
+          <Col md={3} className="d-flex align-items-center">
+            <label>Property Type Name :</label>
+          </Col>
+          <Col md={9}>
+            <input {...register("propTypeName")} className="line-textbox" />
+          </Col>
+        </Row>
 
-      <div className="form-field">
-        <label>Property Name :</label>
-        <input {...register("propName")} />
-      </div>
+        <Row className="mb-3">
+          <Col md={3} className="d-flex align-items-center">
+            <label>Property Name :</label>
+          </Col>
+          <Col md={9}>
+            <input {...register("propName")} className="line-textbox" />
+          </Col>
+        </Row>
 
-      <div className="form-field">
-        <label>Property Value :</label>
-        <input {...register("propValue")} />
-      </div>
+        <Row className="mb-3">
+          <Col md={3} className="d-flex align-items-center">
+            <label>Property Value :</label>
+          </Col>
+          <Col md={9}>
+            <input {...register("propValue")} className="line-textbox" />
+          </Col>
+        </Row>
 
-      <div className="form-field">
-        <label>Status :</label>
-        <select {...register("status")}>
-          <option value="Active">Active</option>
-          <option value="Inactive">Inactive</option>
-        </select>
-      </div>
+        <Row className="mb-3">
+          <Col md={3} className="d-flex align-items-center" >
+            <label className="select.form-select">Status :</label>
+          </Col>
+          <Col md={9}>
+            <select {...register("status")} className="form-select">
+              <option value="Active">Active</option>
+              <option value="Deactive">Deactive</option>
+            </select>
+          </Col>
+        </Row>
 
-      <div className="form-field">
-        <label>CUID :</label>
-        <input {...register("CUID")} placeholder="Numbers only" />
-      </div>
+        <Row className="mb-3">
+          <Col md={3} className="d-flex align-items-center">
+            <label>CUID :</label>
+          </Col>
+          <Col md={9}>
+            <input
+              {...register("CUID")}
+              className="line-textbox"
+              placeholder="Numbers only"
+            />
+          </Col>
+        </Row>
 
-      <div className="submit-container">
-        <input type="submit" value="Update" />
-        <button
-          className="delete-button mx-1 btn btn-warning"
-          type="button"
-          onClick={handleDelete}
-        >
-          🗑️ Delete
-        </button>
-        <button
-          className="cancel-button mx-1 btn btn-danger size "
-          type="button"
-          onClick={() => navigate("/PropMasterTable")}
-        >
-          Cancel
-        </button>
-      </div>
+        <div className="submit-container">
+          {/* <Button variant="primary" type="submit">
+            Update
+          </Button> */}
+          {/* <Button
+            variant="danger"
+            className="mx-2"
+            onClick={handleDelete}
+            type="button"
+          >
+            🗑️ Delete
+          </Button> */}
+          {/* <Button
+            variant="secondary"
+            onClick={() => navigate("/PropMasterTable")}
+            type="button"
+          >
+            Cancel
+          </Button> */}
+        </div>
+      </Container>
     </form>
   );
 }

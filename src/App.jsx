@@ -18,7 +18,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/PropMasterTable" element={<PropMasterTable />} />
           <Route path="/EditPropertyMst/:id" element={<EditPropertyMst />} />
-        </Routes>
+          
+       </Routes>    
       </Router>
     </>
   );

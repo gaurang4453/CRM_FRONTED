@@ -37,7 +37,7 @@ function PropMasterForm() {
 
   return (
     <form onSubmit={handleSubmit(handleFormSubmit)} className="form">
-      <h1>Property Master Form</h1 >
+      <h1 className="ribbon">Prop Master Form</h1 >
 
       <Container>
         {/* Property Type Name */}
