@@ -156,7 +156,7 @@ export default function PropMasterForm() {
             <input
               {...register("CUID", { pattern: /^[0-9]+$/ })}
               className="line-textbox"
-              placeholder="Numbers only"
+              placeholder="Enter in numbers only."
               required
             />
             {errors.CUID && (
