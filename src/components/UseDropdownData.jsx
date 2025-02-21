@@ -6,13 +6,14 @@ const dropdownData = {
     fieldNameWhere: "PropTypeName",
     fieldValue: "Status",
   },
-  propTypeName: {
-    tableName: "PropTypeMaster",
-    fieldNameID: "PropTypeID",
-    fieldNameValue: "PropTypeName",
-    fieldNameWhere: "",
-    fieldValue: "",
+  entryby: {
+    tableName: "UserMaster",
+    fieldNameID: "UserID",
+    fieldNameValue: "UserName",
+    fieldNameWhere: "Status",
+    fieldValue: "A",
   },
+
 };
 
 const useDropdownData = (dropdownKey) => {};
