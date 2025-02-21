@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 import AxiosInstance from "../../AxiosInstance";
 import { Spinner, Table, Container, Button } from "react-bootstrap";
 
-import PropMasterForm from "../Form/PropMasterForm";
-import EditPropertyMst from "../../Edit/EditPropertyMst";
 function PropMasterTable() {
   const [tableData, setTableData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -23,7 +21,7 @@ function PropMasterTable() {
     } catch (error) {
       setError("Something went wrong!");
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
   };
 
@@ -40,24 +38,20 @@ function PropMasterTable() {
   return (
     <Container className="mt-5">
       {/* Create New Button */}
-      
       <div
-  className="d-flex justify-content-end mb-3"
-  style={{
-    position: "fixed", // Fix the button on the screen
-    top: "90px", // Adjust the vertical position (distance from the top)
-    right: "400px", // Adjust the horizontal position (distance from the right edge)
-    zIndex: "1000", // Ensures it stays above other content
-    // backgroundColor: "white", // Optional: Ensures the button background stays visible
-    padding: "5px 10px", // Optional: Adds padding around the button
-    // boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)", // Optional: Adds a subtle shadow
-  }}
->
-  <Button onClick={handleCreateNew} variant="success" className="px-7 py-2">
-    + Create New
-  </Button>
-</div>
-
+        className="d-flex justify-content-end mb-3"
+        style={{
+          position: "fixed", // Fix the button on the screen
+          top: "90px", // Adjust the vertical position (distance from the top)
+          right: "400px", // Adjust the horizontal position (distance from the right edge)
+          zIndex: "1000", // Ensures it stays above other content
+          padding: "5px 10px", // Optional: Adds padding around the button
+        }}
+      >
+        <Button onClick={handleCreateNew} variant="success" className="px-7 py-2">
+          + Create New
+        </Button>
+      </div>
 
       {loading && (
         <Spinner
@@ -70,10 +64,8 @@ function PropMasterTable() {
       {error && <p className="text-danger text-center">{error}</p>}
 
       {tableData.length > 0 && !loading ? (
-        <div className="table-responsive shadow-lg rounded bg-white p-3">
-          <h3 className="text-center mb-2 text-primary">
-            Property Master Table
-          </h3>
+        <div className="table-responsive shadow-lg rounded bg-white p-3" style={{ marginTop: '115px' }}> {/* Increase the margin-top */}
+          <h3 className="text-center mb-2 text-primary">Property Master Table</h3>
           <Table bordered hover className="mt-3">
             <thead className="bg-primary text-white text-center">
               <tr>
