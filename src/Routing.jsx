@@ -17,6 +17,7 @@ function Routing() {
           <Route path="/" element={<Home />} />
           <Route path="/PropMasterTable" element={<PropMasterTable />} />
           <Route path="/EditPropertyMst/:id" element={<EditPropertyMst />} />
+          <Route path="/EditPropertyMst" element={<EditPropertyMst />} />
           <Route path="/PropMasterForm" element={<PropMasterForm />} />
         </Routes>
       </Router>
