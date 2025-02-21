@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <header className="navbar-container">
       <nav className="navbar">
-        <div className="navbar-left">
+        <div className="navbar-left h1">
           <Link className="navbar-brand" to="/">
             CRM Dashboard
           </Link>

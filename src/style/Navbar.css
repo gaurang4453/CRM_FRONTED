@@ -40,6 +40,10 @@
   padding: 8px 12px;
 }
 
+.navbar-left h1 {
+  color: white; /* Set the color to white for the h1 element */
+}
+
 .nav-link:hover {
   background-color: #ffcc00;
   border-radius: 5px;
