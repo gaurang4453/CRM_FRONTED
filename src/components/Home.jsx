@@ -1,9 +1,9 @@
 import React from "react";
 import Navbar from "./Navbar/Navbar";
-import Form from "./Form/PropMasterForm";
+import Form from "./Account/PropMasterForm";
 import PropmasterTable from "./Index/PropMasterTable";
 import Footer from "./footer/Footer";
-import PropMasterForm from "./Form/PropMasterForm";
+import PropMasterForm from "./Account/PropMasterForm";
 const Home = () => {
   return (
     <>

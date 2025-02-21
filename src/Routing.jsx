@@ -1,11 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import PropMasterTable from "./components/PropMasterTable";
-// import EditProperty from "./components/EditProperty";
-// import PropMasterForm from "./components/Form/PropMasterForm";
+import React from "react";
 import Home from "./components/Home";
 import PropMasterTable from "./components/Index/PropMasterTable";
-import EditPropertyMst from "./Edit/EditPropertyMst";
-import PropMasterForm from "./components/Form/PropMasterForm";
+
+import PropMasterForm from "./components/Account/PropMasterForm";
 import Navbar from "./components/Navbar/Navbar";
 
 function Routing() {
@@ -17,7 +15,7 @@ function Routing() {
           <Route path="/" element={<Home />} />
           <Route path="/PropMasterTable" element={<PropMasterTable />} />
           <Route path="/PropMasterForm/:id" element={<PropMasterForm />} />
-          {/* <Route path="/EditPropertyMst" element={<EditPropertyMst />} /> */}
+       
           <Route path="/PropMasterForm" element={<PropMasterForm />} />
         </Routes>
       </Router>

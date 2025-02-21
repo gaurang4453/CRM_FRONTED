@@ -1,14 +1,12 @@
-
 import { useForm } from "react-hook-form";
-
 import { Row, Col, Container } from "react-bootstrap";
-import "/src/style/style.css";
+import "../style/style.css";
 import React, { useEffect, useState } from "react";
 import AxiosInstance from "/src/AxiosInstance";
-
-import "/src/style/style.css";
 import Footer from "../Footer/Footer";
 import { useParams, useNavigate } from "react-router-dom";
+
+
 export default function PropMasterForm() {
   const { id } = useParams(); // Get ID from URL (for editing)
   const navigate = useNavigate();
