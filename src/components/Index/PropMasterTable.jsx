@@ -64,7 +64,7 @@ function PropMasterTable() {
       {error && <p className="text-danger text-center">{error}</p>}
 
       {tableData.length > 0 && !loading ? (
-        <div className="table-responsive shadow-lg rounded bg-white p-3" style={{ marginTop: '115px' }}> {/* Increase the margin-top */}
+        <div className="table-responsive shadow-lg rounded bg-white p-3" style={{ marginTop: '130px' }}> {/* Increase the margin-top */}
           <h3 className="text-center mb-2 text-primary">Property Master Table</h3>
           <Table bordered hover className="mt-3">
             <thead className="bg-primary text-white text-center">
