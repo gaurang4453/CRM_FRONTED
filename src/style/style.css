@@ -22,7 +22,7 @@ form {
   background-color: #ffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   width: 1200px;
-  margin-top: 0px;
+  margin-top: 10px;
   margin-bottom: 0px;
   /* margin-right: 100px; */
   display: flex;
@@ -51,7 +51,7 @@ form h1 {
 /* Ribbon effect for the h1 element */
 .ribbon {
   position: absolute; /* Position the ribbon absolutely */
-  top: 0px;          /* Space from the top of the container */
+  top: 5px;          /* Space from the top of the container */
   left: -20px;        /* Position it to the left outside the form */
   transform: rotate(deg); /* Rotate the ribbon for a diagonal effect */
   display: inline-block;
@@ -67,7 +67,7 @@ form h1 {
   content: '';
   position: absolute;
   top: 0;
-  border-top: 20px solid #007bff;  /* Same as ribbon color */
+  border-top: 10px solid #007bff;  /* Same as ribbon color */
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
 }
@@ -177,4 +177,8 @@ footer{
   padding-top: 20px;  /* Adjust top padding */
   padding-bottom: 20px;  /* Adjust bottom padding */
   height: auto;  /* Ensure the height adjusts based on padding */
+}
+
+option.highlighted {
+  color: #FF5733; /* Text color of Option 2 */
 }
