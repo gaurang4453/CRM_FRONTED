@@ -29,12 +29,12 @@ function PropMasterTable() {
 
   // Navigate to Edit Page when clicking on a row
   const handleRowClick = (propID) => {
-    navigate(`/EditPropertyMst/${propID}`);
+    navigate(`/PropMasterForm/${propID}`);
   };
 
   // Navigate to PropMasterForm Page
   const handleCreateNew = () => {
-    navigate("/EditPropertyMst"); // Redirects to PropMasterForm
+    navigate("/PropMasterForm"); // Redirects to PropMasterForm
   };
 
   return (
