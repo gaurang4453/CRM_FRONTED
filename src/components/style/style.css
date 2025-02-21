@@ -22,7 +22,7 @@ form {
   background-color: #ffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   width: 1200px;
-  margin-top: 10px;
+  margin-top: 30px;
   margin-bottom: 0px;
   /* margin-right: 100px; */
   display: flex;
@@ -52,7 +52,8 @@ form h1 {
 .ribbon {
   position: absolute; /* Position the ribbon absolutely */
   top: 5px;          /* Space from the top of the container */
-  left: -20px;        /* Position it to the left outside the form */
+  left: -20px;   /* Position it to the left outside the form */
+  z-index: 10;        
   transform: rotate(deg); /* Rotate the ribbon for a diagonal effect */
   display: inline-block;
   padding: 10px;
@@ -61,7 +62,9 @@ form h1 {
   font-size: 15px;
   text-transform: uppercase;
   white-space: nowrap;
+  
 }
+
 
 .ribbon::after, .ribbon::before {
   content: '';
