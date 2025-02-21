@@ -5,7 +5,7 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  background-color: #0d254b; /* Flipkart-style blue */
+  background-color: #0d254b; /* Flipkart-style blue #0d254b*/
   padding: 10px 20px;
   font-weight: normal;
   color: white;
@@ -22,7 +22,7 @@
 .navbar-container .navbar-brand {
   font-size: 22px;
   color: white; /* Set the logo color to white */
-  text-decoration: none;
+  text-decoration: none;  
 }
 
 /* Navbar Links */

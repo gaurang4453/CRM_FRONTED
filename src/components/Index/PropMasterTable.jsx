@@ -29,7 +29,7 @@ function PropMasterTable() {
 
   // Navigate to Edit Page when clicking on a row
   const handleRowClick = (propID) => {
-    navigate(`/EditPropertyMst/${propID}`);
+    navigate(`/PropMasterForm/${propID}`);
   };
 
   // Navigate to PropMasterForm Page
@@ -39,7 +39,6 @@ function PropMasterTable() {
 
   return (
     <Container className="mt-5">
-      
       {/* Create New Button */}
       
       <div
@@ -72,7 +71,9 @@ function PropMasterTable() {
 
       {tableData.length > 0 && !loading ? (
         <div className="table-responsive shadow-lg rounded bg-white p-3">
-           <h3 className="text-center mb-2 text-primary">Property Master Table</h3>
+          <h3 className="text-center mb-2 text-primary">
+            Property Master Table
+          </h3>
           <Table bordered hover className="mt-3">
             <thead className="bg-primary text-white text-center">
               <tr>

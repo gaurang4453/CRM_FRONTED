@@ -1,171 +1,178 @@
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { useParams, useNavigate } from "react-router-dom";
-import AxiosInstance from "../AxiosInstance";
-import { Row, Col, Button, Container } from "react-bootstrap"; // Importing Bootstrap components
-import "/src/style/style.css";
-import Footer from "../components/Footer/Footer";
+// import React, { useEffect, useState } from "react";
+// import { useForm } from "react-hook-form";
+// import { useParams, useNavigate } from "react-router-dom";
+// import AxiosInstance from "../AxiosInstance";
+// import { Row, Col, Container } from "react-bootstrap";
+// import "/src/style/style.css";
+// import Footer from "../components/Footer/Footer";
+
 function EditPropertyMst() {
-  const { id } = useParams(); // Get ID from URL
-  const navigate = useNavigate();
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    formState: { errors },
-  } = useForm();
+//   const { id } = useParams(); // Get ID from URL (for editing)
+//   const navigate = useNavigate();
 
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  // Fetch property details when component mounts
-  useEffect(() => {
-    
-    const fetchProperty = async () => {
-      try {
-        console.log("Fetching data for ID:", id);
-        const response = await AxiosInstance.get(`/PropMaster/${id}`);
-        console.log("Fetched Data:", response.data);
+//   const {
+//     register,
+//     handleSubmit,
+//     setValue,
+//     reset,
+//     formState: { errors },
+//   } = useForm();
 
-        if (!response.data) {
-          setError("No data found for this property.");
-          return;
-        }
+//   const [loading, setLoading] = useState(!!id); // Only load if editing
+//   const [error, setError] = useState(null);
 
-        const property = response.data.data;
-        setValue("propTypeName", property.propTypeName);
-        setValue("propName", property.propName);
-        setValue("propValue", property.propValue);
-        setValue("status", property.status);
-        setValue("CUID", property.cuid);
-      } catch (err) {
-        console.error("Error fetching property:", err);
-        setError("Failed to fetch property details.");
-      } finally {
-        setLoading(false);
-      }
-    };
+//   // Fetch property details if editing
+//   useEffect(() => {
+//     if (id) {
+//       const fetchProperty = async () => {
+//         try {
+//           const response = await AxiosInstance.get(`/PropMaster/${id}`);
+//           const property = response.data.data;
 
-    fetchProperty();
-  }, [id, setValue]);
+//           setValue("propTypeName", property.propTypeName);
+//           setValue("propName", property.propName);
+//           setValue("propValue", property.propValue);
+//           setValue("status", property.status);
+//           setValue("CUID", property.cuid);
+//         } catch (err) {
+//           setError("Failed to fetch property details.");
+//         } finally {
+//           setLoading(false);
+//         }
+//       };
 
-  // Handle form submission
-   const onsubmit = async (data) => {
-      const payload = {
-        propID: id,
-        propTypeName: data.propTypeName,
-        propName: data.propName,
-        propValue: data.propValue,
-        status: data.status,
-        CUID: data.CUID,
-      };
-  
-      try {
-        const response = await AxiosInstance.post(`/PropMaster`, payload);
-        console.log("Update Response:", response);
-        alert("Property updated successfully!");
-        navigate("/PropMasterTable");
-      } catch (error) {
-        console.error(
-          "Error updating property:",
-          error.response ? error.response.data : error.message
-        );
-        alert("Failed to update property.");
-      }
-    };
+//       fetchProperty();
+//     } else {
+//       // If it's a new form, ensure loading is false
+//       setLoading(false);
+//     }
+//   }, [id, setValue]);
 
-  ////delete code
-  const handleDelete = async () => {
-    if (window.confirm("Are you sure you want to delete this property?")) {
-      try {
-        const response = await AxiosInstance.delete(`/PropMaster/${id}`);
-        console.log("Delete Response:", response.data);
-        alert("Property deleted successfully!");
-        navigate("/PropMasterTable");
-      } catch (error) {
-        console.error(
-          "Error deleting property:",
-          error.response?.data || error.message
-        );
-        alert("Failed to delete property.");
-      }
-    }
-  };
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p className="error">{error}</p>;
+//   // Form submission (Create or Update)
+//   const onSubmit = async (data) => {
+//     const payload = {
+//       propID: id || 0, // Use 0 for new entry
+//       propTypeName: data.propTypeName,
+//       propName: data.propName,
+//       propValue: data.propValue,
+//       status: data.status,
+//       CUID: data.CUID,
+//     };
 
-  return (
-    <form onSubmit={handleSubmit(onsubmit)} className="form">
-      <h1 className="ribbon">Edit Property</h1>
+//     try {
+//       const response = id
+//         ? await AxiosInstance.post(`/PropMaster`, payload) // Update
+//         : await AxiosInstance.post("/PropMaster", payload); // Create
 
-      <Container className="container">
-        <Row className="mb-3">
-          <Col md={3} className="d-flex align-items-center">
-            <label>Property Type Name :</label>
-          </Col>
-          <Col md={9}>
-            <input {...register("propTypeName")} className="line-textbox" />
-          </Col>
-        </Row>
+//       alert(
+//         id ? "Property updated successfully!" : "Successfully submitted data"
+//       );
+//       reset();
+//       navigate("/PropMasterTable");
+//     } catch (error) {
+//       alert("Error submitting data");
+//     }
+//   };
 
-        <Row className="mb-3">
-          <Col md={3} className="d-flex align-items-center">
-            <label>Property Name :</label>
-          </Col>
-          <Col md={9}>
-            <input {...register("propName")} className="line-textbox" />
-          </Col>
-        </Row>
+//   // Delete property
+//   const handleDelete = async () => {
+//     if (window.confirm("Are you sure you want to delete this property?")) {
+//       try {
+//         await AxiosInstance.delete(`/PropMaster/${id}`);
+//         alert("Property deleted successfully!");
+//         navigate("/PropMasterTable");
+//       } catch (error) {
+//         alert("Failed to delete property.");
+//       }
+//     }
+//   };
 
-        <Row className="mb-3">
-          <Col md={3} className="d-flex align-items-center">
-            <label>Property Value :</label>
-          </Col>
-          <Col md={9}>
-            <input {...register("propValue")} className="line-textbox" />
-          </Col>
-        </Row>
+//   if (loading) return <p>Loading...</p>;
+//   if (error) return <p className="error">{error}</p>;
 
-        <Row className="mb-3">
-          <Col md={3} className="d-flex align-items-center">
-            <label className="select.form-select">Status :</label>
-          </Col>
-          <Col md={9}>
-            <select {...register("status")} className="form-select">
-              
-              
-              <option value="Active">Active</option>
-              <option value="Deactive">Deactive</option>
-            </select>
-          </Col>
-        </Row>
+//   return (
+//     <form onSubmit={handleSubmit(onSubmit)} className="form">
+//       <h1 className="ribbon">{id ? "Edit Property" : "Prop Master Form"}</h1>
 
-        <Row className="mb-3">
-          <Col md={3} className="d-flex align-items-center">
-            <label>CUID :</label>
-          </Col>
-          <Col md={9}>
-            <input
-              {...register("CUID")}
-              className="line-textbox"
-              placeholder="Numbers only"
-            />
-          </Col>
-        </Row>
-      </Container>
-      <Footer
-        className="footer"
-        onSave={handleSubmit(onsubmit)}
-        onDelete={handleDelete}
-        onCancel={() => navigate("/PropMasterTable")}
-      />
-    </form>
-  );
+//       <Container>
+//         <Row className="mb-3">
+//           <Col md={3} className="d-flex align-items-center">
+//             <label>Property Type Name:</label>
+//           </Col>
+//           <Col md={9}>
+//             <input
+//               {...register("propTypeName")}
+//               className="line-textbox"
+//               required
+//             />
+//           </Col>
+//         </Row>
+
+//         <Row className="mb-3">
+//           <Col md={3} className="d-flex align-items-center">
+//             <label>Property Name:</label>
+//           </Col>
+//           <Col md={9}>
+//             <input
+//               {...register("propName")}
+//               className="line-textbox"
+//               required
+//             />
+//           </Col>
+//         </Row>
+
+//         <Row className="mb-3">
+//           <Col md={3} className="d-flex align-items-center">
+//             <label>Property Value:</label>
+//           </Col>
+//           <Col md={9}>
+//             <input
+//               {...register("propValue")}
+//               className="line-textbox"
+//               required
+//             />
+//           </Col>
+//         </Row>
+
+//         <Row className="mb-3">
+//           <Col md={3} className="d-flex align-items-center">
+//             <label>Status:</label>
+//           </Col>
+//           <Col md={9}>
+//             <select {...register("status")} className="form-select" required>
+//               <option value="">--Select--</option>
+//               <option value="Active">Active</option>
+//               <option value="Deactive">Deactive</option>
+//             </select>
+//           </Col>
+//         </Row>
+
+//         <Row className="mb-3">
+//           <Col md={3} className="d-flex align-items-center">
+//             <label>CUID:</label>
+//           </Col>
+//           <Col md={9}>
+//             <input
+//               {...register("CUID", { pattern: /^[0-9]+$/ })}
+//               className="line-textbox"
+//               placeholder="Numbers only"
+//               required
+//             />
+//             {errors.CUID && (
+//               <p style={{ color: "red" }}>{errors.CUID.message}</p>
+//             )}
+//           </Col>
+//         </Row>
+//       </Container>
+
+//       <Footer
+//         className="footer"
+//         onSave={handleSubmit(onSubmit)}
+//         onDelete={id ? handleDelete : undefined} // Only show delete if editing
+//         onCancel={() => navigate("/PropMasterTable")}
+//       />
+//     </form>
+//   );
 }
 
 export default EditPropertyMst;
-
-
-
-
-
-

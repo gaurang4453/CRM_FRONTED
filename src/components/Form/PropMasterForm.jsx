@@ -1,26 +1,60 @@
-import React from "react";
+
 import { useForm } from "react-hook-form";
-import AxiosInstance from "../../AxiosInstance";
+
 import { Row, Col, Container } from "react-bootstrap";
 import "/src/style/style.css";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import AxiosInstance from "/src/AxiosInstance";
 
+import "/src/style/style.css";
+import Footer from "../Footer/Footer";
+import { useParams, useNavigate } from "react-router-dom";
+export default function PropMasterForm() {
+  const { id } = useParams(); // Get ID from URL (for editing)
+  const navigate = useNavigate();
 
-function PropMasterForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    setValue,
     reset,
+    formState: { errors },
   } = useForm();
 
-  const navigate = useNavigate(); // Initialize useNavigate
+  const [loading, setLoading] = useState(!!id); // Only load if editing
+  const [error, setError] = useState(null);
 
-  // Function to submit form data
-  const handleFormSubmit = async (data) => {
-    console.log("Submitting the form:", data);
+  // Fetch property details if editing
+  useEffect(() => {
+    if (id) {
+      const fetchProperty = async () => {
+        try {
+          const response = await AxiosInstance.get(`/PropMaster/${id}`);
+          const property = response.data.data;
+
+          setValue("propTypeName", property.propTypeName);
+          setValue("propName", property.propName);
+          setValue("propValue", property.propValue);
+          setValue("status", property.status);
+          setValue("CUID", property.cuid);
+        } catch (err) {
+          setError("Failed to fetch property details.");
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      fetchProperty();
+    } else {
+      // If it's a new form, ensure loading is false
+      setLoading(false);
+    }
+  }, [id, setValue]);
+
+  // Form submission (Create or Update)
+  const onSubmit = async (data) => {
     const payload = {
-      propID: 0,
+      propID: id || 0, // Use 0 for new entry
       propTypeName: data.propTypeName,
       propName: data.propName,
       propValue: data.propValue,
@@ -29,97 +63,118 @@ function PropMasterForm() {
     };
 
     try {
-      const response = await AxiosInstance.post("/PropMaster", payload);
-      console.log("Successfully submitted data:", response);
+      const response = id
+        ? await AxiosInstance.post(`/PropMaster`, payload) // Update
+        : await AxiosInstance.post("/PropMaster", payload); // Create
 
-      alert("Successfully submitted data");
-      reset(); // Reset form after submission
-
-      navigate("/PropMasterTable"); // Redirect after submission
+      alert(
+        id ? "Property updated successfully!" : "Successfully submitted data"
+      );
+      reset();
+      navigate("/PropMasterTable");
     } catch (error) {
-      console.error("Error:", error);
       alert("Error submitting data");
     }
   };
 
+  // Delete property
+  const handleDelete = async () => {
+    if (window.confirm("Are you sure you want to delete this property?")) {
+      try {
+        await AxiosInstance.delete(`/PropMaster/${id}`);
+        alert("Property deleted successfully!");
+        navigate("/PropMasterTable");
+      } catch (error) {
+        alert("Failed to delete property.");
+      }
+    }
+  };
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p className="error">{error}</p>;
+
   return (
-    <form onSubmit={handleSubmit(handleFormSubmit)} className="form">
-      <h1 className="ribbon">Prop Master Form</h1 >
+    <form onSubmit={handleSubmit(onSubmit)} className="form">
+      <h1 className="ribbon">{id ? "Edit Property" : "Prop Master Form"}</h1>
 
       <Container>
-        {/* Property Type Name */}
         <Row className="mb-3">
           <Col md={3} className="d-flex align-items-center">
-            <label>Property Type Name: </label>
+            <label>Property Type Name:</label>
           </Col>
           <Col md={9}>
-            <input {...register("propTypeName")} className="line-textbox" />
+            <input
+              {...register("propTypeName")}
+              className="line-textbox"
+              required
+            />
           </Col>
         </Row>
 
-        {/* Property Name */}
         <Row className="mb-3">
           <Col md={3} className="d-flex align-items-center">
-            <label>Property Name: </label>
+            <label>Property Name:</label>
           </Col>
           <Col md={9}>
-            <input {...register("propName")} className="line-textbox" />
+            <input
+              {...register("propName")}
+              className="line-textbox"
+              required
+            />
           </Col>
         </Row>
 
-        {/* Property Value */}
         <Row className="mb-3">
           <Col md={3} className="d-flex align-items-center">
-            <label>Property Value: </label>
+            <label>Property Value:</label>
           </Col>
           <Col md={9}>
-            <input {...register("propValue")} className="line-textbox" />
+            <input
+              {...register("propValue")}
+              className="line-textbox"
+              required
+            />
           </Col>
         </Row>
 
-        {/* Status Dropdown */}
         <Row className="mb-3">
           <Col md={3} className="d-flex align-items-center">
-            <label>Status: </label>
+            <label>Status:</label>
           </Col>
           <Col md={9}>
-            <select {...register("status")} className="form-select">
-            <option value="" disabled selected>--Select--</option>
+            <select {...register("status")} className="form-select" required>
+              <option value="">--Select--</option>
               <option value="Active">Active</option>
               <option value="Deactive">Deactive</option>
             </select>
           </Col>
         </Row>
 
-        {/* CUID */}
         <Row className="mb-3">
           <Col md={3} className="d-flex align-items-center">
-            <label>CUID: </label>
+            <label>CUID:</label>
           </Col>
           <Col md={9}>
             <input
-              {...register("CUID", {
-                pattern: {
-                  value: /^[0-9]+$/, // Allow only numbers
-                  message: "CUID must be a number.",
-                },
-              })}
-              placeholder="Enter in numbers only."
+              {...register("CUID", { pattern: /^[0-9]+$/ })}
               className="line-textbox"
+              placeholder="Numbers only"
+              required
             />
             {errors.CUID && (
               <p style={{ color: "red" }}>{errors.CUID.message}</p>
             )}
           </Col>
         </Row>
-
-        {/* Submit Button */}
-        <div className="submit-container">
-          <input type="submit" value="Submit" />
-        </div>
       </Container>
+
+      <Footer
+        className="footer"
+        onSave={handleSubmit(onSubmit)}
+        onDelete={id ? handleDelete : undefined} // Only show delete if editing
+        onCancel={() => navigate("/PropMasterTable")}
+      />
     </form>
   );
 }
 
-export default PropMasterForm;
