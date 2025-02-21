@@ -3,7 +3,7 @@ import { Row, Col, Container } from "react-bootstrap";
 import "../style/style.css";
 import React, { useEffect, useState } from "react";
 import AxiosInstance from "/src/AxiosInstance";
-import Footer from "../Footer/Footer";
+import Footer from "/src/components/Footer/Footer";
 import { useParams, useNavigate } from "react-router-dom";
 
 
@@ -154,7 +154,7 @@ export default function PropMasterForm() {
           </Col>
           <Col md={9}>
             <input
-              {...register("CUID", { pattern: /^[0-9]+$/ })}
+              {...register("CUID")}
               className="line-textbox"
               placeholder="Numbers only"
               required
