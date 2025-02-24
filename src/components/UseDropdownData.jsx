@@ -10,9 +10,16 @@ const dropdownData = {
     fieldNameWhere: "PropTypeName",
     fieldValue: "Status",
   },
+  // status: {
+  //   tableName: "PropMaster",
+  //   fieldNameID: "PropValue",
+  //   fieldNameValue: "PropName",
+  //   fieldNameWhere: "PropTypeName",
+  //   fieldValue: "Status",
+  // },
 
 
-  
+
   // Add more dropdown keys here if needed
 };
 
