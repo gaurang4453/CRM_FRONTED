@@ -65,25 +65,6 @@ form h1 {
   
 }
 
-
-.ribbon::after, .ribbon::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  border-top: 10px solid #007bff;  /* Same as ribbon color */
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-}
-
-.ribbon::after {
-  right: -10px; /* Right triangle part */
-}
-
-.ribbon::before {
-  left: -10px;  /* Left triangle part */
-}
-
-
 /* Align form fields with the label on the left */
 .form-field {
   display: flex;
