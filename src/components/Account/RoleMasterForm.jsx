@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { Row, Col, Container, Form } from "react-bootstrap"; // Import Form here
-import { useParams, useNavigate } from "react-router-dom";
-import "../style/style.css";
-import Footer from "/src/components/Footer/Footer";
-=======
 import { useForm } from "react-hook-form";
 import { Row, Col, Container } from "react-bootstrap";
 import "../style/style.css";
@@ -15,7 +7,6 @@ import Footer from "/src/components/Footer/Footer";
 import { useParams, useNavigate } from "react-router-dom";
 import useDropdownData from "../UseDropdownData";
 
->>>>>>> a195959397160b9667bbb60a53ec3c06a8e49f4d
 export default function RoleMasterForm() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -30,50 +21,6 @@ export default function RoleMasterForm() {
     formState: { errors },
   } = useForm();
 
-<<<<<<< HEAD
-  // Handle submit logic
-  const onSubmit = (data) => {
-    console.log(data);
-    // Perform save or API call here
-  };
-
-  // Handle delete logic (if applicable)
-  const handleDelete = () => {
-    console.log("Deleted", id);
-    // Perform delete action here
-  };
-
-  return (
-    <>
-      <Form onSubmit={handleSubmit(onSubmit)}>
-        <h1>Role Master Form</h1>
-        <Container>
-          <Row>
-            <Col md={4}>
-              <Form.Group controlId="formRoleName">
-                <Form.Label>Role Name : </Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter your role name"
-                  {...register("roleName", { required: "Role name is required" })}
-                />
-                {errors.roleName && (
-                  <p style={{ color: "red" }}>{errors.roleName.message}</p>
-                )}
-              </Form.Group>
-            </Col>
-          </Row>
-        </Container>
-
-        
-      </Form>
-
-      {/* Assuming Footer is a custom component */}
-      <Footer className="footer" onSave={handleSubmit(onSubmit)} onDelete={id ? handleDelete : undefined} onCancel={() => navigate("/PropMasterTable")} />
-    </>
-  );
-}
-=======
   const { data: statusOptions, error: statusError } = useDropdownData("status");
 
   useEffect(() => {
@@ -122,4 +69,3 @@ export default function RoleMasterForm() {
 
   return (
    
->>>>>>> a195959397160b9667bbb60a53ec3c06a8e49f4d
