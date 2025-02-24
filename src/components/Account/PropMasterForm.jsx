@@ -5,11 +5,13 @@ import React, { useEffect, useState } from "react";
 import AxiosInstance from "/src/AxiosInstance";
 import Footer from "/src/components/Footer/Footer";
 import { useParams, useNavigate } from "react-router-dom";
-
+import useDropdownData from "../UseDropdownData"; // Import the custom hook
 
 export default function PropMasterForm() {
-  const { id } = useParams(); // Get ID from URL (for editing)
+  const { id } = useParams();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(!!id);
+  const [error, setError] = useState(null);
 
   const {
     register,
@@ -19,23 +21,24 @@ export default function PropMasterForm() {
     formState: { errors },
   } = useForm();
 
-  const [loading, setLoading] = useState(!!id); // Only load if editing
-  const [error, setError] = useState(null);
+  // Fetch status dropdown data
+  const { data: statusOptions, error: statusError } = useDropdownData("status");
 
-  // Fetch property details if editing
   useEffect(() => {
     if (id) {
       const fetchProperty = async () => {
         try {
           const response = await AxiosInstance.get(`/PropMaster/${id}`);
           const property = response.data.data;
+          console.log("Fetched Property Data:", property);
 
-          setValue("propTypeName", property.propTypeName);
-          setValue("propName", property.propName);
-          setValue("propValue", property.propValue);
-          setValue("status", property.status);
-          setValue("CUID", property.cuid);
+          setValue("propTypeName", property.propTypeName || "");
+          setValue("propName", property.propName || "");
+          setValue("propValue", property.propValue || "");
+          setValue("status", property.status || "");
+          setValue("CUID", property.cuid || "");
         } catch (err) {
+          console.error("Error fetching property:", err);
           setError("Failed to fetch property details.");
         } finally {
           setLoading(false);
@@ -44,15 +47,13 @@ export default function PropMasterForm() {
 
       fetchProperty();
     } else {
-      // If it's a new form, ensure loading is false
       setLoading(false);
     }
   }, [id, setValue]);
 
-  // Form submission (Create or Update)
   const onSubmit = async (data) => {
     const payload = {
-      propID: id || 0, // Use 0 for new entry
+      propID: id || 0, 
       propTypeName: data.propTypeName,
       propName: data.propName,
       propValue: data.propValue,
@@ -61,21 +62,16 @@ export default function PropMasterForm() {
     };
 
     try {
-      const response = id
-        ? await AxiosInstance.post(`/PropMaster`, payload) // Update
-        : await AxiosInstance.post("/PropMaster", payload); // Create
-
-      alert(
-        id ? "Property updated successfully!" : "Successfully submitted data"
-      );
+      await AxiosInstance.post("/PropMaster", payload);
+      alert(id ? "Property updated successfully!" : "Successfully submitted data");
       reset();
       navigate("/PropMasterTable");
     } catch (error) {
+      console.error("Error submitting form:", error);
       alert("Error submitting data");
     }
   };
 
-  // Delete property
   const handleDelete = async () => {
     if (window.confirm("Are you sure you want to delete this property?")) {
       try {
@@ -83,6 +79,7 @@ export default function PropMasterForm() {
         alert("Property deleted successfully!");
         navigate("/PropMasterTable");
       } catch (error) {
+        console.error("Error deleting property:", error);
         alert("Failed to delete property.");
       }
     }
@@ -90,6 +87,7 @@ export default function PropMasterForm() {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p className="error">{error}</p>;
+  if (statusError) return <p className="error">Failed to fetch status options: {statusError}</p>;
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="form">
@@ -101,11 +99,8 @@ export default function PropMasterForm() {
             <label>Property Type Name:</label>
           </Col>
           <Col md={9}>
-            <input
-              {...register("propTypeName")}
-              className="line-textbox"
-              required
-            />
+            <input {...register("propTypeName", { required: true })} className="line-textbox" />
+            {errors.propTypeName && <p className="error-text">This field is required.</p>}
           </Col>
         </Row>
 
@@ -114,11 +109,8 @@ export default function PropMasterForm() {
             <label>Property Name:</label>
           </Col>
           <Col md={9}>
-            <input
-              {...register("propName")}
-              className="line-textbox"
-              required
-            />
+            <input {...register("propName", { required: true })} className="line-textbox" />
+            {errors.propName && <p className="error-text">This field is required.</p>}
           </Col>
         </Row>
 
@@ -127,11 +119,8 @@ export default function PropMasterForm() {
             <label>Property Value:</label>
           </Col>
           <Col md={9}>
-            <input
-              {...register("propValue")}
-              className="line-textbox"
-              required
-            />
+            <input {...register("propValue", { required: true })} className="line-textbox" />
+            {errors.propValue && <p className="error-text">This field is required.</p>}
           </Col>
         </Row>
 
@@ -140,11 +129,19 @@ export default function PropMasterForm() {
             <label>Status:</label>
           </Col>
           <Col md={9}>
-            <select {...register("status")} className="form-select" required>
+            <select {...register("status", { required: true })} className="form-select">
               <option value="">--Select--</option>
-              <option value="Active">Active</option>
-              <option value="Deactive">Deactive</option>
+              {statusOptions?.length > 0 ? (
+                statusOptions.map((status) => (
+                  <option key={status.id || status.PropValue} value={status.PropValue}>
+                    {status.PropName}
+                  </option>
+                ))
+              ) : (
+                <option disabled>No status options available</option>
+              )}
             </select>
+            {errors.status && <p className="error-text">Please select a status.</p>}
           </Col>
         </Row>
 
@@ -154,14 +151,11 @@ export default function PropMasterForm() {
           </Col>
           <Col md={9}>
             <input
-              {...register("CUID")}
+              {...register("CUID", { required: true, pattern: /^[0-9]+$/ })}
               className="line-textbox"
               placeholder="Enter in numbers only."
-              required
             />
-            {errors.CUID && (
-              <p style={{ color: "red" }}>{errors.CUID.message}</p>
-            )}
+            {errors.CUID && <p className="error-text">CUID must be a valid number.</p>}
           </Col>
         </Row>
       </Container>
@@ -169,10 +163,9 @@ export default function PropMasterForm() {
       <Footer
         className="footer"
         onSave={handleSubmit(onSubmit)}
-        onDelete={id ? handleDelete : undefined} // Only show delete if editing
+        onDelete={id ? handleDelete : undefined}
         onCancel={() => navigate("/PropMasterTable")}
       />
     </form>
   );
 }
-

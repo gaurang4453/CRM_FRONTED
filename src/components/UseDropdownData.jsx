@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import AxiosInstance from "./AxiosInstance"; // Ensure AxiosInstance is imported
+import AxiosInstance from "/src/AxiosInstance"; // Ensure AxiosInstance is imported
 
 const dropdownData = {
   status: {
@@ -9,14 +9,7 @@ const dropdownData = {
     fieldNameWhere: "PropTypeName",
     fieldValue: "Status",
   },
-  entryby: {
-    tableName: "UserMaster",
-    fieldNameID: "UserID",
-    fieldNameValue: "UserName",
-    fieldNameWhere: "Status",
-    fieldValue: "A",
-  },
-
+  // Add more dropdown keys here if needed
 };
 
 const useDropdownData = (dropdownKey) => {
@@ -26,12 +19,14 @@ const useDropdownData = (dropdownKey) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const params = dropdownData[dropdownKey]; // Fix: Use correct object reference
+        const params = dropdownData[dropdownKey];
         if (!params) {
-          throw new Error(`Dropdown key not found: ${dropdownKey}`);
+          setError(`Invalid dropdown key: ${dropdownKey}`);
+          console.error(`Invalid dropdown key: ${dropdownKey}`);
+          return;
         }
 
-        const response = await AxiosInstance.get("/commanDropdown/Get", {
+        const response = await AxiosInstance.get("/CommonDropdown", {
           params: {
             tableName: params.tableName,
             fieldNameID: params.fieldNameID,
@@ -41,16 +36,22 @@ const useDropdownData = (dropdownKey) => {
           },
         });
 
-        setData(response.data.dropdownData || []);
-        console.log("Response dropdown data:", response.data.dropdownData);
+        console.log(`Dropdown Data for "${dropdownKey}":`, response.data);
+
+        // Validate API response structure
+        if (response.data?.data?.length > 0) {
+          setData(response.data.data);
+        } else {
+          console.warn(`No data found for dropdown key: ${dropdownKey}`);
+          setData([]); // Ensure state remains an empty array if no data
+        }
       } catch (err) {
-        setError("Failed to fetch dropdown data: " + err.message);
-      } finally {
-        //  setLoading(false);
+        console.error("Error fetching dropdown data:", err);
+        setError(`Failed to fetch dropdown data: ${err.message}`);
       }
     };
 
-    fetchData(); // Fix: Correct function call
+    fetchData();
   }, [dropdownKey]);
 
   return { data, error };
