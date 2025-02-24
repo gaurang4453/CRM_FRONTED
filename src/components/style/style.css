@@ -37,11 +37,11 @@ form h1 {
   margin-bottom: 20px;
   margin-left: 10px;
   color: rgb(255, 254, 254);
-  width: 170px;
+  width: 200px;
   height: 40px;
   font-size: 20px; /* Increase the size of the title */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  padding-left: 10px;
+  padding-left: 0px;
          /* Dark shadow for depth */
   position: relative;
   overflow: hidden;

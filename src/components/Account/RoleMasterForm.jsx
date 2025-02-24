@@ -35,9 +35,7 @@ export default function RoleMasterForm() {
       <Form onSubmit={handleSubmit(onSubmit)}>
         <h1>Role Master Form</h1>
         <Container>
-          <Row>
-            <Col md={4}>
-              <Form.Group controlId="formRoleName">
+                       <Form.Group controlId="formRoleName">
                 <Form.Label>Role Name : </Form.Label>
                 <Form.Control
                   type="text"
@@ -48,8 +46,7 @@ export default function RoleMasterForm() {
                   <p style={{ color: "red" }}>{errors.roleName.message}</p>
                 )}
               </Form.Group>
-            </Col>
-          </Row>
+            
         </Container>
 
         

@@ -41,9 +41,9 @@ function PropMasterTable() {
       <div
         className="d-flex justify-content-end mb-3"
         style={{
-          position: "fixed", // Fix the button on the screen
+          position: "left", // Fix the button on the screen
           top: "90px", // Adjust the vertical position (distance from the top)
-          right: "400px", // Adjust the horizontal position (distance from the right edge)
+          right: "1300px", // Adjust the horizontal position (distance from the right edge)
           zIndex: "1000", // Ensures it stays above other content
           padding: "5px 10px", // Optional: Adds padding around the button
         }}
@@ -64,7 +64,7 @@ function PropMasterTable() {
       {error && <p className="text-danger text-center">{error}</p>}
 
       {tableData.length > 0 && !loading ? (
-        <div className="table-responsive shadow-lg rounded bg-white p-3" style={{ marginTop: '130px' }}> {/* Increase the margin-top */}
+        <div className="table-responsive shadow-lg rounded bg-white p-3" style={{ marginTop: '130px', width: '150%'}}> {/* Increase the margin-top */}
           <h3 className="text-center mb-2 text-primary">Property Master Table</h3>
           <Table bordered hover className="mt-3">
             <thead className="bg-primary text-white text-center">
