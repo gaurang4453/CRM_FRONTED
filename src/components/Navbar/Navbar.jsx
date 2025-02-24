@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "/src/components/style/Navbar.css";
+import "/src/components/Account/RoleMasterForm";
 
 const Navbar = () => {
   return (
@@ -13,8 +14,8 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-right">
-          <Link className="nav-link" to="/PropMasterTable">
-            Property Master
+          <Link className="nav-link" to="/RoleMasterForm">
+            RoleMasterForm
           </Link>
           <Link className="nav-link" to="/clients">
             Clients

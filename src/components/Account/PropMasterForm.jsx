@@ -59,7 +59,9 @@ export default function PropMasterForm() {
 
     try {
       await AxiosInstance.post("/PropMaster", payload);
-      alert(id ? "Property updated successfully!" : "Successfully submitted data");
+      alert(
+        id ? "Property updated successfully!" : "Successfully submitted data"
+      );
       reset();
       navigate("/PropMasterTable");
     } catch (error) {
@@ -81,75 +83,115 @@ export default function PropMasterForm() {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p className="error">{error}</p>;
-  if (statusError) return <p className="error">Failed to fetch status options: {statusError}</p>;
+  if (statusError)
+    return (
+      <p className="error">Failed to fetch status options: {statusError}</p>
+    );
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="form">
-      <h1 className="ribbon">{id ? "Edit Property" : "Prop Master Form"}</h1>
-      <Container>
-        <Row className="mb-3">
-          <Col md={3} className="d-flex align-items-center">
-            <label htmlFor="propTypeName">Property Type Name:</label>
-          </Col>
-          <Col md={9}>
-            <input id="propTypeName" {...register("propTypeName", { required: true })} className="line-textbox" />
-            {errors.propTypeName && <p className="error-text">This field is required.</p>}
-          </Col>
-        </Row>
-
-        <Row className="mb-3">
-          <Col md={3} className="d-flex align-items-center">
-            <label htmlFor="propName">Property Name:</label>
-          </Col>
-          <Col md={9}>
-            <input id="propName" {...register("propName", { required: true })} className="line-textbox" />
-            {errors.propName && <p className="error-text">This field is required.</p>}
-          </Col>
-        </Row>
-
-        <Row className="mb-3">
-          <Col md={3} className="d-flex align-items-center">
-            <label htmlFor="propValue">Property Value:</label>
-          </Col>
-          <Col md={9}>
-            <input id="propValue" {...register("propValue", { required: true })} className="line-textbox" />
-            {errors.propValue && <p className="error-text">This field is required.</p>}
-          </Col>
-        </Row>
-
-        <Row className="mb-3">
-          <Col md={3} className="d-flex align-items-center">
-            <label htmlFor="status">Status:</label>
-          </Col>
-          <Col md={9}>
-            <select id="status" {...register("status", { required: true })} className="form-select">
-              <option value="">--Select--</option>
-              {statusOptions?.length > 0 ? (
-                statusOptions.map((status, index) => (
-                  <option key={status.value || index} value={status.value}>
-                    {status.value}
-                  </option>
-                ))
-              ) : (
-                <option disabled>No status options available</option>
+    <>
+      <form onSubmit={handleSubmit(onSubmit)} className="form">
+        <h1 className="ribbon">{id ? "Edit Property" : "Prop Master Form"}</h1>
+        <Container>
+          <Row className="mb-3">
+            <Col md={3} className="d-flex align-items-center">
+              <label htmlFor="propTypeName">Property Type Name:</label>
+            </Col>
+            <Col md={9}>
+              <input
+                id="propTypeName"
+                {...register("propTypeName", { required: true })}
+                className="line-textbox"
+              />
+              {errors.propTypeName && (
+                <p className="error-text">This field is required.</p>
               )}
-            </select>
-            {errors.status && <p className="error-text">Please select a status.</p>}
-          </Col>
-        </Row>
+            </Col>
+          </Row>
 
-        <Row className="mb-3">
-          <Col md={3} className="d-flex align-items-center">
-            <label htmlFor="CUID">CUID:</label>
-          </Col>
-          <Col md={9}>
-            <input id="CUID" {...register("CUID", { required: true, pattern: /^[0-9]+$/ })} className="line-textbox" placeholder="Enter in numbers only." />
-            {errors.CUID && <p className="error-text">CUID must be a valid number.</p>}
-          </Col>
-        </Row>
-      </Container>
+          <Row className="mb-3">
+            <Col md={3} className="d-flex align-items-center">
+              <label htmlFor="propName">Property Name:</label>
+            </Col>
+            <Col md={9}>
+              <input
+                id="propName"
+                {...register("propName", { required: true })}
+                className="line-textbox"
+              />
+              {errors.propName && (
+                <p className="error-text">This field is required.</p>
+              )}
+            </Col>
+          </Row>
 
-      <Footer className="footer" onSave={handleSubmit(onSubmit)} onDelete={id ? handleDelete : undefined} onCancel={() => navigate("/PropMasterTable")} />
-    </form>
+          <Row className="mb-3">
+            <Col md={3} className="d-flex align-items-center">
+              <label htmlFor="propValue">Property Value:</label>
+            </Col>
+            <Col md={9}>
+              <input
+                id="propValue"
+                {...register("propValue", { required: true })}
+                className="line-textbox"
+              />
+              {errors.propValue && (
+                <p className="error-text">This field is required.</p>
+              )}
+            </Col>
+          </Row>
+
+          <Row className="mb-3">
+            <Col md={3} className="d-flex align-items-center">
+              <label htmlFor="status">Status:</label>
+            </Col>
+            <Col md={9}>
+              <select
+                id="status"
+                {...register("status", { required: true })}
+                className="form-select"
+              >
+                <option value="">--Select--</option>
+                {statusOptions?.length > 0 ? (
+                  statusOptions.map((status, index) => (
+                    <option key={status.value || index} value={status.value}>
+                      {status.value}
+                    </option>
+                  ))
+                ) : (
+                  <option disabled>No status options available</option>
+                )}
+              </select>
+              {errors.status && (
+                <p className="error-text">Please select a status.</p>
+              )}
+            </Col>
+          </Row>
+
+          <Row className="mb-3">
+            <Col md={3} className="d-flex align-items-center">
+              <label htmlFor="CUID">CUID:</label>
+            </Col>
+            <Col md={9}>
+              <input
+                id="CUID"
+                {...register("CUID", { required: true, pattern: /^[0-9]+$/ })}
+                className="line-textbox"
+                placeholder="Enter in numbers only."
+              />
+              {errors.CUID && (
+                <p className="error-text">CUID must be a valid number.</p>
+              )}
+            </Col>
+          </Row>
+        </Container>
+      </form>
+      <Footer
+        className="footer"
+        onSave={handleSubmit(onSubmit)}
+        onDelete={id ? handleDelete : undefined}
+        onCancel={() => navigate("/PropMasterTable")}
+      />
+    </>
   );
 }
