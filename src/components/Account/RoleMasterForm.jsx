@@ -131,7 +131,8 @@ export default function RoleMasterForm() {
                 />
                 {errors.CUID && <p style={{ color: "red" }}>{errors.CUID.message}</p>}
               </Form.Group>
-            
+            </Col>
+          </Row>
         </Container>
       </Form>
       <Footer className="footer" onSave={handleSubmit(onSubmit)} onDelete={id ? handleDelete : undefined} onCancel={() => navigate("/RoleMasterTable")} />
