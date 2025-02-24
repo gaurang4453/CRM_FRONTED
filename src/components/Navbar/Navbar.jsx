@@ -14,9 +14,37 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-right">
+<<<<<<< HEAD
           <Link className="nav-link" to="/RoleMasterForm">
             RoleMasterForm
           </Link>
+=======
+        <div className="dropdown">
+            <button className="dropdown-toggle">Account</button>
+            <ul className="dropdown-menu">
+              <li>
+                <Link className="dropdown-item" to="/PropMasterTable">
+                  Property Master
+                </Link>
+              </li>
+              <li>
+                <Link className="dropdown-item" to="/RoleMasterForm">
+                  Role Master
+                </Link>
+              </li>
+              <li>
+                <Link className="dropdown-item" to="/UserMasterForm">
+                  User Master
+                </Link>
+              </li>
+              <li>
+                <Link className="dropdown-item" to="/BranchMasterForm">
+                  Branch Master
+                </Link>
+              </li>
+            </ul>
+          </div>
+>>>>>>> a195959397160b9667bbb60a53ec3c06a8e49f4d
           <Link className="nav-link" to="/clients">
             Clients
           </Link>
@@ -57,3 +85,6 @@ const Navbar = () => {
 };
 
 export default Navbar;
+<Link className="nav-link" to="/PropMasterTable">
+            Account
+          </Link>
