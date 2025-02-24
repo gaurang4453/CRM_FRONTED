@@ -4,6 +4,7 @@ import Home from "./components/Home";
 import PropMasterTable from "./components/Index/PropMasterTable";
 import RoleMasterForm from "./components/Account/RoleMasterForm";
 import PropMasterForm from "./components/Account/PropMasterForm";
+import RoleMasterTable from "./components/Index/RolemasterTable";
 import Navbar from "./components/Navbar/Navbar";
 
 function Routing() {
@@ -14,7 +15,11 @@ function Routing() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/PropMasterTable" element={<PropMasterTable />} />
+          <Route path="/RoleMasterTable" element={<RoleMasterTable />} />
+          
           <Route path="/PropMasterForm/:id" element={<PropMasterForm />} />
+          <Route path="/RoleMasterForm/:id" element={<RoleMasterForm />} />
+
           <Route path="/RoleMasterForm" element={<RoleMasterForm />} />
           <Route path="/PropMasterForm" element={<PropMasterForm />} />
         </Routes>

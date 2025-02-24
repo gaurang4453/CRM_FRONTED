@@ -1,8 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "/src/components/style/Navbar.css";
-import "/src/components/Account/RoleMasterForm";
-
+import PropMasterTable from "../Index/PropMasterTable";
 const Navbar = () => {
   return (
     <header className="navbar-container">
@@ -23,7 +22,7 @@ const Navbar = () => {
                 </Link>
               </li>
               <li>
-                <Link className="dropdown-item" to="/RoleMasterForm">
+                <Link className="dropdown-item" to="/RoleMasterTable">
                   Role Master
                 </Link>
               </li>

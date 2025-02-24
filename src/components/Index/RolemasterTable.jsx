@@ -25,8 +25,8 @@ export default function RoleMasterTable() {
     }
   };
 
-  const handleRowClick = (propID) => {
-    navigate(`/RoleMasterForm/${propID}`);
+  const handleRowClick = (roleID) => {
+    navigate(`/RoleMasterForm/${roleID}`);
   };
 
   // Navigate to PropMasterForm Page
