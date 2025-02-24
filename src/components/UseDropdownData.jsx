@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import AxiosInstance from "/src/AxiosInstance"; // Ensure AxiosInstance is imported
+import { set } from "react-hook-form";
 
 const dropdownData = {
   status: {
@@ -9,6 +10,9 @@ const dropdownData = {
     fieldNameWhere: "PropTypeName",
     fieldValue: "Status",
   },
+
+
+  
   // Add more dropdown keys here if needed
 };
 
@@ -21,9 +25,7 @@ const useDropdownData = (dropdownKey) => {
       try {
         const params = dropdownData[dropdownKey];
         if (!params) {
-          setError(`Invalid dropdown key: ${dropdownKey}`);
-          console.error(`Invalid dropdown key: ${dropdownKey}`);
-          return;
+          throw new Error(`Dropdown key not found: ${dropdownKey}`);
         }
 
         const response = await AxiosInstance.get("/CommonDropdown", {
@@ -36,18 +38,18 @@ const useDropdownData = (dropdownKey) => {
           },
         });
 
-        console.log(`Dropdown Data for "${dropdownKey}":`, response.data);
+        // Log the response data
+        console.log("Fetched Dropdown Data:", response.data);
 
-        // Validate API response structure
-        if (response.data?.data?.length > 0) {
-          setData(response.data.data);
+
+        // Ensure response is in the correct structure
+        if (response.data && response.data.data) {
+          setData(response.data.data); // Set the dropdown data
         } else {
-          console.warn(`No data found for dropdown key: ${dropdownKey}`);
-          setData([]); // Ensure state remains an empty array if no data
+          throw new Error("Invalid data structure from API.");
         }
       } catch (err) {
-        console.error("Error fetching dropdown data:", err);
-        setError(`Failed to fetch dropdown data: ${err.message}`);
+        setError("Failed to fetch dropdown data: " + err.message);
       }
     };
 

@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import AxiosInstance from "/src/AxiosInstance";
 import Footer from "/src/components/Footer/Footer";
 import { useParams, useNavigate } from "react-router-dom";
-import useDropdownData from "../UseDropdownData"; // Import the custom hook
+import useDropdownData from "../UseDropdownData";
 
 export default function PropMasterForm() {
   const { id } = useParams();
@@ -21,7 +21,6 @@ export default function PropMasterForm() {
     formState: { errors },
   } = useForm();
 
-  // Fetch status dropdown data
   const { data: statusOptions, error: statusError } = useDropdownData("status");
 
   useEffect(() => {
@@ -30,7 +29,6 @@ export default function PropMasterForm() {
         try {
           const response = await AxiosInstance.get(`/PropMaster/${id}`);
           const property = response.data.data;
-          console.log("Fetched Property Data:", property);
 
           setValue("propTypeName", property.propTypeName || "");
           setValue("propName", property.propName || "");
@@ -38,13 +36,11 @@ export default function PropMasterForm() {
           setValue("status", property.status || "");
           setValue("CUID", property.cuid || "");
         } catch (err) {
-          console.error("Error fetching property:", err);
           setError("Failed to fetch property details.");
         } finally {
           setLoading(false);
         }
       };
-
       fetchProperty();
     } else {
       setLoading(false);
@@ -53,7 +49,7 @@ export default function PropMasterForm() {
 
   const onSubmit = async (data) => {
     const payload = {
-      propID: id || 0, 
+      propID: id || 0,
       propTypeName: data.propTypeName,
       propName: data.propName,
       propValue: data.propValue,
@@ -67,7 +63,6 @@ export default function PropMasterForm() {
       reset();
       navigate("/PropMasterTable");
     } catch (error) {
-      console.error("Error submitting form:", error);
       alert("Error submitting data");
     }
   };
@@ -79,7 +74,6 @@ export default function PropMasterForm() {
         alert("Property deleted successfully!");
         navigate("/PropMasterTable");
       } catch (error) {
-        console.error("Error deleting property:", error);
         alert("Failed to delete property.");
       }
     }
@@ -92,49 +86,48 @@ export default function PropMasterForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="form">
       <h1 className="ribbon">{id ? "Edit Property" : "Prop Master Form"}</h1>
-
       <Container>
         <Row className="mb-3">
           <Col md={3} className="d-flex align-items-center">
-            <label>Property Type Name:</label>
+            <label htmlFor="propTypeName">Property Type Name:</label>
           </Col>
           <Col md={9}>
-            <input {...register("propTypeName", { required: true })} className="line-textbox" />
+            <input id="propTypeName" {...register("propTypeName", { required: true })} className="line-textbox" />
             {errors.propTypeName && <p className="error-text">This field is required.</p>}
           </Col>
         </Row>
 
         <Row className="mb-3">
           <Col md={3} className="d-flex align-items-center">
-            <label>Property Name:</label>
+            <label htmlFor="propName">Property Name:</label>
           </Col>
           <Col md={9}>
-            <input {...register("propName", { required: true })} className="line-textbox" />
+            <input id="propName" {...register("propName", { required: true })} className="line-textbox" />
             {errors.propName && <p className="error-text">This field is required.</p>}
           </Col>
         </Row>
 
         <Row className="mb-3">
           <Col md={3} className="d-flex align-items-center">
-            <label>Property Value:</label>
+            <label htmlFor="propValue">Property Value:</label>
           </Col>
           <Col md={9}>
-            <input {...register("propValue", { required: true })} className="line-textbox" />
+            <input id="propValue" {...register("propValue", { required: true })} className="line-textbox" />
             {errors.propValue && <p className="error-text">This field is required.</p>}
           </Col>
         </Row>
 
         <Row className="mb-3">
           <Col md={3} className="d-flex align-items-center">
-            <label>Status:</label>
+            <label htmlFor="status">Status:</label>
           </Col>
           <Col md={9}>
-            <select {...register("status", { required: true })} className="form-select">
+            <select id="status" {...register("status", { required: true })} className="form-select">
               <option value="">--Select--</option>
               {statusOptions?.length > 0 ? (
-                statusOptions.map((status) => (
-                  <option key={status.id || status.PropValue} value={status.PropValue}>
-                    {status.PropName}
+                statusOptions.map((status, index) => (
+                  <option key={status.value || index} value={status.value}>
+                    {status.value}
                   </option>
                 ))
               ) : (
@@ -147,25 +140,16 @@ export default function PropMasterForm() {
 
         <Row className="mb-3">
           <Col md={3} className="d-flex align-items-center">
-            <label>CUID:</label>
+            <label htmlFor="CUID">CUID:</label>
           </Col>
           <Col md={9}>
-            <input
-              {...register("CUID", { required: true, pattern: /^[0-9]+$/ })}
-              className="line-textbox"
-              placeholder="Enter in numbers only."
-            />
+            <input id="CUID" {...register("CUID", { required: true, pattern: /^[0-9]+$/ })} className="line-textbox" placeholder="Enter in numbers only." />
             {errors.CUID && <p className="error-text">CUID must be a valid number.</p>}
           </Col>
         </Row>
       </Container>
 
-      <Footer
-        className="footer"
-        onSave={handleSubmit(onSubmit)}
-        onDelete={id ? handleDelete : undefined}
-        onCancel={() => navigate("/PropMasterTable")}
-      />
+      <Footer className="footer" onSave={handleSubmit(onSubmit)} onDelete={id ? handleDelete : undefined} onCancel={() => navigate("/PropMasterTable")} />
     </form>
   );
 }
