@@ -81,61 +81,112 @@ export default function RoleMasterForm() {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p className="error">{error}</p>;
-  if (statusError) return <p className="error">Failed to fetch status options: {statusError}</p>;
+  if (statusError)
+    return (
+      <p className="error">Failed to fetch status options: {statusError}</p>
+    );
 
   return (
     <>
-      <Form onSubmit={handleSubmit(onSubmit)}>
-        <h1>Role Master Form</h1>
-        <Container>
-          <Row>
-            <Col md={2}><Form.Label>Role Name:</Form.Label></Col>
-            <Col md={10}>
-              <Form.Group controlId="formRoleName">
-                <Form.Control
-                  type="text"
-                  placeholder="Enter your role name"
-                  {...register("roleName", { required: "Role name is required" })}
-                />
-                {errors.roleName && <p style={{ color: "red" }}>{errors.roleName.message}</p>}
-              </Form.Group>
-            </Col>
-          </Row>
-          <br />
-          <Row>
-            <Col md={2}><Form.Label>Status:</Form.Label></Col>
-            <Col md={9}>
-              <select id="status" {...register("status", { required: true })} className="form-select">
-                <option value="">--Select--</option>
-                {statusOptions?.length > 0 ? (
-                  statusOptions.map((status, index) => (
-                    <option key={status.value || index} value={status.value}>
-                      {status.value || "Unnamed Status"}
-                    </option>
-                  ))
-                ) : (
-                  <option disabled>No status options available</option>
-                )}
-              </select>
-              {errors.status && <p className="error-text">Please select a status.</p>}
-            </Col>
-          </Row>
-          <Row>
-            <Col md={2}><Form.Label>CUID:</Form.Label></Col>
-            <Col md={10}>
-              <Form.Group controlId="CUID">
-                <Form.Control
-                  type="number"
-                  placeholder="Enter your CUID"
-                  {...register("CUID", { required: "CUID is required" })}
-                />
-                {errors.CUID && <p style={{ color: "red" }}>{errors.CUID.message}</p>}
-              </Form.Group>
-            </Col>
-          </Row>
-        </Container>
-      </Form>
-      <Footer className="footer" onSave={handleSubmit(onSubmit)} onDelete={id ? handleDelete : undefined} onCancel={() => navigate("/RoleMasterTable")} />
+     <Form onSubmit={handleSubmit(onSubmit)}>
+  <h1 className="ribbon" style={{ marginBottom: "30px" }}>Role Master Form</h1>
+  <Container>
+    {/* Role Name */}
+    <Row style={{ marginBottom: "15px" }}>
+      <Col md={2} className="d-flex align-items-center">
+        <Form.Label>Role Name:</Form.Label>
+      </Col>
+      <Col md={10}>
+        <Form.Group controlId="roleName">
+          <Form.Control
+            type="text"
+            placeholder="Enter your role name"
+            {...register("roleName", { required: "Role name is required" })}
+            style={{
+              border: "none", // Removes the border
+              borderBottom: "2px solid rgb(243, 185, 78)", // Adds a bottom border with new color
+              outline: "none", // Removes the outline when focused
+              boxShadow: "none", // Removes the shadow on focus
+              padding: "5px 0", // Adds padding to the top and bottom for better appearance
+              width: "80%" // Decreases the width of the input box
+            }}
+          />
+          {errors.roleName && (
+            <p style={{ color: "red" }}>{errors.roleName.message}</p>
+          )}
+        </Form.Group>
+      </Col>
+    </Row>
+
+    {/* Status */}
+    <Row style={{ marginBottom: "15px" }}>
+      <Col md={2} className="d-flex align-items-center">
+        <Form.Label>Status:</Form.Label>
+      </Col>
+      <Col md={10}>
+        <select
+          id="status"
+          {...register("status", { required: true })}
+          className="form-select"
+          style={{
+            width: "80%", // Adjust width to match other inputs
+            border: "none",
+            borderBottom: "2px solid rgb(243, 185, 78)", // Add line style for consistency
+            padding: "5px 0", // Add padding to match input boxes
+          }}
+        >
+          <option value="" disabled>
+            --Select--
+          </option>
+          {statusOptions?.length > 0 ? (
+            statusOptions.map((status, index) => (
+              <option key={status.value || index} value={status.value}>
+                {status.value || "Unnamed Status"}
+              </option>
+            ))
+          ) : (
+            <option disabled>No status options available</option>
+          )}
+        </select>
+        {errors.status && <p className="error-text">Please select a status.</p>}
+      </Col>
+    </Row>
+
+    {/* CUID */}
+    <Row style={{ marginBottom: "15px" }}>
+      <Col md={2} className="d-flex align-items-center">
+        <Form.Label>CUID:</Form.Label>
+      </Col>
+      <Col md={10}>
+        <Form.Group controlId="CUID">
+          <Form.Control
+            type="number"
+            placeholder="Enter your CUID"
+            {...register("CUID", { required: "CUID is required" })}
+            style={{
+              border: "none", // Removes the border
+              borderBottom: "2px solid rgb(243, 185, 78)", // Adds a bottom border with new color
+              outline: "none", // Removes the outline when focused
+              boxShadow: "none", // Removes the shadow on focus
+              padding: "5px 0", // Adds padding to the top and bottom for better appearance
+              width: "80%" // Decreases the width of the input box
+            }}
+          />
+          {errors.CUID && (
+            <p style={{ color: "red" }}>{errors.CUID.message}</p>
+          )}
+        </Form.Group>
+      </Col>
+    </Row>
+  </Container>
+</Form>
+<Footer
+  className="footer"
+  onSave={handleSubmit(onSubmit)}
+  onDelete={id ? handleDelete : undefined}
+  onCancel={() => navigate("/RoleMasterTable")}
+/>
+
     </>
   );
 }
