@@ -102,20 +102,20 @@ export default function UserMasterTable() {
                   className="text-center table-row-hover"
                 >
                   <td>{index + 1}</td>
-                  <td>{item.RoleID}</td>
-                  <td>{item.UserName}</td>
-                  <td>{item.Password}</td>
-                  <td>{item.OldPassword}</td>
-                  <td>{item.Adress}</td>
-                  <td>{item.MobileNo}</td>
-                  <td>{item.EmailID}</td>
-                  <td>{item.EmailPassword}</td>
-                  <td>{item.OutsideAccess}</td>
-                  <td>{item.Emailport}</td>
-                  <td>{item.EmailHost}</td>
-                  <td>{item.EmailSSL}</td>
+                  <td>{item.RoleID || item.roleID}</td>
+                  <td>{item.UserName || item.userName}</td>
+                  <td>{item.Password || item.password}</td>
+                  <td>{item.OldPassword || item.oldPassword}</td>
+                  <td>{item.Adress || item.adress}</td>
+                  <td>{item.MobileNo || item.mobileNo}</td>
+                  <td>{item.EmailID || item.emailID}</td>
+                  <td>{item.EmailPassword || item.emailPassword}</td>
+                  <td>{item.OutsideAccess || item.outsideAccess}</td>
+                  <td>{item.Emailport || item.emailport}</td>
+                  <td>{item.EmailHost || item.emailHost}</td>
+                  <td>{item.EmailSSL || item.emailSSL}</td>
                   <td>{item.OTP || item.otp}</td>
-                  <td>{item.status}</td>
+                  <td>{item.status || item.Status}</td>
                   <td>{item.CUID || item.cuid}</td>
                 </tr>
               ))}

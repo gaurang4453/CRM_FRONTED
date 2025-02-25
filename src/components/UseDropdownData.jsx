@@ -12,8 +12,8 @@ const dropdownData = {
   },
   role: {
     tableName: "RoleMaster",
-    fieldNameID: "RollName",
-    fieldNameValue: "RollID",
+    fieldNameID: "RoleName",
+    fieldNameValue: "RoleID",
     fieldNameWhere: "Status",
     fieldValue: "A",
   },

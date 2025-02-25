@@ -23,7 +23,7 @@ export default function UserMasterForm() {
   } = useForm();
 
   const { data: statusOptions, error: statusError } = useDropdownData("status");
-  const { data: roleOptions, error: RoleError } = useDropdownData("role");
+  const { data: roleOptions, error: roleError } = useDropdownData("role");
 
   useEffect(() => {
     if (id) {
@@ -31,23 +31,27 @@ export default function UserMasterForm() {
         try {
           const response = await AxiosInstance.get(`/UserMaster/${id}`);
           const user = response.data.data;
+          console.log("user", user);
 
           if (user) {
-            setValue("roleID", user.roleID || "");
-            setValue("userName", user.userName || "");
-            setValue("password", user.password || "");
-            setValue("OldPassword", user.oldPassword || "");
-            setValue("Adress", user.Adress || "");
-            setValue("mobileNo", user.mobileNo || "");
-            setValue("emailID", user.emailID || "");
+            setValue("roleID", user.RoleID || user.roleID || "");
+            setValue("UserName", user.UserName || user.userName || "");
+            setValue("Password", user.Password || user.password || "");
+            setValue("oldPassword", user.OldPassword || user.oldPassword || "");
+            setValue("Adress", user.Adress || user.adress || "");
+            setValue("MobileNo", user.MobileNo || user.mobileNo || "");
+            setValue("EmailID", user.EmailID || user.emailID || "");
             setValue("emailPassword", user.emailPassword || "");
-            setValue("outsideAccess", user.outsideAccess || "");
-            setValue("emailPort", user.emailPort || "");
-            setValue("emailHost", user.emailHost || "");
-            setValue("emailSSL", user.emailSSL || "");
-            setValue("otp", user.otp || "");
-            setValue("status", user.status || "");
-            setValue("CUID", user.cuid || "");
+            setValue(
+              "outsideAccess",
+              user.OutsideAccess || user.outsideAccess || ""
+            );
+            setValue("emailPort", user.EmailPort || user.emailPort || "");
+            setValue("emailHost", user.EmailHost || user.emailHost || "");
+            setValue("EmailSSL", user.EmailSSL || user.emailSSL || "");
+            setValue("OTP", user.OTP || user.otp || "");
+            setValue("Status", user.Status || user.status || "");
+            setValue("CUID", user.CUID || user.cuid || "");
           } else {
             console.warn("No data found for roleID:", id);
           }
@@ -120,22 +124,30 @@ export default function UserMasterForm() {
               <Form.Label>Role:</Form.Label>
             </Col>
             <Col md={10}>
-              <Form.Select
-                {...register("RoleID", { required: "Role is required" })}
+              <select
+                id="role"
+                {...register("role", { required: true })}
+                className="form-select"
+                style={{
+                  width: "80%", // Adjust width to match other inputs
+                  border: "none",
+                  borderBottom: "2px solid rgb(243, 185, 78)", // Add line style for consistency
+                  padding: "5px 0", // Add padding to match input boxes
+                }}
               >
                 <option value="">--Select--</option>
                 {roleOptions?.length > 0 ? (
-                  roleOptions.map((role, index) => (
+                  roleOptions.map((role) => (
                     <option key={role.value} value={role.value}>
                       {role.value}
                     </option>
                   ))
                 ) : (
-                  <option disabled>No status options available</option>
+                  <option disabled>No role options available</option>
                 )}
-              </Form.Select>
-              {errors.RoleID && (
-                <p style={{ color: "red" }}>{errors.RoleID.message}</p>
+              </select>
+              {errors.role && (
+                <p style={{ color: "red" }}>{errors.role.message}</p>
               )}
             </Col>
           </Row>
