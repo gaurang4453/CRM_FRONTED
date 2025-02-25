@@ -25,7 +25,7 @@ export default function CompanyMasterForm() {
 
   useEffect(() => {
     if (id) {
-      const fetchRole = async () => {
+      const fetchCompany = async () => {
         try {
           const response = await AxiosInstance.get(`/CompanyMaster/${id}`);
           const company = response.data.data;
@@ -61,12 +61,12 @@ export default function CompanyMasterForm() {
             console.warn("No data found for companyID:", id);
           }
         } catch (err) {
-          setError("Failed to fetch role details.");
+          setError("Failed to fetch Company details.");
         } finally {
           setLoading(false);
         }
       };
-      fetchRole();
+      fetchCompany();
     } else {
       setLoading(false);
     }
@@ -103,10 +103,10 @@ export default function CompanyMasterForm() {
     };
 
     try {
-      await AxiosInstance.post("/RoleMaster", payload);
-      alert(id ? "Role updated successfully!" : "Successfully submitted data");
+      await AxiosInstance.post("/CompanyMaster", payload);
+      alert(id ? "Company updated successfully!" : "Successfully submitted data");
       reset();
-      navigate("/RoleMasterTable");
+      navigate("/CompanyMasterTable");
     } catch (error) {
       alert("Error submitting data");
     }
@@ -140,10 +140,10 @@ export default function CompanyMasterForm() {
               <Form.Label>Company Name:</Form.Label>
             </Col>
             <Col md={4}>
-              <Form.Group controlId="roleName">
+              <Form.Group controlId="CompanyName">
                 <Form.Control
                   type="text"
-                  placeholder="Enter your role name"
+                  placeholder="Enter your Company name"
                   {...register("CompanyName", {
                     required: "Company name is required",
                   })}
