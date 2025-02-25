@@ -42,10 +42,7 @@ export default function UserMasterForm() {
             setValue("MobileNo", user.MobileNo || user.mobileNo || "");
             setValue("EmailID", user.EmailID || user.emailID || "");
             setValue("EmailPassword", user.EmailPassword || "");
-            setValue(
-              "OutSideAccess",
-              user.OutSideAccess || user.outsideAccess || ""
-            );
+            setValue("OutSideAccess", user.OutSideAccess || user.outsideAccess || "");
             setValue("EmailPort", user.EmailPort || user.emailPort || "");
             setValue("EmailHost", user.EmailHost || user.emailHost || "");
             setValue("EmailSSL", user.EmailSSL || user.emailSSL || "");
@@ -120,48 +117,33 @@ export default function UserMasterForm() {
         <Container>
           {/* RoleID DropDown */}
           <Row>
-            <Col md={12}>
-              {/* RoleID and UserName in the same column */}
-              <Row>
-                <Col md={2}>
-                  <Form.Label>Role:</Form.Label>
-                  <Form.Select
-                    {...register("RoleID", { required: "Role is required" })}
-                  >
-                    <option value="">--Select--</option>
-                    {roleOptions?.length > 0 ? (
-                      roleOptions.map((role, index) => (
-                        <option key={role.value} value={role.value}>
-                          {role.value}
-                        </option>
-                      ))
-                    ) : (
-                      <option disabled>No status options available</option>
-                    )}
-                  </Form.Select>
-                  {errors.RoleID && (
-                    <p style={{ color: "red" }}>{errors.RoleID.message}</p>
-                  )}
-                </Col>
-                <Col md={6}>
-                  <Form.Label>Username:</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Enter username"
-                    {...register("UserName", {
-                      required: "Username is required",
-                    })}
-                    style={{
-                      border: "none",
-                      borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
-                      borderRadius: "0", // Removes rounded corners
-                    }}
-                  />
-                  {errors.UserName && (
-                    <p style={{ color: "red" }}>{errors.UserName.message}</p>
-                  )}
-                </Col>
-              </Row>
+            <Col md={2}>
+              <Form.Label>Role:</Form.Label>
+            </Col>
+            <Col md={10}>
+              <Form.Select
+                {...register("RoleID", { required: "Role is required" })}
+                style={{
+                  width: "100%",
+                  padding: "5px",
+                  border: "2px solid rgb(243, 185, 78)",
+                  borderRadius: "5px",
+                }}
+              >
+                <option value="">--Select--</option>
+                {roleOptions?.length > 0 ? (
+                  roleOptions.map((role, index) => (
+                    <option key={role.value} value={role.value}>
+                      {role.value}
+                    </option>
+                  ))
+                ) : (
+                  <option disabled>No role options available</option>
+                )}
+              </Form.Select>
+              {errors.RoleID && (
+                <p style={{ color: "red" }}>{errors.RoleID.message}</p>
+              )}
             </Col>
           </Row>
 
@@ -206,25 +188,6 @@ export default function UserMasterForm() {
               )}
             </Col>
           </Row>
-
-          <Col md={2}>
-            <Form.Label>Address:</Form.Label>
-          </Col>
-          <Col md={4}>
-            <Form.Control
-              type="text"
-              placeholder="Enter Address"
-              {...register("Address", { required: "Address is required" })}
-              style={{
-                border: "none",
-                borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
-                borderRadius: "0", // Removes rounded corners
-              }}
-            />
-            {errors.Address && (
-              <p style={{ color: "red" }}>{errors.Address.message}</p>
-            )}
-          </Col>
 
           {/* Other fields */}
 
@@ -297,7 +260,26 @@ export default function UserMasterForm() {
               <Form.Check type="checkbox" {...register("OutSideAccess")} />
             </Col>
           </Row>
-
+          <Row>
+            <Col md={2}>
+              <Form.Label>Address:</Form.Label>
+            </Col>
+            <Col md={10}>
+              <Form.Control
+                type="text"
+                placeholder="Enter Address"
+                {...register("Address", { required: "Address is required" })}
+                style={{
+                  border: "none",
+                  borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
+                  borderRadius: "0", // Removes rounded corners
+                }}
+              />
+              {errors.Address && (
+                <p style={{ color: "red" }}>{errors.Address.message}</p>
+              )}
+            </Col>
+          </Row>
           <Row>
             <Col md={2}>
               <Form.Label>Email Port:</Form.Label>
@@ -374,7 +356,7 @@ export default function UserMasterForm() {
             <Col md={2}>
               <Form.Label>Status:</Form.Label>
             </Col>
-            <Col md={2}>
+            <Col md={4}>
               <select
                 id="status"
                 {...register("Status", { required: true })}

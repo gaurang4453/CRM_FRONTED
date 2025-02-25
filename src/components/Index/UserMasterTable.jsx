@@ -36,7 +36,16 @@ export default function UserMasterTable() {
   return (
     <Container className="mt-5">
       {/* Create New Button */}
-      <div className="d-flex justify-content-end mb-3">
+      <div
+        className="d-flex justify-content-end mb-3"
+        style={{
+          position: "fixed", // Fix the button on the screen
+          top: "100px", // Adjust the vertical position (distance from the top)
+          right: "1275px", // Adjust the horizontal position (distance from the right edge)
+          zIndex: "1000", // Ensures it stays above other content
+          padding: "5px 10px", // Optional: Adds padding around the button
+        }}
+      >
         <Button
           onClick={handleCreateNew}
           variant="success"
