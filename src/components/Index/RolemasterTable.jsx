@@ -35,14 +35,14 @@ export default function RoleMasterTable() {
   };
 
   return (
-    <Container className="mt-5">
+    <Container className="mt-5" style={{ maxWidth: "100%" }}>
       {/* Create New Button */}
       <div
         className="d-flex justify-content-end mb-3"
         style={{
           position: "fixed", // Fix the button on the screen
-          top: "90px", // Adjust the vertical position (distance from the top)
-          right: "400px", // Adjust the horizontal position (distance from the right edge)
+          top: "100px", // Adjust the vertical position (distance from the top)
+          right: "1320px", // Adjust the horizontal position (distance from the right edge)
           zIndex: "1000", // Ensures it stays above other content
           padding: "5px 10px", // Optional: Adds padding around the button
         }}
@@ -69,18 +69,22 @@ export default function RoleMasterTable() {
       {tableData.length > 0 && !loading ? (
         <div
           className="table-responsive shadow-lg rounded bg-white p-3"
-          style={{ marginTop: "130px" }}
+          style={{
+            marginTop: "20px", // Increase the margin-top
+            width: "100%", // Set the table container width to 80% of the screen
+            height: "450px", // Maintain a fixed height
+            marginLeft: "auto", // Center horizontally
+            marginRight: "auto", // Center horizontally
+          }}
         >
-          {" "}
-          {/* Increase the margin-top */}
           <h3 className="text-center mb-2 text-primary">Role Master Table</h3>
-          <Table bordered hover className="mt-3">
+          <Table bordered hover className="mt-4" style={{ width: "100%" }}>
             <thead className="bg-primary text-white text-center">
               <tr>
-                <th>#</th>
-                <th>Role name</th>
-                <th>Status</th>
-                <th>CUID</th>
+                <th style={{ width: "6%" }}>#</th> {/* Adjust width for column 1 */}
+                <th style={{ width: "1200px" }}>Role name</th> {/* Adjust width for column 2 */}
+                <th style={{ width: "30%" }}>Status</th> {/* Adjust width for column 3 */}
+                <th style={{ width: "30%" }}>CUID</th> {/* Adjust width for column 4 */}
               </tr>
             </thead>
             <tbody>
