@@ -17,6 +17,7 @@ export default function CompanyMasterTable() {
     setLoading(true);
     try {
       const response = await AxiosInstance.get("/CompanyMaster");
+      console.log("Fetched Data:", response.data); // Debugging
       setTableData(response.data.data || response.data);
     } catch (error) {
       setError("Something went wrong!");
@@ -24,8 +25,8 @@ export default function CompanyMasterTable() {
       setLoading(false);
     }
   };
-  const handleRowClick = (roleID) => {
-    navigate(`/CompanyMasterForm/${roleID}`);
+  const handleRowClick = (CompanyID) => {
+    navigate(`/CompanyMasterForm/${CompanyID}`);
   };
   // Navigate to PropMasterForm Page
   const handleCreateNew = () => {
@@ -80,8 +81,7 @@ export default function CompanyMasterTable() {
           <Table bordered hover className="mt-4" style={{ width: "100%" }}>
             <thead className="bg-primary text-white text-center">
               <tr>
-                <th style={{ width: "6%" }}>#</th>{" "}
-                {/* Adjust width for column 1 */}
+                <th style={{ width: "6%" }}>#</th>
                 <th style={{ width: "1200px" }}>Company name</th>
                 <th style={{ width: "30%" }}>ShortCode</th>
                 <th style={{ width: "30%" }}>State</th>
