@@ -135,7 +135,6 @@ export default function CompanyMasterForm() {
           Company Master Form
         </h1>
         <Container>
-
           <Row style={{ marginBottom: "15px" }}>
             <Col md={2} className="d-flex align-items-center">
               <Form.Label>Company Name:</Form.Label>
@@ -167,7 +166,7 @@ export default function CompanyMasterForm() {
             </Col>
             <Col md={4}>
               <Form.Control
-                type="ShortCode"
+                type="text"
                 placeholder="Enter ShortCode"
                 {...register("ShortCode", {
                   required: "ShortCode is required",
@@ -234,15 +233,15 @@ export default function CompanyMasterForm() {
 
           <Row>
             <Col md={2} className="d-flex align-items-center">
-              <Form.Label>TINDT:</Form.Label>
+              <Form.Label>CST:</Form.Label>
             </Col>
             <Col md={4}>
-              <Form.Group controlId="TINDT">
+              <Form.Group controlId="CST">
                 <Form.Control
                   type="text"
-                  placeholder="Enter your TINDT"
-                  {...register("TINDT", {
-                    required: "TINDT is required",
+                  placeholder="Enter your CST"
+                  {...register("CST", {
+                    required: "CST is required",
                   })}
                   style={{
                     border: "none", // Removes the border
@@ -253,56 +252,8 @@ export default function CompanyMasterForm() {
                     width: "80%", // Decreases the width of the input box
                   }}
                 />
-                {errors.TINDT && (
-                  <p style={{ color: "red" }}>{errors.TINDT``.message}</p>
-                )}
-              </Form.Group>
-            </Col>
-            <Col md={2}>
-              <Form.Label> CST:</Form.Label>
-            </Col>
-            <Col md={4}>
-              <Form.Control
-                type="CST"
-                placeholder="Enter CST"
-                {...register("CST", {
-                  required: "CST is required",
-                })}
-                style={{
-                  border: "none",
-                  borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
-                  borderRadius: "0", // Removes rounded corners
-                }}
-              />
-              {errors.CST && (
-                <p style={{ color: "red" }}>{errors.CST.message}</p>
-              )}
-            </Col>
-          </Row>
-
-          <Row>
-            <Col md={2} className="d-flex align-items-center">
-              <Form.Label>CSTDT:</Form.Label>
-            </Col>
-            <Col md={4}>
-              <Form.Group controlId="CSTDT">
-                <Form.Control
-                  type="text"
-                  placeholder="Enter your CSTDT"
-                  {...register("CSTDT", {
-                    required: "CSTDT is required",
-                  })}
-                  style={{
-                    border: "none", // Removes the border
-                    borderBottom: "2px solid rgb(243, 185, 78)", // Adds a bottom border with new color
-                    outline: "none", // Removes the outline when focused
-                    boxShadow: "none", // Removes the shadow on focus
-                    padding: "5px 0", // Adds padding to the top and bottom for better appearance
-                    width: "80%", // Decreases the width of the input box
-                  }}
-                />
-                {errors.CSTDT && (
-                  <p style={{ color: "red" }}>{errors.CSTDT``.message}</p>
+                {errors.CST && (
+                  <p style={{ color: "red" }}>{errors.CST.message}</p>
                 )}
               </Form.Group>
             </Col>
@@ -311,7 +262,7 @@ export default function CompanyMasterForm() {
             </Col>
             <Col md={4}>
               <Form.Control
-                type="PANNO"
+                type="text"
                 placeholder="Enter PANNO"
                 {...register("PANNO", {
                   required: "PANNO is required",
@@ -350,7 +301,7 @@ export default function CompanyMasterForm() {
                   }}
                 />
                 {errors.ServiceTaxNo && (
-                  <p style={{ color: "red" }}>{errors.ServiceTaxNo``.message}</p>
+                  <p style={{ color: "red" }}>{errors.ServiceTaxNo.message}</p>
                 )}
               </Form.Group>
             </Col>
@@ -359,7 +310,7 @@ export default function CompanyMasterForm() {
             </Col>
             <Col md={4}>
               <Form.Control
-                type="SSINO"
+                type="text"
                 placeholder="Enter SSINO"
                 {...register("SSINO", {
                   required: "SSINO is required",
@@ -375,8 +326,6 @@ export default function CompanyMasterForm() {
               )}
             </Col>
           </Row>
-
-
 
           <Row>
             <Col md={2} className="d-flex align-items-center">
@@ -400,7 +349,7 @@ export default function CompanyMasterForm() {
                   }}
                 />
                 {errors.TANNO && (
-                  <p style={{ color: "red" }}>{errors.TANNO``.message}</p>
+                  <p style={{ color: "red" }}>{errors.TANNO.message}</p>
                 )}
               </Form.Group>
             </Col>
@@ -409,7 +358,7 @@ export default function CompanyMasterForm() {
             </Col>
             <Col md={4}>
               <Form.Control
-                type="ECCNo"
+                type="text"
                 placeholder="Enter ECCNo"
                 {...register("ECCNo", {
                   required: "ECCNo is required",
@@ -426,18 +375,17 @@ export default function CompanyMasterForm() {
             </Col>
           </Row>
 
-
           <Row>
             <Col md={2} className="d-flex align-items-center">
-              <Form.Label>State:</Form.Label>
+              <Form.Label>Range:</Form.Label>
             </Col>
             <Col md={4}>
-              <Form.Group controlId="State">
+              <Form.Group controlId="Range">
                 <Form.Control
                   type="text"
-                  placeholder="Enter your State"
-                  {...register("State", {
-                    required: "State is required",
+                  placeholder="Enter your Range"
+                  {...register("Range", {
+                    required: "Range is required",
                   })}
                   style={{
                     border: "none", // Removes the border
@@ -448,20 +396,20 @@ export default function CompanyMasterForm() {
                     width: "80%", // Decreases the width of the input box
                   }}
                 />
-                {errors.State && (
-                  <p style={{ color: "red" }}>{errors.State``.message}</p>
+                {errors.Range && (
+                  <p style={{ color: "red" }}>{errors.Range.message}</p>
                 )}
               </Form.Group>
             </Col>
             <Col md={2}>
-              <Form.Label> ShortCode:</Form.Label>
+              <Form.Label> Division:</Form.Label>
             </Col>
             <Col md={4}>
               <Form.Control
-                type="ShortCode"
-                placeholder="Enter ShortCode"
-                {...register("ShortCode", {
-                  required: "ShortCode is required",
+                type="text"
+                placeholder="Enter Division"
+                {...register("Division", {
+                  required: "Division is required",
                 })}
                 style={{
                   border: "none",
@@ -469,24 +417,23 @@ export default function CompanyMasterForm() {
                   borderRadius: "0", // Removes rounded corners
                 }}
               />
-              {errors.ShortCode && (
-                <p style={{ color: "red" }}>{errors.ShortCode.message}</p>
+              {errors.Division && (
+                <p style={{ color: "red" }}>{errors.Division.message}</p>
               )}
             </Col>
           </Row>
 
-
           <Row>
             <Col md={2} className="d-flex align-items-center">
-              <Form.Label>State:</Form.Label>
+              <Form.Label>Commisioner:</Form.Label>
             </Col>
             <Col md={4}>
-              <Form.Group controlId="State">
+              <Form.Group controlId="Commisioner">
                 <Form.Control
                   type="text"
-                  placeholder="Enter your State"
-                  {...register("State", {
-                    required: "State is required",
+                  placeholder="Enter your Commisioner"
+                  {...register("Commisioner", {
+                    required: "Commisioner is required",
                   })}
                   style={{
                     border: "none", // Removes the border
@@ -497,20 +444,20 @@ export default function CompanyMasterForm() {
                     width: "80%", // Decreases the width of the input box
                   }}
                 />
-                {errors.State && (
-                  <p style={{ color: "red" }}>{errors.State``.message}</p>
+                {errors.Commisioner && (
+                  <p style={{ color: "red" }}>{errors.Commisioner.message}</p>
                 )}
               </Form.Group>
             </Col>
             <Col md={2}>
-              <Form.Label> ShortCode:</Form.Label>
+              <Form.Label> GST_No:</Form.Label>
             </Col>
             <Col md={4}>
               <Form.Control
-                type="ShortCode"
-                placeholder="Enter ShortCode"
-                {...register("ShortCode", {
-                  required: "ShortCode is required",
+                type="text"
+                placeholder="Enter GST_No"
+                {...register("GST_No", {
+                  required: "GST_No is required",
                 })}
                 style={{
                   border: "none",
@@ -518,24 +465,23 @@ export default function CompanyMasterForm() {
                   borderRadius: "0", // Removes rounded corners
                 }}
               />
-              {errors.ShortCode && (
-                <p style={{ color: "red" }}>{errors.ShortCode.message}</p>
+              {errors.GST_No && (
+                <p style={{ color: "red" }}>{errors.GST_No.message}</p>
               )}
             </Col>
           </Row>
 
-
           <Row>
             <Col md={2} className="d-flex align-items-center">
-              <Form.Label>State:</Form.Label>
+              <Form.Label>CurrencyCode:</Form.Label>
             </Col>
             <Col md={4}>
-              <Form.Group controlId="State">
+              <Form.Group controlId="CurrencyCode">
                 <Form.Control
                   type="text"
-                  placeholder="Enter your State"
-                  {...register("State", {
-                    required: "State is required",
+                  placeholder="Enter your CurrencyCode"
+                  {...register("CurrencyCode", {
+                    required: "CurrencyCode is required",
                   })}
                   style={{
                     border: "none", // Removes the border
@@ -546,20 +492,20 @@ export default function CompanyMasterForm() {
                     width: "80%", // Decreases the width of the input box
                   }}
                 />
-                {errors.State && (
-                  <p style={{ color: "red" }}>{errors.State``.message}</p>
+                {errors.CurrencyCode && (
+                  <p style={{ color: "red" }}>{errors.CurrencyCode.message}</p>
                 )}
               </Form.Group>
             </Col>
             <Col md={2}>
-              <Form.Label> ShortCode:</Form.Label>
+              <Form.Label> Address:</Form.Label>
             </Col>
             <Col md={4}>
               <Form.Control
-                type="ShortCode"
-                placeholder="Enter ShortCode"
-                {...register("ShortCode", {
-                  required: "ShortCode is required",
+                type="text"
+                placeholder="Enter Address"
+                {...register("Address", {
+                  required: "ShortCAddress is required",
                 })}
                 style={{
                   border: "none",
@@ -567,24 +513,23 @@ export default function CompanyMasterForm() {
                   borderRadius: "0", // Removes rounded corners
                 }}
               />
-              {errors.ShortCode && (
-                <p style={{ color: "red" }}>{errors.ShortCode.message}</p>
+              {errors.Address && (
+                <p style={{ color: "red" }}>{errors.Address.message}</p>
               )}
             </Col>
           </Row>
 
-
           <Row>
             <Col md={2} className="d-flex align-items-center">
-              <Form.Label>State:</Form.Label>
+              <Form.Label>Bank:</Form.Label>
             </Col>
             <Col md={4}>
-              <Form.Group controlId="State">
+              <Form.Group controlId="Bank">
                 <Form.Control
                   type="text"
-                  placeholder="Enter your State"
-                  {...register("State", {
-                    required: "State is required",
+                  placeholder="Enter your Bank"
+                  {...register("Bank", {
+                    required: "Bank is required",
                   })}
                   style={{
                     border: "none", // Removes the border
@@ -595,20 +540,20 @@ export default function CompanyMasterForm() {
                     width: "80%", // Decreases the width of the input box
                   }}
                 />
-                {errors.State && (
-                  <p style={{ color: "red" }}>{errors.State``.message}</p>
+                {errors.Bank && (
+                  <p style={{ color: "red" }}>{errors.Bank.message}</p>
                 )}
               </Form.Group>
             </Col>
             <Col md={2}>
-              <Form.Label> ShortCode:</Form.Label>
+              <Form.Label> Description:</Form.Label>
             </Col>
             <Col md={4}>
               <Form.Control
-                type="ShortCode"
-                placeholder="Enter ShortCode"
-                {...register("ShortCode", {
-                  required: "ShortCode is required",
+                type="text"
+                placeholder="Enter Description"
+                {...register("Description", {
+                  required: "Description is required",
                 })}
                 style={{
                   border: "none",
@@ -616,24 +561,23 @@ export default function CompanyMasterForm() {
                   borderRadius: "0", // Removes rounded corners
                 }}
               />
-              {errors.ShortCode && (
-                <p style={{ color: "red" }}>{errors.ShortCode.message}</p>
+              {errors.Description && (
+                <p style={{ color: "red" }}>{errors.Description.message}</p>
               )}
             </Col>
           </Row>
 
-
           <Row>
             <Col md={2} className="d-flex align-items-center">
-              <Form.Label>State:</Form.Label>
+              <Form.Label>TaxDescription:</Form.Label>
             </Col>
             <Col md={4}>
-              <Form.Group controlId="State">
+              <Form.Group controlId="TaxDescription">
                 <Form.Control
                   type="text"
-                  placeholder="Enter your State"
-                  {...register("State", {
-                    required: "State is required",
+                  placeholder="Enter your TaxDescription"
+                  {...register("TaxDescription", {
+                    required: "TaxDescription is required",
                   })}
                   style={{
                     border: "none", // Removes the border
@@ -644,20 +588,22 @@ export default function CompanyMasterForm() {
                     width: "80%", // Decreases the width of the input box
                   }}
                 />
-                {errors.State && (
-                  <p style={{ color: "red" }}>{errors.State``.message}</p>
+                {errors.TaxDescription && (
+                  <p style={{ color: "red" }}>
+                    {errors.TaxDescription.message}
+                  </p>
                 )}
               </Form.Group>
             </Col>
             <Col md={2}>
-              <Form.Label> ShortCode:</Form.Label>
+              <Form.Label> CertifyDescription:</Form.Label>
             </Col>
             <Col md={4}>
               <Form.Control
-                type="ShortCode"
-                placeholder="Enter ShortCode"
-                {...register("ShortCode", {
-                  required: "ShortCode is required",
+                type="text"
+                placeholder="Enter CertifyDescription"
+                {...register("CertifyDescription", {
+                  required: "CertifyDescription is required",
                 })}
                 style={{
                   border: "none",
@@ -665,24 +611,25 @@ export default function CompanyMasterForm() {
                   borderRadius: "0", // Removes rounded corners
                 }}
               />
-              {errors.ShortCode && (
-                <p style={{ color: "red" }}>{errors.ShortCode.message}</p>
+              {errors.CertifyDescription && (
+                <p style={{ color: "red" }}>
+                  {errors.CertifyDescription.message}
+                </p>
               )}
             </Col>
           </Row>
 
-
           <Row>
             <Col md={2} className="d-flex align-items-center">
-              <Form.Label>State:</Form.Label>
+              <Form.Label>Declaration:</Form.Label>
             </Col>
             <Col md={4}>
-              <Form.Group controlId="State">
+              <Form.Group controlId="Declaration">
                 <Form.Control
                   type="text"
-                  placeholder="Enter your State"
-                  {...register("State", {
-                    required: "State is required",
+                  placeholder="Enter your Declaration"
+                  {...register("Declaration", {
+                    required: "Declaration is required",
                   })}
                   style={{
                     border: "none", // Removes the border
@@ -693,20 +640,20 @@ export default function CompanyMasterForm() {
                     width: "80%", // Decreases the width of the input box
                   }}
                 />
-                {errors.State && (
-                  <p style={{ color: "red" }}>{errors.State``.message}</p>
+                {errors.Declaration && (
+                  <p style={{ color: "red" }}>{errors.Declaration.message}</p>
                 )}
               </Form.Group>
             </Col>
             <Col md={2}>
-              <Form.Label> ShortCode:</Form.Label>
+              <Form.Label> Jurisdiction:</Form.Label>
             </Col>
             <Col md={4}>
               <Form.Control
-                type="ShortCode"
-                placeholder="Enter ShortCode"
-                {...register("ShortCode", {
-                  required: "ShortCode is required",
+                type="text"
+                placeholder="Enter Jurisdiction"
+                {...register("Jurisdiction", {
+                  required: "Jurisdiction is required",
                 })}
                 style={{
                   border: "none",
@@ -714,24 +661,23 @@ export default function CompanyMasterForm() {
                   borderRadius: "0", // Removes rounded corners
                 }}
               />
-              {errors.ShortCode && (
-                <p style={{ color: "red" }}>{errors.ShortCode.message}</p>
+              {errors.Jurisdiction && (
+                <p style={{ color: "red" }}>{errors.Jurisdiction.message}</p>
               )}
             </Col>
           </Row>
 
-
           <Row>
             <Col md={2} className="d-flex align-items-center">
-              <Form.Label>State:</Form.Label>
+              <Form.Label>AuthPerson:</Form.Label>
             </Col>
             <Col md={4}>
-              <Form.Group controlId="State">
+              <Form.Group controlId="AuthPerson">
                 <Form.Control
                   type="text"
-                  placeholder="Enter your State"
-                  {...register("State", {
-                    required: "State is required",
+                  placeholder="Enter your AuthPerson"
+                  {...register("AuthPerson", {
+                    required: "AuthPerson is required",
                   })}
                   style={{
                     border: "none", // Removes the border
@@ -742,20 +688,20 @@ export default function CompanyMasterForm() {
                     width: "80%", // Decreases the width of the input box
                   }}
                 />
-                {errors.State && (
-                  <p style={{ color: "red" }}>{errors.State``.message}</p>
+                {errors.AuthPerson && (
+                  <p style={{ color: "red" }}>{errors.AuthPerson.message}</p>
                 )}
               </Form.Group>
             </Col>
             <Col md={2}>
-              <Form.Label> ShortCode:</Form.Label>
+              <Form.Label> Col1:</Form.Label>
             </Col>
             <Col md={4}>
               <Form.Control
-                type="ShortCode"
-                placeholder="Enter ShortCode"
-                {...register("ShortCode", {
-                  required: "ShortCode is required",
+                type="text"
+                placeholder="Enter Col1"
+                {...register("Col1", {
+                  required: "Col1 is required",
                 })}
                 style={{
                   border: "none",
@@ -763,63 +709,58 @@ export default function CompanyMasterForm() {
                   borderRadius: "0", // Removes rounded corners
                 }}
               />
-              {errors.ShortCode && (
-                <p style={{ color: "red" }}>{errors.ShortCode.message}</p>
+              {errors.Col1 && (
+                <p style={{ color: "red" }}>{errors.Col1.message}</p>
               )}
             </Col>
           </Row>
-
 
           <Row>
-            <Col md={2} className="d-flex align-items-center">
-              <Form.Label>State:</Form.Label>
+            <Col md={2}>
+              <Form.Label>Status:</Form.Label>
             </Col>
             <Col md={4}>
-              <Form.Group controlId="State">
+              <select
+                id="status"
+                {...register("Status", { required: true })}
+                className="form-select"
+              >
+                <option value="">--Select--</option>
+                {statusOptions?.length > 0 ? (
+                  statusOptions.map((status, index) => (
+                    <option key={status.value || index} value={status.value}>
+                      {status.value || "Unnamed Status"}
+                    </option>
+                  ))
+                ) : (
+                  <option disabled>No status options available</option>
+                )}
+              </select>
+              {errors.status && (
+                <p className="error-text">Please select a status.</p>
+              )}
+            </Col>
+            <Col md={2}>
+              <Form.Label>CUID:</Form.Label>
+            </Col>
+            <Col md={4}>
+              <Form.Group controlId="CUID">
                 <Form.Control
-                  type="text"
-                  placeholder="Enter your State"
-                  {...register("State", {
-                    required: "State is required",
-                  })}
+                  type="number"
+                  placeholder="Enter your CUID"
+                  {...register("CUID", { required: "CUID is required" })}
                   style={{
-                    border: "none", // Removes the border
-                    borderBottom: "2px solid rgb(243, 185, 78)", // Adds a bottom border with new color
-                    outline: "none", // Removes the outline when focused
-                    boxShadow: "none", // Removes the shadow on focus
-                    padding: "5px 0", // Adds padding to the top and bottom for better appearance
-                    width: "80%", // Decreases the width of the input box
+                    border: "none",
+                    borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
+                    borderRadius: "0", // Removes rounded corners
                   }}
                 />
-                {errors.State && (
-                  <p style={{ color: "red" }}>{errors.State``.message}</p>
+                {errors.CUID && (
+                  <p style={{ color: "red" }}>{errors.CUID.message}</p>
                 )}
               </Form.Group>
             </Col>
-            <Col md={2}>
-              <Form.Label> ShortCode:</Form.Label>
-            </Col>
-            <Col md={4}>
-              <Form.Control
-                type="ShortCode"
-                placeholder="Enter ShortCode"
-                {...register("ShortCode", {
-                  required: "ShortCode is required",
-                })}
-                style={{
-                  border: "none",
-                  borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
-                  borderRadius: "0", // Removes rounded corners
-                }}
-              />
-              {errors.ShortCode && (
-                <p style={{ color: "red" }}>{errors.ShortCode.message}</p>
-              )}
-            </Col>
           </Row>
-
-
-
         </Container>
       </Form>
       <Footer
