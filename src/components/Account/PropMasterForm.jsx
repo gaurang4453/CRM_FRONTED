@@ -151,7 +151,7 @@ export default function PropMasterForm() {
                 {...register("status", { required: true })}
                 className="form-select"
               >
-                <option value="">--Select--</option>
+                <option value="" disabled>--Select--</option>
                 {statusOptions?.length > 0 ? (
                   statusOptions.map((status, index) => (
                     <option key={status.value || index} value={status.value}>
