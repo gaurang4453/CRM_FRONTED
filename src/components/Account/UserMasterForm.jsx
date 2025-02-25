@@ -112,7 +112,13 @@ export default function UserMasterForm() {
 
   return (
     <>
-      <Form onSubmit={handleSubmit(onSubmit)} className="form">
+      <Form onSubmit={handleSubmit(onSubmit)} className="form"  style={{
+          height: "700px",
+          overflow: "auto",
+          padding: "20px",
+          marginTop: "70px",
+          marginBottom: "70px"
+        }}>
         <h1 className="ribbon">User Master Form</h1>
         <Container>
           {/* RoleID DropDown */}
@@ -124,6 +130,7 @@ export default function UserMasterForm() {
               <Form.Select
                 {...register("RoleID", { required: "Role is required" })}
                 style={{
+                  
                   width: "100%",
                   padding: "5px",
                   border: "2px solid rgb(243, 185, 78)",
@@ -146,7 +153,7 @@ export default function UserMasterForm() {
               )}
             </Col>
           </Row>
-
+          <br/>
           {/* Password */}
           <Row>
             <Col md={2}>
@@ -177,7 +184,7 @@ export default function UserMasterForm() {
                 {...register("OldPassword")}
                 style={{
                   border: "none",
-                  borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
+                  borderBottom: "2px solid rgb(133, 132, 130)", // Yellow underline using rgb(243, 185, 78)
                   borderRadius: "0", // Removes rounded corners
                 }}
               />
@@ -186,7 +193,7 @@ export default function UserMasterForm() {
               )}
             </Col>
           </Row>
-
+          <br/>
           {/* Other fields */}
 
           <Row>
@@ -218,7 +225,7 @@ export default function UserMasterForm() {
                 {...register("EmailPassword")}
                 style={{
                   border: "none",
-                  borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
+                  borderBottom: "2px solid rgb(133, 132, 130)", // Yellow underline using rgb(243, 185, 78)
                   borderRadius: "0", // Removes rounded corners
                 }}
               />
@@ -227,7 +234,7 @@ export default function UserMasterForm() {
               )}
             </Col>
           </Row>
-
+          <br/>
           <Row>
             <Col md={2}>
               <Form.Label>Mobile No:</Form.Label>
@@ -256,6 +263,7 @@ export default function UserMasterForm() {
               <Form.Check type="checkbox" {...register("OutSideAccess")} />
             </Col>
           </Row>
+          <br/>
           <Row>
             <Col md={2}>
               <Form.Label>Address:</Form.Label>
@@ -267,7 +275,7 @@ export default function UserMasterForm() {
                 {...register("Address")}
                 style={{
                   border: "none",
-                  borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
+                  borderBottom: "2px solid rgb(133, 132, 130)", // Yellow underline using rgb(243, 185, 78)
                   borderRadius: "0", // Removes rounded corners
                 }}
               />
@@ -276,6 +284,7 @@ export default function UserMasterForm() {
               )}
             </Col>
           </Row>
+          <br/>
           <Row>
             <Col md={2}>
               <Form.Label>Email Port:</Form.Label>
@@ -287,7 +296,7 @@ export default function UserMasterForm() {
                 {...register("EmailPort")}
                 style={{
                   border: "none",
-                  borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
+                  borderBottom: "2px solid rgb(133, 132, 130)", // Yellow underline using rgb(243, 185, 78)
                   borderRadius: "0", // Removes rounded corners
                 }}
               />
@@ -305,7 +314,7 @@ export default function UserMasterForm() {
                 {...register("EmailHost")}
                 style={{
                   border: "none",
-                  borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
+                  borderBottom: "2px solid rgb(133, 132, 130)", // Yellow underline using rgb(243, 185, 78)
                   borderRadius: "0", // Removes rounded corners
                 }}
               />
@@ -314,7 +323,7 @@ export default function UserMasterForm() {
               )}
             </Col>
           </Row>
-
+          <br/>
           <Row>
             <Col md={2}>
               <Form.Label>Email Ssl:</Form.Label>
@@ -332,7 +341,7 @@ export default function UserMasterForm() {
                 {...register("OTP")}
                 style={{
                   border: "none",
-                  borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
+                  borderBottom: "2px solid rgb(133, 132, 130)", // Yellow underline using rgb(243, 185, 78)
                   borderRadius: "0", // Removes rounded corners
                 }}
               />
@@ -341,7 +350,7 @@ export default function UserMasterForm() {
               )}
             </Col>
           </Row>
-
+<br/>
           <Row>
             <Col md={2}>
               <Form.Label>Status:</Form.Label>
@@ -378,7 +387,7 @@ export default function UserMasterForm() {
                   {...register("CUID")}
                   style={{
                     border: "none",
-                    borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
+                    borderBottom: "2px solid rgb(133, 132, 130)", // Yellow underline using rgb(243, 185, 78)
                     borderRadius: "0", // Removes rounded corners
                   }}
                 />

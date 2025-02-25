@@ -296,7 +296,7 @@ export default function CompanyMasterForm() {
 </Row>
 <br/>
 
-          <Row>
+          {/* <Row>
             <Col md={2} className="d-flex align-items-center">
               <Form.Label>State:</Form.Label>
             </Col>
@@ -340,9 +340,9 @@ export default function CompanyMasterForm() {
                 <p style={{ color: "red" }}>{errors.TINNo.message}</p>
               )}
             </Col>
-          </Row>
+          </Row> */}
 
-          <Row>
+          {/* <Row>
             <Col md={2} className="d-flex align-items-center">
               <Form.Label>CST:</Form.Label>
             </Col>
@@ -384,7 +384,7 @@ export default function CompanyMasterForm() {
                 <p style={{ color: "red" }}>{errors.PANNO.message}</p>
               )}
             </Col>
-          </Row>
+          </Row> */}
 
           <Row>
             <Col md={2} className="d-flex align-items-center">
