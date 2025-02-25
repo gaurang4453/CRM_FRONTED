@@ -17,16 +17,17 @@ export default function CompanyMasterTable() {
     setLoading(true);
     try {
       const response = await AxiosInstance.get("/CompanyMaster");
-      console.log("Fetched Data:", response.data); // Debugging
-      setTableData(response.data.data || response.data);
+      const data = response.data.data;
+      console.log("Fetched Data:", data); // Debugging
+      setTableData(data);
     } catch (error) {
       setError("Something went wrong!");
     } finally {
       setLoading(false);
     }
   };
-  const handleRowClick = (CompanyID) => {
-    navigate(`/CompanyMasterForm/${CompanyID}`);
+  const handleRowClick = (companyID) => {
+    navigate(`/CompanyMasterForm/${companyID}`);
   };
   // Navigate to PropMasterForm Page
   const handleCreateNew = () => {
@@ -69,7 +70,7 @@ export default function CompanyMasterTable() {
           className="table-responsive shadow-lg rounded bg-white p-3"
           style={{
             marginTop: "20px", // Increase the margin-top
-            width: "100%", // Set the table container width to 80% of the screen
+            width: "45%", // Set the table container width to 80% of the screen
             height: "450px", // Maintain a fixed height
             marginLeft: "auto", // Center horizontally
             marginRight: "auto", // Center horizontally
@@ -78,35 +79,17 @@ export default function CompanyMasterTable() {
           <h3 className="text-center mb-2 text-primary">
             Company Master Table
           </h3>
-          <Table bordered hover className="mt-4" style={{ width: "100%" }}>
+          <Table bordered hover className="mt-4" style={{ width: "60%" }}>
             <thead className="bg-primary text-white text-center">
               <tr>
-                <th style={{ width: "6%" }}>#</th>
                 <th style={{ width: "1200px" }}>Company name</th>
                 <th style={{ width: "30%" }}>ShortCode</th>
-                <th style={{ width: "30%" }}>State</th>
-                <th style={{ width: "30%" }}>TINNo</th>
-                <th style={{ width: "30%" }}>CST</th>
                 <th style={{ width: "30%" }}>PANNO</th>
-                <th style={{ width: "30%" }}>ServiceTaxNo</th>
-                <th style={{ width: "30%" }}>SSINO</th>
-                <th style={{ width: "30%" }}>TANNO</th>
-                <th style={{ width: "30%" }}>ECCNo</th>
-                <th style={{ width: "30%" }}>Range</th>
-                <th style={{ width: "30%" }}>Division</th>
-                <th style={{ width: "30%" }}>Commisioner</th>
                 <th style={{ width: "30%" }}>GST_No</th>
                 <th style={{ width: "30%" }}>CurrencyCode</th>
-                <th style={{ width: "30%" }}>Bank</th>
-                <th style={{ width: "30%" }}>Description</th>
-                <th style={{ width: "30%" }}>TaxDescription</th>
-                <th style={{ width: "30%" }}>CertifyDescription</th>
-                <th style={{ width: "30%" }}>Declaration</th>
+                <th style={{ width: "30%" }}>Address</th>
                 <th style={{ width: "30%" }}>Jurisdiction</th>
                 <th style={{ width: "30%" }}>AuthPerson</th>
-                <th style={{ width: "30%" }}>Col1</th>
-                <th style={{ width: "30%" }}>Status</th>
-                <th style={{ width: "30%" }}>CUID</th>
               </tr>
             </thead>
             <tbody>
@@ -117,33 +100,16 @@ export default function CompanyMasterTable() {
                   style={{ cursor: "pointer" }}
                   className="text-center table-row-hover"
                 >
-                  <td>{index + 1}</td>
-                  <td>{item.CompanyName}</td>
-                  <td>{item.ShortCode}</td>
-                  <td>{item.State}</td>
-                  <td>{item.TINNo}</td>
-                  <td>{item.CST}</td>
-                  <td>{item.PANNO}</td>
-                  <td>{item.ServiceTaxNo}</td>
-                  <td>{item.SSINO}</td>
-                  <td>{item.TANNO}</td>
-                  <td>{item.ECCNo}</td>
-                  <td>{item.Range}</td>
-                  <td>{item.Division}</td>
-                  <td>{item.Commisioner}</td>
-                  <td>{item.GST_No}</td>
-                  <td>{item.CurrencyCode}</td>
-                  <td>{item.Address}</td>
-                  <td>{item.Bank}</td>
-                  <td>{item.Description}</td>
-                  <td>{item.TaxDescription}</td>
-                  <td>{item.CertifyDescription}</td>
-                  <td>{item.Declaration}</td>
-                  <td>{item.Jurisdiction}</td>
-                  <td>{item.AuthPerson}</td>
-                  <td>{item.Col1}</td>
-                  <td>{item.status}</td>
-                  <td>{item.CUID || item.cuid}</td>
+                  <td>{item.companyName}</td>
+                  <td>{item.shortCode}</td>
+                  <td>{item.panno}</td>
+
+                  <td>{item.gsT_No}</td>
+                  <td>{item.currencyCode}</td>
+                  <td>{item.address}</td>
+
+                  <td>{item.jurisdiction}</td>
+                  <td>{item.authPerson}</td>
                 </tr>
               ))}
             </tbody>

@@ -42,7 +42,10 @@ export default function UserMasterForm() {
             setValue("MobileNo", user.MobileNo || user.mobileNo || "");
             setValue("EmailID", user.EmailID || user.emailID || "");
             setValue("EmailPassword", user.EmailPassword || "");
-            setValue("OutSideAccess", user.OutSideAccess || user.outsideAccess || "");
+            setValue(
+              "OutSideAccess",
+              user.OutSideAccess || user.outsideAccess || ""
+            );
             setValue("EmailPort", user.EmailPort || user.emailPort || "");
             setValue("EmailHost", user.EmailHost || user.emailHost || "");
             setValue("EmailSSL", user.EmailSSL || user.emailSSL || "");
@@ -65,29 +68,32 @@ export default function UserMasterForm() {
   }, [id, setValue]);
   const onSubmit = async (data) => {
     const payload = {
-      roleID: id || 0,
-      userName: data.userName,
-      password: data.password,
-      oldPassword: data.oldPassword,
-      address: data.address,
-      mobileNo: data.mobileNo,
-      emailID: data.emailID,
-      emailPassword: data.emailPassword,
-      outsideAccess: data.outsideAccess,
-      emailPort: data.emailPort,
-      emailHost: data.emailHost,
-      emailSSL: data.emailSSL,
-      otp: data.otp,
-      status: data.status,
+      userID: id || 0,
+      RoleID: data.RoleID || 0,
+      UserName: data.UserName,
+      Password: data.Password,
+      OldPassword: data.OldPassword,
+      Address: data.Address,
+      MobileNo: data.MobileNo,
+      EmailID: data.EmailID,
+      EmailPassword: data.EmailPassword,
+      OutSideAccess: data.OutSideAccess,
+      EmailPort: data.EmailPort,
+      EmailHost: data.EmailHost,
+      EmailSSL: data.EmailSSL,
+      OTP: data.OTP,
+      Status: data.Status,
       CUID: data.CUID,
     };
 
     try {
-      await AxiosInstance.post("/UserMaster", payload);
+      const response = await AxiosInstance.post("/UserMaster", payload);
+      console.log("API Response:", response.data); // Log API response
       alert(id ? "User updated successfully!" : "Successfully submitted data");
       reset();
       navigate("/UserMasterTable");
     } catch (error) {
+      console.error("API Error:", error.response?.data || error.message); // Log error response
       alert("Error submitting data");
     }
   };
