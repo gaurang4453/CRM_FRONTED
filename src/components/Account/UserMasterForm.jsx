@@ -6,6 +6,7 @@ import "../style/style.css";
 import Footer from "/src/components/Footer/Footer";
 import useDropdownData from "../UseDropdownData";
 import AxiosInstance from "/src/AxiosInstance";
+import UserMasterTable from "../Index/UserMasterTable";
 
 export default function UserMasterForm() {
   const { id } = useParams();
@@ -22,6 +23,7 @@ export default function UserMasterForm() {
   } = useForm();
 
   const { data: statusOptions, error: statusError } = useDropdownData("status");
+  const { data: roleOptions, error: RoleError } = useDropdownData("role");
 
   useEffect(() => {
     if (id) {
@@ -31,7 +33,7 @@ export default function UserMasterForm() {
           const user = response.data.data;
 
           if (user) {
-            setValue("roleID", user.roleID || ""); 
+            setValue("roleID", user.roleID || "");
             setValue("userName", user.userName || "");
             setValue("password", user.password || "");
             setValue("OldPassword", user.oldPassword || "");
@@ -61,20 +63,300 @@ export default function UserMasterForm() {
     }
   }, [id, setValue]);
   const onSubmit = async (data) => {
-      const payload = {
-        roleID: id || 0,
-        roleName: data.roleName,
-        status: data.status,
-        CUID: data.CUID,
-      };
-  
-      try {
-        await AxiosInstance.post("/RoleMaster", payload);
-        alert(id ? "Role updated successfully!" : "Successfully submitted data");
-        reset();
-        navigate("/RoleMasterTable");
-      } catch (error) {
-        alert("Error submitting data");
-      }
+    const payload = {
+      roleID: id || 0,
+      userName: data.userName,
+      password: data.password,
+      OldPassword: data.OldPassword,
+      Adress: data.Adress,
+      mobileNo: data.mobileNo,
+      emailID: data.emailID,
+      emailPassword: data.emailPassword,
+      outsideAccess: data.outsideAccess,
+      emailPort: data.emailPort,
+      emailHost: data.emailHost,
+      emailSSL: data.emailSSL,
+      otp: data.otp,
+      status: data.status,
+      CUID: data.CUID,
     };
-  
+
+    try {
+      await AxiosInstance.post("/UserMaster", payload);
+      alert(id ? "User updated successfully!" : "Successfully submitted data");
+      reset();
+      navigate("/UserMasterTable");
+    } catch (error) {
+      alert("Error submitting data");
+    }
+  };
+
+  const handleDelete = async () => {
+    if (window.confirm("Are you sure you want to delete this User?")) {
+      try {
+        await AxiosInstance.delete(`/UserMaster/${id}`);
+        alert("User deleted successfully!");
+        navigate("/UserMasterTable");
+      } catch (error) {
+        alert("Failed to delete User");
+      }
+    }
+  };
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p className="error">{error}</p>;
+  if (statusError)
+    return (
+      <p className="error">Failed to fetch status options: {statusError}</p>
+    );
+
+  return (
+    <>
+      <Form onSubmit={handleSubmit(onSubmit)}>
+        <h1>User Form</h1>
+        <Container>
+          {/* RoleID DropDown */}
+          <Row>
+            <Col md={2}>
+              <Form.Label>Role:</Form.Label>
+            </Col>
+            <Col md={10}>
+              <Form.Select
+                {...register("RoleID", { required: "Role is required" })}
+              >
+                <option value="">--Select--</option>
+                {roleOptions?.length > 0 ? (
+                  roleOptions.map((role, index) => (
+                    <option key={role.value} value={role.value}>
+                      {role.value}
+                    </option>
+                  ))
+                ) : (
+                  <option disabled>No status options available</option>
+                )}
+              </Form.Select>
+              {errors.RoleID && (
+                <p style={{ color: "red" }}>{errors.RoleID.message}</p>
+              )}
+            </Col>
+          </Row>
+          {/* Username */}
+          <Row>
+            <Col md={2}>
+              <Form.Label>Username:</Form.Label>
+            </Col>
+            <Col md={10}>
+              <Form.Control
+                type="text"
+                placeholder="Enter username"
+                {...register("UserName", { required: "Username is required" })}
+              />
+              {errors.UserName && (
+                <p style={{ color: "red" }}>{errors.UserName.message}</p>
+              )}
+            </Col>
+          </Row>
+          {/* Password */}
+          <Row>
+            <Col md={2}>
+              <Form.Label>Password:</Form.Label>
+            </Col>
+            <Col md={10}>
+              <Form.Control
+                type="password"
+                placeholder="Enter password"
+                {...register("Password", { required: "Password is required" })}
+              />
+              {errors.Password && (
+                <p style={{ color: "red" }}>{errors.Password.message}</p>
+              )}
+            </Col>
+          </Row>
+
+          <Row>
+            <Col md={2}>
+              <Form.Label> OldPassword:</Form.Label>
+            </Col>
+            <Col md={10}>
+              <Form.Control
+                type="password"
+                placeholder="Enter Oldpassword"
+                {...register("oldPassword", {
+                  required: "OldPassword is required",
+                })}
+              />
+              {errors.oldPassword && (
+                <p style={{ color: "red" }}>{errors.oldPassword.message}</p>
+              )}
+            </Col>
+          </Row>
+          {/* Other fields */}
+          <Row>
+            <Col md={2}>
+              <Form.Label>Mobile No:</Form.Label>
+            </Col>
+            <Col md={10}>
+              <Form.Control
+                type="text"
+                placeholder="Enter mobile number"
+                {...register("MobileNo", {
+                  required: "Mobile number is required",
+                })}
+              />
+              {errors.MobileNo && (
+                <p style={{ color: "red" }}>{errors.MobileNo.message}</p>
+              )}
+            </Col>
+          </Row>
+          <Row>
+            <Col md={2}>
+              <Form.Label>Email ID:</Form.Label>
+            </Col>
+            <Col md={10}>
+              <Form.Control
+                type="email"
+                placeholder="Enter email"
+                {...register("EmailID", { required: "Email is required" })}
+              />
+              {errors.EmailID && (
+                <p style={{ color: "red" }}>{errors.EmailID.message}</p>
+              )}
+            </Col>
+          </Row>
+          <Row>
+            <Col md={2}>
+              <Form.Label>Email Password:</Form.Label>
+            </Col>
+            <Col md={10}>
+              <Form.Control
+                type="password"
+                placeholder="Enter Email password"
+                {...register("emailPassword", {
+                  required: "Email Password is required",
+                })}
+              />
+              {errors.emailPassword && (
+                <p style={{ color: "red" }}>{errors.emailPassword.message}</p>
+              )}
+            </Col>
+          </Row>
+          <Row>
+            <Col md={2}>
+              <Form.Label>Outside Access:</Form.Label>
+            </Col>
+            <Col md={10}>
+              <Form.Check type="checkbox" {...register("OutSideAccess")} />
+            </Col>
+          </Row>
+          <Row>
+            <Col md={2}>
+              <Form.Label>Email Port:</Form.Label>
+            </Col>
+            <Col md={10}>
+              <Form.Control
+                type="number"
+                placeholder="Enter Email port"
+                {...register("emailport", {
+                  required: "Email port is required",
+                })}
+              />
+              {errors.emailport && (
+                <p style={{ color: "red" }}>{errors.emailport.message}</p>
+              )}
+            </Col>
+          </Row>
+          <Row>
+            <Col md={2}>
+              <Form.Label>Email Host:</Form.Label>
+            </Col>
+            <Col md={10}>
+              <Form.Control
+                type="text"
+                placeholder="Enter Email host"
+                {...register("emailhost", {
+                  required: "emailhost is required",
+                })}
+              />
+              {errors.emailhost && (
+                <p style={{ color: "red" }}>{errors.emailhost.message}</p>
+              )}
+            </Col>
+          </Row>
+          <Row>
+            <Col md={2}>
+              <Form.Label>Email Ssl:</Form.Label>
+            </Col>
+            <Col md={10}>
+              <Form.Check type="checkbox" {...register("emailssl")} />
+            </Col>
+          </Row>
+          <Row>
+            <Col md={2}>
+              <Form.Label>OTP:</Form.Label>
+            </Col>
+            <Col md={10}>
+              <Form.Control
+                type="text"
+                placeholder="Enter OTP"
+                {...register("otp", {
+                  required: "otp is required",
+                })}
+              />
+              {errors.otp && (
+                <p style={{ color: "red" }}>{errors.otp.message}</p>
+              )}
+            </Col>
+          </Row>
+          <Row>
+            <Col md={2}>
+              <Form.Label>Status:</Form.Label>
+            </Col>
+            <Col md={9}>
+              <select
+                id="status"
+                {...register("status", { required: true })}
+                className="form-select"
+              >
+                <option value="">--Select--</option>
+                {statusOptions?.length > 0 ? (
+                  statusOptions.map((status, index) => (
+                    <option key={status.value || index} value={status.value}>
+                      {status.value || "Unnamed Status"}
+                    </option>
+                  ))
+                ) : (
+                  <option disabled>No status options available</option>
+                )}
+              </select>
+              {errors.status && (
+                <p className="error-text">Please select a status.</p>
+              )}
+            </Col>
+          </Row>
+          <Row>
+            <Col md={2}>
+              <Form.Label>CUID:</Form.Label>
+            </Col>
+            <Col md={10}>
+              <Form.Group controlId="CUID">
+                <Form.Control
+                  type="number"
+                  placeholder="Enter your CUID"
+                  {...register("CUID", { required: "CUID is required" })}
+                />
+                {errors.CUID && (
+                  <p style={{ color: "red" }}>{errors.CUID.message}</p>
+                )}
+              </Form.Group>
+            </Col>
+          </Row>
+        </Container>
+      </Form>
+      <Footer
+        className="footer"
+        onSave={handleSubmit(onSubmit)}
+        onDelete={id ? handleDelete : undefined}
+        onCancel={() => navigate("/UserMasterTable")}
+      />
+    </>
+  );
+}

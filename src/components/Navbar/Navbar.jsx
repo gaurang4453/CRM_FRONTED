@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "/src/components/style/Navbar.css";
 import PropMasterTable from "../Index/PropMasterTable";
+
 const Navbar = () => {
   return (
     <header className="navbar-container">
@@ -13,7 +14,7 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-right">
-        <div className="dropdown">
+          <div className="dropdown">
             <button className="dropdown-toggle">Account</button>
             <ul className="dropdown-menu">
               <li>
@@ -27,7 +28,7 @@ const Navbar = () => {
                 </Link>
               </li>
               <li>
-                <Link className="dropdown-item" to="/UserMasterForm">
+                <Link className="dropdown-item" to="/UserMasterTable">
                   User Master
                 </Link>
               </li>

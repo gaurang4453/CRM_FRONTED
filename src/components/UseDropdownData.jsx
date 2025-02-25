@@ -10,15 +10,21 @@ const dropdownData = {
     fieldNameWhere: "PropTypeName",
     fieldValue: "Status",
   },
-  // status: {
-  //   tableName: "PropMaster",
-  //   fieldNameID: "PropValue",
-  //   fieldNameValue: "PropName",
-  //   fieldNameWhere: "PropTypeName",
-  //   fieldValue: "Status",
-  // },
+  role: {
+    tableName: "RoleMaster",
+    fieldNameID: "RollName",
+    fieldNameValue: "RollID",
+    fieldNameWhere: "Status",
+    fieldValue: "A",
+  },
 
-
+  user: {
+    tableName: "UserMaster",
+    fieldNameID: "UserName",
+    fieldNameValue: "UserID",
+    fieldNameWhere: "Status",
+    fieldValue: "A",
+  },
 
   // Add more dropdown keys here if needed
 };
@@ -47,7 +53,6 @@ const useDropdownData = (dropdownKey) => {
 
         // Log the response data
         console.log("Fetched Dropdown Data:", response.data);
-
 
         // Ensure response is in the correct structure
         if (response.data && response.data.data) {
