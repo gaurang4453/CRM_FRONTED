@@ -42,7 +42,10 @@ export default function UserMasterForm() {
             setValue("MobileNo", user.MobileNo || user.mobileNo || "");
             setValue("EmailID", user.EmailID || user.emailID || "");
             setValue("EmailPassword", user.EmailPassword || "");
-            setValue("OutSideAccess", user.OutSideAccess || user.outsideAccess || "");
+            setValue(
+              "OutSideAccess",
+              user.OutSideAccess || user.outsideAccess || ""
+            );
             setValue("EmailPort", user.EmailPort || user.emailPort || "");
             setValue("EmailHost", user.EmailHost || user.emailHost || "");
             setValue("EmailSSL", user.EmailSSL || user.emailSSL || "");
@@ -65,7 +68,8 @@ export default function UserMasterForm() {
   }, [id, setValue]);
   const onSubmit = async (data) => {
     const payload = {
-      roleID: id || 0,
+      userID: id || 0,
+      roleID: data.roleID || 0,
       userName: data.userName,
       password: data.password,
       oldPassword: data.oldPassword,
@@ -132,15 +136,31 @@ export default function UserMasterForm() {
               >
                 <option value="">--Select--</option>
                 {roleOptions?.length > 0 ? (
-                  roleOptions.map((role, index) => (
-                    <option key={role.value} value={role.value}>
-                      {role.value}
+                  roleOptions.map((role) => (
+                    <option key={role.id} value={role.id}>
+                      {role.id}{" "}
+                      {/* Displaying the role name instead of ID */}
                     </option>
                   ))
                 ) : (
                   <option disabled>No role options available</option>
                 )}
               </Form.Select>
+
+              
+            </Col>
+            <Col md={2}>
+              <Form.Label>UserName:</Form.Label>
+            </Col>
+            <Col md={10}>
+              <Form.Control
+                {...register("UserName", { required: "UserName is required" })}
+                style={{
+                  border: "none",
+                  borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
+                  borderRadius: "0", // Removes rounded corners
+                }}
+              ></Form.Control>
               {errors.RoleID && (
                 <p style={{ color: "red" }}>{errors.RoleID.message}</p>
               )}
@@ -222,8 +242,8 @@ export default function UserMasterForm() {
                   borderRadius: "0", // Removes rounded corners
                 }}
               />
-              {errors.emailPassword && (
-                <p style={{ color: "red" }}>{errors.emailPassword.message}</p>
+              {errors.EmailPassword && (
+                <p style={{ color: "red" }}>{errors.EmailPassword.message}</p>
               )}
             </Col>
           </Row>
