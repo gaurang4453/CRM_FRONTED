@@ -39,8 +39,8 @@ export default function UserMasterTable() {
         className="d-flex justify-content-end mb-3"
         style={{
           position: "fixed", // Fix the button on the screen
-          top: "90px", // Adjust the vertical position (distance from the top)
-          right: "400px", // Adjust the horizontal position (distance from the right edge)
+          top: "100px", // Adjust the vertical position (distance from the top)
+          right: "1275px", // Adjust the horizontal position (distance from the right edge)
           zIndex: "1000", // Ensures it stays above other content
           padding: "5px 10px", // Optional: Adds padding around the button
         }}

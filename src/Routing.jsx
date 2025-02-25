@@ -7,6 +7,10 @@ import PropMasterForm from "./components/Account/PropMasterForm";
 import RoleMasterTable from "./components/Index/RolemasterTable";
 import UserMasterForm from "./components/Account/UserMasterForm";
 import UserMasterTable from "./components/Index/UserMasterTable";
+import CompanyMasterForm from "./components/Account/CompanyMasterForm";
+import CompanyMasterTable from "./components/Index/CompanyMasterTable";
+
+
 import Navbar from "./components/Navbar/Navbar";
 
 function Routing() {
@@ -19,14 +23,17 @@ function Routing() {
           <Route path="/PropMasterTable" element={<PropMasterTable />} />
           <Route path="/RoleMasterTable" element={<RoleMasterTable />} />
           <Route path="/UserMasterTable" element={<UserMasterTable />} />
-
+          <Route path="/CompanyMasterTable" element={<CompanyMasterTable />} />
+          
           <Route path="/PropMasterForm/:id" element={<PropMasterForm />} />
           <Route path="/RoleMasterForm/:id" element={<RoleMasterForm />} />
           <Route path="/UserMasterForm/:id" element={<UserMasterForm />} />
+          <Route path="/CompanyMasterForm/:id" element={<CompanyMasterForm />} />
 
           <Route path="/RoleMasterForm" element={<RoleMasterForm />} />
           <Route path="/PropMasterForm" element={<PropMasterForm />} />
           <Route path="/UserMasterForm" element={<UserMasterForm />} />
+          <Route path="/CompanyMasterForm" element={<CompanyMasterForm />} />
         </Routes>
       </Router>
     </>
