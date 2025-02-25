@@ -174,9 +174,7 @@ export default function UserMasterForm() {
               <Form.Control
                 type="password"
                 placeholder="Enter Oldpassword"
-                {...register("OldPassword", {
-                  required: "OldPassword is required",
-                })}
+                {...register("OldPassword")}
                 style={{
                   border: "none",
                   borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
@@ -217,9 +215,7 @@ export default function UserMasterForm() {
               <Form.Control
                 type="password"
                 placeholder="Enter Email password"
-                {...register("EmailPassword", {
-                  required: "Email Password is required",
-                })}
+                {...register("EmailPassword")}
                 style={{
                   border: "none",
                   borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
@@ -268,7 +264,7 @@ export default function UserMasterForm() {
               <Form.Control
                 type="text"
                 placeholder="Enter Address"
-                {...register("Address", { required: "Address is required" })}
+                {...register("Address")}
                 style={{
                   border: "none",
                   borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
@@ -288,9 +284,7 @@ export default function UserMasterForm() {
               <Form.Control
                 type="number"
                 placeholder="Enter Email port"
-                {...register("EmailPort", {
-                  required: "Email port is required",
-                })}
+                {...register("EmailPort")}
                 style={{
                   border: "none",
                   borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
@@ -308,9 +302,7 @@ export default function UserMasterForm() {
               <Form.Control
                 type="text"
                 placeholder="Enter Email host"
-                {...register("EmailHost", {
-                  required: "emailhost is required",
-                })}
+                {...register("EmailHost")}
                 style={{
                   border: "none",
                   borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
@@ -337,9 +329,7 @@ export default function UserMasterForm() {
               <Form.Control
                 type="text"
                 placeholder="Enter OTP"
-                {...register("OTP", {
-                  required: "otp is required",
-                })}
+                {...register("OTP")}
                 style={{
                   border: "none",
                   borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
@@ -359,7 +349,7 @@ export default function UserMasterForm() {
             <Col md={4}>
               <select
                 id="status"
-                {...register("Status", { required: true })}
+                {...register("Status")}
                 className="form-select"
               >
                 <option value="">--Select--</option>
@@ -385,7 +375,7 @@ export default function UserMasterForm() {
                 <Form.Control
                   type="number"
                   placeholder="Enter your CUID"
-                  {...register("CUID", { required: "CUID is required" })}
+                  {...register("CUID")}
                   style={{
                     border: "none",
                     borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)

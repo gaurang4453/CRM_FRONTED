@@ -24,13 +24,13 @@ export default function CompanyMasterForm() {
   const { data: statusOptions, error: statusError } = useDropdownData("status");
 
   useEffect(() => {
-    if (id) {
+    if (id && id !== "undefined") {
       const fetchCompany = async () => {
         try {
           const response = await AxiosInstance.get(`/CompanyMaster/${id}`);
           const company = response.data.data;
-
           if (company) {
+            setValue("CompanyName", company.CompanyName || "");
             setValue("CompanyName", company.CompanyName || "");
             setValue("ShortCode", company.ShortCode || "");
             setValue("State", company.State || "");
@@ -71,6 +71,7 @@ export default function CompanyMasterForm() {
       setLoading(false);
     }
   }, [id, setValue]);
+
   const onSubmit = async (data) => {
     const payload = {
       CompanyID: id || 0,
@@ -104,7 +105,9 @@ export default function CompanyMasterForm() {
 
     try {
       await AxiosInstance.post("/CompanyMaster", payload);
-      alert(id ? "Company updated successfully!" : "Successfully submitted data");
+      alert(
+        id ? "Company updated successfully!" : "Successfully submitted data"
+      );
       reset();
       navigate("/CompanyMasterTable");
     } catch (error) {
@@ -216,9 +219,7 @@ export default function CompanyMasterForm() {
               <Form.Control
                 type="TINNo"
                 placeholder="Enter TINNo"
-                {...register("TINNo", {
-                  required: "TINNo is required",
-                })}
+                {...register("TINNo")}
                 style={{
                   border: "none",
                   borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
@@ -240,9 +241,7 @@ export default function CompanyMasterForm() {
                 <Form.Control
                   type="text"
                   placeholder="Enter your CST"
-                  {...register("CST", {
-                    required: "CST is required",
-                  })}
+                  {...register("CST")}
                   style={{
                     border: "none", // Removes the border
                     borderBottom: "2px solid rgb(243, 185, 78)", // Adds a bottom border with new color
@@ -264,9 +263,7 @@ export default function CompanyMasterForm() {
               <Form.Control
                 type="text"
                 placeholder="Enter PANNO"
-                {...register("PANNO", {
-                  required: "PANNO is required",
-                })}
+                {...register("PANNO")}
                 style={{
                   border: "none",
                   borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
@@ -288,9 +285,7 @@ export default function CompanyMasterForm() {
                 <Form.Control
                   type="text"
                   placeholder="Enter your ServiceTaxNo"
-                  {...register("ServiceTaxNo", {
-                    required: "ServiceTaxNo is required",
-                  })}
+                  {...register("ServiceTaxNo")}
                   style={{
                     border: "none", // Removes the border
                     borderBottom: "2px solid rgb(243, 185, 78)", // Adds a bottom border with new color
@@ -312,9 +307,7 @@ export default function CompanyMasterForm() {
               <Form.Control
                 type="text"
                 placeholder="Enter SSINO"
-                {...register("SSINO", {
-                  required: "SSINO is required",
-                })}
+                {...register("SSINO")}
                 style={{
                   border: "none",
                   borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
@@ -336,9 +329,7 @@ export default function CompanyMasterForm() {
                 <Form.Control
                   type="text"
                   placeholder="Enter your TANNO"
-                  {...register("TANNO", {
-                    required: "TANNO is required",
-                  })}
+                  {...register("TANNO")}
                   style={{
                     border: "none", // Removes the border
                     borderBottom: "2px solid rgb(243, 185, 78)", // Adds a bottom border with new color
@@ -360,9 +351,7 @@ export default function CompanyMasterForm() {
               <Form.Control
                 type="text"
                 placeholder="Enter ECCNo"
-                {...register("ECCNo", {
-                  required: "ECCNo is required",
-                })}
+                {...register("ECCNo")}
                 style={{
                   border: "none",
                   borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
@@ -384,9 +373,7 @@ export default function CompanyMasterForm() {
                 <Form.Control
                   type="text"
                   placeholder="Enter your Range"
-                  {...register("Range", {
-                    required: "Range is required",
-                  })}
+                  {...register("Range")}
                   style={{
                     border: "none", // Removes the border
                     borderBottom: "2px solid rgb(243, 185, 78)", // Adds a bottom border with new color
@@ -408,9 +395,7 @@ export default function CompanyMasterForm() {
               <Form.Control
                 type="text"
                 placeholder="Enter Division"
-                {...register("Division", {
-                  required: "Division is required",
-                })}
+                {...register("Division")}
                 style={{
                   border: "none",
                   borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
@@ -432,9 +417,7 @@ export default function CompanyMasterForm() {
                 <Form.Control
                   type="text"
                   placeholder="Enter your Commisioner"
-                  {...register("Commisioner", {
-                    required: "Commisioner is required",
-                  })}
+                  {...register("Commisioner")}
                   style={{
                     border: "none", // Removes the border
                     borderBottom: "2px solid rgb(243, 185, 78)", // Adds a bottom border with new color
@@ -552,9 +535,7 @@ export default function CompanyMasterForm() {
               <Form.Control
                 type="text"
                 placeholder="Enter Description"
-                {...register("Description", {
-                  required: "Description is required",
-                })}
+                {...register("Description")}
                 style={{
                   border: "none",
                   borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
@@ -576,9 +557,7 @@ export default function CompanyMasterForm() {
                 <Form.Control
                   type="text"
                   placeholder="Enter your TaxDescription"
-                  {...register("TaxDescription", {
-                    required: "TaxDescription is required",
-                  })}
+                  {...register("TaxDescription")}
                   style={{
                     border: "none", // Removes the border
                     borderBottom: "2px solid rgb(243, 185, 78)", // Adds a bottom border with new color
@@ -602,9 +581,7 @@ export default function CompanyMasterForm() {
               <Form.Control
                 type="text"
                 placeholder="Enter CertifyDescription"
-                {...register("CertifyDescription", {
-                  required: "CertifyDescription is required",
-                })}
+                {...register("CertifyDescription")}
                 style={{
                   border: "none",
                   borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
@@ -628,9 +605,7 @@ export default function CompanyMasterForm() {
                 <Form.Control
                   type="text"
                   placeholder="Enter your Declaration"
-                  {...register("Declaration", {
-                    required: "Declaration is required",
-                  })}
+                  {...register("Declaration")}
                   style={{
                     border: "none", // Removes the border
                     borderBottom: "2px solid rgb(243, 185, 78)", // Adds a bottom border with new color
@@ -652,9 +627,7 @@ export default function CompanyMasterForm() {
               <Form.Control
                 type="text"
                 placeholder="Enter Jurisdiction"
-                {...register("Jurisdiction", {
-                  required: "Jurisdiction is required",
-                })}
+                {...register("Jurisdiction")}
                 style={{
                   border: "none",
                   borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
@@ -676,9 +649,7 @@ export default function CompanyMasterForm() {
                 <Form.Control
                   type="text"
                   placeholder="Enter your AuthPerson"
-                  {...register("AuthPerson", {
-                    required: "AuthPerson is required",
-                  })}
+                  {...register("AuthPerson")}
                   style={{
                     border: "none", // Removes the border
                     borderBottom: "2px solid rgb(243, 185, 78)", // Adds a bottom border with new color
@@ -700,9 +671,7 @@ export default function CompanyMasterForm() {
               <Form.Control
                 type="text"
                 placeholder="Enter Col1"
-                {...register("Col1", {
-                  required: "Col1 is required",
-                })}
+                {...register("Col1")}
                 style={{
                   border: "none",
                   borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
