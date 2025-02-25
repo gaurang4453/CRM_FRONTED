@@ -108,7 +108,9 @@ export default function RoleMasterForm() {
               outline: "none", // Removes the outline when focused
               boxShadow: "none", // Removes the shadow on focus
               padding: "5px 0", // Adds padding to the top and bottom for better appearance
-              width: "80%" // Decreases the width of the input box
+              width: "80%",
+              borderRadius: "0",
+               // Decreases the width of the input box
             }}
           />
           {errors.roleName && (
@@ -132,7 +134,8 @@ export default function RoleMasterForm() {
             width: "80%", // Adjust width to match other inputs
             border: "none",
             borderBottom: "2px solid rgb(243, 185, 78)", // Add line style for consistency
-            padding: "5px 0", // Add padding to match input boxes
+            padding: "5px 0", 
+            borderRadius: "0",// Add padding to match input boxes
           }}
         >
           <option value="" disabled>
@@ -169,7 +172,8 @@ export default function RoleMasterForm() {
               outline: "none", // Removes the outline when focused
               boxShadow: "none", // Removes the shadow on focus
               padding: "5px 0", // Adds padding to the top and bottom for better appearance
-              width: "80%" // Decreases the width of the input box
+              width: "80%" ,
+              borderRadius: "0",// Decreases the width of the input box
             }}
           />
           {errors.CUID && (
