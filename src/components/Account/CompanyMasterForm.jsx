@@ -24,13 +24,13 @@ export default function CompanyMasterForm() {
   const { data: statusOptions, error: statusError } = useDropdownData("status");
 
   useEffect(() => {
-    if (id) {
+    if (id && id !== "undefined") {
       const fetchCompany = async () => {
         try {
           const response = await AxiosInstance.get(`/CompanyMaster/${id}`);
           const company = response.data.data;
-
           if (company) {
+            setValue("CompanyName", company.CompanyName || "");
             setValue("CompanyName", company.CompanyName || "");
             setValue("ShortCode", company.ShortCode || "");
             setValue("State", company.State || "");
@@ -71,6 +71,7 @@ export default function CompanyMasterForm() {
       setLoading(false);
     }
   }, [id, setValue]);
+
   const onSubmit = async (data) => {
     const payload = {
       CompanyID: id || 0,
@@ -104,7 +105,9 @@ export default function CompanyMasterForm() {
 
     try {
       await AxiosInstance.post("/CompanyMaster", payload);
-      alert(id ? "Company updated successfully!" : "Successfully submitted data");
+      alert(
+        id ? "Company updated successfully!" : "Successfully submitted data"
+      );
       reset();
       navigate("/CompanyMasterTable");
     } catch (error) {

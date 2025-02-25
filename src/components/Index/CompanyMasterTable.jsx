@@ -24,8 +24,8 @@ export default function CompanyMasterTable() {
       setLoading(false);
     }
   };
-  const handleRowClick = (roleID) => {
-    navigate(`/CompanyMasterForm/${roleID}`);
+  const handleRowClick = (CompanyID) => {
+    navigate(`/CompanyMasterForm/${CompanyID}`);
   };
   // Navigate to PropMasterForm Page
   const handleCreateNew = () => {
