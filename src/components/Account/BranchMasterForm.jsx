@@ -133,7 +133,7 @@ export default function BranchMasterForm() {
               <Form.Label>BranchName :</Form.Label>
             </Col>
             <Col md={10}>
-              <Form.Select
+              <Form.Control
                 {...register("BranchName", {
                   required: "BranchName is required",
                 })}
@@ -144,7 +144,8 @@ export default function BranchMasterForm() {
                   borderRadius: "5px",
                 }}
               >
-              </Form.Select>
+              </Form.Control>
+             
             </Col>
             <Col md={2} className="d-flex align-items-center">
               <Form.Label>CurrencyCode:</Form.Label>

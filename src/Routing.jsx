@@ -10,6 +10,7 @@ import UserMasterTable from "./components/Index/UserMasterTable";
 import CompanyMasterForm from "./components/Account/CompanyMasterForm";
 import CompanyMasterTable from "./components/Index/CompanyMasterTable";
 import BranchMasterForm from "./components/Account/BranchMasterForm";
+import BranchMasterTable from "./components/Index/BranchMasterTable";
 
 import Navbar from "./components/Navbar/Navbar";
 
@@ -24,12 +25,14 @@ export default function Routing() {
           <Route path="/RoleMasterTable" element={<RoleMasterTable />} />
           <Route path="/UserMasterTable" element={<UserMasterTable />} />
           <Route path="/CompanyMasterTable" element={<CompanyMasterTable />} />
+          <Route path="/BranchMasterTable" element={<BranchMasterTable />} />
           
           <Route path="/PropMasterForm/:id" element={<PropMasterForm />} />
           <Route path="/RoleMasterForm/:id" element={<RoleMasterForm />} />
           <Route path="/UserMasterForm/:id" element={<UserMasterForm />} />
           <Route path="/CompanyMasterForm/:id" element={<CompanyMasterForm />} />
           <Route path="/BranchMasterForm/:id" element={<BranchMasterForm />} />
+
 
           <Route path="/RoleMasterForm" element={<RoleMasterForm />} />
           <Route path="/PropMasterForm" element={<PropMasterForm />} />

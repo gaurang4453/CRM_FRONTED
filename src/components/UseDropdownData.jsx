@@ -27,8 +27,8 @@ const dropdownData = {
   },
   companies: {
     tableName: 'CompanyMaster',
-    fieldNameID: 'CompanyID',
-    fieldNameValue: 'CompanyName',
+    fieldNameID: 'CompanyName',
+    fieldNameValue: 'CompanyID',
     fieldNameWhere: 'Status',
     fieldValue: 'A'
   },

@@ -33,7 +33,12 @@ const Navbar = () => {
                 </Link>
               </li>
               <li>
-                <Link className="dropdown-item" to="/BranchMasterForm">
+                <Link className="dropdown-item" to="/CompanyMasterTable">
+                  Company Master
+                </Link>
+              </li>
+              <li>
+                <Link className="dropdown-item" to="/BranchMasterTable">
                   Branch Master
                 </Link>
               </li>

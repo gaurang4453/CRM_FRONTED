@@ -143,7 +143,7 @@ export default function RoleMasterForm() {
           </option>
           {statusOptions?.length > 0 ? (
             statusOptions.map((status, index) => (
-              <option key={status.value || index} value={status.value}>
+              <option key={status.value || index} value={status.id}>
                 {status.value || "Unnamed Status"}
               </option>
             ))
