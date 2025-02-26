@@ -81,10 +81,16 @@ function PropMasterTable() {
         >
           {" "}
           {/* Increase the margin-top */}
-          <h3 className="text-center mb-2 text-primary">
+          <h5  className="text-center mb-2"
+            style={{
+              backgroundColor: "#0d254b",
+              color: "white",
+              padding: "10px",
+              fontWeight: "bold"
+            }}>
             Property Master Table
-          </h3>
-          <Table bordered hover className="mt-3">
+          </h5>
+          <Table striped bordered hover className="mt-3">
             <thead className="bg-primary text-white text-center">
               <tr>
                 <th style={{ width: "200px" }}>#</th>
