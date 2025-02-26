@@ -134,46 +134,45 @@ export default function CompanyMasterForm() {
   return (
     <>
       <Form
-        onSubmit={handleSubmit(onSubmit)} 
+        onSubmit={handleSubmit(onSubmit)}
         style={{
-          height: "700px",
+          height: "950px",
           overflow: "auto",
           padding: "20px",
           marginTop: "70px",
-          marginBottom: "70px"
+          marginBottom: "70px",
+          marginBottom: "0px",
         }}
       >
         <h1 className="ribbon" style={{ marginBottom: "30px", width: "300px" }}>
           Company Master Form
         </h1>
         <Container>
-          <Row >
-          <Col md={2} className="d-flex align-items-center">
-  <Form.Label>Company Name:</Form.Label>
-</Col>
-<Col md={4}>
-  <Form.Group controlId="CompanyName">
-    <Form.Control
-      type="text"
-      placeholder="Enter your Company name"
-      {...register("CompanyName", {
-        required: "Company name is required",
-      })}
-      style={{
-        border: "none", // Removes the border
-        borderBottom: "2px solid rgb(133, 132, 130)", // Adds a bottom border with new color
-        outline: "none", // Removes the outline when focused
-        boxShadow: "none", // Removes the shadow on focus
-        padding: "5px 0", // Adds padding to the top and bottom for better appearance
-        width: "80%", // Decreases the width of the input box
-        borderRadius: "0", // Removes the curved corners
-      }}
-    />
-    {errors.CompanyName && (
-      <p style={{ color: "red" }}>{errors.CompanyName.message}</p>
-    )}
-  </Form.Group>
-</Col>
+          <Row>
+            <Col md={2} className="d-flex align-items-center">
+              <Form.Label>Company Name:</Form.Label>
+            </Col>
+            <Col md={4}>
+              <Form.Group controlId="CompanyName">
+                <Form.Control
+                  type="text"
+                  placeholder="Enter your Company name"
+                  {...register("CompanyName", {})}
+                  style={{
+                    border: "none", // Removes the border
+                    borderBottom: "2px solid rgb(133, 132, 130)", // Adds a bottom border with new color
+                    outline: "none", // Removes the outline when focused
+                    boxShadow: "none", // Removes the shadow on focus
+                    padding: "5px 0", // Adds padding to the top and bottom for better appearance
+                    width: "80%", // Decreases the width of the input box
+                    borderRadius: "0", // Removes the curved corners
+                  }}
+                />
+                {errors.CompanyName && (
+                  <p style={{ color: "red" }}>{errors.CompanyName.message}</p>
+                )}
+              </Form.Group>
+            </Col>
 
             <Col md={2} className="d-flex align-items-center">
               <Form.Label> ShortCode:</Form.Label>
@@ -183,7 +182,7 @@ export default function CompanyMasterForm() {
                 type="text"
                 placeholder="Enter ShortCode"
                 {...register("ShortCode", {
-                  required: "ShortCode is required",
+                  required: "ShortCode is required.",
                 })}
                 style={{
                   border: "none",
@@ -196,107 +195,8 @@ export default function CompanyMasterForm() {
               )}
             </Col>
           </Row>
-<br/>
-          <Row>  
-  <Col md={2} className="d-flex align-items-center">
-    <Form.Label>State:</Form.Label>
-  </Col>
-  <Col md={4}>
-    <Form.Group controlId="State">
-      <Form.Control
-        type="text"
-        placeholder="Enter your State"
-        {...register("State", {
-          required: "State is required",
-        })}
-        style={{
-          border: "none", 
-          borderBottom: "2px solid rgb(243, 185, 78)", 
-          outline: "none", 
-          boxShadow: "none", 
-          padding: "5px 0", 
-          width: "80%", 
-          borderRadius: "0",
-        }}
-      />
-      {errors.State && (
-        <p style={{ color: "red" }}>{errors.State.message}</p>
-      )}
-    </Form.Group>
-  </Col>
-  <Col md={2}>
-    <Form.Label> TINNo:</Form.Label>
-  </Col>
-  <Col md={4}>
-    <Form.Control
-      type="TINNo"
-      placeholder="Enter your TINNo"
-      {...register("TINNo", {
-        required: "TINNo is required",
-      })}
-      style={{
-        border: "none",
-        borderBottom: "2px solid rgb(133, 132, 130)", 
-        borderRadius: "0",
-      }}
-    />
-    {errors.TINNo && (
-      <p style={{ color: "red" }}>{errors.TINNo.message}</p>
-    )}
-  </Col>
-</Row>
-<br/>
-<Row className="g-3">
-  <Col md={2} className="d-flex align-items-center">
-    <Form.Label>CST:</Form.Label>
-  </Col>
-  <Col md={4}>
-    <Form.Group controlId="CST">
-      <Form.Control
-        type="text"
-        placeholder="Enter your CST"
-        {...register("CST", {
-          required: "CST is required",
-        })}
-        style={{
-          border: "none",
-          borderBottom: "2px solid rgb(133, 132, 130)", 
-          outline: "none", 
-          boxShadow: "none", 
-          padding: "5px 0", 
-          width: "80%", 
-          borderRadius: "0",
-        }}
-      />
-      {errors.CST && (
-        <p style={{ color: "red" }}>{errors.CST.message}</p>
-      )}
-    </Form.Group>
-  </Col>
-  <Col md={2}>
-    <Form.Label> PANNO:</Form.Label>
-  </Col>
-  <Col md={4}>
-    <Form.Control
-      type="text"
-      placeholder="Enter your PANNO"
-      {...register("PANNO", {
-        required: "PANNO is required",
-      })}
-      style={{
-        border: "none",
-        borderBottom: "2px solid rgb(133, 132, 130)", 
-        borderRadius: "0",
-      }}
-    />
-    {errors.PANNO && (
-      <p style={{ color: "red" }}>{errors.PANNO.message}</p>
-    )}
-  </Col>
-</Row>
-<br/>
-
-          {/* <Row>
+          <br />
+          <Row>
             <Col md={2} className="d-flex align-items-center">
               <Form.Label>State:</Form.Label>
             </Col>
@@ -306,43 +206,44 @@ export default function CompanyMasterForm() {
                   type="text"
                   placeholder="Enter your State"
                   {...register("State", {
-                    required: "State is required",
+                    required: "State is required.",
                   })}
                   style={{
-                    border: "none", // Removes the border
-                    borderBottom: "2px solid rgb(243, 185, 78)", // Adds a bottom border with new color
-                    outline: "none", // Removes the outline when focused
-                    boxShadow: "none", // Removes the shadow on focus
-                    padding: "5px 0", // Adds padding to the top and bottom for better appearance
-                    width: "80%", // Decreases the width of the input box
+                    border: "none",
+                    borderBottom: "2px solid rgb(243, 185, 78)",
+                    outline: "none",
+                    boxShadow: "none",
+                    padding: "5px 0",
+                    width: "80%",
+                    borderRadius: "0",
                   }}
                 />
                 {errors.State && (
-                  <p style={{ color: "red" }}>{errors.State``.message}</p>
+                  <p style={{ color: "red" }}>{errors.State.message}</p>
                 )}
               </Form.Group>
             </Col>
-            <Col md={2}>
+            <Col md={2} className="d-flex align-items-center">
               <Form.Label> TINNo:</Form.Label>
             </Col>
             <Col md={4}>
               <Form.Control
                 type="TINNo"
-                placeholder="Enter TINNo"
-                {...register("TINNo")}
+                placeholder="Enter your TINNo"
+                {...register("TINNo", {})}
                 style={{
                   border: "none",
-                  borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
-                  borderRadius: "0", // Removes rounded corners
+                  borderBottom: "2px solid rgb(133, 132, 130)",
+                  borderRadius: "0",
                 }}
               />
               {errors.TINNo && (
                 <p style={{ color: "red" }}>{errors.TINNo.message}</p>
               )}
             </Col>
-          </Row> */}
-
-          {/* <Row>
+          </Row>
+          <br />
+          <Row className="g-3">
             <Col md={2} className="d-flex align-items-center">
               <Form.Label>CST:</Form.Label>
             </Col>
@@ -351,14 +252,15 @@ export default function CompanyMasterForm() {
                 <Form.Control
                   type="text"
                   placeholder="Enter your CST"
-                  {...register("CST")}
+                  {...register("CST", {})}
                   style={{
-                    border: "none", // Removes the border
-                    borderBottom: "2px solid rgb(243, 185, 78)", // Adds a bottom border with new color
-                    outline: "none", // Removes the outline when focused
-                    boxShadow: "none", // Removes the shadow on focus
-                    padding: "5px 0", // Adds padding to the top and bottom for better appearance
-                    width: "80%", // Decreases the width of the input box
+                    border: "none",
+                    borderBottom: "2px solid rgb(133, 132, 130)",
+                    outline: "none",
+                    boxShadow: "none",
+                    padding: "5px 0",
+                    width: "80%",
+                    borderRadius: "0",
                   }}
                 />
                 {errors.CST && (
@@ -366,25 +268,26 @@ export default function CompanyMasterForm() {
                 )}
               </Form.Group>
             </Col>
-            <Col md={2}>
+            <Col md={2} className="d-flex align-items-center">
               <Form.Label> PANNO:</Form.Label>
             </Col>
             <Col md={4}>
               <Form.Control
                 type="text"
-                placeholder="Enter PANNO"
-                {...register("PANNO")}
+                placeholder="Enter your PANNO"
+                {...register("PANNO", {})}
                 style={{
                   border: "none",
-                  borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
-                  borderRadius: "0", // Removes rounded corners
+                  borderBottom: "2px solid rgb(133, 132, 130)",
+                  borderRadius: "0",
                 }}
               />
               {errors.PANNO && (
                 <p style={{ color: "red" }}>{errors.PANNO.message}</p>
               )}
             </Col>
-          </Row> */}
+          </Row>
+          <br />
 
           <Row>
             <Col md={2} className="d-flex align-items-center">
@@ -411,7 +314,7 @@ export default function CompanyMasterForm() {
                 )}
               </Form.Group>
             </Col>
-            <Col md={2}>
+            <Col md={2} className="d-flex align-items-center">
               <Form.Label> SSINO:</Form.Label>
             </Col>
             <Col md={4}>
@@ -430,7 +333,7 @@ export default function CompanyMasterForm() {
               )}
             </Col>
           </Row>
-          <br/>
+          <br />
           <Row>
             <Col md={2} className="d-flex align-items-center">
               <Form.Label>TANNO:</Form.Label>
@@ -447,8 +350,8 @@ export default function CompanyMasterForm() {
                     outline: "none", // Removes the outline when focused
                     boxShadow: "none", // Removes the shadow on focus
                     padding: "5px 0", // Adds padding to the top and bottom for better appearance
-                    width: "80%", 
-                    borderRadius: "0",// Decreases the width of the input box
+                    width: "80%",
+                    borderRadius: "0", // Decreases the width of the input box
                   }}
                 />
                 {errors.TANNO && (
@@ -456,7 +359,7 @@ export default function CompanyMasterForm() {
                 )}
               </Form.Group>
             </Col>
-            <Col md={2}>
+            <Col md={2} className="d-flex align-items-center">
               <Form.Label> ECCNo:</Form.Label>
             </Col>
             <Col md={4}>
@@ -475,7 +378,7 @@ export default function CompanyMasterForm() {
               )}
             </Col>
           </Row>
-          <br/>
+          <br />
           <Row>
             <Col md={2} className="d-flex align-items-center">
               <Form.Label>Range:</Form.Label>
@@ -492,8 +395,8 @@ export default function CompanyMasterForm() {
                     outline: "none", // Removes the outline when focused
                     boxShadow: "none", // Removes the shadow on focus
                     padding: "5px 0", // Adds padding to the top and bottom for better appearance
-                    width: "80%", 
-                    borderRadius: "0",// Decreases the width of the input box
+                    width: "80%",
+                    borderRadius: "0", // Decreases the width of the input box
                   }}
                 />
                 {errors.Range && (
@@ -501,7 +404,7 @@ export default function CompanyMasterForm() {
                 )}
               </Form.Group>
             </Col>
-            <Col md={2}>
+            <Col md={2} className="d-flex align-items-center">
               <Form.Label> Division:</Form.Label>
             </Col>
             <Col md={4}>
@@ -520,7 +423,7 @@ export default function CompanyMasterForm() {
               )}
             </Col>
           </Row>
-          <br/>
+          <br />
           <Row>
             <Col md={2} className="d-flex align-items-center">
               <Form.Label>Commisioner:</Form.Label>
@@ -537,8 +440,8 @@ export default function CompanyMasterForm() {
                     outline: "none", // Removes the outline when focused
                     boxShadow: "none", // Removes the shadow on focus
                     padding: "5px 0", // Adds padding to the top and bottom for better appearance
-                    width: "80%", 
-                    borderRadius: "0",// Decreases the width of the input box
+                    width: "80%",
+                    borderRadius: "0", // Decreases the width of the input box
                   }}
                 />
                 {errors.Commisioner && (
@@ -546,7 +449,7 @@ export default function CompanyMasterForm() {
                 )}
               </Form.Group>
             </Col>
-            <Col md={2}>
+            <Col md={2} className="d-flex align-items-center">
               <Form.Label> GST_No:</Form.Label>
             </Col>
             <Col md={4}>
@@ -554,7 +457,7 @@ export default function CompanyMasterForm() {
                 type="text"
                 placeholder="Enter your GST_No"
                 {...register("GST_No", {
-                  required: "GST_No is required",
+                  required: "GST_No is required.",
                 })}
                 style={{
                   border: "none",
@@ -567,7 +470,7 @@ export default function CompanyMasterForm() {
               )}
             </Col>
           </Row>
-          <br/>
+          <br />
           <Row>
             <Col md={2} className="d-flex align-items-center">
               <Form.Label>CurrencyCode:</Form.Label>
@@ -577,17 +480,15 @@ export default function CompanyMasterForm() {
                 <Form.Control
                   type="text"
                   placeholder="Enter your CurrencyCode"
-                  {...register("CurrencyCode", {
-                    required: "CurrencyCode is required",
-                  })}
+                  {...register("CurrencyCode", {})}
                   style={{
                     border: "none", // Removes the border
                     borderBottom: "2px solid rgb(133, 132, 130)", // Adds a bottom border with new color
                     outline: "none", // Removes the outline when focused
                     boxShadow: "none", // Removes the shadow on focus
                     padding: "5px 0", // Adds padding to the top and bottom for better appearance
-                    width: "80%", 
-                    borderRadius: "0",// Decreases the width of the input box
+                    width: "80%",
+                    borderRadius: "0", // Decreases the width of the input box
                   }}
                 />
                 {errors.CurrencyCode && (
@@ -595,7 +496,7 @@ export default function CompanyMasterForm() {
                 )}
               </Form.Group>
             </Col>
-            <Col md={2}>
+            <Col md={2} className="d-flex align-items-center">
               <Form.Label> Address:</Form.Label>
             </Col>
             <Col md={4}>
@@ -603,7 +504,7 @@ export default function CompanyMasterForm() {
                 type="text"
                 placeholder="Enter your Address"
                 {...register("Address", {
-                  required: "ShortCAddress is required",
+                  required: "ShortCAddress is required.",
                 })}
                 style={{
                   border: "none",
@@ -616,7 +517,7 @@ export default function CompanyMasterForm() {
               )}
             </Col>
           </Row>
-          <br/>
+          <br />
           <Row>
             <Col md={2} className="d-flex align-items-center">
               <Form.Label>Bank:</Form.Label>
@@ -627,7 +528,7 @@ export default function CompanyMasterForm() {
                   type="text"
                   placeholder="Enter your Bank"
                   {...register("Bank", {
-                    required: "Bank is required",
+                    required: "Bank is required.",
                   })}
                   style={{
                     border: "none", // Removes the border
@@ -644,7 +545,7 @@ export default function CompanyMasterForm() {
                 )}
               </Form.Group>
             </Col>
-            <Col md={2}>
+            <Col md={2} className="d-flex align-items-center">
               <Form.Label> Description:</Form.Label>
             </Col>
             <Col md={4}>
@@ -663,7 +564,7 @@ export default function CompanyMasterForm() {
               )}
             </Col>
           </Row>
-          <br/>
+          <br />
           <Row>
             <Col md={2} className="d-flex align-items-center">
               <Form.Label>TaxDescription:</Form.Label>
@@ -691,7 +592,7 @@ export default function CompanyMasterForm() {
                 )}
               </Form.Group>
             </Col>
-            <Col md={2}>
+            <Col md={2} className="d-flex align-items-center">
               <Form.Label> CertifyDescription:</Form.Label>
             </Col>
             <Col md={4}>
@@ -712,7 +613,7 @@ export default function CompanyMasterForm() {
               )}
             </Col>
           </Row>
-          <br/>
+          <br />
           <Row>
             <Col md={2} className="d-flex align-items-center">
               <Form.Label>Declaration:</Form.Label>
@@ -729,8 +630,8 @@ export default function CompanyMasterForm() {
                     outline: "none", // Removes the outline when focused
                     boxShadow: "none", // Removes the shadow on focus
                     padding: "5px 0", // Adds padding to the top and bottom for better appearance
-                    width: "80%", 
-                    borderRadius: "0",// Decreases the width of the input box
+                    width: "80%",
+                    borderRadius: "0", // Decreases the width of the input box
                   }}
                 />
                 {errors.Declaration && (
@@ -738,7 +639,7 @@ export default function CompanyMasterForm() {
                 )}
               </Form.Group>
             </Col>
-            <Col md={2}>
+            <Col md={2} className="d-flex align-items-center">
               <Form.Label> Jurisdiction:</Form.Label>
             </Col>
             <Col md={4}>
@@ -757,7 +658,7 @@ export default function CompanyMasterForm() {
               )}
             </Col>
           </Row>
-          <br/>
+          <br />
           <Row>
             <Col md={2} className="d-flex align-items-center">
               <Form.Label>AuthPerson:</Form.Label>
@@ -783,7 +684,7 @@ export default function CompanyMasterForm() {
                 )}
               </Form.Group>
             </Col>
-            <Col md={2}>
+            <Col md={2} className="d-flex align-items-center">
               <Form.Label> Col1:</Form.Label>
             </Col>
             <Col md={4}>
@@ -802,12 +703,12 @@ export default function CompanyMasterForm() {
               )}
             </Col>
           </Row>
-          <br/>
+          <br />
           <Row>
-            <Col md={2}>
+            <Col md={2} className="d-flex align-items-center">
               <Form.Label>Status:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={4} className="d-flex align-items-center">
               <select
                 id="status"
                 {...register("Status", { required: true })}
@@ -828,7 +729,8 @@ export default function CompanyMasterForm() {
                 <p className="error-text">Please select a status.</p>
               )}
             </Col>
-            <Col md={2}>
+
+            <Col md={2} className="d-flex align-items-center">
               <Form.Label>CUID:</Form.Label>
             </Col>
             <Col md={4}>
@@ -836,7 +738,7 @@ export default function CompanyMasterForm() {
                 <Form.Control
                   type="number"
                   placeholder="Enter your CUID"
-                  {...register("CUID", { required: "CUID is required" })}
+                  {...register("CUID", { required: "CUID is required." })}
                   style={{
                     border: "none",
                     borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)

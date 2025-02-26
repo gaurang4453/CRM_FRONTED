@@ -26,13 +26,15 @@ export default function CompanyMasterTable() {
       setLoading(false);
     }
   };
+
   const handleRowClick = (companyID) => {
     navigate(`/CompanyMasterForm/${companyID}`);
   };
-  // Navigate to PropMasterForm Page
+
   const handleCreateNew = () => {
     navigate("/CompanyMasterForm"); // Redirects to PropMasterForm
   };
+
   return (
     <Container className="mt-5" style={{ maxWidth: "100%" }}>
       {/* Create New Button */}
@@ -69,27 +71,33 @@ export default function CompanyMasterTable() {
         <div
           className="table-responsive shadow-lg rounded bg-white p-3"
           style={{
-            marginTop: "20px", // Increase the margin-top
-            width: "45%", // Set the table container width to 80% of the screen
-            height: "450px", // Maintain a fixed height
-            marginLeft: "auto", // Center horizontally
-            marginRight: "auto", // Center horizontally
+            marginTop: "120px", // Maintain the top margin
+            width: "120%", // Increase the table container width (set to 90% for more space)
+            height: "700px", // Maintain the height of the container
+            marginLeft: "-120px", // Center horizontally
+            marginRight: "450px", // Center horizontally
           }}
         >
-          <h3 className="text-center mb-2 text-primary">
+          <h5  className="text-center mb-2"
+            style={{
+              backgroundColor: "#0d254b",
+              color: "white",
+              padding: "10px",
+              fontWeight: "bold"
+            }}>
             Company Master Table
-          </h3>
-          <Table bordered hover className="mt-4" style={{ width: "60%" }}>
+          </h5>
+          <Table striped bordered hover className="mt-4" style={{ width: "100%" }}>
             <thead className="bg-primary text-white text-center">
               <tr>
-                <th style={{ width: "1200px" }}>Company name</th>
-                <th style={{ width: "30%" }}>ShortCode</th>
-                <th style={{ width: "30%" }}>PANNO</th>
-                <th style={{ width: "30%" }}>GST_No</th>
-                <th style={{ width: "30%" }}>CurrencyCode</th>
-                <th style={{ width: "30%" }}>Address</th>
-                <th style={{ width: "30%" }}>Jurisdiction</th>
-                <th style={{ width: "30%" }}>AuthPerson</th>
+                <th>Company name</th>
+                <th>ShortCode</th>
+                <th>PANNO</th>
+                <th>GST_No</th>
+                <th>CurrencyCode</th>
+                <th>Address</th>
+                <th>Jurisdiction</th>
+                <th>AuthPerson</th>
               </tr>
             </thead>
             <tbody>
@@ -100,14 +108,13 @@ export default function CompanyMasterTable() {
                   style={{ cursor: "pointer" }}
                   className="text-center table-row-hover"
                 >
+                  
                   <td>{item.companyName}</td>
                   <td>{item.shortCode}</td>
                   <td>{item.panno}</td>
-
                   <td>{item.gsT_No}</td>
                   <td>{item.currencyCode}</td>
                   <td>{item.address}</td>
-
                   <td>{item.jurisdiction}</td>
                   <td>{item.authPerson}</td>
                 </tr>
