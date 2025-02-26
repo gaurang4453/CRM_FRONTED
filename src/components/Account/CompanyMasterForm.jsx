@@ -157,7 +157,7 @@ export default function CompanyMasterForm() {
               <Form.Group controlId="CompanyName">
                 <Form.Control
                   type="text"
-                  placeholder="Enter your Company name"
+                  placeholder="Enter your Company name."
                   {...register("CompanyName", {})}
                   style={{
                     border: "none", // Removes the border
