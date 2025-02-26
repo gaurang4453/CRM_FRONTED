@@ -34,17 +34,17 @@ export default function UserMasterForm() {
           console.log("user", user);
 
           if (user) {
-            setValue("RoleID", user.RoleID || user.roleID || "");
+            setValue("RoleID",  user.roleID || "");
             setValue("UserName", user.UserName || user.userName || "");
             setValue("Password", user.Password || user.password || "");
             setValue("OldPassword", user.OldPassword || user.oldPassword || "");
-            setValue("Address", user.Address || user.Address || "");
+            setValue("Address", user.Address || user.address || "");
             setValue("MobileNo", user.MobileNo || user.mobileNo || "");
             setValue("EmailID", user.EmailID || user.emailID || "");
-            setValue("EmailPassword", user.EmailPassword || "");
+            setValue("EmailPassword", user.emailPassword || "");
             setValue(
               "OutSideAccess",
-              user.OutSideAccess || user.outsideAccess || ""
+              user.OutSideAccess || user.outSideAccess || ""
             );
             setValue("EmailPort", user.EmailPort || user.emailPort || "");
             setValue("EmailHost", user.EmailHost || user.emailHost || "");
@@ -146,8 +146,8 @@ export default function UserMasterForm() {
                 <option value="">--Select--</option>
                 {roleOptions?.length > 0 ? (
                   roleOptions.map((role) => (
-                    <option key={role.id} value={role.id}>
-                      {role.id}{" "}
+                    <option key={role.value} value={role.id}>
+                      {role.value}{" "}
                       {/* Displaying the role name instead of ID */}
                     </option>
                   ))
