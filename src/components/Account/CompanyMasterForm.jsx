@@ -141,7 +141,7 @@ export default function CompanyMasterForm() {
           overflow: "auto",
           padding: "20px",
           marginTop: "70px",
-          marginBottom: "70px",
+
           marginBottom: "0px",
         }}
       >

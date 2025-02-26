@@ -7,7 +7,6 @@ import Footer from "/src/components/Footer/Footer";
 import useDropdownData from "../UseDropdownData";
 import AxiosInstance from "/src/AxiosInstance";
 
-
 export default function BranchMasterForm() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -23,30 +22,31 @@ export default function BranchMasterForm() {
   } = useForm();
 
   const { data: statusOptions, error: statusError } = useDropdownData("status");
-  const { data: companyOptions, error: companyError } = useDropdownData("companies");
+  const { data: companyOptions, error: companyError } =
+    useDropdownData("companies");
 
   useEffect(() => {
-    if (id) {
+    if (id && id !== "undefined") {
+      console.log("Received ID:", id);
       const fetchBranch = async () => {
         try {
           const response = await AxiosInstance.get(`/BranchMaster/${id}`);
-          const user = response.data.data;
-          console.log("branch", branch);
-
-          if (user) {
-            setValue("BranchName", user.BranchName || "");
-            setValue("CurrencyCode", user.CurrencyCode || "");
-            setValue("ShortName", user.ShortName || "");
-            setValue("CompanyID", user.CompanyID || "");
-            setValue("Remarks", user.Remarks || "");
-            setValue("Address", user.Address || "");
-            setValue("Bank", user.Bank || "");
-            setValue("Description", user.Description || "");
-            setValue("TacDescription", user.TacDescription || "");
-            setValue("CertifyDescription", user.CertifyDescription || "");
-            setValue("GST_No", user.GST_No || "");
-            setValue("Status", user.Status || user.status || "");
-            setValue("CUID", user.CUID || user.cuid || "");
+          const branch = response.data.data;
+          if (branch) {
+            setValue("BranchID", branch.branchID || branch.BranchID || "");
+            setValue("BranchName", branch.BranchName || "");
+            setValue("CurrencyCode", branch.CurrencyCode || "");
+            setValue("ShortName", branch.ShortName || "");
+            setValue("CompanyID", branch.CompanyID || "");
+            setValue("Remarks", branch.Remarks || "");
+            setValue("Address", branch.Address || "");
+            setValue("Bank", branch.Bank || "");
+            setValue("Description", branch.Description || "");
+            setValue("TacDescription", branch.TacDescription || "");
+            setValue("CertifyDescription", branch.CertifyDescription || "");
+            setValue("GST_No", branch.GST_No || "");
+            setValue("Status", branch.Status || branch.status || "");
+            setValue("CUID", branch.CUID || branch.cuid || "");
           } else {
             console.warn("No data found for BranchID:", id);
           }
@@ -79,15 +79,13 @@ export default function BranchMasterForm() {
       CUID: data.CUID,
     };
     try {
-      const response = await AxiosInstance.post("/BranchMaster", payload);
-      console.log("API Response:", response.data); // Log API response
+      await AxiosInstance.post("/BranchMaster", payload);
       alert(
         id ? "Branch updated successfully!" : "Successfully submitted data"
       );
       reset();
       navigate("/BranchMasterTable");
     } catch (error) {
-      console.error("API Error:", error.response?.data || error.message); // Log error response
       alert("Error submitting data");
     }
   };
@@ -98,7 +96,8 @@ export default function BranchMasterForm() {
         alert("Branch deleted successfully!");
         navigate("/BranchMasterTable");
       } catch (error) {
-        alert("Failed to delete User");
+        console.error("Error deleting branch:", error);
+        alert("Failed to delete Branch");
       }
     }
   };
@@ -108,10 +107,10 @@ export default function BranchMasterForm() {
     return (
       <p className="error">Failed to fetch status options: {statusError}</p>
     );
-    if (companyError)
-        return (
-          <p className="error">Failed to fetch Company options: {companyError}</p>
-        );
+  if (companyError)
+    return (
+      <p className="error">Failed to fetch Company options: {companyError}</p>
+    );
   return (
     <>
       <Form
@@ -143,9 +142,7 @@ export default function BranchMasterForm() {
                   border: "2px solid rgb(243, 185, 78)",
                   borderRadius: "5px",
                 }}
-              >
-              </Form.Control>
-             
+              ></Form.Control>
             </Col>
             <Col md={2} className="d-flex align-items-center">
               <Form.Label>CurrencyCode:</Form.Label>
@@ -203,10 +200,15 @@ export default function BranchMasterForm() {
               {...register("companies", { required: true })}
               className="form-select"
             >
-              <option value="" disabled>--Select--</option>
+              <option value="" disabled>
+                --Select--
+              </option>
               {companyOptions?.length > 0 ? (
                 companyOptions.map((companies, index) => (
-                  <option key={companies.value || index} value={companies.value}>
+                  <option
+                    key={companies.value || index}
+                    value={companies.value}
+                  >
                     {companies.value || "Unnamed Status"}
                   </option>
                 ))

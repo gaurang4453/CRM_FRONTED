@@ -32,7 +32,7 @@ export default function CompanyMasterTable() {
   };
 
   const handleCreateNew = () => {
-    navigate("/CompanyMasterForm"); // Redirects to PropMasterForm
+    navigate("/CompanyMasterForm");
   };
 
   return (
@@ -78,16 +78,24 @@ export default function CompanyMasterTable() {
             marginRight: "450px", // Center horizontally
           }}
         >
-          <h5  className="text-center mb-2"
+          <h5
+            className="text-center mb-2"
             style={{
               backgroundColor: "#0d254b",
               color: "white",
               padding: "10px",
-              fontWeight: "bold"
-            }}>
+              fontWeight: "bold",
+            }}
+          >
             Company Master Table
           </h5>
-          <Table striped bordered hover className="mt-4" style={{ width: "100%" }}>
+          <Table
+            striped
+            bordered
+            hover
+            className="mt-4"
+            style={{ width: "100%" }}
+          >
             <thead className="bg-primary text-white text-center">
               <tr>
                 <th>Company name</th>
@@ -108,7 +116,6 @@ export default function CompanyMasterTable() {
                   style={{ cursor: "pointer" }}
                   className="text-center table-row-hover"
                 >
-                  
                   <td>{item.companyName}</td>
                   <td>{item.shortCode}</td>
                   <td>{item.panno}</td>

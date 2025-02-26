@@ -26,13 +26,12 @@ export default function BranchMasterTable() {
       setLoading(false);
     }
   };
-
-  const handleRowClick = (BranchID) => {
-    navigate(`/BranchMasterForm/${BranchID}`);
+  const handleRowClick = (branchID) => {
+    navigate(`/BranchMasterForm/${branchID}`);
   };
 
   const handleCreateNew = () => {
-    navigate("/BranchMasterForm"); // Redirects to PropMasterForm
+    navigate("/BranchMasterForm");
   };
   return (
     <Container className="mt-5" style={{ maxWidth: "100%" }}>
@@ -108,8 +107,8 @@ export default function BranchMasterTable() {
             <tbody>
               {tableData.map((item, index) => (
                 <tr
-                  key={item.BranchID || index}
-                  onClick={() => handleRowClick(item.BranchID)}
+                  key={item.branchID || index}
+                  onClick={() => handleRowClick(item.branchID)}
                   style={{ cursor: "pointer" }}
                   className="text-center table-row-hover"
                 >
