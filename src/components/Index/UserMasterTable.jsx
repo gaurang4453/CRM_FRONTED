@@ -86,7 +86,7 @@ export default function UserMasterTable() {
               backgroundColor: "#0d254b",
               color: "white",
               padding: "10px",
-              fontWeight: "bold"
+              fontWeight: "bold",
             }}
           >
             User Master Table
@@ -125,7 +125,7 @@ export default function UserMasterTable() {
                   <td style={{ width: "15%" }}>{item.mobileNo}</td>
                   <td style={{ width: "15%" }}>{item.emailID}</td>
                   <td style={{ width: "14%" }}>{item.status}</td>
-                     </tr>
+                </tr>
               ))}
             </tbody>
           </Table>
