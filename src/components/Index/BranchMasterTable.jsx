@@ -42,7 +42,7 @@ export default function BranchMasterTable() {
         style={{
           position: "fixed", // Fix the button on the screen
           top: "100px", // Adjust the vertical position (distance from the top)
-          right: "1320px", // Adjust the horizontal position (distance from the right edge)
+          right: "1220px", // Adjust the horizontal position (distance from the right edge)
           zIndex: "1000", // Ensures it stays above other content
           padding: "5px 10px", // Optional: Adds padding around the button
         }}
@@ -70,7 +70,7 @@ export default function BranchMasterTable() {
         <div
           className="table-responsive shadow-lg rounded bg-white p-3"
           style={{
-            marginTop: "120px", // Maintain the top margin
+            marginTop: "130px", // Maintain the top margin
             width: "120%", // Increase the table container width (set to 90% for more space)
             height: "700px", // Maintain the height of the container
             marginLeft: "-120px", // Center horizontally
