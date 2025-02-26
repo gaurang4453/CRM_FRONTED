@@ -81,13 +81,13 @@ export default function UserMasterTable() {
                 <th>Address</th>
                 <th>Mobile No</th>
                 <th>Email ID</th>
-                <th>Outside Access</th>
+                {/* <th>Outside Access</th>
                 <th>Email Port</th>
                 <th>Email Host</th>
                 <th>Email SSL</th>
-                <th>OTP</th>
+                <th>OTP</th> */}
                 <th>Status</th>
-                <th>CUID</th>
+                {/* <th>CUID</th> */}
               </tr>
             </thead>
             <tbody>
@@ -99,18 +99,18 @@ export default function UserMasterTable() {
                   className="text-center table-row-hover"
                 >
                   <td>{index + 1}</td>
-                  <td>{item.roleID}</td>
-                  <td>{item.userName}</td>
-                  <td>{item.address}</td>
-                  <td>{item.mobileNo}</td>
-                  <td>{item.emailID}</td>
-                  <td>{item.outsideAccess ? "Yes" : "No"}</td>
+                  <td style={{ width: "30%" }}>{item.roleID}</td>
+                  <td style={{ width: "30%" }}>{item.userName}</td>
+                  <td style={{ width: "30%" }}>{item.address}</td>
+                  <td style={{ width: "30%" }}>{item.mobileNo}</td>
+                  <td style={{ width: "30%" }}>{item.emailID}</td>
+                  {/* <td>{item.outsideAccess ? "Yes" : "No"}</td>
                   <td>{item.emailport}</td>
                   <td>{item.emailHost}</td>
                   <td>{item.emailSSL ? "Enabled" : "Disabled"}</td>
-                  <td>{item.otp}</td>
-                  <td>{item.status}</td>
-                  <td>{item.cuid}</td>
+                  <td>{item.otp}</td> */}
+                  <td style={{ width: "30%" }}>{item.status}</td>
+                  {/* <td>{item.cuid}</td> */}
                 </tr>
               ))}
             </tbody>
