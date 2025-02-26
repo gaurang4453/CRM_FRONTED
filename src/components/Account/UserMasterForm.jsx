@@ -151,7 +151,7 @@ export default function UserMasterForm() {
                   borderRadius: "5px",
                 }}
               >
-                <option value="">--Select--</option>
+                <option value="" disabled>--Select--</option>
                 {roleOptions?.length > 0 ? (
                   roleOptions.map((role) => (
                     <option key={role.value} value={role.id}>
