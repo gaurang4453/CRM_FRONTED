@@ -22,8 +22,7 @@ export default function BranchMasterForm() {
   } = useForm();
 
   const { data: statusOptions, error: statusError } = useDropdownData("status");
-  const { data: companyOptions, error: companyError } =
-    useDropdownData("companies");
+  const { data: companyOptions, error: companyError } =useDropdownData("companies");
   const { data: cuidOptions, error: cuidError } = useDropdownData("entryby");
 
   useEffect(() => {
