@@ -24,7 +24,7 @@ export default function BranchMasterForm() {
   const { data: statusOptions, error: statusError } = useDropdownData("status");
   const { data: companyOptions, error: companyError } =
     useDropdownData("companies");
-    const { data: cuidOptions, error: cuidError } = useDropdownData("entryby");
+  const { data: cuidOptions, error: cuidError } = useDropdownData("entryby");
 
   useEffect(() => {
     if (id && id !== "undefined") {
@@ -112,10 +112,8 @@ export default function BranchMasterForm() {
     return (
       <p className="error">Failed to fetch Company options: {companyError}</p>
     );
-    if (cuidError)
-      return (
-        <p className="error">Failed to fetch User options: {cuidError}</p>
-      );
+  if (cuidError)
+    return <p className="error">Failed to fetch User options: {cuidError}</p>;
   return (
     <>
       <Form
@@ -135,27 +133,35 @@ export default function BranchMasterForm() {
         <Container>
           {/* RoleID DropDown */}
           <Row>
-            <Col md={2} className="d-flex align-items-center">
-              <Form.Label>BranchName :</Form.Label>
-            </Col>
-            <Col md={4}>
-              <Form.Control
-                type="text"
-                placeholder="Enter your Branch name."
-                {...register("BranchName", {
-                  required: "BranchName is required",
-                })}
-                style={{
-                  border: "none", // Removes the border
-                  borderBottom: "2px solid rgb(243, 185, 78)", // Adds a bottom border with new color
-                  outline: "none", // Removes the outline when focused
-                  boxShadow: "none", // Removes the shadow on focus
-                  padding: "5px 0", // Adds padding to the top and bottom for better appearance
-                  width: "100%",
-                  borderRadius: "0", // Decreases the width of the input box
-                }}
-              ></Form.Control>
-            </Col>
+          <Col md={2} className="d-flex align-items-center">
+  <Form.Label>BranchName :</Form.Label>
+</Col>
+<Col md={4}>
+  <Form.Control
+    type="text"
+    placeholder="Enter your Branch name."
+    {...register("BranchName", {
+      required: "BranchName is required",
+    })}
+    style={{
+      border: "none", // Removes the border
+      borderBottom: "2px solid rgb(243, 185, 78)", // Adds a bottom border with new color
+      outline: "none", // Removes the outline when focused
+      boxShadow: "none", // Removes the shadow on focus
+      padding: "5px 0", // Adds padding to the top and bottom for better appearance
+      width: "100%",
+      borderRadius: "0", // Decreases the width of the input box
+    }}
+  />
+  <style>
+    {`
+      input::placeholder {
+        font-size: 12px;  // Adjust the font size to your preference
+      }
+    `}
+  </style>
+</Col>
+
             <Col md={2} className="d-flex align-items-center">
               <Form.Label>CurrencyCode:</Form.Label>
             </Col>
@@ -183,7 +189,7 @@ export default function BranchMasterForm() {
               </Form.Group>
             </Col>
           </Row>
-          <br/>
+          <br />
           <Row>
             <Col md={2} className="d-flex align-items-center">
               <Form.Label> ShortCode:</Form.Label>
@@ -214,6 +220,12 @@ export default function BranchMasterForm() {
                 id="companies"
                 {...register("companies", { required: true })}
                 className="form-select"
+                style={{
+                  height: "30px", // Decrease the height
+                  padding: "0.2rem", // Reduce padding
+                  fontSize: "14px",
+                  width: "330px", // Adjust the font size
+                }}
               >
                 <option value="" disabled>
                   --Select--
@@ -236,29 +248,35 @@ export default function BranchMasterForm() {
               )}
             </Col>
           </Row>
-          <br/>
+          <br />
           <Row>
-            <Col md={2} className="d-flex align-items-center">
-              <Form.Label> Remarks:</Form.Label>
-            </Col>
-            <Col md={4}>
-              <Form.Control
-                type="text"
-                placeholder="Enter ShortCode"
-                {...register("Remarks")}
-                style={{
-                  border: "none",
-                  borderBottom: "2px solid rgb(133, 132, 130)", // Yellow underline using rgb(243, 185, 78)
-                  borderRadius: "0", // Removes rounded corners
-                }}
-              />
-              {errors.Remarks && (
-                <p style={{ color: "red" }}>{errors.Remarks.message}</p>
-              )}
-            </Col>
-            <Col md={2} className="d-flex align-items-center">
-              <Form.Label> Address:</Form.Label>
-            </Col>
+  <Col md={2} className="d-flex align-items-center">
+    <Form.Label>Remarks:</Form.Label>
+  </Col>
+  <Col md={4}>
+    <Form.Control
+      type="text"
+      placeholder="Enter Remarks."
+      {...register("Remarks")}
+      style={{
+        border: "none",
+        borderBottom: "2px solid rgb(133, 132, 130)", // Custom underline
+        borderRadius: "0", // Removes rounded corners
+        padding: "5px 0", // Adds padding to vertically align the text
+        lineHeight: "1.5", // Adjust line height to align text vertically
+        fontSize: "14px", // Adjust font size to match the input size
+      }}
+    />
+    {errors.Remarks && (
+      <p style={{ color: "red" }}>{errors.Remarks.message}</p>
+    )}
+  </Col>
+
+  <Col md={2} className="d-flex align-items-center">
+    <Form.Label>Address:</Form.Label>
+  </Col>
+
+
             <Col md={4}>
               <Form.Control
                 type="text"
@@ -277,7 +295,7 @@ export default function BranchMasterForm() {
               )}
             </Col>
           </Row>
-          <br/>
+          <br />
           <Row>
             <Col md={2} className="d-flex align-items-center">
               <Form.Label>Bank:</Form.Label>
@@ -385,7 +403,7 @@ export default function BranchMasterForm() {
                 <p style={{ color: "red" }}>{errors.GST_No.message}</p>
               )}
             </Col>
-          
+
             <Col md={2} className="d-flex align-items-center">
               <Form.Label>Status:</Form.Label>
             </Col>
@@ -393,9 +411,13 @@ export default function BranchMasterForm() {
               <select
                 id="status"
                 {...register("Status", { required: true })}
-                className="form-select"
+                className="form-select" style={{
+                  height: "30px", // Decrease the height
+                  padding: "0.2rem", // Reduce padding
+                  fontSize: "14px",
+                  width: "330px",}}
               >
-                <option value="">--Select--</option>
+                <option value="" disabled>--Select--</option>
                 {statusOptions?.length > 0 ? (
                   statusOptions.map((status, index) => (
                     <option key={status.value || index} value={status.value}>
@@ -413,34 +435,36 @@ export default function BranchMasterForm() {
             <Col md={2} className="d-flex align-items-center">
               <Form.Label>CUID:</Form.Label>
             </Col>
-            <Col md={10}>
-        <select
-          id="entryby"
-          {...register("entryby", { required: true })}
-          className="form-select"
-          style={{
-            width: "80%", // Adjust width to match other inputs
-            border: "none",
-            borderBottom: "2px solid rgb(243, 185, 78)", // Add line style for consistency
-            padding: "5px 0", 
-            borderRadius: "0",// Add padding to match input boxes
-          }}
-        >
-          <option value="" disabled>
-            --Select--
-          </option>
-          {cuidOptions?.length > 0 ? (
-            cuidOptions.map((entryby, index) => (
-              <option key={entryby.value} value={entryby.value}>
-                {entryby.value || "Unnamed User"}
-              </option>
-            ))
-          ) : (
-            <option disabled>No User options available</option>
-          )}
-        </select>
-        {errors.status && <p className="error-text">Please select a User.</p>}
-      </Col>
+            <Col md={5}>
+              <select
+                id="entryby"
+                {...register("entryby", { required: true })}
+                className="form-select"
+                style={{
+                  width: "80%", // Adjust width to match other inputs
+                  border: "none",
+                  borderBottom: "2px solid rgb(243, 185, 78)", // Add line style for consistency
+                  padding: "5px 0",
+                  borderRadius: "0", // Add padding to match input boxes
+                }}
+              >
+                <option value="" disabled>
+                  --Select--
+                </option>
+                {cuidOptions?.length > 0 ? (
+                  cuidOptions.map((entryby, index) => (
+                    <option key={entryby.value} value={entryby.value}>
+                      {entryby.value || "Unnamed User"}
+                    </option>
+                  ))
+                ) : (
+                  <option disabled>No User options available</option>
+                )}
+              </select>
+              {errors.status && (
+                <p className="error-text">Please select a User.</p>
+              )}
+            </Col>
           </Row>
         </Container>
       </Form>

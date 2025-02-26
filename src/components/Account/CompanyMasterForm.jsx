@@ -719,9 +719,13 @@ export default function CompanyMasterForm() {
               <select
                 id="status"
                 {...register("status", { required: true })}
-                className="form-select"
+                className="form-select" style={{
+                  height: "30px", // Decrease the height
+                  padding: "0.2rem", // Reduce padding
+                  fontSize: "14px",
+                  width: "290px",}}
               >
-                <option value="">--Select--</option>
+                <option value="" disabled>--Select--</option>
                 {statusOptions?.length > 0 ? (
                   statusOptions.map((status, index) => (
                     <option key={status.value || index} value={status.value}>
@@ -740,7 +744,7 @@ export default function CompanyMasterForm() {
             <Col md={2} className="d-flex align-items-center">
               <Form.Label>CUID:</Form.Label>
             </Col>
-            <Col md={10}>
+            <Col md={4}>
         <select
           id="entryby"
           {...register("entryby", { required: true })}

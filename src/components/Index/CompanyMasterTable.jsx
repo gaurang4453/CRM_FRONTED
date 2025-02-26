@@ -75,7 +75,7 @@ export default function CompanyMasterTable() {
             width: "120%", // Increase the table container width (set to 90% for more space)
             height: "700px", // Maintain the height of the container
             marginLeft: "-120px", // Center horizontally
-            marginRight: "450px", // Center horizontally
+            marginRight: "430px", // Center horizontally
           }}
         >
           <h5
@@ -116,14 +116,14 @@ export default function CompanyMasterTable() {
                   style={{ cursor: "pointer" }}
                   className="text-center table-row-hover"
                 >
-                  <td>{item.companyName}</td>
-                  <td>{item.shortCode}</td>
-                  <td>{item.panno}</td>
-                  <td>{item.gsT_No}</td>
-                  <td>{item.currencyCode}</td>
-                  <td>{item.address}</td>
-                  <td>{item.jurisdiction}</td>
-                  <td>{item.authPerson}</td>
+                  <td style={{ width: "10%" }}>{item.companyName}</td>
+                  <td style={{ width: "8%" }}>{item.shortCode}</td>
+                  <td style={{ width: "10%" }}>{item.panno}</td>
+                  <td style={{ width: "8%" }}>{item.gsT_No}</td>
+                  <td style={{ width: "8%" }}>{item.currencyCode}</td>
+                  <td style={{ width: "15%" }}>{item.address}</td>
+                  <td style={{ width: "8%" }}>{item.jurisdiction}</td>
+                  <td style={{ width: "8%" }}>{item.authPerson}</td>
                 </tr>
               ))}
             </tbody>

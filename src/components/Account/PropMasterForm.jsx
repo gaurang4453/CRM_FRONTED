@@ -88,10 +88,8 @@ export default function PropMasterForm() {
     return (
       <p className="error">Failed to fetch status options: {statusError}</p>
     );
-    if (cuidError)
-      return (
-        <p className="error">Failed to fetch User options: {cuidError}</p>
-      );
+  if (cuidError)
+    return <p className="error">Failed to fetch User options: {cuidError}</p>;
 
   return (
     <>
@@ -102,9 +100,9 @@ export default function PropMasterForm() {
             <Col md={3} className="d-flex align-items-center">
               <label htmlFor="propTypeName">Property Type Name:</label>
             </Col>
-            <Col md={9}>
+            <Col md={8}>
               <input
-                id="propTypeName"
+                id="propTypeName" placeholder="Enter Property Type Name."
                 {...register("propTypeName", { required: true })}
                 className="line-textbox"
               />
@@ -118,9 +116,9 @@ export default function PropMasterForm() {
             <Col md={3} className="d-flex align-items-center">
               <label htmlFor="propName">Property Name:</label>
             </Col>
-            <Col md={9}>
+            <Col md={8}>
               <input
-                id="propName"
+                id="propName" placeholder="Enter Property Name."
                 {...register("propName", { required: true })}
                 className="line-textbox"
               />
@@ -134,9 +132,9 @@ export default function PropMasterForm() {
             <Col md={3} className="d-flex align-items-center">
               <label htmlFor="propValue">Property Value:</label>
             </Col>
-            <Col md={9}>
+            <Col md={8}>
               <input
-                id="propValue"
+                id="propValue" placeholder="Enter Property Value."
                 {...register("propValue", { required: true })}
                 className="line-textbox"
               />
@@ -146,17 +144,27 @@ export default function PropMasterForm() {
             </Col>
           </Row>
 
-          <Row className="mb-3">
+          <Row>
             <Col md={3} className="d-flex align-items-center">
               <label htmlFor="status">Status:</label>
             </Col>
-            <Col md={9}>
+            <Col md={6}>
               <select
-                id="status"
-                {...register("status", { required: true })}
+                id="status" 
+                {...register("status", { required: "Please select a status" })}
                 className="form-select"
+                style={{
+                  width: "75%", // Full width to match the form layout
+                  border: "1px solid rgb(243, 185, 78)", // Custom border for dropdown
+                  borderRadius: "4px", // Slightly rounded corners for better appearance
+                  padding: "5px", // Padding for better spacing inside the dropdown
+                  backgroundColor: "#fff", // White background
+                  fontSize: "14px", // Font size for the options
+                }}
               >
-                <option value="" disabled>--Select--</option>
+                <option value="" disabled>
+                  --Select--
+                </option>
                 {statusOptions?.length > 0 ? (
                   statusOptions.map((status, index) => (
                     <option key={status.value || index} value={status.value}>
@@ -168,7 +176,9 @@ export default function PropMasterForm() {
                 )}
               </select>
               {errors.status && (
-                <p className="error-text">Please select a status.</p>
+                <p className="error-text" style={{ color: "red" }}>
+                  Please select a status.
+                </p>
               )}
             </Col>
           </Row>
@@ -177,34 +187,37 @@ export default function PropMasterForm() {
             <Col md={3} className="d-flex align-items-center">
               <label htmlFor="CUID">CUID:</label>
             </Col>
-           <Col md={10}>
-                   <select
-                     id="entryby"
-                     {...register("entryby", { required: true })}
-                     className="form-select"
-                     style={{
-                       width: "80%", // Adjust width to match other inputs
-                       border: "none",
-                       borderBottom: "2px solid rgb(243, 185, 78)", // Add line style for consistency
-                       padding: "5px 0", 
-                       borderRadius: "0",// Add padding to match input boxes
-                     }}
-                   >
-                     <option value="" disabled>
-                       --Select--
-                     </option>
-                     {cuidOptions?.length > 0 ? (
-                       cuidOptions.map((entryby, index) => (
-                         <option key={entryby.value} value={entryby.value}>
-                           {entryby.value || "Unnamed User"}
-                         </option>
-                       ))
-                     ) : (
-                       <option disabled>No User options available</option>
-                     )}
-                   </select>
-                   {errors.status && <p className="error-text">Please select a User.</p>}
-                 </Col>
+            <Col md={6}>
+              <select
+                id="entryby"
+                {...register("entryby", { required: true })}
+                className="form-select"
+                style={{
+                  width: "75%", // Full width to match the form layout
+                  border: "1px solid rgb(243, 185, 78)", // Custom border for dropdown
+                  borderRadius: "4px", // Slightly rounded corners for better appearance
+                  padding: "5px", // Padding for better spacing inside the dropdown
+                  backgroundColor: "#fff", // White background
+                  fontSize: "14px" // Add padding to match input boxes
+                }}
+              >
+                <option value="" disabled>
+                  --Select--
+                </option>
+                {cuidOptions?.length > 0 ? (
+                  cuidOptions.map((entryby, index) => (
+                    <option key={entryby.value} value={entryby.value}>
+                      {entryby.value || "Unnamed User"}
+                    </option>
+                  ))
+                ) : (
+                  <option disabled>No User options available</option>
+                )}
+              </select>
+              {errors.status && (
+                <p className="error-text">Please select a User.</p>
+              )}
+            </Col>
           </Row>
         </Container>
       </form>

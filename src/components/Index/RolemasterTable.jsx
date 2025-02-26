@@ -82,7 +82,7 @@ export default function RoleMasterTable() {
               backgroundColor: "#0d254b",
               color: "white",
               padding: "10px",
-              fontWeight: "bold"
+              fontWeight: "bold",
             }}>Role Master Table</h5>
           <Table striped bordered hover className="mt-4" style={{ width: "100%" }}>
             <thead className="bg-primary text-white text-center">
