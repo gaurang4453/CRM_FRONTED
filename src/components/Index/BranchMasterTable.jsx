@@ -108,11 +108,12 @@ export default function BranchMasterTable() {
             <tbody>
               {tableData.map((item, index) => (
                 <tr
-                  key={item.BranchID || index}
-                  onClick={() => handleRowClick(item.BranchID)}
+                  key={item.branchID || index}
+                  onClick={() => handleRowClick(item.branchID)}
                   style={{ cursor: "pointer" }}
                   className="text-center table-row-hover"
-                >
+                > 
+                
                   <td>{item.branchName}</td>
                   <td>{item.shortName}</td>
                   <td>{item.companyName}</td>

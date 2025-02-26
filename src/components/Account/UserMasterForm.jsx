@@ -24,6 +24,7 @@ export default function UserMasterForm() {
 
   const { data: statusOptions, error: statusError } = useDropdownData("status");
   const { data: roleOptions, error: roleError } = useDropdownData("role");
+  const { data: cuidOptions, error: cuidError } = useDropdownData("entryby");
 
   useEffect(() => {
     if (id) {
@@ -115,6 +116,10 @@ export default function UserMasterForm() {
     return (
       <p className="error">Failed to fetch status options: {statusError}</p>
     );
+    if (cuidError)
+      return (
+        <p className="error">Failed to fetch User options: {cuidError}</p>
+      );
 
   return (
     <>
@@ -401,23 +406,34 @@ export default function UserMasterForm() {
             <Col md={2} className="d-flex align-items-center">
               <Form.Label>CUID:</Form.Label>
             </Col>
-            <Col md={4}>
-              <Form.Group controlId="CUID">
-                <Form.Control
-                  type="number"
-                  placeholder="Enter your CUID"
-                  {...register("CUID")}
-                  style={{
-                    border: "none",
-                    borderBottom: "2px solid rgb(133, 132, 130)", // Yellow underline using rgb(243, 185, 78)
-                    borderRadius: "0", // Removes rounded corners
-                  }}
-                />
-                {errors.CUID && (
-                  <p style={{ color: "red" }}>{errors.CUID.message}</p>
-                )}
-              </Form.Group>
-            </Col>
+            <Col md={10}>
+        <select
+          id="entryby"
+          {...register("entryby", { required: true })}
+          className="form-select"
+          style={{
+            width: "80%", // Adjust width to match other inputs
+            border: "none",
+            borderBottom: "2px solid rgb(243, 185, 78)", // Add line style for consistency
+            padding: "5px 0", 
+            borderRadius: "0",// Add padding to match input boxes
+          }}
+        >
+          <option value="" disabled>
+            --Select--
+          </option>
+          {cuidOptions?.length > 0 ? (
+            cuidOptions.map((entryby, index) => (
+              <option key={entryby.value} value={entryby.value}>
+                {entryby.value || "Unnamed User"}
+              </option>
+            ))
+          ) : (
+            <option disabled>No User options available</option>
+          )}
+        </select>
+        {errors.status && <p className="error-text">Please select a User.</p>}
+      </Col>
           </Row>
         </Container>
       </Form>
