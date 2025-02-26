@@ -24,7 +24,7 @@ export default function BranchMasterForm() {
   const { data: statusOptions, error: statusError } = useDropdownData("status");
   const { data: companyOptions, error: companyError } =
     useDropdownData("companies");
-    const { data: cuidOptions, error: cuidError } = useDropdownData("entryby");
+  const { data: cuidOptions, error: cuidError } = useDropdownData("entryby");
 
   useEffect(() => {
     if (id && id !== "undefined") {
@@ -33,19 +33,21 @@ export default function BranchMasterForm() {
         try {
           const response = await AxiosInstance.get(`/BranchMaster/${id}`);
           const branch = response.data.data;
+          console.log("Fetched Branch:", branch);
+          
           if (branch) {
             setValue("BranchID", branch.branchID || branch.BranchID || "");
-            setValue("BranchName", branch.BranchName || "");
-            setValue("CurrencyCode", branch.CurrencyCode || "");
-            setValue("ShortName", branch.ShortName || "");
-            setValue("CompanyID", branch.CompanyID || "");
-            setValue("Remarks", branch.Remarks || "");
-            setValue("Address", branch.Address || "");
-            setValue("Bank", branch.Bank || "");
-            setValue("Description", branch.Description || "");
-            setValue("TacDescription", branch.TacDescription || "");
-            setValue("CertifyDescription", branch.CertifyDescription || "");
-            setValue("GST_No", branch.GST_No || "");
+            setValue("BranchName", branch.branchName || "");
+            setValue("CurrencyCode", branch.currencyCode || "");
+            setValue("ShortName", branch.shortName || "");
+            setValue("CompanyID", branch.companyID || "");
+            setValue("Remarks", branch.remarks || "");
+            setValue("Address", branch.address || "");
+            setValue("Bank", branch.bank || "");
+            setValue("Description", branch.description || "");
+            setValue("TaxDescription", branch.taxDescription || "");
+            setValue("CertifyDescription", branch.certifyDescription || "");
+            setValue("GST_No", branch.gsT_No || "");
             setValue("Status", branch.Status || branch.status || "");
             setValue("CUID", branch.CUID || branch.cuid || "");
           } else {
@@ -68,7 +70,7 @@ export default function BranchMasterForm() {
       BranchName: data.BranchName,
       CurrencyCode: data.CurrencyCode,
       ShortName: data.ShortName,
-      CompanyID: data.CompanyID,
+      CompanyID: parseInt(data.CompanyID, 10) || 0,
       Remarks: data.Remarks,
       Address: data.Address,
       Bank: data.Bank,
@@ -77,7 +79,7 @@ export default function BranchMasterForm() {
       CertifyDescription: data.CertifyDescription,
       GST_No: data.GST_No,
       Status: data.Status,
-      CUID: data.CUID,
+      CUID: parseInt(data.CUID, 10) || 0,
     };
     try {
       await AxiosInstance.post("/BranchMaster", payload);
@@ -112,10 +114,8 @@ export default function BranchMasterForm() {
     return (
       <p className="error">Failed to fetch Company options: {companyError}</p>
     );
-    if (cuidError)
-      return (
-        <p className="error">Failed to fetch User options: {cuidError}</p>
-      );
+  if (cuidError)
+    return <p className="error">Failed to fetch User options: {cuidError}</p>;
   return (
     <>
       <Form
@@ -183,7 +183,7 @@ export default function BranchMasterForm() {
               </Form.Group>
             </Col>
           </Row>
-          <br/>
+          <br />
           <Row>
             <Col md={2} className="d-flex align-items-center">
               <Form.Label> ShortCode:</Form.Label>
@@ -224,7 +224,7 @@ export default function BranchMasterForm() {
                       key={companies.value || index}
                       value={companies.value}
                     >
-                      {companies.value || "Unnamed Status"}
+                      {companies.id || "Unnamed Status"}
                     </option>
                   ))
                 ) : (
@@ -236,7 +236,7 @@ export default function BranchMasterForm() {
               )}
             </Col>
           </Row>
-          <br/>
+          <br />
           <Row>
             <Col md={2} className="d-flex align-items-center">
               <Form.Label> Remarks:</Form.Label>
@@ -277,7 +277,7 @@ export default function BranchMasterForm() {
               )}
             </Col>
           </Row>
-          <br/>
+          <br />
           <Row>
             <Col md={2} className="d-flex align-items-center">
               <Form.Label>Bank:</Form.Label>
@@ -385,7 +385,7 @@ export default function BranchMasterForm() {
                 <p style={{ color: "red" }}>{errors.GST_No.message}</p>
               )}
             </Col>
-          
+
             <Col md={2} className="d-flex align-items-center">
               <Form.Label>Status:</Form.Label>
             </Col>
@@ -414,33 +414,35 @@ export default function BranchMasterForm() {
               <Form.Label>CUID:</Form.Label>
             </Col>
             <Col md={10}>
-        <select
-          id="entryby"
-          {...register("entryby", { required: true })}
-          className="form-select"
-          style={{
-            width: "80%", // Adjust width to match other inputs
-            border: "none",
-            borderBottom: "2px solid rgb(243, 185, 78)", // Add line style for consistency
-            padding: "5px 0", 
-            borderRadius: "0",// Add padding to match input boxes
-          }}
-        >
-          <option value="" disabled>
-            --Select--
-          </option>
-          {cuidOptions?.length > 0 ? (
-            cuidOptions.map((entryby, index) => (
-              <option key={entryby.value} value={entryby.value}>
-                {entryby.value || "Unnamed User"}
-              </option>
-            ))
-          ) : (
-            <option disabled>No User options available</option>
-          )}
-        </select>
-        {errors.status && <p className="error-text">Please select a User.</p>}
-      </Col>
+              <select
+                id="entryby"
+                {...register("entryby", { required: true })}
+                className="form-select"
+                style={{
+                  width: "80%", // Adjust width to match other inputs
+                  border: "none",
+                  borderBottom: "2px solid rgb(243, 185, 78)", // Add line style for consistency
+                  padding: "5px 0",
+                  borderRadius: "0", // Add padding to match input boxes
+                }}
+              >
+                <option value="" disabled>
+                  --Select--
+                </option>
+                {cuidOptions?.length > 0 ? (
+                  cuidOptions.map((entryby, index) => (
+                    <option key={entryby.id} value={entryby.id}>
+                      {entryby.value || "Unnamed User"}
+                    </option>
+                  ))
+                ) : (
+                  <option disabled>No User options available</option>
+                )}
+              </select>
+              {errors.status && (
+                <p className="error-text">Please select a User.</p>
+              )}
+            </Col>
           </Row>
         </Container>
       </Form>
