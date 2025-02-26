@@ -41,7 +41,7 @@ export default function UserMasterTable() {
         style={{
           position: "fixed", // Fix the button on the screen
           top: "100px", // Adjust the vertical position (distance from the top)
-          right: "1275px", // Adjust the horizontal position (distance from the right edge)
+          right: "1300px", // Adjust the horizontal position (distance from the right edge)
           zIndex: "1000", // Ensures it stays above other content
           padding: "5px 10px", // Optional: Adds padding around the button
         }}
@@ -70,9 +70,29 @@ export default function UserMasterTable() {
       )}
 
       {!loading && tableData.length > 0 ? (
-        <div className="table-responsive shadow-lg rounded bg-white p-3">
-          <h3 className="text-center mb-2 text-primary">User Master Table</h3>
-          <Table bordered hover className="mt-3">
+        <div
+          className="table-responsive shadow-lg rounded bg-white p-3"
+          style={{
+            marginTop: "120px", // Maintain the top margin
+            width: "120%", // Increase the table container width (set to 90% for more space)
+            height: "500px", // Maintain the height of the container
+            marginLeft: "-120px", // Center horizontally
+            marginRight: "650px", // Center horizontally
+          }}
+        >
+          <h5
+            className="text-center mb-2"
+            style={{
+              backgroundColor: "#0d254b",
+              color: "white",
+              padding: "10px",
+              fontWeight: "bold"
+            }}
+          >
+            User Master Table
+          </h5>
+
+          <Table striped bordered hover className="mt-3">
             <thead className="bg-primary text-white text-center">
               <tr>
                 <th>#</th>
@@ -98,20 +118,14 @@ export default function UserMasterTable() {
                   style={{ cursor: "pointer" }}
                   className="text-center table-row-hover"
                 >
-                  <td>{index + 1}</td>
-                  <td style={{ width: "30%" }}>{item.roleID}</td>
-                  <td style={{ width: "30%" }}>{item.userName}</td>
-                  <td style={{ width: "30%" }}>{item.address}</td>
-                  <td style={{ width: "30%" }}>{item.mobileNo}</td>
-                  <td style={{ width: "30%" }}>{item.emailID}</td>
-                  {/* <td>{item.outsideAccess ? "Yes" : "No"}</td>
-                  <td>{item.emailport}</td>
-                  <td>{item.emailHost}</td>
-                  <td>{item.emailSSL ? "Enabled" : "Disabled"}</td>
-                  <td>{item.otp}</td> */}
-                  <td style={{ width: "30%" }}>{item.status}</td>
-                  {/* <td>{item.cuid}</td> */}
-                </tr>
+                  <td style={{ width: "4%" }}>{index + 1}</td>
+                  <td style={{ width: "12%" }}>{item.roleID}</td>
+                  <td style={{ width: "15%" }}>{item.userName}</td>
+                  <td style={{ width: "25%" }}>{item.address}</td>
+                  <td style={{ width: "15%" }}>{item.mobileNo}</td>
+                  <td style={{ width: "15%" }}>{item.emailID}</td>
+                  <td style={{ width: "14%" }}>{item.status}</td>
+                     </tr>
               ))}
             </tbody>
           </Table>

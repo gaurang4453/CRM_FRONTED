@@ -77,8 +77,14 @@ export default function RoleMasterTable() {
             marginRight: "auto", // Center horizontally
           }}
         >
-          <h3 className="text-center mb-2 text-primary">Role Master Table</h3>
-          <Table bordered hover className="mt-4" style={{ width: "100%" }}>
+          <h5  className="text-center mb-2"
+            style={{
+              backgroundColor: "#0d254b",
+              color: "white",
+              padding: "10px",
+              fontWeight: "bold"
+            }}>Role Master Table</h5>
+          <Table striped bordered hover className="mt-4" style={{ width: "100%" }}>
             <thead className="bg-primary text-white text-center">
               <tr>
                 <th style={{ width: "6%" }}>#</th> {/* Adjust width for column 1 */}
