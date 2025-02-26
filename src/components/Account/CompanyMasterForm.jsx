@@ -25,36 +25,37 @@ export default function CompanyMasterForm() {
 
   useEffect(() => {
     if (id && id !== "undefined") {
+      console.log("Received ID:", id);
       const fetchCompany = async () => {
         try {
           const response = await AxiosInstance.get(`/CompanyMaster/${id}`);
           const company = response.data.data;
           if (company) {
-            setValue("CompanyName", company.CompanyName || "");
-            setValue("CompanyName", company.CompanyName || "");
-            setValue("ShortCode", company.ShortCode || "");
-            setValue("State", company.State || "");
-            setValue("TINNo", company.TINNo || "");
-            setValue("CST", company.CST || "");
-            setValue("PANNO", company.PANNO || "");
-            setValue("ServiceTaxNo", company.ServiceTaxNo || "");
-            setValue("SSINO", company.SSINO || "");
-            setValue("TANNO", company.TANNO || "");
-            setValue("ECCNo", company.ECCNo || "");
-            setValue("Range", company.Range || "");
-            setValue("Division", company.Division || "");
-            setValue("Commisioner", company.Commisioner || "");
-            setValue("GST_No", company.GST_No || "");
-            setValue("CurrencyCode", company.CurrencyCode || "");
-            setValue("Address", company.Address || "");
-            setValue("Bank", company.Bank || "");
-            setValue("Description", company.Description || "");
-            setValue("TaxDescription", company.TaxDescription || "");
-            setValue("CertifyDescription", company.CertifyDescription || "");
-            setValue("Declaration", company.Declaration || "");
-            setValue("Jurisdiction", company.Jurisdiction || "");
-            setValue("AuthPerson", company.AuthPerson || "");
-            setValue("Col1", company.Col1 || "");
+            setValue("CompanyID", company.CompanyID || company.companyID);
+            setValue("CompanyName", company.CompanyName || company.companyName);
+            setValue("ShortCode", company.shortCode || "");
+            setValue("State", company.state || "");
+            setValue("TINNo", company.TINNo || company.tinNo);
+            setValue("CST", company.cst || "");
+            setValue("PANNO", company.panno || "");
+            setValue("ServiceTaxNo", company.serviceTaxNo || "");
+            setValue("SSINO", company.ssino || "");
+            setValue("TANNO", company.tanno || "");
+            setValue("ECCNo", company.eccNo || "");
+            setValue("Range", company.range || "");
+            setValue("Division", company.division || "");
+            setValue("Commisioner", company.commisioner || "");
+            setValue("GST_No", company.gsT_No || "");
+            setValue("CurrencyCode", company.currencyCode || "");
+            setValue("Address", company.address || "");
+            setValue("Bank", company.bank || "");
+            setValue("Description", company.description || "");
+            setValue("TaxDescription", company.taxDescription || "");
+            setValue("CertifyDescription", company.certifyDescription || "");
+            setValue("Declaration", company.declaration || "");
+            setValue("Jurisdiction", company.jurisdiction || "");
+            setValue("AuthPerson", company.authPerson || "");
+            setValue("Col1", company.col1 || "");
             setValue("status", company.status || "");
             setValue("CUID", company.cuid || "");
           } else {
@@ -711,7 +712,7 @@ export default function CompanyMasterForm() {
             <Col md={4} className="d-flex align-items-center">
               <select
                 id="status"
-                {...register("Status", { required: true })}
+                {...register("status", { required: true })}
                 className="form-select"
               >
                 <option value="">--Select--</option>

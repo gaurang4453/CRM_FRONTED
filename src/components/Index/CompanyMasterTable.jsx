@@ -104,7 +104,7 @@ export default function CompanyMasterTable() {
               {tableData.map((item, index) => (
                 <tr
                   key={item.CompanyID || index}
-                  onClick={() => handleRowClick(item.CompanyID)}
+                  onClick={() => handleRowClick(item.companyID)}
                   style={{ cursor: "pointer" }}
                   className="text-center table-row-hover"
                 >
