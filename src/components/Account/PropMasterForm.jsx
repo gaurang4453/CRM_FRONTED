@@ -22,6 +22,7 @@ export default function PropMasterForm() {
   } = useForm();
 
   const { data: statusOptions, error: statusError } = useDropdownData("status");
+  const { data: cuidOptions, error: cuidError } = useDropdownData("entryby");
 
   useEffect(() => {
     if (id) {
@@ -87,6 +88,10 @@ export default function PropMasterForm() {
     return (
       <p className="error">Failed to fetch status options: {statusError}</p>
     );
+    if (cuidError)
+      return (
+        <p className="error">Failed to fetch User options: {cuidError}</p>
+      );
 
   return (
     <>
@@ -172,17 +177,34 @@ export default function PropMasterForm() {
             <Col md={3} className="d-flex align-items-center">
               <label htmlFor="CUID">CUID:</label>
             </Col>
-            <Col md={9}>
-              <input
-                id="CUID"
-                {...register("CUID", { required: true, pattern: /^[0-9]+$/ })}
-                className="line-textbox"
-                placeholder="Enter in numbers only."
-              />
-              {errors.CUID && (
-                <p className="error-text">CUID must be a valid number.</p>
-              )}
-            </Col>
+           <Col md={10}>
+                   <select
+                     id="entryby"
+                     {...register("entryby", { required: true })}
+                     className="form-select"
+                     style={{
+                       width: "80%", // Adjust width to match other inputs
+                       border: "none",
+                       borderBottom: "2px solid rgb(243, 185, 78)", // Add line style for consistency
+                       padding: "5px 0", 
+                       borderRadius: "0",// Add padding to match input boxes
+                     }}
+                   >
+                     <option value="" disabled>
+                       --Select--
+                     </option>
+                     {cuidOptions?.length > 0 ? (
+                       cuidOptions.map((entryby, index) => (
+                         <option key={entryby.value} value={entryby.value}>
+                           {entryby.value || "Unnamed User"}
+                         </option>
+                       ))
+                     ) : (
+                       <option disabled>No User options available</option>
+                     )}
+                   </select>
+                   {errors.status && <p className="error-text">Please select a User.</p>}
+                 </Col>
           </Row>
         </Container>
       </form>

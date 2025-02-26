@@ -24,6 +24,7 @@ export default function BranchMasterForm() {
   const { data: statusOptions, error: statusError } = useDropdownData("status");
   const { data: companyOptions, error: companyError } =
     useDropdownData("companies");
+    const { data: cuidOptions, error: cuidError } = useDropdownData("entryby");
 
   useEffect(() => {
     if (id && id !== "undefined") {
@@ -111,36 +112,47 @@ export default function BranchMasterForm() {
     return (
       <p className="error">Failed to fetch Company options: {companyError}</p>
     );
+    if (cuidError)
+      return (
+        <p className="error">Failed to fetch User options: {cuidError}</p>
+      );
   return (
     <>
       <Form
         onSubmit={handleSubmit(onSubmit)}
         className="form"
         style={{
-          height: "700px",
+          height: "530px",
           overflow: "auto",
           padding: "20px",
-          marginTop: "70px",
-          marginBottom: "70px",
+          marginTop: "20px",
+          // marginBottom: "70px",
         }}
       >
-        <h1 className="ribbon">Branch Master Form</h1>
+        <h1 className="ribbon" style={{ marginBottom: "30px", width: "300px" }}>
+          Branch Master Form
+        </h1>
         <Container>
           {/* RoleID DropDown */}
           <Row>
-            <Col md={2}>
+            <Col md={2} className="d-flex align-items-center">
               <Form.Label>BranchName :</Form.Label>
             </Col>
-            <Col md={10}>
+            <Col md={4}>
               <Form.Control
+                type="text"
+                placeholder="Enter your Branch name."
                 {...register("BranchName", {
                   required: "BranchName is required",
                 })}
                 style={{
+                  border: "none", // Removes the border
+                  borderBottom: "2px solid rgb(243, 185, 78)", // Adds a bottom border with new color
+                  outline: "none", // Removes the outline when focused
+                  boxShadow: "none", // Removes the shadow on focus
+                  padding: "5px 0", // Adds padding to the top and bottom for better appearance
                   width: "100%",
-                  padding: "5px",
-                  border: "2px solid rgb(243, 185, 78)",
-                  borderRadius: "5px",
+                  borderRadius: "0", // Decreases the width of the input box
                 }}
               ></Form.Control>
             </Col>
@@ -157,7 +169,7 @@ export default function BranchMasterForm() {
                   })}
                   style={{
                     border: "none", // Removes the border
-                    borderBottom: "2px solid rgb(133, 132, 130)", // Adds a bottom border with new color
+                    borderBottom: "2px solid rgb(243, 185, 78)", // Adds a bottom border with new color
                     outline: "none", // Removes the outline when focused
                     boxShadow: "none", // Removes the shadow on focus
                     padding: "5px 0", // Adds padding to the top and bottom for better appearance
@@ -170,6 +182,9 @@ export default function BranchMasterForm() {
                 )}
               </Form.Group>
             </Col>
+          </Row>
+          <br/>
+          <Row>
             <Col md={2} className="d-flex align-items-center">
               <Form.Label> ShortCode:</Form.Label>
             </Col>
@@ -190,194 +205,188 @@ export default function BranchMasterForm() {
                 <p style={{ color: "red" }}>{errors.ShortCode.message}</p>
               )}
             </Col>
-          </Row>
-          <Col md={2}>
-            <Form.Label>CompanyID:</Form.Label>
-          </Col>
-          <Col md={4}>
-            <select
-              id="companies"
-              {...register("companies", { required: true })}
-              className="form-select"
-            >
-              <option value="" disabled>
-                --Select--
-              </option>
-              {companyOptions?.length > 0 ? (
-                companyOptions.map((companies, index) => (
-                  <option
-                    key={companies.value || index}
-                    value={companies.value}
-                  >
-                    {companies.value || "Unnamed Status"}
-                  </option>
-                ))
-              ) : (
-                <option disabled>No company options available</option>
+
+            <Col md={2} className="d-flex align-items-center">
+              <Form.Label>CompanyID:</Form.Label>
+            </Col>
+            <Col md={4}>
+              <select
+                id="companies"
+                {...register("companies", { required: true })}
+                className="form-select"
+              >
+                <option value="" disabled>
+                  --Select--
+                </option>
+                {companyOptions?.length > 0 ? (
+                  companyOptions.map((companies, index) => (
+                    <option
+                      key={companies.value || index}
+                      value={companies.value}
+                    >
+                      {companies.value || "Unnamed Status"}
+                    </option>
+                  ))
+                ) : (
+                  <option disabled>No company options available</option>
+                )}
+              </select>
+              {errors.companies && (
+                <p className="error-text">Please select a Company.</p>
               )}
-            </select>
-            {errors.companies && (
-              <p className="error-text">Please select a Company.</p>
-            )}
-          </Col>
-          <Col md={2} className="d-flex align-items-center">
-            <Form.Label> Remarks:</Form.Label>
-          </Col>
-          <Col md={4}>
-            <Form.Control
-              type="text"
-              placeholder="Enter ShortCode"
-              {...register("Remarks")}
-              style={{
-                border: "none",
-                borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
-                borderRadius: "0", // Removes rounded corners
-              }}
-            />
-            {errors.Remarks && (
-              <p style={{ color: "red" }}>{errors.Remarks.message}</p>
-            )}
-          </Col>
-          <Col md={2}>
-            <Form.Label> Address:</Form.Label>
-          </Col>
-          <Col md={4}>
-            <Form.Control
-              type="text"
-              placeholder="Enter your Address"
-              {...register("Address", {
-                required: "Address is required",
-              })}
-              style={{
-                border: "none",
-                borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
-                borderRadius: "0", // Removes rounded corners
-              }}
-            />
-            {errors.Address && (
-              <p style={{ color: "red" }}>{errors.Address.message}</p>
-            )}
-          </Col>
-          <Col md={2} className="d-flex align-items-center">
-            <Form.Label>Bank:</Form.Label>
-          </Col>
-          <Col md={4}>
-            <Form.Group controlId="Bank">
+            </Col>
+          </Row>
+          <br/>
+          <Row>
+            <Col md={2} className="d-flex align-items-center">
+              <Form.Label> Remarks:</Form.Label>
+            </Col>
+            <Col md={4}>
               <Form.Control
                 type="text"
-                placeholder="Enter your Bank"
-                {...register("Bank", {
-                  required: "Bank is required",
-                })}
+                placeholder="Enter ShortCode"
+                {...register("Remarks")}
                 style={{
-                  border: "none", // Removes the border
-                  borderBottom: "2px solid rgb(243, 185, 78)", // Adds a bottom border with new color
-                  outline: "none", // Removes the outline when focused
-                  boxShadow: "none", // Removes the shadow on focus
-                  padding: "5px 0", // Adds padding to the top and bottom for better appearance
-                  width: "80%",
-                  borderRadius: "0", // Decreases the width of the input box
+                  border: "none",
+                  borderBottom: "2px solid rgb(133, 132, 130)", // Yellow underline using rgb(243, 185, 78)
+                  borderRadius: "0", // Removes rounded corners
                 }}
               />
-              {errors.Bank && (
-                <p style={{ color: "red" }}>{errors.Bank.message}</p>
+              {errors.Remarks && (
+                <p style={{ color: "red" }}>{errors.Remarks.message}</p>
               )}
-            </Form.Group>
-          </Col>
-          <Col md={2} className="d-flex align-items-center">
-            <Form.Label> Description:</Form.Label>
-          </Col>
-          <Col md={4}>
-            <Form.Control
-              type="text"
-              placeholder="Enter Description"
-              {...register("Description")}
-              style={{
-                border: "none",
-                borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
-                borderRadius: "0", // Removes rounded corners
-              }}
-            />
-            {errors.Description && (
-              <p style={{ color: "red" }}>{errors.Description.message}</p>
-            )}
-          </Col>
-          <Col md={2} className="d-flex align-items-center">
-            <Form.Label> TaxDescription:</Form.Label>
-          </Col>
-          <Col md={4}>
-            <Form.Control
-              type="text"
-              placeholder="Enter TaxDescription"
-              {...register("TaxDescription")}
-              style={{
-                border: "none",
-                borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
-                borderRadius: "0", // Removes rounded corners
-              }}
-            />
-            {errors.TaxDescription && (
-              <p style={{ color: "red" }}>{errors.TaxDescription.message}</p>
-            )}
-          </Col>
-          <Col md={2} className="d-flex align-items-center">
-            <Form.Label> CertifyDescription:</Form.Label>
-          </Col>
-          <Col md={4}>
-            <Form.Control
-              type="text"
-              placeholder="Enter CertifyDescription"
-              {...register("CertifyDescription")}
-              style={{
-                border: "none",
-                borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
-                borderRadius: "0", // Removes rounded corners
-              }}
-            />
-            {errors.CertifyDescription && (
-              <p style={{ color: "red" }}>
-                {errors.CertifyDescription.message}
-              </p>
-            )}
-          </Col>{" "}
-          <Col md={2} className="d-flex align-items-center">
-            <Form.Label> Remarks:</Form.Label>
-          </Col>
-          <Col md={4}>
-            <Form.Control
-              type="text"
-              placeholder="Enter ShortCode"
-              {...register("Remarks")}
-              style={{
-                border: "none",
-                borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
-                borderRadius: "0", // Removes rounded corners
-              }}
-            />
-            {errors.Remarks && (
-              <p style={{ color: "red" }}>{errors.Remarks.message}</p>
-            )}
-          </Col>
-          <Col md={2}>
-            <Form.Label> GST_No:</Form.Label>
-          </Col>
-          <Col md={4}>
-            <Form.Control
-              type="text"
-              placeholder="Enter your GST_No"
-              {...register("GST_No")}
-              style={{
-                border: "none",
-                borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
-                borderRadius: "0", // Removes rounded corners
-              }}
-            />
-            {errors.GST_No && (
-              <p style={{ color: "red" }}>{errors.GST_No.message}</p>
-            )}
-          </Col>
+            </Col>
+            <Col md={2} className="d-flex align-items-center">
+              <Form.Label> Address:</Form.Label>
+            </Col>
+            <Col md={4}>
+              <Form.Control
+                type="text"
+                placeholder="Enter your Address"
+                {...register("Address", {
+                  required: "Address is required",
+                })}
+                style={{
+                  border: "none",
+                  borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
+                  borderRadius: "0", // Removes rounded corners
+                }}
+              />
+              {errors.Address && (
+                <p style={{ color: "red" }}>{errors.Address.message}</p>
+              )}
+            </Col>
+          </Row>
+          <br/>
           <Row>
-            <Col md={2}>
+            <Col md={2} className="d-flex align-items-center">
+              <Form.Label>Bank:</Form.Label>
+            </Col>
+            <Col md={4}>
+              <Form.Group controlId="Bank">
+                <Form.Control
+                  type="text"
+                  placeholder="Enter your Bank"
+                  {...register("Bank", {
+                    required: "Bank is required",
+                  })}
+                  style={{
+                    border: "none", // Removes the border
+                    borderBottom: "2px solid rgb(243, 185, 78)", // Adds a bottom border with new color
+                    outline: "none", // Removes the outline when focused
+                    boxShadow: "none", // Removes the shadow on focus
+                    padding: "5px 0", // Adds padding to the top and bottom for better appearance
+                    width: "100%",
+                    borderRadius: "0", // Decreases the width of the input box
+                  }}
+                />
+                {errors.Bank && (
+                  <p style={{ color: "red" }}>{errors.Bank.message}</p>
+                )}
+              </Form.Group>
+            </Col>
+            <Col md={2} className="d-flex align-items-center">
+              <Form.Label> Description:</Form.Label>
+            </Col>
+            <Col md={4}>
+              <Form.Control
+                type="text"
+                placeholder="Enter Description"
+                {...register("Description")}
+                style={{
+                  border: "none",
+                  borderBottom: "2px solid rgb(133, 132, 130)", // Yellow underline using rgb(243, 185, 78)
+                  borderRadius: "0", // Removes rounded corners
+                }}
+              />
+              {errors.Description && (
+                <p style={{ color: "red" }}>{errors.Description.message}</p>
+              )}
+            </Col>
+          </Row>
+          <br />
+          <Row>
+            <Col md={2} className="d-flex align-items-center">
+              <Form.Label> TaxDescription:</Form.Label>
+            </Col>
+            <Col md={4}>
+              <Form.Control
+                type="text"
+                placeholder="Enter TaxDescription"
+                {...register("TaxDescription")}
+                style={{
+                  border: "none",
+                  borderBottom: "2px solid rgb(133, 132, 130)", // Yellow underline using rgb(243, 185, 78)
+                  borderRadius: "0", // Removes rounded corners
+                }}
+              />
+              {errors.TaxDescription && (
+                <p style={{ color: "red" }}>{errors.TaxDescription.message}</p>
+              )}
+            </Col>
+            <Col md={2} className="d-flex align-items-center">
+              <Form.Label> CertifyDescription:</Form.Label>
+            </Col>
+            <Col md={4}>
+              <Form.Control
+                type="text"
+                placeholder="Enter CertifyDescription"
+                {...register("CertifyDescription")}
+                style={{
+                  border: "none",
+                  borderBottom: "2px solid rgb(133, 132, 130)", // Yellow underline using rgb(243, 185, 78)
+                  borderRadius: "0", // Removes rounded corners
+                }}
+              />
+              {errors.CertifyDescription && (
+                <p style={{ color: "red" }}>
+                  {errors.CertifyDescription.message}
+                </p>
+              )}
+            </Col>
+          </Row>
+          <br />
+          <Row>
+            <Col md={2} className="d-flex align-items-center">
+              <Form.Label> GST_No:</Form.Label>
+            </Col>
+            <Col md={4}>
+              <Form.Control
+                type="text"
+                placeholder="Enter your GST_No"
+                {...register("GST_No")}
+                style={{
+                  border: "none",
+                  borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
+                  borderRadius: "0", // Removes rounded corners
+                }}
+              />
+              {errors.GST_No && (
+                <p style={{ color: "red" }}>{errors.GST_No.message}</p>
+              )}
+            </Col>
+          
+            <Col md={2} className="d-flex align-items-center">
               <Form.Label>Status:</Form.Label>
             </Col>
             <Col md={4}>
@@ -401,26 +410,37 @@ export default function BranchMasterForm() {
                 <p className="error-text">Please select a status.</p>
               )}
             </Col>
-            <Col md={2}>
+            <Col md={2} className="d-flex align-items-center">
               <Form.Label>CUID:</Form.Label>
             </Col>
-            <Col md={4}>
-              <Form.Group controlId="CUID">
-                <Form.Control
-                  type="number"
-                  placeholder="Enter your CUID"
-                  {...register("CUID", { required: "CUID is required" })}
-                  style={{
-                    border: "none",
-                    borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
-                    borderRadius: "0", // Removes rounded corners
-                  }}
-                />
-                {errors.CUID && (
-                  <p style={{ color: "red" }}>{errors.CUID.message}</p>
-                )}
-              </Form.Group>
-            </Col>
+            <Col md={10}>
+        <select
+          id="entryby"
+          {...register("entryby", { required: true })}
+          className="form-select"
+          style={{
+            width: "80%", // Adjust width to match other inputs
+            border: "none",
+            borderBottom: "2px solid rgb(243, 185, 78)", // Add line style for consistency
+            padding: "5px 0", 
+            borderRadius: "0",// Add padding to match input boxes
+          }}
+        >
+          <option value="" disabled>
+            --Select--
+          </option>
+          {cuidOptions?.length > 0 ? (
+            cuidOptions.map((entryby, index) => (
+              <option key={entryby.value} value={entryby.value}>
+                {entryby.value || "Unnamed User"}
+              </option>
+            ))
+          ) : (
+            <option disabled>No User options available</option>
+          )}
+        </select>
+        {errors.status && <p className="error-text">Please select a User.</p>}
+      </Col>
           </Row>
         </Container>
       </Form>
