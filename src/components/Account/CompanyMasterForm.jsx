@@ -728,7 +728,7 @@ export default function CompanyMasterForm() {
                 <option value="" disabled>--Select--</option>
                 {statusOptions?.length > 0 ? (
                   statusOptions.map((status, index) => (
-                    <option key={status.value || index} value={status.value}>
+                    <option key={status.id || index} value={status.id}>
                       {status.value || "Unnamed Status"}
                     </option>
                   ))
@@ -762,7 +762,7 @@ export default function CompanyMasterForm() {
           </option>
           {cuidOptions?.length > 0 ? (
             cuidOptions.map((entryby, index) => (
-              <option key={entryby.value} value={entryby.value}>
+              <option key={entryby.id} value={entryby.id}>
                 {entryby.value || "Unnamed User"}
               </option>
             ))

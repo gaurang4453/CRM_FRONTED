@@ -33,19 +33,21 @@ export default function BranchMasterForm() {
         try {
           const response = await AxiosInstance.get(`/BranchMaster/${id}`);
           const branch = response.data.data;
+          console.log("Fetched Branch:", branch);
+          
           if (branch) {
             setValue("BranchID", branch.branchID || branch.BranchID || "");
-            setValue("BranchName", branch.BranchName || "");
-            setValue("CurrencyCode", branch.CurrencyCode || "");
-            setValue("ShortName", branch.ShortName || "");
-            setValue("CompanyID", branch.CompanyID || "");
-            setValue("Remarks", branch.Remarks || "");
-            setValue("Address", branch.Address || "");
-            setValue("Bank", branch.Bank || "");
-            setValue("Description", branch.Description || "");
-            setValue("TacDescription", branch.TacDescription || "");
-            setValue("CertifyDescription", branch.CertifyDescription || "");
-            setValue("GST_No", branch.GST_No || "");
+            setValue("BranchName", branch.branchName || "");
+            setValue("CurrencyCode", branch.currencyCode || "");
+            setValue("ShortName", branch.shortName || "");
+            setValue("CompanyID", branch.companyID || "");
+            setValue("Remarks", branch.remarks || "");
+            setValue("Address", branch.address || "");
+            setValue("Bank", branch.bank || "");
+            setValue("Description", branch.description || "");
+            setValue("TaxDescription", branch.taxDescription || "");
+            setValue("CertifyDescription", branch.certifyDescription || "");
+            setValue("GST_No", branch.gsT_No || "");
             setValue("Status", branch.Status || branch.status || "");
             setValue("CUID", branch.CUID || branch.cuid || "");
           } else {
@@ -68,7 +70,7 @@ export default function BranchMasterForm() {
       BranchName: data.BranchName,
       CurrencyCode: data.CurrencyCode,
       ShortName: data.ShortName,
-      CompanyID: data.CompanyID,
+      CompanyID: parseInt(data.CompanyID, 10) || 0,
       Remarks: data.Remarks,
       Address: data.Address,
       Bank: data.Bank,
@@ -77,7 +79,7 @@ export default function BranchMasterForm() {
       CertifyDescription: data.CertifyDescription,
       GST_No: data.GST_No,
       Status: data.Status,
-      CUID: data.CUID,
+      CUID: parseInt(data.CUID, 10) || 0,
     };
     try {
       await AxiosInstance.post("/BranchMaster", payload);
@@ -236,7 +238,7 @@ export default function BranchMasterForm() {
                       key={companies.value || index}
                       value={companies.value}
                     >
-                      {companies.value || "Unnamed Status"}
+                      {companies.id || "Unnamed Status"}
                     </option>
                   ))
                 ) : (
@@ -453,7 +455,7 @@ export default function BranchMasterForm() {
                 </option>
                 {cuidOptions?.length > 0 ? (
                   cuidOptions.map((entryby, index) => (
-                    <option key={entryby.value} value={entryby.value}>
+                    <option key={entryby.id} value={entryby.id}>
                       {entryby.value || "Unnamed User"}
                     </option>
                   ))

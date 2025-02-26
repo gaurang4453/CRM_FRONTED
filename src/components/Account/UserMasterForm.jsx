@@ -6,7 +6,6 @@ import "../style/style.css";
 import Footer from "/src/components/Footer/Footer";
 import useDropdownData from "../UseDropdownData";
 import AxiosInstance from "/src/AxiosInstance";
-import UserMasterTable from "../Index/UserMasterTable";
 
 export default function UserMasterForm() {
   const { id } = useParams();
@@ -85,6 +84,7 @@ export default function UserMasterForm() {
       OTP: data.OTP,
       Status: data.Status,
       CUID: data.CUID,
+      CUID: parseInt(data.CUID, 10) || 0,
     };
 
     try {
@@ -392,7 +392,7 @@ export default function UserMasterForm() {
                 <option value="">--Select--</option>
                 {statusOptions?.length > 0 ? (
                   statusOptions.map((status, index) => (
-                    <option key={status.value || index} value={status.value}>
+                    <option key={status.id } value={status.id}>
                       {status.value || "Unnamed Status"}
                     </option>
                   ))
@@ -425,7 +425,7 @@ export default function UserMasterForm() {
           </option>
           {cuidOptions?.length > 0 ? (
             cuidOptions.map((entryby, index) => (
-              <option key={entryby.value} value={entryby.value}>
+              <option key={entryby.id} value={entryby.id}>
                 {entryby.value || "Unnamed User"}
               </option>
             ))
