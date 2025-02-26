@@ -603,7 +603,7 @@ export default function CompanyMasterForm() {
                 type="text"
                 placeholder="Enter your Address"
                 {...register("Address", {
-                  required: "ShortCAddress is required",
+                  required: "Address is required",
                 })}
                 style={{
                   border: "none",

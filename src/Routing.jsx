@@ -9,11 +9,11 @@ import UserMasterForm from "./components/Account/UserMasterForm";
 import UserMasterTable from "./components/Index/UserMasterTable";
 import CompanyMasterForm from "./components/Account/CompanyMasterForm";
 import CompanyMasterTable from "./components/Index/CompanyMasterTable";
-
+import BranchMasterForm from "./components/Account/BranchMasterForm";
 
 import Navbar from "./components/Navbar/Navbar";
 
-function Routing() {
+export default function Routing() {
   return (
     <>
       <Router>
@@ -29,15 +29,15 @@ function Routing() {
           <Route path="/RoleMasterForm/:id" element={<RoleMasterForm />} />
           <Route path="/UserMasterForm/:id" element={<UserMasterForm />} />
           <Route path="/CompanyMasterForm/:id" element={<CompanyMasterForm />} />
+          <Route path="/BranchMasterForm/:id" element={<BranchMasterForm />} />
 
           <Route path="/RoleMasterForm" element={<RoleMasterForm />} />
           <Route path="/PropMasterForm" element={<PropMasterForm />} />
           <Route path="/UserMasterForm" element={<UserMasterForm />} />
           <Route path="/CompanyMasterForm" element={<CompanyMasterForm />} />
+          <Route path="/BranchMasterForm" element={<BranchMasterForm />} />
         </Routes>
       </Router>
     </>
   );
 }
-
-export default Routing;

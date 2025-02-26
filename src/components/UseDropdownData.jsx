@@ -18,13 +18,77 @@ const dropdownData = {
     fieldValue: "A",
   },
 
-  user: {
+  entryby: {
     tableName: "UserMaster",
-    fieldNameID: "UserName",
-    fieldNameValue: "UserID",
+    fieldNameID: "UserID",
+    fieldNameValue: "UserName",
     fieldNameWhere: "Status",
     fieldValue: "A",
   },
+  companies: {
+    tableName: 'CompanyMaster',
+    fieldNameID: 'CompanyID',
+    fieldNameValue: 'CompanyName',
+    fieldNameWhere: 'Status',
+    fieldValue: 'A'
+  },
+
+branches: {
+    tableName: 'BranchMaster',
+    fieldNameID: 'BranchID',
+    fieldNameValue: 'BranchName',
+    fieldNameWhere: 'Status',
+    fieldValue: 'A'
+  },
+
+taxTypes: {
+    tableName: 'PropMaster',
+    fieldNameID: 'PropName',
+    fieldNameValue: 'PropValue',
+    fieldNameWhere: 'PropTypeName',
+    fieldValue: 'TaxType'
+  },
+
+uoms: {
+    tableName: 'UOMMST',
+    fieldNameID: 'UOMID',
+    fieldNameValue: 'UOM',
+    fieldNameWhere: 'Status',
+    fieldValue: 'A'
+  },
+
+referenceBy: {
+    tableName: 'PropMaster',
+    fieldNameID: 'PropName',
+    fieldNameValue: 'PropValue',
+    fieldNameWhere: 'PropTypeName',
+    fieldValue: 'ReferenceBy'
+  },
+
+items: {
+    tableName: 'ItemMaster',
+    fieldNameID: 'ItemID',
+    fieldNameValue: 'ItemName',
+    fieldNameWhere: 'Status',
+    fieldValue: 'A'
+  },
+
+inquiryID: {
+    tableName: 'InquiryMaster',
+    fieldNameID: 'InquiryID',
+    fieldNameValue: 'InquiryNo',
+    fieldNameWhere: 'Status',
+    fieldValue: 'A'
+  },
+
+nextprocess: {
+    tableName: 'PropMaster',
+    fieldNameID: 'PropName',
+    fieldNameValue: 'PropValue',
+    fieldNameWhere: 'PropTypeName',
+    fieldValue: 'INProcess'
+  },
+
 
   // Add more dropdown keys here if needed
 };

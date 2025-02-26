@@ -1,0 +1,432 @@
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { Row, Col, Container, Form } from "react-bootstrap";
+import { useParams, useNavigate } from "react-router-dom";
+import "../style/style.css";
+import Footer from "/src/components/Footer/Footer";
+import useDropdownData from "../UseDropdownData";
+import AxiosInstance from "/src/AxiosInstance";
+
+
+export default function BranchMasterForm() {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(!!id);
+  const [error, setError] = useState(null);
+
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    reset,
+    formState: { errors },
+  } = useForm();
+
+  const { data: statusOptions, error: statusError } = useDropdownData("status");
+  const { data: companyOptions, error: companyError } = useDropdownData("companies");
+
+  useEffect(() => {
+    if (id) {
+      const fetchBranch = async () => {
+        try {
+          const response = await AxiosInstance.get(`/BranchMaster/${id}`);
+          const user = response.data.data;
+          console.log("branch", branch);
+
+          if (user) {
+            setValue("BranchName", user.BranchName || "");
+            setValue("CurrencyCode", user.CurrencyCode || "");
+            setValue("ShortName", user.ShortName || "");
+            setValue("CompanyID", user.CompanyID || "");
+            setValue("Remarks", user.Remarks || "");
+            setValue("Address", user.Address || "");
+            setValue("Bank", user.Bank || "");
+            setValue("Description", user.Description || "");
+            setValue("TacDescription", user.TacDescription || "");
+            setValue("CertifyDescription", user.CertifyDescription || "");
+            setValue("GST_No", user.GST_No || "");
+            setValue("Status", user.Status || user.status || "");
+            setValue("CUID", user.CUID || user.cuid || "");
+          } else {
+            console.warn("No data found for BranchID:", id);
+          }
+        } catch (err) {
+          setError("Failed to fetch Branch details.");
+        } finally {
+          setLoading(false);
+        }
+      };
+      fetchBranch();
+    } else {
+      setLoading(false);
+    }
+  }, [id, setValue]);
+  const onSubmit = async (data) => {
+    const payload = {
+      BranchID: id || 0,
+      BranchName: data.BranchName,
+      CurrencyCode: data.CurrencyCode,
+      ShortName: data.ShortName,
+      CompanyID: data.CompanyID,
+      Remarks: data.Remarks,
+      Address: data.Address,
+      Bank: data.Bank,
+      Description: data.Description,
+      TacDescription: data.TacDescription,
+      CertifyDescription: data.CertifyDescription,
+      GST_No: data.GST_No,
+      Status: data.Status,
+      CUID: data.CUID,
+    };
+    try {
+      const response = await AxiosInstance.post("/BranchMaster", payload);
+      console.log("API Response:", response.data); // Log API response
+      alert(
+        id ? "Branch updated successfully!" : "Successfully submitted data"
+      );
+      reset();
+      navigate("/BranchMasterTable");
+    } catch (error) {
+      console.error("API Error:", error.response?.data || error.message); // Log error response
+      alert("Error submitting data");
+    }
+  };
+  const handleDelete = async () => {
+    if (window.confirm("Are you sure you want to delete this Branch?")) {
+      try {
+        await AxiosInstance.delete(`/BranchMaster/${id}`);
+        alert("Branch deleted successfully!");
+        navigate("/BranchMasterTable");
+      } catch (error) {
+        alert("Failed to delete User");
+      }
+    }
+  };
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p className="error">{error}</p>;
+  if (statusError)
+    return (
+      <p className="error">Failed to fetch status options: {statusError}</p>
+    );
+    if (companyError)
+        return (
+          <p className="error">Failed to fetch Company options: {companyError}</p>
+        );
+  return (
+    <>
+      <Form
+        onSubmit={handleSubmit(onSubmit)}
+        className="form"
+        style={{
+          height: "700px",
+          overflow: "auto",
+          padding: "20px",
+          marginTop: "70px",
+          marginBottom: "70px",
+        }}
+      >
+        <h1 className="ribbon">Branch Master Form</h1>
+        <Container>
+          {/* RoleID DropDown */}
+          <Row>
+            <Col md={2}>
+              <Form.Label>BranchName :</Form.Label>
+            </Col>
+            <Col md={10}>
+              <Form.Select
+                {...register("BranchName", {
+                  required: "BranchName is required",
+                })}
+                style={{
+                  width: "100%",
+                  padding: "5px",
+                  border: "2px solid rgb(243, 185, 78)",
+                  borderRadius: "5px",
+                }}
+              >
+              </Form.Select>
+            </Col>
+            <Col md={2} className="d-flex align-items-center">
+              <Form.Label>CurrencyCode:</Form.Label>
+            </Col>
+            <Col md={4}>
+              <Form.Group controlId="CurrencyCode">
+                <Form.Control
+                  type="text"
+                  placeholder="Enter your CurrencyCode"
+                  {...register("CurrencyCode", {
+                    required: "CurrencyCode is required",
+                  })}
+                  style={{
+                    border: "none", // Removes the border
+                    borderBottom: "2px solid rgb(133, 132, 130)", // Adds a bottom border with new color
+                    outline: "none", // Removes the outline when focused
+                    boxShadow: "none", // Removes the shadow on focus
+                    padding: "5px 0", // Adds padding to the top and bottom for better appearance
+                    width: "80%",
+                    borderRadius: "0", // Decreases the width of the input box
+                  }}
+                />
+                {errors.CurrencyCode && (
+                  <p style={{ color: "red" }}>{errors.CurrencyCode.message}</p>
+                )}
+              </Form.Group>
+            </Col>
+            <Col md={2} className="d-flex align-items-center">
+              <Form.Label> ShortCode:</Form.Label>
+            </Col>
+            <Col md={4}>
+              <Form.Control
+                type="text"
+                placeholder="Enter ShortCode"
+                {...register("ShortCode", {
+                  required: "ShortCode is required",
+                })}
+                style={{
+                  border: "none",
+                  borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
+                  borderRadius: "0", // Removes rounded corners
+                }}
+              />
+              {errors.ShortCode && (
+                <p style={{ color: "red" }}>{errors.ShortCode.message}</p>
+              )}
+            </Col>
+          </Row>
+          <Col md={2}>
+            <Form.Label>CompanyID:</Form.Label>
+          </Col>
+          <Col md={4}>
+            <select
+              id="companies"
+              {...register("companies", { required: true })}
+              className="form-select"
+            >
+              <option value="" disabled>--Select--</option>
+              {companyOptions?.length > 0 ? (
+                companyOptions.map((companies, index) => (
+                  <option key={companies.value || index} value={companies.value}>
+                    {companies.value || "Unnamed Status"}
+                  </option>
+                ))
+              ) : (
+                <option disabled>No company options available</option>
+              )}
+            </select>
+            {errors.companies && (
+              <p className="error-text">Please select a Company.</p>
+            )}
+          </Col>
+          <Col md={2} className="d-flex align-items-center">
+            <Form.Label> Remarks:</Form.Label>
+          </Col>
+          <Col md={4}>
+            <Form.Control
+              type="text"
+              placeholder="Enter ShortCode"
+              {...register("Remarks")}
+              style={{
+                border: "none",
+                borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
+                borderRadius: "0", // Removes rounded corners
+              }}
+            />
+            {errors.Remarks && (
+              <p style={{ color: "red" }}>{errors.Remarks.message}</p>
+            )}
+          </Col>
+          <Col md={2}>
+            <Form.Label> Address:</Form.Label>
+          </Col>
+          <Col md={4}>
+            <Form.Control
+              type="text"
+              placeholder="Enter your Address"
+              {...register("Address", {
+                required: "Address is required",
+              })}
+              style={{
+                border: "none",
+                borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
+                borderRadius: "0", // Removes rounded corners
+              }}
+            />
+            {errors.Address && (
+              <p style={{ color: "red" }}>{errors.Address.message}</p>
+            )}
+          </Col>
+          <Col md={2} className="d-flex align-items-center">
+            <Form.Label>Bank:</Form.Label>
+          </Col>
+          <Col md={4}>
+            <Form.Group controlId="Bank">
+              <Form.Control
+                type="text"
+                placeholder="Enter your Bank"
+                {...register("Bank", {
+                  required: "Bank is required",
+                })}
+                style={{
+                  border: "none", // Removes the border
+                  borderBottom: "2px solid rgb(243, 185, 78)", // Adds a bottom border with new color
+                  outline: "none", // Removes the outline when focused
+                  boxShadow: "none", // Removes the shadow on focus
+                  padding: "5px 0", // Adds padding to the top and bottom for better appearance
+                  width: "80%",
+                  borderRadius: "0", // Decreases the width of the input box
+                }}
+              />
+              {errors.Bank && (
+                <p style={{ color: "red" }}>{errors.Bank.message}</p>
+              )}
+            </Form.Group>
+          </Col>
+          <Col md={2} className="d-flex align-items-center">
+            <Form.Label> Description:</Form.Label>
+          </Col>
+          <Col md={4}>
+            <Form.Control
+              type="text"
+              placeholder="Enter Description"
+              {...register("Description")}
+              style={{
+                border: "none",
+                borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
+                borderRadius: "0", // Removes rounded corners
+              }}
+            />
+            {errors.Description && (
+              <p style={{ color: "red" }}>{errors.Description.message}</p>
+            )}
+          </Col>
+          <Col md={2} className="d-flex align-items-center">
+            <Form.Label> TaxDescription:</Form.Label>
+          </Col>
+          <Col md={4}>
+            <Form.Control
+              type="text"
+              placeholder="Enter TaxDescription"
+              {...register("TaxDescription")}
+              style={{
+                border: "none",
+                borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
+                borderRadius: "0", // Removes rounded corners
+              }}
+            />
+            {errors.TaxDescription && (
+              <p style={{ color: "red" }}>{errors.TaxDescription.message}</p>
+            )}
+          </Col>
+          <Col md={2} className="d-flex align-items-center">
+            <Form.Label> CertifyDescription:</Form.Label>
+          </Col>
+          <Col md={4}>
+            <Form.Control
+              type="text"
+              placeholder="Enter CertifyDescription"
+              {...register("CertifyDescription")}
+              style={{
+                border: "none",
+                borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
+                borderRadius: "0", // Removes rounded corners
+              }}
+            />
+            {errors.CertifyDescription && (
+              <p style={{ color: "red" }}>
+                {errors.CertifyDescription.message}
+              </p>
+            )}
+          </Col>{" "}
+          <Col md={2} className="d-flex align-items-center">
+            <Form.Label> Remarks:</Form.Label>
+          </Col>
+          <Col md={4}>
+            <Form.Control
+              type="text"
+              placeholder="Enter ShortCode"
+              {...register("Remarks")}
+              style={{
+                border: "none",
+                borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
+                borderRadius: "0", // Removes rounded corners
+              }}
+            />
+            {errors.Remarks && (
+              <p style={{ color: "red" }}>{errors.Remarks.message}</p>
+            )}
+          </Col>
+          <Col md={2}>
+            <Form.Label> GST_No:</Form.Label>
+          </Col>
+          <Col md={4}>
+            <Form.Control
+              type="text"
+              placeholder="Enter your GST_No"
+              {...register("GST_No")}
+              style={{
+                border: "none",
+                borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
+                borderRadius: "0", // Removes rounded corners
+              }}
+            />
+            {errors.GST_No && (
+              <p style={{ color: "red" }}>{errors.GST_No.message}</p>
+            )}
+          </Col>
+          <Row>
+            <Col md={2}>
+              <Form.Label>Status:</Form.Label>
+            </Col>
+            <Col md={4}>
+              <select
+                id="status"
+                {...register("Status", { required: true })}
+                className="form-select"
+              >
+                <option value="">--Select--</option>
+                {statusOptions?.length > 0 ? (
+                  statusOptions.map((status, index) => (
+                    <option key={status.value || index} value={status.value}>
+                      {status.value || "Unnamed Status"}
+                    </option>
+                  ))
+                ) : (
+                  <option disabled>No status options available</option>
+                )}
+              </select>
+              {errors.status && (
+                <p className="error-text">Please select a status.</p>
+              )}
+            </Col>
+            <Col md={2}>
+              <Form.Label>CUID:</Form.Label>
+            </Col>
+            <Col md={4}>
+              <Form.Group controlId="CUID">
+                <Form.Control
+                  type="number"
+                  placeholder="Enter your CUID"
+                  {...register("CUID", { required: "CUID is required" })}
+                  style={{
+                    border: "none",
+                    borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
+                    borderRadius: "0", // Removes rounded corners
+                  }}
+                />
+                {errors.CUID && (
+                  <p style={{ color: "red" }}>{errors.CUID.message}</p>
+                )}
+              </Form.Group>
+            </Col>
+          </Row>
+        </Container>
+      </Form>
+      <Footer
+        className="footer"
+        onSave={handleSubmit(onSubmit)}
+        onDelete={id ? handleDelete : undefined}
+        onCancel={() => navigate("/BranchMasterTable")}
+      />
+    </>
+  );
+}
