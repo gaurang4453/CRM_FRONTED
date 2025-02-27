@@ -264,7 +264,7 @@ export default function BranchMasterForm() {
                   height: "30px",
                   padding: "0.2rem",
                   fontSize: "14px",
-                  width: "330px",
+                  width: "100%",
                 }}
               >
                 <option value="" disabled>
@@ -439,7 +439,7 @@ export default function BranchMasterForm() {
                   height: "30px", // Decrease the height
                   padding: "0.2rem", // Reduce padding
                   fontSize: "14px",
-                  width: "330px",
+                  width: "100%",
                 }}
               >
                 <option value="" disabled>
@@ -475,7 +475,7 @@ export default function BranchMasterForm() {
                   height: "30px", // Decrease the height
                   padding: "0.2rem", // Reduce padding
                   fontSize: "14px",
-                  width: "355px",
+                  width: "100%",
                 }}
               >
                 <option value="" disabled>
