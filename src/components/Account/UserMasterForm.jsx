@@ -80,7 +80,7 @@ export default function UserMasterForm() {
       EmailSSL: data.EmailSSL,
       OTP: data.OTP,
       Status: data.Status,
-      CUID: data.CUID,
+      
       CUID: parseInt(data.CUID, 10) || 0,
     };
 
