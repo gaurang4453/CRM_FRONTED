@@ -50,7 +50,7 @@ taxTypes: {
   },
 
 uoms: {
-    tableName: 'UOMMST',
+    tableName: 'UOMMaster',
     fieldNameID: 'UOMID',
     fieldNameValue: 'UOM',
     fieldNameWhere: 'Status',
