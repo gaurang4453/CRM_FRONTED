@@ -90,11 +90,13 @@ export default function UOMMasterTable() {
             bordered
             hover
             className="mt-4"
-            style={{  marginTop: "120px", // Maintain the top margin
+            style={{
+              marginTop: "120px", // Maintain the top margin
               width: "100%", // Increase the table container width (set to 90% for more space)
               // height: "500px", // Maintain the height of the container
               marginLeft: "-55x", // Center horizontally
-              marginRight: "550px" }}
+              marginRight: "550px",
+            }}
           >
             <thead className="bg-primary text-white text-center">
               <tr>
@@ -112,11 +114,10 @@ export default function UOMMasterTable() {
                   style={{ cursor: "pointer" }}
                   className="text-center table-row-hover"
                 >
-                  <td style={{ width: "4%" }}>{uom.uOM}</td>
-                  <td style={{ width: "4%" }}>{uom.cF}</td>                  
-                  <td style={{ width: "4%" }}>{uom.status}</td>
-                  <td style={{ width: "4%" }}>{uom.cUID}</td>
-                  
+                  <td style={{ width: "4%" }}>{uom.uOM || uom.uom}</td>
+                  <td style={{ width: "4%" }}>{uom.cF || uom.cf}</td>
+                  <td style={{ width: "4%" }}>{uom.status || uom.status}</td>
+                  <td style={{ width: "4%" }}>{uom.cUID || uom.cuid}</td>
                 </tr>
               ))}
             </tbody>
