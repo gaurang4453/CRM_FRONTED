@@ -134,6 +134,7 @@ if (cuidError)
           id="status"
           {...register("status", { required: true })}
           className="form-select"
+          defaultValue=""
           style={{
             height: "30px", // Decrease the height
             padding: "0.2rem", // Reduce padding
@@ -168,6 +169,7 @@ if (cuidError)
           id="entryby"
           {...register("entryby", { required: true })}
           className="form-select"
+          defaultValue=""
           style={{
             height: "30px", // Decrease the height
             padding: "0.2rem", // Reduce padding

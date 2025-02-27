@@ -385,11 +385,7 @@ export default function UserMasterForm() {
                 id="status"
                 {...register("Status")}
                 className="form-select"
-                style={{
-                  height: "30px", // Decrease the height
-                  padding: "0.2rem", // Reduce padding
-                  fontSize: "14px",
-                  width: "355px",}}
+                defaultValue=""
               >
                 <option value="">--Select--</option>
                 {statusOptions?.length > 0 ? (
@@ -414,6 +410,7 @@ export default function UserMasterForm() {
                 id="entryby"
                 {...register("entryby", { required: true })}
                 className="form-select"
+                defaultValue=""
                 style={{
                   width: "100%", // Adjust width to match other inputs
                   border: "none",

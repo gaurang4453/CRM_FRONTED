@@ -134,10 +134,8 @@ export default function CompanyMasterForm() {
       <p className="error">Failed to fetch status options: {statusError}</p>
     );
 
-    if (cuidError)
-      return (
-        <p className="error">Failed to fetch User options: {cuidError}</p>
-      );
+  if (cuidError)
+    return <p className="error">Failed to fetch User options: {cuidError}</p>;
   return (
     <>
       <Form
@@ -719,13 +717,18 @@ export default function CompanyMasterForm() {
               <select
                 id="status"
                 {...register("status", { required: true })}
-                className="form-select" style={{
+                className="form-select"
+                defaultValue=""
+                style={{
                   height: "30px", // Decrease the height
                   padding: "0.2rem", // Reduce padding
                   fontSize: "14px",
-                  width: "290px",}}
+                  width: "290px",
+                }}
               >
-                <option value="" disabled>--Select--</option>
+                <option value="" disabled>
+                  --Select--
+                </option>
                 {statusOptions?.length > 0 ? (
                   statusOptions.map((status, index) => (
                     <option key={status.id || index} value={status.id}>
@@ -745,33 +748,36 @@ export default function CompanyMasterForm() {
               <Form.Label>CUID:</Form.Label>
             </Col>
             <Col md={4}>
-        <select
-          id="entryby"
-          {...register("entryby", { required: true })}
-          className="form-select"
-          style={{
-            width: "100%", // Adjust width to match other inputs
-            border: "none",
-            borderBottom: "2px solid rgb(243, 185, 78)", // Add line style for consistency
-            padding: "5px 0", 
-            borderRadius: "0",// Add padding to match input boxes
-          }}
-        >
-          <option value="" disabled>
-            --Select--
-          </option>
-          {cuidOptions?.length > 0 ? (
-            cuidOptions.map((entryby, index) => (
-              <option key={entryby.id} value={entryby.id}>
-                {entryby.value || "Unnamed User"}
-              </option>
-            ))
-          ) : (
-            <option disabled>No User options available</option>
-          )}
-        </select>
-        {errors.status && <p className="error-text">Please select a User.</p>}
-      </Col>
+              <select
+                id="entryby"
+                {...register("entryby", { required: true })}
+                className="form-select"
+                defaultValue=""
+                style={{
+                  width: "80%", // Adjust width to match other inputs
+                  border: "none",
+                  borderBottom: "2px solid rgb(243, 185, 78)", // Add line style for consistency
+                  padding: "5px 0",
+                  borderRadius: "0", // Add padding to match input boxes
+                }}
+              >
+                <option value="" disabled>
+                  --Select--
+                </option>
+                {cuidOptions?.length > 0 ? (
+                  cuidOptions.map((entryby, index) => (
+                    <option key={entryby.id} value={entryby.id}>
+                      {entryby.value || "Unnamed User"}
+                    </option>
+                  ))
+                ) : (
+                  <option disabled>No User options available</option>
+                )}
+              </select>
+              {errors.status && (
+                <p className="error-text">Please select a User.</p>
+              )}
+            </Col>
           </Row>
         </Container>
       </Form>
