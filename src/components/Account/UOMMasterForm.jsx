@@ -185,6 +185,7 @@ export default function UOMMasterForm() {
                 id="Status"
                 {...register("Status", { required: true })}
                 className="form-select"
+                defaultValue=""
                 style={{
                   height: "30px",
                   padding: "0.2rem",
@@ -219,6 +220,7 @@ export default function UOMMasterForm() {
                 id="CUID"
                 {...register("CUID", { required: true })}
                 className="form-select"
+                defaultValue=""
                 style={{
                   height: "30px",
                   padding: "0.2rem",
