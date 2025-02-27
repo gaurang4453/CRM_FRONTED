@@ -103,16 +103,15 @@ export default function UOMMasterTable() {
             <tbody>
               {tableData.map((uom, index) => (
                 <tr
-                  key={uom.uOM || index}
-                  onClick={() => handleRowClick(uom.uOM)}
+                  key={uom.uomid || index}
+                  onClick={() => handleRowClick(uom.uomid)}
                   style={{ cursor: "pointer" }}
                   className="text-center table-row-hover"
                 >
-                  <td>{uom.uOM}</td>
-                  <td>{uom.cF}</td>                  
-                  <td>{uom.status}</td>
-                  <td>{uom.cUID}</td>
-                  
+                  <td>{uom.uOM || uom.uom}</td>
+                  <td>{uom.cF || uom.cf}</td>
+                  <td>{uom.status || uom.status}</td>
+                  <td>{uom.cUID || uom.cuid}</td>
                 </tr>
               ))}
             </tbody>
