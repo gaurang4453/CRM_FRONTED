@@ -23,7 +23,8 @@ export default function UserMasterForm() {
 
   const { data: statusOptions, error: statusError } = useDropdownData("status");
   const { data: cuidOptions, error: cuidError } = useDropdownData("entryby");
-  const { data: taxtypeOptions, error: taxtypeError } = useDropdownData("taxTypes");
+  const { data: taxtypeOptions, error: taxtypeError } =
+    useDropdownData("taxTypes");
   const { data: uomidOptions, error: uomidError } = useDropdownData("entryby");
 
   useEffect(() => {
@@ -69,7 +70,7 @@ export default function UserMasterForm() {
       HSNCOde: data.HSNCOde,
       UOMID: data.UOMID,
       Status: data.Status,
-      CUID: data.CUID,
+      //  CUID: data.CUID,
       CUID: parseInt(data.CUID, 10) || 0,
     };
 
@@ -100,7 +101,9 @@ export default function UserMasterForm() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p className="error">{error}</p>;
   if (statusError)
-    return <p className="error">Failed to fetch status options: {statusError}</p>;
+    return (
+      <p className="error">Failed to fetch status options: {statusError}</p>
+    );
   if (cuidError)
     return <p className="error">Failed to fetch User options: {cuidError}</p>;
   if (taxtypeError)
@@ -133,13 +136,13 @@ export default function UserMasterForm() {
                     required: "ItemNo is required",
                   })}
                   style={{
-                    border: "none", 
+                    border: "none",
                     borderBottom: "2px solid rgb(243, 185, 78)",
                     outline: "none",
                     boxShadow: "none",
                     padding: "5px 0",
                     width: "80%",
-                    borderRadius: "0", 
+                    borderRadius: "0",
                   }}
                 />
                 {errors.ItemNo && (
@@ -159,13 +162,13 @@ export default function UserMasterForm() {
                     required: "ItemName is required",
                   })}
                   style={{
-                    border: "none", 
+                    border: "none",
                     borderBottom: "2px solid rgb(243, 185, 78)",
                     outline: "none",
                     boxShadow: "none",
                     padding: "5px 0",
                     width: "80%",
-                    borderRadius: "0", 
+                    borderRadius: "0",
                   }}
                 />
                 {errors.ItemName && (
@@ -188,13 +191,13 @@ export default function UserMasterForm() {
                     required: "Description is required",
                   })}
                   style={{
-                    border: "none", 
+                    border: "none",
                     borderBottom: "2px solid rgb(243, 185, 78)",
                     outline: "none",
                     boxShadow: "none",
                     padding: "5px 0",
                     width: "80%",
-                    borderRadius: "0", 
+                    borderRadius: "0",
                   }}
                 />
                 {errors.Description && (
@@ -211,8 +214,8 @@ export default function UserMasterForm() {
                 {...register("taxTypes", { required: true })}
                 className="form-select"
                 style={{
-                  height: "30px", 
-                  padding: "0.2rem", 
+                  height: "30px",
+                  padding: "0.2rem",
                   fontSize: "14px",
                   width: "320px",
                 }}
@@ -222,7 +225,7 @@ export default function UserMasterForm() {
                 </option>
                 {taxtypeOptions?.length > 0 ? (
                   taxtypeOptions.map((taxTypes, index) => (
-                    <option key={taxTypes.id } value={taxTypes.id}>
+                    <option key={taxTypes.id} value={taxTypes.id}>
                       {taxTypes.value || "Unnamed tax"}
                     </option>
                   ))
@@ -249,13 +252,13 @@ export default function UserMasterForm() {
                     required: "HSNCOde is required",
                   })}
                   style={{
-                    border: "none", 
+                    border: "none",
                     borderBottom: "2px solid rgb(243, 185, 78)",
                     outline: "none",
                     boxShadow: "none",
                     padding: "5px 0",
                     width: "80%",
-                    borderRadius: "0", 
+                    borderRadius: "0",
                   }}
                 />
                 {errors.HSNCOde && (
@@ -272,8 +275,8 @@ export default function UserMasterForm() {
                 {...register("Status", { required: true })}
                 className="form-select"
                 style={{
-                  height: "30px", 
-                  padding: "0.2rem", 
+                  height: "30px",
+                  padding: "0.2rem",
                   fontSize: "14px",
                   width: "330px",
                 }}
@@ -304,8 +307,8 @@ export default function UserMasterForm() {
                 {...register("Status", { required: true })}
                 className="form-select"
                 style={{
-                  height: "30px", 
-                  padding: "0.2rem", 
+                  height: "30px",
+                  padding: "0.2rem",
                   fontSize: "14px",
                   width: "330px",
                 }}
@@ -333,11 +336,11 @@ export default function UserMasterForm() {
                 {...register("entryby", { required: true })}
                 className="form-select"
                 style={{
-                  width: "80%", 
+                  width: "80%",
                   border: "none",
-                  borderBottom: "2px solid rgb(243, 185, 78)", 
+                  borderBottom: "2px solid rgb(243, 185, 78)",
                   padding: "5px 0",
-                  borderRadius: "0", 
+                  borderRadius: "0",
                 }}
               >
                 <option value="" disabled>
