@@ -22,7 +22,8 @@ export default function BranchMasterForm() {
   } = useForm();
 
   const { data: statusOptions, error: statusError } = useDropdownData("status");
-  const { data: companyOptions, error: companyError } =useDropdownData("companies");
+  const { data: companyOptions, error: companyError } =
+    useDropdownData("companies");
   const { data: cuidOptions, error: cuidError } = useDropdownData("entryby");
 
   useEffect(() => {
@@ -33,26 +34,48 @@ export default function BranchMasterForm() {
           const response = await AxiosInstance.get(`/BranchMaster/${id}`);
           const branch = response.data.data;
           console.log("Fetched Branch:", branch);
-          
+
           if (branch) {
             setValue("BranchID", branch.branchID || branch.BranchID || "");
-            setValue("BranchName", branch.branchName || "");
-            setValue("CurrencyCode", branch.currencyCode || "");
-            setValue("ShortName", branch.shortName || "");
-            setValue("CompanyID", branch.companyID || "");
-            setValue("Remarks", branch.remarks || "");
-            setValue("Address", branch.address || "");
-            setValue("Bank", branch.bank || "");
-            setValue("Description", branch.description || "");
-            setValue("TaxDescription", branch.taxDescription || "");
-            setValue("CertifyDescription", branch.certifyDescription || "");
-            setValue("GST_No", branch.gsT_No || "");
-            setValue("Status", branch.Status || branch.status || "");
-            setValue("CUID", branch.CUID || branch.cuid || "");
+            setValue("BranchName", branch.branchName || branch.BranchName || "");
+            setValue("CurrencyCode", branch.currencyCode || branch.CurrencyCode || "");
+            setValue("ShortName", branch.shortName || branch.ShortName || "");
+            setValue("CompanyID", branch.companyID || branch.CompanyID || "");
+            setValue("CompanyName", branch.companyName || branch.CompanyName || "");
+            setValue("Remarks", branch.remarks || branch.Remarks || "");
+            setValue("Address", branch.address || branch.Address || "");
+            setValue("Bank", branch.bank || branch.Bank || "");
+            setValue("Description", branch.description || branch.Description || "");
+            setValue("TaxDescription", branch.taxDescription || branch.TaxDescription || "");
+            setValue("CertifyDescription", branch.certifyDescription || branch.CertifyDescription || "");
+            setValue("GST_No", branch.gsT_No || branch.GST_No || "");
+            setValue("Status", branch.status || branch.Status || "");
+            setValue("CUID", branch.cuid || branch.CUID || "");
+
+            // Fetch and set company name based on companyID
+            if (companyOptions && companyOptions.length > 0) {
+              const selectedCompany = companyOptions.find(
+                (company) => company.id == (branch.companyID || branch.CompanyID)
+              );
+              if (selectedCompany) {
+                setValue("CompanyName", selectedCompany.value);
+              }
+            }
+            
+            // Set CUID properly
+            if (cuidOptions && cuidOptions.length > 0) {
+              const selectedUser = cuidOptions.find(
+                user => user.id == (branch.cuid || branch.CUID)
+              );
+              if (selectedUser) {
+                setValue("CUID", selectedUser.id);
+              }
+            }
           } else {
             console.warn("No data found for BranchID:", id);
           }
         } catch (err) {
+          console.error("Fetch error:", err);
           setError("Failed to fetch Branch details.");
         } finally {
           setLoading(false);
@@ -62,24 +85,35 @@ export default function BranchMasterForm() {
     } else {
       setLoading(false);
     }
-  }, [id, setValue]);
+  }, [id, setValue, companyOptions, cuidOptions]);
+
   const onSubmit = async (data) => {
+    console.log("Form data submitted:", data);
+    
+    const selectedCompany = companyOptions.find(
+      (company) => company.id == data.CompanyID
+    );
+
     const payload = {
       BranchID: id || 0,
       BranchName: data.BranchName,
       CurrencyCode: data.CurrencyCode,
       ShortName: data.ShortName,
       CompanyID: parseInt(data.CompanyID, 10) || 0,
+      CompanyName: selectedCompany ? selectedCompany.value : "",
       Remarks: data.Remarks,
       Address: data.Address,
       Bank: data.Bank,
       Description: data.Description,
-      TacDescription: data.TacDescription,
+      TaxDescription: data.TaxDescription,
       CertifyDescription: data.CertifyDescription,
       GST_No: data.GST_No,
-      Status: data.Status,
+      Status: data.Status || data.status,
       CUID: parseInt(data.CUID, 10) || 0,
     };
+    
+    console.log("Payload being sent:", payload);
+    
     try {
       await AxiosInstance.post("/BranchMaster", payload);
       alert(
@@ -88,9 +122,11 @@ export default function BranchMasterForm() {
       reset();
       navigate("/BranchMasterTable");
     } catch (error) {
+      console.error("Submit error:", error);
       alert("Error submitting data");
     }
   };
+
   const handleDelete = async () => {
     if (window.confirm("Are you sure you want to delete this Branch?")) {
       try {
@@ -103,6 +139,7 @@ export default function BranchMasterForm() {
       }
     }
   };
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p className="error">{error}</p>;
   if (statusError)
@@ -115,6 +152,7 @@ export default function BranchMasterForm() {
     );
   if (cuidError)
     return <p className="error">Failed to fetch User options: {cuidError}</p>;
+
   return (
     <>
       <Form
@@ -125,43 +163,37 @@ export default function BranchMasterForm() {
           overflow: "auto",
           padding: "20px",
           marginTop: "20px",
-          // marginBottom: "70px",
         }}
       >
         <h1 className="ribbon" style={{ marginBottom: "30px", width: "300px" }}>
           Branch Master Form
         </h1>
         <Container>
-          {/* RoleID DropDown */}
           <Row>
-          <Col md={2} className="d-flex align-items-center">
-  <Form.Label>BranchName :</Form.Label>
-</Col>
-<Col md={4}>
-  <Form.Control
-    type="text"
-    placeholder="Enter your Branch name."
-    {...register("BranchName", {
-      required: "BranchName is required",
-    })}
-    style={{
-      border: "none", // Removes the border
-      borderBottom: "2px solid rgb(243, 185, 78)", // Adds a bottom border with new color
-      outline: "none", // Removes the outline when focused
-      boxShadow: "none", // Removes the shadow on focus
-      padding: "5px 0", // Adds padding to the top and bottom for better appearance
-      width: "100%",
-      borderRadius: "0", // Decreases the width of the input box
-    }}
-  />
-  <style>
-    {`
-      input::placeholder {
-        font-size: 12px;  // Adjust the font size to your preference
-      }
-    `}
-  </style>
-</Col>
+            <Col md={2} className="d-flex align-items-center">
+              <Form.Label>BranchName :</Form.Label>
+            </Col>
+            <Col md={4}>
+              <Form.Control
+                type="text"
+                placeholder="Enter your Branch name."
+                {...register("BranchName", {
+                  required: "BranchName is required",
+                })}
+                style={{
+                  border: "none",
+                  borderBottom: "2px solid rgb(243, 185, 78)",
+                  outline: "none",
+                  boxShadow: "none",
+                  padding: "5px 0",
+                  width: "100%",
+                  borderRadius: "0",
+                }}
+              />
+              {errors.BranchName && (
+                <p style={{ color: "red" }}>{errors.BranchName.message}</p>
+              )}
+            </Col>
 
             <Col md={2} className="d-flex align-items-center">
               <Form.Label>CurrencyCode:</Form.Label>
@@ -175,13 +207,13 @@ export default function BranchMasterForm() {
                     required: "CurrencyCode is required",
                   })}
                   style={{
-                    border: "none", // Removes the border
-                    borderBottom: "2px solid rgb(243, 185, 78)", // Adds a bottom border with new color
-                    outline: "none", // Removes the outline when focused
-                    boxShadow: "none", // Removes the shadow on focus
-                    padding: "5px 0", // Adds padding to the top and bottom for better appearance
+                    border: "none",
+                    borderBottom: "2px solid rgb(243, 185, 78)",
+                    outline: "none",
+                    boxShadow: "none",
+                    padding: "5px 0",
                     width: "80%",
-                    borderRadius: "0", // Decreases the width of the input box
+                    borderRadius: "0",
                   }}
                 />
                 {errors.CurrencyCode && (
@@ -193,90 +225,84 @@ export default function BranchMasterForm() {
           <br />
           <Row>
             <Col md={2} className="d-flex align-items-center">
-              <Form.Label> ShortCode:</Form.Label>
+              <Form.Label>ShortName:</Form.Label>
             </Col>
             <Col md={4}>
               <Form.Control
                 type="text"
-                placeholder="Enter ShortCode"
-                {...register("ShortCode", {
-                  required: "ShortCode is required",
+                placeholder="Enter ShortName"
+                {...register("ShortName", {
+                  required: "ShortName is required",
                 })}
                 style={{
                   border: "none",
-                  borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
-                  borderRadius: "0", // Removes rounded corners
+                  borderBottom: "2px solid rgb(243, 185, 78)",
+                  borderRadius: "0",
                 }}
               />
-              {errors.ShortCode && (
-                <p style={{ color: "red" }}>{errors.ShortCode.message}</p>
+              {errors.ShortName && (
+                <p style={{ color: "red" }}>{errors.ShortName.message}</p>
               )}
             </Col>
 
             <Col md={2} className="d-flex align-items-center">
               <Form.Label>CompanyID:</Form.Label>
             </Col>
+
             <Col md={4}>
               <select
-                id="companies"
-                {...register("companies", { required: true })}
+                id="CompanyID"
+                {...register("CompanyID", { required: true })}
                 className="form-select"
                 style={{
-                  height: "30px", // Decrease the height
-                  padding: "0.2rem", // Reduce padding
+                  height: "30px",
+                  padding: "0.2rem",
                   fontSize: "14px",
-                  width: "330px", // Adjust the font size
+                  width: "330px",
                 }}
               >
                 <option value="" disabled>
                   --Select--
                 </option>
                 {companyOptions?.length > 0 ? (
-                  companyOptions.map((companies, index) => (
-                    <option
-                      key={companies.value || index}
-                      value={companies.value}
-                    >
-                      {companies.id || "Unnamed Status"}
+                  companyOptions.map((company) => (
+                    <option key={company.id} value={company.id}>
+                      {company.value || "Unnamed Company"}
                     </option>
                   ))
                 ) : (
                   <option disabled>No company options available</option>
                 )}
               </select>
-              {errors.companies && (
+              {errors.CompanyID && (
                 <p className="error-text">Please select a Company.</p>
               )}
             </Col>
           </Row>
           <br />
           <Row>
-  <Col md={2} className="d-flex align-items-center">
-    <Form.Label>Remarks:</Form.Label>
-  </Col>
-  <Col md={4}>
-    <Form.Control
-      type="text"
-      placeholder="Enter Remarks."
-      {...register("Remarks")}
-      style={{
-        border: "none",
-        borderBottom: "2px solid rgb(133, 132, 130)", // Custom underline
-        borderRadius: "0", // Removes rounded corners
-        padding: "5px 0", // Adds padding to vertically align the text
-        lineHeight: "1.5", // Adjust line height to align text vertically
-        fontSize: "14px", // Adjust font size to match the input size
-      }}
-    />
-    {errors.Remarks && (
-      <p style={{ color: "red" }}>{errors.Remarks.message}</p>
-    )}
-  </Col>
+            <Col md={2} className="d-flex align-items-center">
+              <Form.Label>Remarks:</Form.Label>
+            </Col>
+            <Col md={4}>
+              <Form.Control
+                type="text"
+                placeholder="Enter Remarks."
+                {...register("Remarks")}
+                style={{
+                  border: "none",
+                  borderBottom: "2px solid rgb(133, 132, 130)",
+                  borderRadius: "0",
+                  padding: "5px 0",
+                  lineHeight: "1.5",
+                  fontSize: "14px",
+                }}
+              />
+            </Col>
 
-  <Col md={2} className="d-flex align-items-center">
-    <Form.Label>Address:</Form.Label>
-  </Col>
-
+            <Col md={2} className="d-flex align-items-center">
+              <Form.Label>Address:</Form.Label>
+            </Col>
 
             <Col md={4}>
               <Form.Control
@@ -287,8 +313,8 @@ export default function BranchMasterForm() {
                 })}
                 style={{
                   border: "none",
-                  borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
-                  borderRadius: "0", // Removes rounded corners
+                  borderBottom: "2px solid rgb(243, 185, 78)",
+                  borderRadius: "0",
                 }}
               />
               {errors.Address && (
@@ -310,13 +336,13 @@ export default function BranchMasterForm() {
                     required: "Bank is required",
                   })}
                   style={{
-                    border: "none", // Removes the border
-                    borderBottom: "2px solid rgb(243, 185, 78)", // Adds a bottom border with new color
-                    outline: "none", // Removes the outline when focused
-                    boxShadow: "none", // Removes the shadow on focus
-                    padding: "5px 0", // Adds padding to the top and bottom for better appearance
+                    border: "none",
+                    borderBottom: "2px solid rgb(243, 185, 78)",
+                    outline: "none",
+                    boxShadow: "none",
+                    padding: "5px 0",
                     width: "100%",
-                    borderRadius: "0", // Decreases the width of the input box
+                    borderRadius: "0",
                   }}
                 />
                 {errors.Bank && (
@@ -325,7 +351,7 @@ export default function BranchMasterForm() {
               </Form.Group>
             </Col>
             <Col md={2} className="d-flex align-items-center">
-              <Form.Label> Description:</Form.Label>
+              <Form.Label>Description:</Form.Label>
             </Col>
             <Col md={4}>
               <Form.Control
@@ -334,19 +360,16 @@ export default function BranchMasterForm() {
                 {...register("Description")}
                 style={{
                   border: "none",
-                  borderBottom: "2px solid rgb(133, 132, 130)", // Yellow underline using rgb(243, 185, 78)
-                  borderRadius: "0", // Removes rounded corners
+                  borderBottom: "2px solid rgb(133, 132, 130)",
+                  borderRadius: "0",
                 }}
               />
-              {errors.Description && (
-                <p style={{ color: "red" }}>{errors.Description.message}</p>
-              )}
             </Col>
           </Row>
           <br />
           <Row>
             <Col md={2} className="d-flex align-items-center">
-              <Form.Label> TaxDescription:</Form.Label>
+              <Form.Label>TaxDescription:</Form.Label>
             </Col>
             <Col md={4}>
               <Form.Control
@@ -355,16 +378,13 @@ export default function BranchMasterForm() {
                 {...register("TaxDescription")}
                 style={{
                   border: "none",
-                  borderBottom: "2px solid rgb(133, 132, 130)", // Yellow underline using rgb(243, 185, 78)
-                  borderRadius: "0", // Removes rounded corners
+                  borderBottom: "2px solid rgb(133, 132, 130)",
+                  borderRadius: "0",
                 }}
               />
-              {errors.TaxDescription && (
-                <p style={{ color: "red" }}>{errors.TaxDescription.message}</p>
-              )}
             </Col>
             <Col md={2} className="d-flex align-items-center">
-              <Form.Label> CertifyDescription:</Form.Label>
+              <Form.Label>CertifyDescription:</Form.Label>
             </Col>
             <Col md={4}>
               <Form.Control
@@ -373,21 +393,16 @@ export default function BranchMasterForm() {
                 {...register("CertifyDescription")}
                 style={{
                   border: "none",
-                  borderBottom: "2px solid rgb(133, 132, 130)", // Yellow underline using rgb(243, 185, 78)
-                  borderRadius: "0", // Removes rounded corners
+                  borderBottom: "2px solid rgb(133, 132, 130)",
+                  borderRadius: "0",
                 }}
               />
-              {errors.CertifyDescription && (
-                <p style={{ color: "red" }}>
-                  {errors.CertifyDescription.message}
-                </p>
-              )}
             </Col>
           </Row>
           <br />
           <Row>
             <Col md={2} className="d-flex align-items-center">
-              <Form.Label> GST_No:</Form.Label>
+              <Form.Label>GST_No:</Form.Label>
             </Col>
             <Col md={4}>
               <Form.Control
@@ -396,13 +411,10 @@ export default function BranchMasterForm() {
                 {...register("GST_No")}
                 style={{
                   border: "none",
-                  borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
-                  borderRadius: "0", // Removes rounded corners
+                  borderBottom: "2px solid rgb(243, 185, 78)",
+                  borderRadius: "0",
                 }}
               />
-              {errors.GST_No && (
-                <p style={{ color: "red" }}>{errors.GST_No.message}</p>
-              )}
             </Col>
 
             <Col md={2} className="d-flex align-items-center">
@@ -410,18 +422,22 @@ export default function BranchMasterForm() {
             </Col>
             <Col md={4}>
               <select
-                id="status"
+                id="Status"
                 {...register("Status", { required: true })}
-                className="form-select" style={{
-                  height: "30px", // Decrease the height
-                  padding: "0.2rem", // Reduce padding
+                className="form-select"
+                style={{
+                  height: "30px",
+                  padding: "0.2rem",
                   fontSize: "14px",
-                  width: "330px",}}
+                  width: "330px",
+                }}
               >
-                <option value="" disabled>--Select--</option>
+                <option value="" disabled>
+                  --Select--
+                </option>
                 {statusOptions?.length > 0 ? (
-                  statusOptions.map((status, index) => (
-                    <option key={status.value || index} value={status.value}>
+                  statusOptions.map((status) => (
+                    <option key={status.id} value={status.id}>
                       {status.value || "Unnamed Status"}
                     </option>
                   ))
@@ -429,40 +445,45 @@ export default function BranchMasterForm() {
                   <option disabled>No status options available</option>
                 )}
               </select>
-              {errors.status && (
+              {errors.Status && (
                 <p className="error-text">Please select a status.</p>
               )}
             </Col>
+          </Row>
+          <br />
+          <Row>
             <Col md={2} className="d-flex align-items-center">
               <Form.Label>CUID:</Form.Label>
             </Col>
-            <Col md={5}>
+            <Col md={4}>
               <select
-                id="entryby"
-                {...register("entryby", { required: true })}
+                id="CUID"
+                {...register("CUID", { required: true })}
                 className="form-select"
                 style={{
-                  width: "80%", // Adjust width to match other inputs
+                  height: "30px",
+                  padding: "0.2rem",
+                  fontSize: "14px",
+                  width: "330px",
                   border: "none",
-                  borderBottom: "2px solid rgb(243, 185, 78)", // Add line style for consistency
-                  padding: "5px 0",
-                  borderRadius: "0", // Add padding to match input boxes
+                  borderBottom: "2px solid rgb(243, 185, 78)",
+                  borderRadius: "0",
                 }}
               >
                 <option value="" disabled>
                   --Select--
                 </option>
                 {cuidOptions?.length > 0 ? (
-                  cuidOptions.map((entryby, index) => (
-                    <option key={entryby.id} value={entryby.id}>
-                      {entryby.value || "Unnamed User"}
+                  cuidOptions.map((user) => (
+                    <option key={user.id} value={user.id}>
+                      {user.value || "Unnamed User"}
                     </option>
                   ))
                 ) : (
                   <option disabled>No User options available</option>
                 )}
               </select>
-              {errors.status && (
+              {errors.CUID && (
                 <p className="error-text">Please select a User.</p>
               )}
             </Col>
