@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import AxiosInstance from "/src/AxiosInstance"; // Ensure AxiosInstance is imported
-import { set } from "react-hook-form";
 
 const dropdownData = {
   status: {
@@ -50,7 +49,7 @@ taxTypes: {
   },
 
 uoms: {
-    tableName: 'UOMMST',
+    tableName: 'UOMMaster',
     fieldNameID: 'UOMID',
     fieldNameValue: 'UOM',
     fieldNameWhere: 'Status',

@@ -33,11 +33,11 @@ export default function UOMMasterForm() {
           const UOMMaster = response.data.data;
           console.log("Fetched UOMMaster:", UOMMaster);
           if (UOMMaster) {
-            setValue("UOMID", UOMMaster.UOMID || "");
-            setValue("UOM", UOMMaster.UOM || "");
-            setValue("CF", UOMMaster.CF || "");
-            setValue("Status", UOMMaster.Status || "");
-            setValue("CUID", UOMMaster.CUID || "");
+            setValue("UOMID", UOMMaster.UOMID || UOMMaster.uomid);
+            setValue("UOM", UOMMaster.UOM || UOMMaster.uom);
+            setValue("CF", UOMMaster.CF || UOMMaster.cf);
+            setValue("Status", UOMMaster.Status || UOMMaster.status);
+            setValue("CUID", UOMMaster.CUID || UOMMaster.cuid);
 
             if (cuidOptions && cuidOptions.length > 0) {
               const selectedUser = cuidOptions.find(
@@ -104,7 +104,9 @@ export default function UOMMasterForm() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p className="error">{error}</p>;
   if (statusError)
-    return <p className="error">Failed to fetch status options: {statusError}</p>;
+    return (
+      <p className="error">Failed to fetch status options: {statusError}</p>
+    );
   if (cuidError)
     return <p className="error">Failed to fetch User options: {cuidError}</p>;
 
@@ -150,7 +152,7 @@ export default function UOMMasterForm() {
               )}
             </Col>
           </Row>
-          <br/>
+          <br />
           <Row>
             <Col md={2} className="d-flex align-items-center">
               <Form.Label>CF:</Form.Label>
@@ -172,12 +174,10 @@ export default function UOMMasterForm() {
                   borderRadius: "0",
                 }}
               />
-              {errors.CF && (
-                <p style={{ color: "red" }}>{errors.CF.message}</p>
-              )}
+              {errors.CF && <p style={{ color: "red" }}>{errors.CF.message}</p>}
             </Col>
           </Row>
-          <br/>
+          <br />
           <Row>
             <Col md={2} className="d-flex align-items-center">
               <Form.Label>Status:</Form.Label>
@@ -193,8 +193,8 @@ export default function UOMMasterForm() {
                   padding: "0.2rem", // Reduce padding
                   border: "2px solid rgb(243, 185, 78)",
                   fontSize: "14px",
-                  width: "360px",}}
-               
+                  width: "360px",
+                }}
               >
                 <option value="" disabled>
                   --Select--
@@ -214,7 +214,7 @@ export default function UOMMasterForm() {
               )}
             </Col>
           </Row>
-          <br/>
+          <br />
           <Row>
             <Col md={2} className="d-flex align-items-center">
               <Form.Label>CUID:</Form.Label>
@@ -230,7 +230,7 @@ export default function UOMMasterForm() {
                   padding: "0.2rem", // Reduce padding
                   border: "2px solid rgb(243, 185, 78)",
                   fontSize: "14px",
-                  width: "360px"
+                  width: "360px",
                 }}
               >
                 <option value="" disabled>

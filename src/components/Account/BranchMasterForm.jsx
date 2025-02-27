@@ -110,7 +110,7 @@ export default function BranchMasterForm() {
       GST_No: data.GST_No,
       Status: data.Status || data.status,
       CUID: parseInt(data.CUID, 10) || 0,
-      CUID: selectedUser ? selectedUser.id : 0,
+      // userName: selectedUser ? selectedUser.value : "",
     };
     
     console.log("Payload being sent:", payload);
