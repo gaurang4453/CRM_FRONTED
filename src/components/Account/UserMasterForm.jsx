@@ -42,10 +42,7 @@ export default function UserMasterForm() {
             setValue("MobileNo", user.MobileNo || user.mobileNo || "");
             setValue("EmailID", user.EmailID || user.emailID || "");
             setValue("EmailPassword", user.emailPassword || "");
-            setValue(
-              "OutSideAccess",
-              user.OutSideAccess || user.outSideAccess || ""
-            );
+            setValue("OutSideAccess", user.OutSideAccess || user.outSideAccess || "");
             setValue("EmailPort", user.EmailPort || user.emailPort || "");
             setValue("EmailHost", user.EmailHost || user.emailHost || "");
             setValue("EmailSSL", user.EmailSSL || user.emailSSL || "");
@@ -116,10 +113,8 @@ export default function UserMasterForm() {
     return (
       <p className="error">Failed to fetch status options: {statusError}</p>
     );
-    if (cuidError)
-      return (
-        <p className="error">Failed to fetch User options: {cuidError}</p>
-      );
+  if (cuidError)
+    return <p className="error">Failed to fetch User options: {cuidError}</p>;
 
   return (
     <>
@@ -151,7 +146,9 @@ export default function UserMasterForm() {
                   borderRadius: "5px",
                 }}
               >
-                <option value="" disabled>--Select--</option>
+                <option value="" disabled>
+                  --Select--
+                </option>
                 {roleOptions?.length > 0 ? (
                   roleOptions.map((role) => (
                     <option key={role.value} value={role.id}>
@@ -392,7 +389,7 @@ export default function UserMasterForm() {
                 <option value="">--Select--</option>
                 {statusOptions?.length > 0 ? (
                   statusOptions.map((status, index) => (
-                    <option key={status.id } value={status.id}>
+                    <option key={status.id} value={status.id}>
                       {status.value || "Unnamed Status"}
                     </option>
                   ))
@@ -408,33 +405,35 @@ export default function UserMasterForm() {
               <Form.Label>CUID:</Form.Label>
             </Col>
             <Col md={10}>
-        <select
-          id="entryby"
-          {...register("entryby", { required: true })}
-          className="form-select"
-          style={{
-            width: "80%", // Adjust width to match other inputs
-            border: "none",
-            borderBottom: "2px solid rgb(243, 185, 78)", // Add line style for consistency
-            padding: "5px 0", 
-            borderRadius: "0",// Add padding to match input boxes
-          }}
-        >
-          <option value="" disabled>
-            --Select--
-          </option>
-          {cuidOptions?.length > 0 ? (
-            cuidOptions.map((entryby, index) => (
-              <option key={entryby.id} value={entryby.id}>
-                {entryby.value || "Unnamed User"}
-              </option>
-            ))
-          ) : (
-            <option disabled>No User options available</option>
-          )}
-        </select>
-        {errors.status && <p className="error-text">Please select a User.</p>}
-      </Col>
+              <select
+                id="entryby"
+                {...register("entryby", { required: true })}
+                className="form-select"
+                style={{
+                  width: "80%", // Adjust width to match other inputs
+                  border: "none",
+                  borderBottom: "2px solid rgb(243, 185, 78)", // Add line style for consistency
+                  padding: "5px 0",
+                  borderRadius: "0", // Add padding to match input boxes
+                }}
+              >
+                <option value="" disabled>
+                  --Select--
+                </option>
+                {cuidOptions?.length > 0 ? (
+                  cuidOptions.map((entryby, index) => (
+                    <option key={entryby.id} value={entryby.id}>
+                      {entryby.value || "Unnamed User"}
+                    </option>
+                  ))
+                ) : (
+                  <option disabled>No User options available</option>
+                )}
+              </select>
+              {errors.status && (
+                <p className="error-text">Please select a User.</p>
+              )}
+            </Col>
           </Row>
         </Container>
       </Form>
