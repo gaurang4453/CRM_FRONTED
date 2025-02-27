@@ -13,7 +13,7 @@ import BranchMasterForm from "./components/Account/BranchMasterForm";
 import BranchMasterTable from "./components/Index/BranchMasterTable";
 import ItemMasterForm from "./components/Account/ItemMasterForm";
 import ItemMasterTable from "./components/Index/ItemMasterTable";
-import UOMMasterForm from "./components/Account/UOMMstForm";
+import UOMMasterTable from "./components/Index/UOMMasterTable";
 
 import Navbar from "./components/Navbar/Navbar";
 
@@ -30,7 +30,8 @@ export default function Routing() {
           <Route path="/CompanyMasterTable" element={<CompanyMasterTable />} />
           <Route path="/BranchMasterTable" element={<BranchMasterTable />} />
           <Route path="/ItemMasterTable" element={<ItemMasterTable />} />
-
+          <Route path="/UOMMasterTable" element={<UOMMasterTable />} />
+          
           <Route path="/PropMasterForm/:id" element={<PropMasterForm />} />
           <Route path="/RoleMasterForm/:id" element={<RoleMasterForm />} />
           <Route path="/UserMasterForm/:id" element={<UserMasterForm />} />

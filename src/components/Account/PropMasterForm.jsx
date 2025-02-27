@@ -153,6 +153,7 @@ export default function PropMasterForm() {
                 id="status" 
                 {...register("status", { required: "Please select a status" })}
                 className="form-select"
+                defaultValue=""
                 style={{
                   width: "75%", // Full width to match the form layout
                   border: "1px solid rgb(243, 185, 78)", // Custom border for dropdown
@@ -192,6 +193,7 @@ export default function PropMasterForm() {
                 id="entryby"
                 {...register("entryby", { required: true })}
                 className="form-select"
+                defaultValue=""
                 style={{
                   width: "75%", // Full width to match the form layout
                   border: "1px solid rgb(243, 185, 78)", // Custom border for dropdown

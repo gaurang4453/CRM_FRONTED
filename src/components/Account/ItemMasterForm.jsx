@@ -23,9 +23,8 @@ export default function UserMasterForm() {
 
   const { data: statusOptions, error: statusError } = useDropdownData("status");
   const { data: cuidOptions, error: cuidError } = useDropdownData("entryby");
-  const { data: taxtypeOptions, error: taxtypeError } =
-    useDropdownData("taxTypes");
-  const { data: uomidOptions, error: uomidError } = useDropdownData("entryby");
+  const { data: taxtypeOptions, error: taxtypeError } = useDropdownData("taxTypes");
+  const { data: uomidOptions, error: uomidError } = useDropdownData("uoms");
 
   useEffect(() => {
     if (id) {
@@ -75,11 +74,11 @@ export default function UserMasterForm() {
     };
 
     try {
-      const response = await AxiosInstance.post("/UserMaster", payload);
+      const response = await AxiosInstance.post("/ItemMaster", payload);
       console.log("API Response:", response.data); // Log API response
       alert(id ? "User updated successfully!" : "Successfully submitted data");
       reset();
-      navigate("/UserMasterTable");
+      navigate("/ItemMasterTable");
     } catch (error) {
       console.error("API Error:", error.response?.data || error.message); // Log error response
       alert("Error submitting data");
@@ -87,13 +86,13 @@ export default function UserMasterForm() {
   };
 
   const handleDelete = async () => {
-    if (window.confirm("Are you sure you want to delete this User?")) {
+    if (window.confirm("Are you sure you want to delete this Item?")) {
       try {
-        await AxiosInstance.delete(`/UserMaster/${id}`);
-        alert("User deleted successfully!");
-        navigate("/UserMasterTable");
+        await AxiosInstance.delete(`/ItemMaster/${id}`);
+        alert("Item deleted successfully!");
+        navigate("/ItemMasterTable");
       } catch (error) {
-        alert("Failed to delete User");
+        alert("Failed to delete Item");
       }
     }
   };
@@ -108,6 +107,8 @@ export default function UserMasterForm() {
     return <p className="error">Failed to fetch User options: {cuidError}</p>;
   if (taxtypeError)
     return <p className="error">Failed to fetch tax options: {taxtypeError}</p>;
+  if (uomidError)
+    return <p className="error">Failed to fetch uom options: {uomidError}</p>;
   return (
     <>
       <Form
@@ -213,6 +214,7 @@ export default function UserMasterForm() {
                 id="taxTypes"
                 {...register("taxTypes", { required: true })}
                 className="form-select"
+                defaultValue=""
                 style={{
                   height: "30px",
                   padding: "0.2rem",
@@ -225,8 +227,8 @@ export default function UserMasterForm() {
                 </option>
                 {taxtypeOptions?.length > 0 ? (
                   taxtypeOptions.map((taxTypes, index) => (
-                    <option key={taxTypes.id} value={taxTypes.id}>
-                      {taxTypes.value || "Unnamed tax"}
+                    <option key={taxTypes.id } value={taxTypes.id}>
+                      {taxTypes.id || "Unnamed tax"}
                     </option>
                   ))
                 ) : (
@@ -271,9 +273,10 @@ export default function UserMasterForm() {
             </Col>
             <Col md={4}>
               <select
-                id="status"
-                {...register("Status", { required: true })}
+                id="uoms"
+                {...register("uoms", { required: true })}
                 className="form-select"
+                defaultValue=""
                 style={{
                   height: "30px",
                   padding: "0.2rem",
@@ -284,10 +287,10 @@ export default function UserMasterForm() {
                 <option value="" disabled>
                   --Select--
                 </option>
-                {statusOptions?.length > 0 ? (
-                  statusOptions.map((status, index) => (
-                    <option key={status.value || index} value={status.value}>
-                      {status.value || "Unnamed Status"}
+                {uomidOptions?.length > 0 ? (
+                  uomidOptions.map((uoms, index) => (
+                    <option key={uoms.value } value={uoms.value}>
+                      {uoms.value || "Unnamed Status"}
                     </option>
                   ))
                 ) : (
@@ -306,6 +309,7 @@ export default function UserMasterForm() {
                 id="status"
                 {...register("Status", { required: true })}
                 className="form-select"
+                defaultValue=""
                 style={{
                   height: "30px",
                   padding: "0.2rem",
@@ -335,6 +339,7 @@ export default function UserMasterForm() {
                 id="entryby"
                 {...register("entryby", { required: true })}
                 className="form-select"
+                defaultValue=""
                 style={{
                   width: "80%",
                   border: "none",

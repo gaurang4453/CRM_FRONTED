@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import AxiosInstance from "../../AxiosInstance";
 import { Spinner, Table, Container, Button } from "react-bootstrap";
 
-export default function CompanyMasterTable() {
+export default function UOMMasterTable() {
   const [tableData, setTableData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -16,7 +16,7 @@ export default function CompanyMasterTable() {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const response = await AxiosInstance.get("/CompanyMaster");
+      const response = await AxiosInstance.get("/UOMMaster");
       const data = response.data.data;
       console.log("Fetched Data:", data); // Debugging
       setTableData(data);
@@ -26,15 +26,13 @@ export default function CompanyMasterTable() {
       setLoading(false);
     }
   };
-
-  const handleRowClick = (companyID) => {
-    navigate(`/CompanyMasterForm/${companyID}`);
+  const handleRowClick = (UOMID) => {
+    navigate(`/UOMMasterForm/${UOMID}`);
   };
 
   const handleCreateNew = () => {
-    navigate("/CompanyMasterForm");
+    navigate("/UOMMasterForm");
   };
-
   return (
     <Container className="mt-5" style={{ maxWidth: "100%" }}>
       {/* Create New Button */}
@@ -43,7 +41,7 @@ export default function CompanyMasterTable() {
         style={{
           position: "fixed", // Fix the button on the screen
           top: "100px", // Adjust the vertical position (distance from the top)
-          right: "1340px", // Adjust the horizontal position (distance from the right edge)
+          right: "1265px", // Adjust the horizontal position (distance from the right edge)
           zIndex: "1000", // Ensures it stays above other content
           padding: "5px 10px", // Optional: Adds padding around the button
         }}
@@ -56,7 +54,6 @@ export default function CompanyMasterTable() {
           + Create New
         </Button>
       </div>
-
       {loading && (
         <Spinner
           animation="border"
@@ -64,7 +61,6 @@ export default function CompanyMasterTable() {
           className="d-block mx-auto"
         />
       )}
-
       {error && <p className="text-danger text-center">{error}</p>}
 
       {tableData.length > 0 && !loading ? (
@@ -75,7 +71,7 @@ export default function CompanyMasterTable() {
             width: "120%", // Increase the table container width (set to 90% for more space)
             height: "700px", // Maintain the height of the container
             marginLeft: "-120px", // Center horizontally
-            marginRight: "430px", // Center horizontally
+            marginRight: "450px", // Center horizontally
           }}
         >
           <h5
@@ -87,7 +83,7 @@ export default function CompanyMasterTable() {
               fontWeight: "bold",
             }}
           >
-            Company Master Table
+            UOM Master Table
           </h5>
           <Table
             striped
@@ -98,32 +94,25 @@ export default function CompanyMasterTable() {
           >
             <thead className="bg-primary text-white text-center">
               <tr>
-                <th>Company name</th>
-                <th>ShortCode</th>
-                <th>PANNO</th>
-                <th>GST_No</th>
-                <th>CurrencyCode</th>
-                <th>Address</th>
-                <th>Jurisdiction</th>
-                <th>AuthPerson</th>
+                <th>UOM</th>
+                <th>CF</th>
+                <th>Status</th>
+                <th>CUID</th>
               </tr>
             </thead>
             <tbody>
-              {tableData.map((item, index) => (
+              {tableData.map((uom, index) => (
                 <tr
-                  key={item.CompanyID || index}
-                  onClick={() => handleRowClick(item.companyID)}
+                  key={uom.uOM || index}
+                  onClick={() => handleRowClick(uom.uOM)}
                   style={{ cursor: "pointer" }}
                   className="text-center table-row-hover"
                 >
-                  <td style={{ width: "10%" }}>{item.companyName}</td>
-                  <td style={{ width: "8%" }}>{item.shortCode}</td>
-                  <td style={{ width: "10%" }}>{item.panno}</td>
-                  <td style={{ width: "8%" }}>{item.gsT_No}</td>
-                  <td style={{ width: "8%" }}>{item.currencyCode}</td>
-                  <td style={{ width: "15%" }}>{item.address}</td>
-                  <td style={{ width: "8%" }}>{item.jurisdiction}</td>
-                  <td style={{ width: "8%" }}>{item.authPerson}</td>
+                  <td>{uom.uOM}</td>
+                  <td>{uom.cF}</td>                  
+                  <td>{uom.status}</td>
+                  <td>{uom.cUID}</td>
+                  
                 </tr>
               ))}
             </tbody>
