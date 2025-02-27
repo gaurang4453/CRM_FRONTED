@@ -132,9 +132,9 @@ export default function UserMasterForm() {
               <Form.Group controlId="ItemNo">
                 <Form.Control
                   type="text"
-                  placeholder="Enter your ItemNo"
+                  placeholder="Enter your ItemNo."
                   {...register("ItemNo", {
-                    required: "ItemNo is required",
+                    required: "ItemNo is required.",
                   })}
                   style={{
                     border: "none",
@@ -142,7 +142,7 @@ export default function UserMasterForm() {
                     outline: "none",
                     boxShadow: "none",
                     padding: "5px 0",
-                    width: "80%",
+                    width: "100%",
                     borderRadius: "0",
                   }}
                 />
@@ -158,9 +158,9 @@ export default function UserMasterForm() {
               <Form.Group controlId="ItemName">
                 <Form.Control
                   type="text"
-                  placeholder="Enter your ItemName"
+                  placeholder="Enter your ItemName."
                   {...register("ItemName", {
-                    required: "ItemName is required",
+                    required: "ItemName is required.",
                   })}
                   style={{
                     border: "none",
@@ -168,7 +168,7 @@ export default function UserMasterForm() {
                     outline: "none",
                     boxShadow: "none",
                     padding: "5px 0",
-                    width: "80%",
+                    width: "100%",
                     borderRadius: "0",
                   }}
                 />
@@ -187,9 +187,9 @@ export default function UserMasterForm() {
               <Form.Group controlId="Description">
                 <Form.Control
                   type="text"
-                  placeholder="Enter your Description"
+                  placeholder="Enter your Description."
                   {...register("Description", {
-                    required: "Description is required",
+                    required: "Description is require.",
                   })}
                   style={{
                     border: "none",
@@ -197,7 +197,7 @@ export default function UserMasterForm() {
                     outline: "none",
                     boxShadow: "none",
                     padding: "5px 0",
-                    width: "80%",
+                    width: "100%",
                     borderRadius: "0",
                   }}
                 />
@@ -216,10 +216,11 @@ export default function UserMasterForm() {
                 className="form-select"
                 defaultValue=""
                 style={{
+                  border: "2px solid rgb(243, 185, 78)",
                   height: "30px",
                   padding: "0.2rem",
                   fontSize: "14px",
-                  width: "320px",
+                  width: "100%",
                 }}
               >
                 <option value="" disabled>
@@ -249,9 +250,9 @@ export default function UserMasterForm() {
               <Form.Group controlId="HSNCOde">
                 <Form.Control
                   type="text"
-                  placeholder="Enter your HSNCOde"
+                  placeholder="Enter your HSNCOde."
                   {...register("HSNCOde", {
-                    required: "HSNCOde is required",
+                    required: "HSNCOde is required.",
                   })}
                   style={{
                     border: "none",
@@ -259,7 +260,7 @@ export default function UserMasterForm() {
                     outline: "none",
                     boxShadow: "none",
                     padding: "5px 0",
-                    width: "80%",
+                    width: "100%",
                     borderRadius: "0",
                   }}
                 />
@@ -280,8 +281,9 @@ export default function UserMasterForm() {
                 style={{
                   height: "30px",
                   padding: "0.2rem",
+                  border: "2px solid rgb(243, 185, 78)",
                   fontSize: "14px",
-                  width: "330px",
+                  width: "100%",
                 }}
               >
                 <option value="" disabled>
@@ -313,8 +315,9 @@ export default function UserMasterForm() {
                 style={{
                   height: "30px",
                   padding: "0.2rem",
+                  border: "2px solid rgb(243, 185, 78)",
                   fontSize: "14px",
-                  width: "330px",
+                  width: "100%",
                 }}
               >
                 <option value="" disabled>
@@ -341,7 +344,7 @@ export default function UserMasterForm() {
                 className="form-select"
                 defaultValue=""
                 style={{
-                  width: "80%",
+                  width: "100%",
                   border: "none",
                   borderBottom: "2px solid rgb(243, 185, 78)",
                   padding: "5px 0",

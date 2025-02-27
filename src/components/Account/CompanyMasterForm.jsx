@@ -720,7 +720,8 @@ export default function CompanyMasterForm() {
                 className="form-select"
                 defaultValue=""
                 style={{
-                  height: "30px", // Decrease the height
+                  height: "30px", 
+                  border: "2px solid rgb(243, 185, 78)",// Decrease the height
                   padding: "0.2rem", // Reduce padding
                   fontSize: "14px",
                   width: "290px",
@@ -754,11 +755,11 @@ export default function CompanyMasterForm() {
                 className="form-select"
                 defaultValue=""
                 style={{
-                  width: "100%", // Adjust width to match other inputs
-                  border: "none",
-                  borderBottom: "2px solid rgb(243, 185, 78)", // Add line style for consistency
-                  padding: "5px 0",
-                  borderRadius: "0", // Add padding to match input boxes
+                  height: "30px", 
+                  border: "2px solid rgb(243, 185, 78)",// Decrease the height
+                  padding: "0.2rem", // Reduce padding
+                  fontSize: "14px",
+                  width: "290px", // Add padding to match input boxes
                 }}
               >
                 <option value="" disabled>
