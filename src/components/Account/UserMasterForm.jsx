@@ -385,6 +385,7 @@ export default function UserMasterForm() {
                 id="status"
                 {...register("Status")}
                 className="form-select"
+                defaultValue=""
               >
                 <option value="">--Select--</option>
                 {statusOptions?.length > 0 ? (
@@ -409,6 +410,7 @@ export default function UserMasterForm() {
                 id="entryby"
                 {...register("entryby", { required: true })}
                 className="form-select"
+                defaultValue=""
                 style={{
                   width: "80%", // Adjust width to match other inputs
                   border: "none",

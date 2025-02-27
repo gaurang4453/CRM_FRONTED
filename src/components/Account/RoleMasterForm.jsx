@@ -134,6 +134,7 @@ if (cuidError)
           id="status"
           {...register("status", { required: true })}
           className="form-select"
+          defaultValue=""
           style={{
             width: "80%", // Adjust width to match other inputs
             border: "none",
@@ -169,6 +170,7 @@ if (cuidError)
           id="entryby"
           {...register("entryby", { required: true })}
           className="form-select"
+          defaultValue=""
           style={{
             width: "80%", // Adjust width to match other inputs
             border: "none",

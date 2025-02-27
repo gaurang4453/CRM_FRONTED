@@ -110,6 +110,7 @@ export default function BranchMasterForm() {
       GST_No: data.GST_No,
       Status: data.Status || data.status,
       CUID: parseInt(data.CUID, 10) || 0,
+      CUID: selectedUser ? selectedUser.id : 0,
     };
     
     console.log("Payload being sent:", payload);
@@ -258,6 +259,7 @@ export default function BranchMasterForm() {
                 id="CompanyID"
                 {...register("CompanyID", { required: true })}
                 className="form-select"
+                defaultValue=""
                 style={{
                   height: "30px",
                   padding: "0.2rem",
@@ -432,6 +434,7 @@ export default function BranchMasterForm() {
                 id="Status"
                 {...register("Status", { required: true })}
                 className="form-select"
+                defaultValue=""
                 style={{
                   height: "30px", // Decrease the height
                   padding: "0.2rem", // Reduce padding
@@ -467,6 +470,7 @@ export default function BranchMasterForm() {
                 id="CUID"
                 {...register("CUID", { required: true })}
                 className="form-select"
+                defaultValue=""
                 style={{
                   height: "30px",
                   padding: "0.2rem",
