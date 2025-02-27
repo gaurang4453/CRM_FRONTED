@@ -359,7 +359,7 @@ export default function UserMasterForm() {
             <Col md={2} className="d-flex align-items-center">
               <Form.Label>OTP:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={4} className="d-flex align-items-center">
               <Form.Control
                 type="text"
                 placeholder="Enter OTP"
@@ -386,6 +386,13 @@ export default function UserMasterForm() {
                 {...register("Status")}
                 className="form-select"
                 defaultValue=""
+                style={{
+                               
+                height: "30px", // Decrease the height
+                padding: "0.2rem", // Reduce padding
+                border: "2px solid rgb(133, 132, 130)",
+                fontSize: "14px",
+                width: "360px",}}
               >
                 <option value="">--Select--</option>
                 {statusOptions?.length > 0 ? (
@@ -412,12 +419,11 @@ export default function UserMasterForm() {
                 className="form-select"
                 defaultValue=""
                 style={{
-                  width: "100%", // Adjust width to match other inputs
-                  border: "none",
-                  borderBottom: "2px solid rgb(243, 185, 78)", // Add line style for consistency
-                  padding: "5px 0",
-                  borderRadius: "0", // Add padding to match input boxes
-                }}
+                  height: "30px", // Decrease the height
+                  padding: "0.2rem", // Reduce padding
+                  border: "2px solid rgb(133, 132, 130)",
+                  fontSize: "14px",
+                  width: "360px"                }}
               >
                 <option value="" disabled>
                   --Select--

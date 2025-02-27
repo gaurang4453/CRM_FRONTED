@@ -131,9 +131,9 @@ export default function UOMMasterForm() {
             <Col md={4}>
               <Form.Control
                 type="text"
-                placeholder="Enter your UOM"
+                placeholder="Enter your UOM."
                 {...register("UOM", {
-                  required: "UOM is required",
+                  required: "UOM is required.",
                 })}
                 style={{
                   border: "none",
@@ -155,12 +155,12 @@ export default function UOMMasterForm() {
             <Col md={2} className="d-flex align-items-center">
               <Form.Label>CF:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={4} className="d-flex align-items-center">
               <Form.Control
                 type="text"
-                placeholder="Enter your CF"
+                placeholder="Enter your CF."
                 {...register("CF", {
-                  required: "CF is required",
+                  required: "CF is required.",
                 })}
                 style={{
                   border: "none",
@@ -187,7 +187,7 @@ export default function UOMMasterForm() {
                 id="Status"
                 {...register("Status", { required: true })}
                 className="form-select"
-                
+
                 style={{
                   height: "30px", // Decrease the height
                   padding: "0.2rem", // Reduce padding
