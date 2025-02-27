@@ -27,21 +27,21 @@ export default function UOMMasterForm() {
   useEffect(() => {
     if (id && id !== "undefined") {
       console.log("Received ID:", id);
-      const fetchUOMMst = async () => {
+      const fetchUOMMaster = async () => {
         try {
           const response = await AxiosInstance.get(`/UOMMaster/${id}`);
-          const UOMMst = response.data.data;
-          console.log("Fetched UOMMaster:", UOMMst);
-          if (UOMMst) {
-            setValue("UOMID", UOMMst.UOMID || "");
-            setValue("UOM", UOMMst.UOM || "");
-            setValue("CF", UOMMst.CF || "");
-            setValue("Status", UOMMst.Status || "");
-            setValue("CUID", UOMMst.CUID || "");
+          const UOMMaster = response.data.data;
+          console.log("Fetched UOMMaster:", UOMMaster);
+          if (UOMMaster) {
+            setValue("UOMID", UOMMaster.UOMID || "");
+            setValue("UOM", UOMMaster.UOM || "");
+            setValue("CF", UOMMaster.CF || "");
+            setValue("Status", UOMMaster.Status || "");
+            setValue("CUID", UOMMaster.CUID || "");
 
             if (cuidOptions && cuidOptions.length > 0) {
               const selectedUser = cuidOptions.find(
-                (user) => user.id == UOMMst.CUID
+                (user) => user.id == UOMMaster.CUID
               );
               if (selectedUser) {
                 setValue("CUID", selectedUser.id);
@@ -57,7 +57,7 @@ export default function UOMMasterForm() {
           setLoading(false);
         }
       };
-      fetchUOMMst();
+      fetchUOMMaster();
     } else {
       setLoading(false);
     }
@@ -76,12 +76,12 @@ export default function UOMMasterForm() {
     console.log("Payload being sent:", payload);
 
     try {
-      await AxiosInstance.post("/UOMMst", payload);
+      await AxiosInstance.post("/UOMMaster", payload);
       alert(
-        id ? "UOMMst updated successfully!" : "Successfully submitted data"
+        id ? "UOMMaster updated successfully!" : "Successfully submitted data"
       );
       reset();
-      navigate("/UOMMstTable");
+      navigate("/UOMMasterTable");
     } catch (error) {
       console.error("Submit error:", error);
       alert("Error submitting data");
@@ -89,14 +89,14 @@ export default function UOMMasterForm() {
   };
 
   const handleDelete = async () => {
-    if (window.confirm("Are you sure you want to delete this UOMMst?")) {
+    if (window.confirm("Are you sure you want to delete this UOMMaster?")) {
       try {
-        await AxiosInstance.delete(`/UOMMst/${id}`);
-        alert("UOMMst deleted successfully!");
-        navigate("/UOMMstTable");
+        await AxiosInstance.delete(`/UOMMaster/${id}`);
+        alert("UOMMaster deleted successfully!");
+        navigate("/UOMMasterTable");
       } catch (error) {
-        console.error("Error deleting UOMMst:", error);
-        alert("Failed to delete UOMMst");
+        console.error("Error deleting UOMMaster:", error);
+        alert("Failed to delete UOMMaster");
       }
     }
   };
@@ -257,7 +257,7 @@ export default function UOMMasterForm() {
         className="footer"
         onSave={handleSubmit(onSubmit)}
         onDelete={id ? handleDelete : undefined}
-        onCancel={() => navigate("/UOMMstTable")}
+        onCancel={() => navigate("/UOMMasterTable")}
       />
     </>
   );
