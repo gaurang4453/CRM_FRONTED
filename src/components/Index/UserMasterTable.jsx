@@ -124,7 +124,7 @@ export default function UserMasterTable() {
                   <td style={{ width: "25%" }}>{item.address}</td>
                   <td style={{ width: "15%" }}>{item.mobileNo}</td>
                   <td style={{ width: "15%" }}>{item.emailID}</td>
-                  <td style={{ width: "14%" }}>{item.status}</td>
+                  <td style={{ width: "14%" }}>{item.Status || item.status}</td>
                 </tr>
               ))}
             </tbody>
