@@ -121,7 +121,7 @@ export default function UOMMasterForm() {
         }}
       >
         <h1 className="ribbon" style={{ marginBottom: "30px", width: "300px" }}>
-          UOMMstr Form
+          UOM Master Form
         </h1>
         <Container>
           <Row>
@@ -150,6 +150,7 @@ export default function UOMMasterForm() {
               )}
             </Col>
           </Row>
+          <br/>
           <Row>
             <Col md={2} className="d-flex align-items-center">
               <Form.Label>CF:</Form.Label>
@@ -176,6 +177,7 @@ export default function UOMMasterForm() {
               )}
             </Col>
           </Row>
+          <br/>
           <Row>
             <Col md={2} className="d-flex align-items-center">
               <Form.Label>Status:</Form.Label>
@@ -187,11 +189,12 @@ export default function UOMMasterForm() {
                 className="form-select"
                 defaultValue=""
                 style={{
-                  height: "30px",
-                  padding: "0.2rem",
+                  height: "30px", // Decrease the height
+                  padding: "0.2rem", // Reduce padding
+                  border: "2px solid rgb(243, 185, 78)",
                   fontSize: "14px",
-                  width: "330px",
-                }}
+                  width: "360px",}}
+               
               >
                 <option value="" disabled>
                   --Select--
@@ -211,6 +214,7 @@ export default function UOMMasterForm() {
               )}
             </Col>
           </Row>
+          <br/>
           <Row>
             <Col md={2} className="d-flex align-items-center">
               <Form.Label>CUID:</Form.Label>
@@ -222,13 +226,11 @@ export default function UOMMasterForm() {
                 className="form-select"
                 defaultValue=""
                 style={{
-                  height: "30px",
-                  padding: "0.2rem",
+                  height: "30px", // Decrease the height
+                  padding: "0.2rem", // Reduce padding
+                  border: "2px solid rgb(243, 185, 78)",
                   fontSize: "14px",
-                  width: "330px",
-                  border: "none",
-                  borderBottom: "2px solid rgb(243, 185, 78)",
-                  borderRadius: "0",
+                  width: "360px"
                 }}
               >
                 <option value="" disabled>
