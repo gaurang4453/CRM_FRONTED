@@ -216,7 +216,7 @@ export default function BranchMasterForm() {
                     outline: "none",
                     boxShadow: "none",
                     padding: "5px 0",
-                    width: "80%",
+                    width: "100%",
                     borderRadius: "0",
                   }}
                 />
@@ -468,13 +468,10 @@ export default function BranchMasterForm() {
                 {...register("CUID", { required: true })}
                 className="form-select"
                 style={{
-                  height: "30px",
-                  padding: "0.2rem",
+                  height: "30px", // Decrease the height
+                  padding: "0.2rem", // Reduce padding
                   fontSize: "14px",
-                  width: "330px",
-                  border: "none",
-                  borderBottom: "2px solid rgb(243, 185, 78)",
-                  borderRadius: "0",
+                  width: "355px",
                 }}
               >
                 <option value="" disabled>

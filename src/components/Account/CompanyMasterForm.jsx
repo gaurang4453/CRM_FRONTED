@@ -750,7 +750,7 @@ export default function CompanyMasterForm() {
           {...register("entryby", { required: true })}
           className="form-select"
           style={{
-            width: "80%", // Adjust width to match other inputs
+            width: "100%", // Adjust width to match other inputs
             border: "none",
             borderBottom: "2px solid rgb(243, 185, 78)", // Add line style for consistency
             padding: "5px 0", 

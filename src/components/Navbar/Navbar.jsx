@@ -47,6 +47,11 @@ const Navbar = () => {
                  Item Master
                 </Link>
               </li>
+              <li>
+                <Link className="dropdown-item" to="/UOMMasterTable">
+                 UOM Master
+                </Link>
+              </li>
             </ul>
           </div>
           <Link className="nav-link" to="/clients">

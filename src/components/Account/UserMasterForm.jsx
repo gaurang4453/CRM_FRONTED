@@ -380,11 +380,16 @@ export default function UserMasterForm() {
             <Col md={2} className="d-flex align-items-center">
               <Form.Label>Status:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={4} className="d-flex align-items-center">
               <select
                 id="status"
                 {...register("Status")}
                 className="form-select"
+                style={{
+                  height: "30px", // Decrease the height
+                  padding: "0.2rem", // Reduce padding
+                  fontSize: "14px",
+                  width: "355px",}}
               >
                 <option value="">--Select--</option>
                 {statusOptions?.length > 0 ? (
@@ -404,13 +409,13 @@ export default function UserMasterForm() {
             <Col md={2} className="d-flex align-items-center">
               <Form.Label>CUID:</Form.Label>
             </Col>
-            <Col md={10}>
+            <Col md={4}>
               <select
                 id="entryby"
                 {...register("entryby", { required: true })}
                 className="form-select"
                 style={{
-                  width: "80%", // Adjust width to match other inputs
+                  width: "100%", // Adjust width to match other inputs
                   border: "none",
                   borderBottom: "2px solid rgb(243, 185, 78)", // Add line style for consistency
                   padding: "5px 0",
