@@ -120,10 +120,16 @@ export default function CompanyMasterTable() {
                   <td style={{ width: "8%" }}>{item.shortCode}</td>
                   <td style={{ width: "10%" }}>{item.panno}</td>
                   <td style={{ width: "8%" }}>{item.gsT_No}</td>
-                  <td style={{ width: "8%" }}>{item.currencyCode}</td>
+                  <td style={{ width: "8%" }}>
+                    {item.currencyCode || item.currencyCode}
+                  </td>
                   <td style={{ width: "15%" }}>{item.address}</td>
-                  <td style={{ width: "8%" }}>{item.jurisdiction}</td>
-                  <td style={{ width: "8%" }}>{item.authPerson}</td>
+                  <td style={{ width: "8%" }}>
+                    {item.jurisdiction || item.jurisdiction}
+                  </td>
+                  <td style={{ width: "8%" }}>
+                    {item.authPerson || item.authPerson}
+                  </td>
                 </tr>
               ))}
             </tbody>
