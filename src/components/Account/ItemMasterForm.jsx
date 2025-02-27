@@ -66,12 +66,12 @@ export default function UserMasterForm() {
       ItemNo: data.ItemNo || 0,
       ItemName: data.ItemName,
       Description: data.Description,
-      TaxType: data.TaxType,
+      TaxType: data.TaxType || data.taxType,
       HSNCOde: data.HSNCOde,
       UOMID: data.UOMID || data.uomid,
       Status: data.Status,
       //  CUID: data.CUID,
-      CUID: parseInt(data.CUID, 10) || 0,
+      CUID: parseInt(data.CUID, 10) || parseInt(data.cuid, 10),
     };
 
     try {
