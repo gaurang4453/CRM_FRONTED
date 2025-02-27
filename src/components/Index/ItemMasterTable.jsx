@@ -97,9 +97,9 @@ export default function ItemMasterTable() {
               <tr>
                 <th>Item name</th>
                 <th>HSNCode</th>
-                <th>Item Type</th>
-                <th>Item Group</th>
-                <th>UOM</th>
+                <th>Item Name</th>
+                <th>Item Description</th>
+                <th>UOMID</th>
                 <th>TaxTypeName</th>
                 <th>Status</th>
                 <th>UserName</th>
@@ -113,14 +113,14 @@ export default function ItemMasterTable() {
                   style={{ cursor: "pointer" }}
                   className="text-center table-row-hover"
                 >
-                  <td>{item.itemName}</td>
-                  <td>{item.hsNCode}</td>
-                  <td>{item.itemType}</td>
-                  <td>{item.itemGroup}</td>
-                  <td>{item.uOM}</td>
-                  <td>{item.taxTypeName}</td>
+                  <td>{item.itemName || item.itemName}</td>
+                  <td>{item.hsNCode || item.hsncOde}</td>
+                  <td>{item.itemName || item.itemName}</td>
+                  <td>{item.description || item.Description}</td>
+                  <td>{item.uomid}</td>
+                  <td>{item.taxType}</td>
                   <td>{item.status}</td>
-                  <td>{item.userName}</td>
+                  <td>{item.cuid || item.CUID}</td>
                 </tr>
               ))}
             </tbody>

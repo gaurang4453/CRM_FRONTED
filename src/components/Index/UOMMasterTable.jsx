@@ -41,7 +41,7 @@ export default function UOMMasterTable() {
         style={{
           position: "fixed", // Fix the button on the screen
           top: "100px", // Adjust the vertical position (distance from the top)
-          right: "1265px", // Adjust the horizontal position (distance from the right edge)
+          right: "1300px", // Adjust the horizontal position (distance from the right edge)
           zIndex: "1000", // Ensures it stays above other content
           padding: "5px 10px", // Optional: Adds padding around the button
         }}
@@ -67,9 +67,9 @@ export default function UOMMasterTable() {
         <div
           className="table-responsive shadow-lg rounded bg-white p-3"
           style={{
-            marginTop: "130px", // Maintain the top margin
+            marginTop: "100px", // Maintain the top margin
             width: "120%", // Increase the table container width (set to 90% for more space)
-            height: "700px", // Maintain the height of the container
+            height: "500px", // Maintain the height of the container
             marginLeft: "-120px", // Center horizontally
             marginRight: "450px", // Center horizontally
           }}
@@ -90,7 +90,13 @@ export default function UOMMasterTable() {
             bordered
             hover
             className="mt-4"
-            style={{ width: "100%" }}
+            style={{
+              marginTop: "120px", // Maintain the top margin
+              width: "100%", // Increase the table container width (set to 90% for more space)
+              // height: "500px", // Maintain the height of the container
+              marginLeft: "-55x", // Center horizontally
+              marginRight: "550px",
+            }}
           >
             <thead className="bg-primary text-white text-center">
               <tr>
@@ -108,10 +114,10 @@ export default function UOMMasterTable() {
                   style={{ cursor: "pointer" }}
                   className="text-center table-row-hover"
                 >
-                  <td>{uom.uOM || uom.uom}</td>
-                  <td>{uom.cF || uom.cf}</td>
-                  <td>{uom.status || uom.status}</td>
-                  <td>{uom.cUID || uom.cuid}</td>
+                  <td style={{ width: "4%" }}>{uom.uOM || uom.uom}</td>
+                  <td style={{ width: "4%" }}>{uom.cF || uom.cf}</td>
+                  <td style={{ width: "4%" }}>{uom.status || uom.status}</td>
+                  <td style={{ width: "4%" }}>{uom.cUID || uom.cuid}</td>
                 </tr>
               ))}
             </tbody>

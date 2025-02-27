@@ -118,13 +118,13 @@ export default function UserMasterTable() {
                   style={{ cursor: "pointer" }}
                   className="text-center table-row-hover"
                 >
-                  <td style={{ width: "4%" }}>{index + 1}</td>
+                  <td >{index + 1}</td>
                   <td style={{ width: "12%" }}>{item.roleID}</td>
                   <td style={{ width: "15%" }}>{item.userName}</td>
                   <td style={{ width: "25%" }}>{item.address}</td>
                   <td style={{ width: "15%" }}>{item.mobileNo}</td>
                   <td style={{ width: "15%" }}>{item.emailID}</td>
-                  <td style={{ width: "14%" }}>{item.status}</td>
+                  <td style={{ width: "14%" }}>{item.Status || item.status}</td>
                 </tr>
               ))}
             </tbody>

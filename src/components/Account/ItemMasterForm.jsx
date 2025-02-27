@@ -23,7 +23,8 @@ export default function UserMasterForm() {
 
   const { data: statusOptions, error: statusError } = useDropdownData("status");
   const { data: cuidOptions, error: cuidError } = useDropdownData("entryby");
-  const { data: taxtypeOptions, error: taxtypeError } = useDropdownData("taxTypes");
+  const { data: taxtypeOptions, error: taxtypeError } =
+    useDropdownData("taxTypes");
   const { data: uomidOptions, error: uomidError } = useDropdownData("uoms");
 
   useEffect(() => {
@@ -35,13 +36,13 @@ export default function UserMasterForm() {
           console.log("item", item);
 
           if (item) {
-            setValue("ItemID", item.ItemID || "");
-            setValue("ItemNo", item.ItemNo || item.ItemNo || "");
-            setValue("ItemName", item.ItemName || item.ItemName || "");
-            setValue("Description", item.Description || item.Description || "");
-            setValue("TaxType", item.TaxType || item.TaxType || "");
-            setValue("HSNCOde", item.HSNCOde || item.HSNCOde || "");
-            setValue("UOMID", item.UOMID || item.UOMID || "");
+            setValue("ItemID", item.ItemID || item.itemID);
+            setValue("ItemNo", item.ItemNo || item.itemNo || "");
+            setValue("ItemName", item.itemName || item.ItemName || "");
+            setValue("Description", item.Description || item.description || "");
+            setValue("TaxType", item.TaxType || item.taxType || "");
+            setValue("HSNCOde", item.HSNCOde || item.hsncOde || "");
+            setValue("UOMID", item.UOMID || item.uomid || "");
             setValue("Status", item.Status || item.status || "");
             setValue("CUID", item.CUID || item.cuid || "");
           } else {
@@ -67,7 +68,7 @@ export default function UserMasterForm() {
       Description: data.Description,
       TaxType: data.TaxType,
       HSNCOde: data.HSNCOde,
-      UOMID: data.UOMID,
+      UOMID: data.UOMID || data.uomid,
       Status: data.Status,
       //  CUID: data.CUID,
       CUID: parseInt(data.CUID, 10) || 0,
@@ -132,9 +133,9 @@ export default function UserMasterForm() {
               <Form.Group controlId="ItemNo">
                 <Form.Control
                   type="text"
-                  placeholder="Enter your ItemNo"
+                  placeholder="Enter your ItemNo."
                   {...register("ItemNo", {
-                    required: "ItemNo is required",
+                    required: "ItemNo is required.",
                   })}
                   style={{
                     border: "none",
@@ -142,7 +143,7 @@ export default function UserMasterForm() {
                     outline: "none",
                     boxShadow: "none",
                     padding: "5px 0",
-                    width: "80%",
+                    width: "100%",
                     borderRadius: "0",
                   }}
                 />
@@ -158,9 +159,9 @@ export default function UserMasterForm() {
               <Form.Group controlId="ItemName">
                 <Form.Control
                   type="text"
-                  placeholder="Enter your ItemName"
+                  placeholder="Enter your ItemName."
                   {...register("ItemName", {
-                    required: "ItemName is required",
+                    required: "ItemName is required.",
                   })}
                   style={{
                     border: "none",
@@ -168,7 +169,7 @@ export default function UserMasterForm() {
                     outline: "none",
                     boxShadow: "none",
                     padding: "5px 0",
-                    width: "80%",
+                    width: "100%",
                     borderRadius: "0",
                   }}
                 />
@@ -187,9 +188,9 @@ export default function UserMasterForm() {
               <Form.Group controlId="Description">
                 <Form.Control
                   type="text"
-                  placeholder="Enter your Description"
+                  placeholder="Enter your Description."
                   {...register("Description", {
-                    required: "Description is required",
+                    required: "Description is require.",
                   })}
                   style={{
                     border: "none",
@@ -197,7 +198,7 @@ export default function UserMasterForm() {
                     outline: "none",
                     boxShadow: "none",
                     padding: "5px 0",
-                    width: "80%",
+                    width: "100%",
                     borderRadius: "0",
                   }}
                 />
@@ -216,10 +217,11 @@ export default function UserMasterForm() {
                 className="form-select"
                 defaultValue=""
                 style={{
+                  border: "2px solid rgb(243, 185, 78)",
                   height: "30px",
                   padding: "0.2rem",
                   fontSize: "14px",
-                  width: "320px",
+                  width: "100%",
                 }}
               >
                 <option value="" disabled>
@@ -227,7 +229,7 @@ export default function UserMasterForm() {
                 </option>
                 {taxtypeOptions?.length > 0 ? (
                   taxtypeOptions.map((taxTypes, index) => (
-                    <option key={taxTypes.id } value={taxTypes.id}>
+                    <option key={taxTypes.id} value={taxTypes.id}>
                       {taxTypes.id || "Unnamed tax"}
                     </option>
                   ))
@@ -249,9 +251,9 @@ export default function UserMasterForm() {
               <Form.Group controlId="HSNCOde">
                 <Form.Control
                   type="text"
-                  placeholder="Enter your HSNCOde"
+                  placeholder="Enter your HSNCOde."
                   {...register("HSNCOde", {
-                    required: "HSNCOde is required",
+                    required: "HSNCOde is required.",
                   })}
                   style={{
                     border: "none",
@@ -259,7 +261,7 @@ export default function UserMasterForm() {
                     outline: "none",
                     boxShadow: "none",
                     padding: "5px 0",
-                    width: "80%",
+                    width: "100%",
                     borderRadius: "0",
                   }}
                 />
@@ -280,8 +282,9 @@ export default function UserMasterForm() {
                 style={{
                   height: "30px",
                   padding: "0.2rem",
+                  border: "2px solid rgb(243, 185, 78)",
                   fontSize: "14px",
-                  width: "330px",
+                  width: "100%",
                 }}
               >
                 <option value="" disabled>
@@ -289,7 +292,7 @@ export default function UserMasterForm() {
                 </option>
                 {uomidOptions?.length > 0 ? (
                   uomidOptions.map((uoms, index) => (
-                    <option key={uoms.value } value={uoms.value}>
+                    <option key={uoms.value} value={uoms.value}>
                       {uoms.value || "Unnamed Status"}
                     </option>
                   ))
@@ -313,8 +316,9 @@ export default function UserMasterForm() {
                 style={{
                   height: "30px",
                   padding: "0.2rem",
+                  border: "2px solid rgb(243, 185, 78)",
                   fontSize: "14px",
-                  width: "330px",
+                  width: "100%",
                 }}
               >
                 <option value="" disabled>
@@ -341,7 +345,7 @@ export default function UserMasterForm() {
                 className="form-select"
                 defaultValue=""
                 style={{
-                  width: "80%",
+                  width: "100%",
                   border: "none",
                   borderBottom: "2px solid rgb(243, 185, 78)",
                   padding: "5px 0",
