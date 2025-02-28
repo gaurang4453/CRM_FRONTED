@@ -117,8 +117,8 @@ export default function UserMasterForm() {
         className="form"
         style={{
           height: "700px",
-          overflow: "auto",
-          padding: "20px",
+          // overflow: "auto",
+          // padding: "20px",
           marginTop: "70px",
           marginBottom: "70px",
         }}
@@ -345,11 +345,11 @@ export default function UserMasterForm() {
                 className="form-select"
                 defaultValue=""
                 style={{
+                  height: "30px",
+                  padding: "0.2rem",
+                  border: "2px solid rgb(243, 185, 78)",
+                  fontSize: "14px",
                   width: "100%",
-                  border: "none",
-                  borderBottom: "2px solid rgb(243, 185, 78)",
-                  padding: "5px 0",
-                  borderRadius: "0",
                 }}
               >
                 <option value="" disabled>
@@ -373,7 +373,7 @@ export default function UserMasterForm() {
         className="footer"
         onSave={handleSubmit(onSubmit)}
         onDelete={id ? handleDelete : undefined}
-        onCancel={() => navigate("/BranchMasterTable")}
+        onCancel={() => navigate(-1)}
       />
     </>
   );

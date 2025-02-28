@@ -117,8 +117,8 @@ export default function UOMMasterForm() {
         className="form"
         style={{
           height: "530px",
-          overflow: "auto",
-          padding: "20px",
+          // overflow: "auto",
+          // padding: "20px",
           marginTop: "20px",
         }}
       >

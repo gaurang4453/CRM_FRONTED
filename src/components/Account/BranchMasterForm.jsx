@@ -22,7 +22,8 @@ export default function BranchMasterForm() {
   } = useForm();
 
   const { data: statusOptions, error: statusError } = useDropdownData("status");
-  const { data: companyOptions, error: companyError } = useDropdownData("companies");
+  const { data: companyOptions, error: companyError } =
+    useDropdownData("companies");
   const { data: cuidOptions, error: cuidError } = useDropdownData("entryby");
 
   useEffect(() => {
@@ -36,16 +37,31 @@ export default function BranchMasterForm() {
 
           if (branch) {
             setValue("BranchID", branch.branchID || branch.BranchID || "");
-            setValue("BranchName", branch.branchName || branch.BranchName || "");
-            setValue("CurrencyCode", branch.currencyCode || branch.CurrencyCode || "");
+            setValue(
+              "BranchName",
+              branch.branchName || branch.BranchName || ""
+            );
+            setValue(
+              "CurrencyCode",
+              branch.currencyCode || branch.CurrencyCode || ""
+            );
             setValue("ShortName", branch.shortName || branch.ShortName || "");
             setValue("CompanyID", branch.companyID || branch.CompanyID || "");
             setValue("Remarks", branch.remarks || branch.Remarks || "");
             setValue("Address", branch.address || branch.Address || "");
             setValue("Bank", branch.bank || branch.Bank || "");
-            setValue("Description", branch.description || branch.Description || "");
-            setValue("TaxDescription", branch.taxDescription || branch.TaxDescription || "");
-            setValue("CertifyDescription", branch.certifyDescription || branch.CertifyDescription || "");
+            setValue(
+              "Description",
+              branch.description || branch.Description || ""
+            );
+            setValue(
+              "TaxDescription",
+              branch.taxDescription || branch.TaxDescription || ""
+            );
+            setValue(
+              "CertifyDescription",
+              branch.certifyDescription || branch.CertifyDescription || ""
+            );
             setValue("GST_No", branch.gsT_No || branch.GST_No || "");
             setValue("Status", branch.status || branch.Status || "");
             setValue("CUID", branch.cuid || branch.CUID || "");
@@ -99,7 +115,9 @@ export default function BranchMasterForm() {
 
     try {
       await AxiosInstance.post("/BranchMaster", payload);
-      alert(id ? "Branch updated successfully!" : "Successfully submitted data");
+      alert(
+        id ? "Branch updated successfully!" : "Successfully submitted data"
+      );
       reset();
       navigate("/BranchMasterTable");
     } catch (error) {
@@ -123,24 +141,26 @@ export default function BranchMasterForm() {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p className="error">{error}</p>;
-  if (statusError) return <p className="error">Failed to fetch status options: {statusError}</p>;
-  if (companyError) return <p className="error">Failed to fetch Company options: {companyError}</p>;
-  if (cuidError) return <p className="error">Failed to fetch User options: {cuidError}</p>;
+  if (statusError)
+    return (
+      <p className="error">Failed to fetch status options: {statusError}</p>
+    );
+  if (companyError)
+    return (
+      <p className="error">Failed to fetch Company options: {companyError}</p>
+    );
+  if (cuidError)
+    return <p className="error">Failed to fetch User options: {cuidError}</p>;
 
   return (
     <>
       <Form
         onSubmit={handleSubmit(onSubmit)}
         className="form"
-        style={{ height: "530px", overflow: "auto", padding: "20px", marginTop: "20px" }}
-      >
-        <Form
-        onSubmit={handleSubmit(onSubmit)}
-        className="form"
         style={{
           height: "530px",
-          overflow: "auto",
-          padding: "20px",
+          // overflow: "auto",
+          // padding: "20px",
           marginTop: "20px",
         }}
       >
@@ -476,7 +496,7 @@ export default function BranchMasterForm() {
           </Row>
         </Container>
       </Form>
-      </Form>
+
       <Footer
         className="footer"
         onSave={handleSubmit(onSubmit)}

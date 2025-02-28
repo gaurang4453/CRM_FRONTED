@@ -142,11 +142,11 @@ export default function CompanyMasterForm() {
         onSubmit={handleSubmit(onSubmit)}
         style={{
           height: "950px",
-          overflow: "auto",
-          padding: "20px",
+        //   overflow: "auto",
+        //   padding: "20px",
           marginTop: "70px",
 
-          marginBottom: "0px",
+        //   marginBottom: "0px",
         }}
       >
         <h1 className="ribbon" style={{ marginBottom: "30px", width: "300px" }}>

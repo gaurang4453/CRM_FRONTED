@@ -71,6 +71,32 @@ export default function BranchMasterTable() {
   return (
     <Container className="mt-5" style={{ maxWidth: "100%" }}>
       {/* ... (Create New Button, Loading, Error) */}
+       <div
+              className="d-flex justify-content-end mb-3"
+              style={{
+                position: "fixed", // Fix the button on the screen
+                top: "100px", // Adjust the vertical position (distance from the top)
+                right: "1225px", // Adjust the horizontal position (distance from the right edge)
+                zIndex: "1000", // Ensures it stays above other content
+                padding: "5px 10px", // Optional: Adds padding around the button
+              }}
+            >
+              <Button
+                onClick={handleCreateNew}
+                variant="success"
+                className="px-7 py-2"
+              >
+                + Create New
+              </Button>
+            </div>
+            {loading && (
+              <Spinner
+                animation="border"
+                variant="primary"
+                className="d-block mx-auto"
+              />
+            )}
+            {error && <p className="text-danger text-center">{error}</p>}
 
       {tableData.length > 0 && !loading ? (
         <div
