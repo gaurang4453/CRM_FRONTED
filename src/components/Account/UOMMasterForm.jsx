@@ -37,7 +37,7 @@ export default function UOMMasterForm() {
             setValue("UOM", UOMMaster.UOM || UOMMaster.uom);
             setValue("CF", UOMMaster.CF || UOMMaster.cf);
             setValue("Status", UOMMaster.Status || UOMMaster.status);
-            setValue("CUID", UOMMaster.CUID || UOMMaster.cuid);
+            setValue("CUID", UOMMaster.cuid || UOMMaster.CUID);
 
             if (cuidOptions && cuidOptions.length > 0) {
               const selectedUser = cuidOptions.find(

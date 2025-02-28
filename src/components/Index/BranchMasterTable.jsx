@@ -16,16 +16,38 @@ export default function BranchMasterTable() {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const response = await AxiosInstance.get("/BranchMaster");
-      const data = response.data.data;
-      console.log("Fetched Data:", data); // Debugging
-      setTableData(data);
+      const branchResponse = await AxiosInstance.get("/BranchMaster");
+      const branchData = branchResponse.data.data;
+      console.log("Fetched Branch Data:", branchData);
+
+      const userResponse = await AxiosInstance.get("/UserMaster");
+      const userData = userResponse.data.data;
+      console.log("Fetched User Data:", userData);
+
+      const propResponse = await AxiosInstance.get("/PropMaster");
+      const propData = propResponse.data.data;
+      console.log("Fetched Prop Data:", propData);
+
+      const mergedData = branchData.map((branch) => {
+        const user = userData.find((u) => u.CUID === branch.CUID);
+        const prop = propData.find((p) => p.PropID === branch.PropID); // Assuming propID is the foreign key
+
+        return {
+          ...branch,
+          userName: user ? user.userName : "N/A",
+          propName: prop ? prop.propName : "N/A",
+        };
+      });
+
+      setTableData(mergedData);
     } catch (error) {
       setError("Something went wrong!");
+      console.error("Fetch Error:", error);
     } finally {
       setLoading(false);
     }
   };
+
   const handleRowClick = (branchID) => {
     navigate(`/BranchMasterForm/${branchID}`);
   };
@@ -33,6 +55,8 @@ export default function BranchMasterTable() {
   const handleCreateNew = () => {
     navigate("/BranchMasterForm");
   };
+
+ 
   return (
     <Container className="mt-5" style={{ maxWidth: "100%" }}>
       {/* Create New Button */}

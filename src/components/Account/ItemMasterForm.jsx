@@ -23,7 +23,8 @@ export default function UserMasterForm() {
 
   const { data: statusOptions, error: statusError } = useDropdownData("status");
   const { data: cuidOptions, error: cuidError } = useDropdownData("entryby");
-  const { data: taxtypeOptions, error: taxtypeError } = useDropdownData("taxTypes");
+  const { data: taxtypeOptions, error: taxtypeError } =
+    useDropdownData("taxTypes");
   const { data: uomidOptions, error: uomidError } = useDropdownData("uoms");
 
   useEffect(() => {
@@ -35,13 +36,13 @@ export default function UserMasterForm() {
           console.log("item", item);
 
           if (item) {
-            setValue("ItemID", item.ItemID || "");
-            setValue("ItemNo", item.ItemNo || item.ItemNo || "");
-            setValue("ItemName", item.ItemName || item.ItemName || "");
-            setValue("Description", item.Description || item.Description || "");
-            setValue("TaxType", item.TaxType || item.TaxType || "");
-            setValue("HSNCOde", item.HSNCOde || item.HSNCOde || "");
-            setValue("UOMID", item.UOMID || item.UOMID || "");
+            setValue("ItemID", item.ItemID || item.itemID);
+            setValue("ItemNo", item.ItemNo || item.itemNo || "");
+            setValue("ItemName", item.itemName || item.ItemName || "");
+            setValue("Description", item.Description || item.description || "");
+            setValue("TaxType", item.TaxType || item.taxType || "");
+            setValue("HSNCOde", item.HSNCOde || item.hsncOde || "");
+            setValue("UOMID", item.UOMID || item.uomid || "");
             setValue("Status", item.Status || item.status || "");
             setValue("CUID", item.CUID || item.cuid || "");
           } else {
@@ -65,12 +66,12 @@ export default function UserMasterForm() {
       ItemNo: data.ItemNo || 0,
       ItemName: data.ItemName,
       Description: data.Description,
-      TaxType: data.TaxType,
+      TaxType: data.TaxType || data.taxType,
       HSNCOde: data.HSNCOde,
-      UOMID: data.UOMID,
+      UOMID: data.UOMID || data.uomid,
       Status: data.Status,
       //  CUID: data.CUID,
-      CUID: parseInt(data.CUID, 10) || 0,
+      CUID: parseInt(data.CUID, 10) || parseInt(data.cuid, 10),
     };
 
     try {
@@ -228,7 +229,7 @@ export default function UserMasterForm() {
                 </option>
                 {taxtypeOptions?.length > 0 ? (
                   taxtypeOptions.map((taxTypes, index) => (
-                    <option key={taxTypes.id } value={taxTypes.id}>
+                    <option key={taxTypes.id} value={taxTypes.id}>
                       {taxTypes.id || "Unnamed tax"}
                     </option>
                   ))
@@ -291,7 +292,7 @@ export default function UserMasterForm() {
                 </option>
                 {uomidOptions?.length > 0 ? (
                   uomidOptions.map((uoms, index) => (
-                    <option key={uoms.value } value={uoms.value}>
+                    <option key={uoms.value} value={uoms.value}>
                       {uoms.value || "Unnamed Status"}
                     </option>
                   ))
