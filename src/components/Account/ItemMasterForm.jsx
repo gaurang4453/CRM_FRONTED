@@ -44,7 +44,7 @@ export default function UserMasterForm() {
             setValue("TaxType", item.TaxType || item.taxType || "");
             setValue("HSNCOde", item.HSNCOde || item.hsncOde || "");
             setValue("UOMID", item.UOMID || item.uomid || "");
-            setValue("Status", item.Status || item.status || "");
+            setValue("Status", item.status || item.Status || "");
             setValue("CUID", item.CUID || item.cuid || "");
           } else {
             console.warn("No data found for ItemID:", id);
@@ -71,7 +71,7 @@ export default function UserMasterForm() {
       TaxType: parseInt(data.TaxType, 10) || 0,
       HSNCOde: data.HSNCOde,
       UOMID: data.UOMID || data.uomid,
-      Status: data.Status,
+      Status: data.Status || data.status,
       //  CUID: data.CUID,
       CUID: parseInt(data.CUID, 10) || parseInt(data.cuid, 10),
     };
@@ -314,7 +314,7 @@ export default function UserMasterForm() {
                 id="status"
                 {...register("Status", { required: true })}
                 className="form-select"
-                // defaultValue=""
+                defaultValue=""
                 style={{
                   height: "30px",
                   padding: "0.2rem",

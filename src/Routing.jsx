@@ -16,6 +16,9 @@ import ItemMasterTable from "./components/Index/ItemMasterTable";
 import UOMMasterTable from "./components/Index/UOMMasterTable";
 import UOMMasterForm from "./components/Account/UOMMasterForm";
 
+import Login from "./components/Account/Login"; 
+
+
 import Navbar from "./components/Navbar/Navbar";
 
 export default function Routing() {
@@ -24,7 +27,9 @@ export default function Routing() {
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
+        <Route path="/" element={<Login />} />
+          <Route path="/home" element={<Home />} />
+         
           <Route path="/PropMasterTable" element={<PropMasterTable />} />
           <Route path="/RoleMasterTable" element={<RoleMasterTable />} />
           <Route path="/UserMasterTable" element={<UserMasterTable />} />
@@ -48,6 +53,11 @@ export default function Routing() {
           <Route path="/BranchMasterForm" element={<BranchMasterForm />} />
           <Route path="/ItemMasterForm" element={<ItemMasterForm />} />
           <Route path="/UOMMasterForm" element={<UOMMasterForm />} />
+
+
+
+
+
         </Routes>
       </Router>
     </>
