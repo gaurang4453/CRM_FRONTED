@@ -71,7 +71,7 @@ export default function UserMasterForm() {
       UOMID: data.UOMID || data.uomid,
       Status: data.Status,
       //  CUID: data.CUID,
-      CUID: parseInt(data.CUID, 10) || 0,
+      CUID: parseInt(data.CUID, 10) || parseInt(data.cuid, 10),
     };
 
     try {

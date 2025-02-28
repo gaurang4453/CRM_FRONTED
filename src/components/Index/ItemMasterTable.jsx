@@ -42,7 +42,7 @@ export default function ItemMasterTable() {
         style={{
           position: "fixed", // Fix the button on the screen
           top: "100px", // Adjust the vertical position (distance from the top)
-          right: "1265px", // Adjust the horizontal position (distance from the right edge)
+          right: "1295px", // Adjust the horizontal position (distance from the right edge)
           zIndex: "1000", // Ensures it stays above other content
           padding: "5px 10px", // Optional: Adds padding around the button
         }}

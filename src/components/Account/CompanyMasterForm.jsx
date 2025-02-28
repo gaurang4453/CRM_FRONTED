@@ -759,7 +759,7 @@ export default function CompanyMasterForm() {
                   border: "2px solid rgb(243, 185, 78)",// Decrease the height
                   padding: "0.2rem", // Reduce padding
                   fontSize: "14px",
-                  width: "290px", // Add padding to match input boxes
+                  width: "100%", // Add padding to match input boxes
                 }}
               >
                 <option value="" disabled>
