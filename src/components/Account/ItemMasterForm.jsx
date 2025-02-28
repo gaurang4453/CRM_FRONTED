@@ -15,13 +15,14 @@ export default function UserMasterForm() {
 
   const {
     register,
-    handleSubmit,
+    handleSubmit, 
     setValue,
     reset,
     formState: { errors },
   } = useForm();
 
   const { data: statusOptions, error: statusError } = useDropdownData("status");
+  console.log("statusOptions", statusOptions);
   const { data: cuidOptions, error: cuidError } = useDropdownData("entryby");
   const { data: taxtypeOptions, error: taxtypeError } =
     useDropdownData("taxTypes");
@@ -61,6 +62,7 @@ export default function UserMasterForm() {
   }, [id, setValue]);
 
   const onSubmit = async (data) => {
+    console.log("Form data:", data);
     const payload = {
       ItemID: id || 0,
       ItemNo: data.ItemNo || 0,
@@ -213,7 +215,7 @@ export default function UserMasterForm() {
             <Col md={4}>
               <select
                 id="taxTypes"
-                {...register("taxTypes", { required: true })}
+                {...register("TaxType", { required: true })}
                 className="form-select"
                 defaultValue=""
                 style={{
@@ -229,7 +231,7 @@ export default function UserMasterForm() {
                 </option>
                 {taxtypeOptions?.length > 0 ? (
                   taxtypeOptions.map((taxTypes, index) => (
-                    <option key={taxTypes.id} value={taxTypes.id}>
+                    <option key={taxTypes.id} value={taxTypes.value}>
                       {taxTypes.id || "Unnamed tax"}
                     </option>
                   ))
@@ -276,7 +278,7 @@ export default function UserMasterForm() {
             <Col md={4}>
               <select
                 id="uoms"
-                {...register("uoms", { required: true })}
+                {...register("UOMID", { required: true })}
                 className="form-select"
                 defaultValue=""
                 style={{
@@ -292,12 +294,12 @@ export default function UserMasterForm() {
                 </option>
                 {uomidOptions?.length > 0 ? (
                   uomidOptions.map((uoms, index) => (
-                    <option key={uoms.value} value={uoms.value}>
-                      {uoms.value || "Unnamed Status"}
+                    <option key={uoms.id} value={uoms.id}>
+                      {uoms.value || "Unnamed unit"}
                     </option>
                   ))
                 ) : (
-                  <option disabled>No status options available</option>
+                  <option disabled>No unit options available</option>
                 )}
               </select>
             </Col>
@@ -312,7 +314,7 @@ export default function UserMasterForm() {
                 id="status"
                 {...register("Status", { required: true })}
                 className="form-select"
-                defaultValue=""
+                // defaultValue=""
                 style={{
                   height: "30px",
                   padding: "0.2rem",
@@ -325,9 +327,9 @@ export default function UserMasterForm() {
                   --Select--
                 </option>
                 {statusOptions?.length > 0 ? (
-                  statusOptions.map((status, index) => (
-                    <option key={status.value || index} value={status.value}>
-                      {status.value || "Unnamed Status"}
+                  statusOptions.map((status) => (
+                    <option key={status.id} value={status.id}>
+                      {status.value}
                     </option>
                   ))
                 ) : (
@@ -341,7 +343,7 @@ export default function UserMasterForm() {
             <Col md={4}>
               <select
                 id="entryby"
-                {...register("entryby", { required: true })}
+                {...register("CUID", { required: true })}
                 className="form-select"
                 defaultValue=""
                 style={{
@@ -356,7 +358,7 @@ export default function UserMasterForm() {
                   --Select--
                 </option>
                 {cuidOptions?.length > 0 ? (
-                  cuidOptions.map((entryby, index) => (
+                  cuidOptions.map((entryby) => (
                     <option key={entryby.id} value={entryby.id}>
                       {entryby.value || "Unnamed User"}
                     </option>

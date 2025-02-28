@@ -5,6 +5,8 @@ import { Spinner, Table, Container, Button } from "react-bootstrap";
 
 export default function ItemMasterTable() {
   const [tableData, setTableData] = useState([]);
+  const [userData, setUserData] = useState([]);
+  const [propTypeNameData, setPropTypeNameData] = useState([]); // Add propTypeName data state
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -16,10 +18,19 @@ export default function ItemMasterTable() {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const response = await AxiosInstance.get("/ItemMaster");
-      const data = response.data.data;
-      console.log("Fetched Data:", data); // Debugging
-      setTableData(data);
+      const itemResponse = await AxiosInstance.get("/ItemMaster");
+      const itemData = itemResponse.data.data;
+      console.log("Fetched Item Data:", itemData);
+
+      // const userResponse = await AxiosInstance.get("/UserMaster");
+      // const userData = userResponse.data.data;
+
+      // const propTypeNameResponse = await AxiosInstance.get("/PropMaster"); // Fetch propTypeName data
+      // const propTypeNameData = propTypeNameResponse.data.data;
+
+      // setUserData(userData);
+      // setPropTypeNameData(propTypeNameData); // Store propTypeName data
+      setTableData(itemData);
     } catch (error) {
       setError("Something went wrong!");
     } finally {
@@ -34,17 +45,28 @@ export default function ItemMasterTable() {
   const handleCreateNew = () => {
     navigate("/ItemMasterForm");
   };
+
+  // const getUserName = (cuid) => {
+  //   const user = userData.find((user) => user.id === cuid);
+  //   return user ? user.userName : "Unknown User";
+  // };
+
+  // const getTaxTypeName = (taxTypeId) => {
+  //   const taxType = propTypeNameData.find((type) => type.id === taxTypeId);
+  //   return taxType ? taxType.value : "Unknown Tax Type";
+  // };
+
   return (
     <Container className="mt-5" style={{ maxWidth: "100%" }}>
       {/* Create New Button */}
       <div
         className="d-flex justify-content-end mb-3"
         style={{
-          position: "fixed", // Fix the button on the screen
-          top: "100px", // Adjust the vertical position (distance from the top)
-          right: "1295px", // Adjust the horizontal position (distance from the right edge)
-          zIndex: "1000", // Ensures it stays above other content
-          padding: "5px 10px", // Optional: Adds padding around the button
+          position: "fixed",
+          top: "100px",
+          right: "1295px",
+          zIndex: "1000",
+          padding: "5px 10px",
         }}
       >
         <Button
@@ -68,11 +90,11 @@ export default function ItemMasterTable() {
         <div
           className="table-responsive shadow-lg rounded bg-white p-3"
           style={{
-            marginTop: "130px", // Maintain the top margin
-            width: "120%", // Increase the table container width (set to 90% for more space)
-            height: "700px", // Maintain the height of the container
-            marginLeft: "-120px", // Center horizontally
-            marginRight: "450px", // Center horizontally
+            marginTop: "130px",
+            width: "120%",
+            height: "700px",
+            marginLeft: "-120px",
+            marginRight: "450px",
           }}
         >
           <h5
@@ -118,9 +140,9 @@ export default function ItemMasterTable() {
                   <td>{item.itemName || item.itemName}</td>
                   <td>{item.description || item.Description}</td>
                   <td>{item.uomid}</td>
-                  <td>{item.taxType}</td>
+                  <td>{item.taxTypeName}</td>
                   <td>{item.status}</td>
-                  <td>{item.cuid || item.CUID}</td>
+                  <td>{item.entryBy}</td>
                 </tr>
               ))}
             </tbody>
