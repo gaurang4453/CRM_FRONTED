@@ -120,14 +120,13 @@ export default function UserMasterForm() {
     <>
       <Form
         onSubmit={handleSubmit(onSubmit)}
-        // className="form"
-        // style={{
-        //   height: "700px",
-        //   overflow: "auto",
-        //   padding: "20px",
-        //   marginTop: "70px",
-        //   marginBottom: "70px",
-        // }}
+        className="form"
+        style={{
+          height: "530px",
+          // overflow: "auto",
+          // padding: "20px",
+          marginTop: "20px",
+        }}
       >
         <h1 className="ribbon" style={{ marginBottom: "30px" }}>User Master Form</h1>
         <Container>
