@@ -22,8 +22,7 @@ export default function BranchMasterForm() {
   } = useForm();
 
   const { data: statusOptions, error: statusError } = useDropdownData("status");
-  const { data: companyOptions, error: companyError } =
-    useDropdownData("companies");
+  const { data: companyOptions, error: companyError } = useDropdownData("companies");
   const { data: cuidOptions, error: cuidError } = useDropdownData("entryby");
 
   useEffect(() => {
@@ -41,7 +40,6 @@ export default function BranchMasterForm() {
             setValue("CurrencyCode", branch.currencyCode || branch.CurrencyCode || "");
             setValue("ShortName", branch.shortName || branch.ShortName || "");
             setValue("CompanyID", branch.companyID || branch.CompanyID || "");
-            setValue("CompanyName", branch.companyName || branch.CompanyName || "");
             setValue("Remarks", branch.remarks || branch.Remarks || "");
             setValue("Address", branch.address || branch.Address || "");
             setValue("Bank", branch.bank || branch.Bank || "");
@@ -52,20 +50,10 @@ export default function BranchMasterForm() {
             setValue("Status", branch.status || branch.Status || "");
             setValue("CUID", branch.cuid || branch.CUID || "");
 
-            // Fetch and set company name based on companyID
-            if (companyOptions && companyOptions.length > 0) {
-              const selectedCompany = companyOptions.find(
-                (company) => company.id == (branch.companyID || branch.CompanyID)
-              );
-              if (selectedCompany) {
-                setValue("CompanyName", selectedCompany.value);
-              }
-            }
-            
             // Set CUID properly
             if (cuidOptions && cuidOptions.length > 0) {
               const selectedUser = cuidOptions.find(
-                user => user.id == (branch.cuid || branch.CUID)
+                (user) => user.id == (branch.cuid || branch.CUID)
               );
               if (selectedUser) {
                 setValue("CUID", selectedUser.id);
@@ -85,14 +73,10 @@ export default function BranchMasterForm() {
     } else {
       setLoading(false);
     }
-  }, [id, setValue, companyOptions, cuidOptions]);
+  }, [id, setValue, cuidOptions]);
 
   const onSubmit = async (data) => {
     console.log("Form data submitted:", data);
-    
-    const selectedCompany = companyOptions.find(
-      (company) => company.id == data.CompanyID
-    );
 
     const payload = {
       BranchID: id || 0,
@@ -100,7 +84,6 @@ export default function BranchMasterForm() {
       CurrencyCode: data.CurrencyCode,
       ShortName: data.ShortName,
       CompanyID: parseInt(data.CompanyID, 10) || 0,
-      CompanyName: selectedCompany ? selectedCompany.value : "",
       Remarks: data.Remarks,
       Address: data.Address,
       Bank: data.Bank,
@@ -109,17 +92,14 @@ export default function BranchMasterForm() {
       CertifyDescription: data.CertifyDescription,
       GST_No: data.GST_No,
       Status: data.Status || data.status,
-      CUID: parseInt(data.CUID, 10) || 0,
-      // userName: selectedUser ? selectedUser.value : "",
+      CUID: parseInt(data.cuid, 10) || 0,
     };
-    
+
     console.log("Payload being sent:", payload);
-    
+
     try {
       await AxiosInstance.post("/BranchMaster", payload);
-      alert(
-        id ? "Branch updated successfully!" : "Successfully submitted data"
-      );
+      alert(id ? "Branch updated successfully!" : "Successfully submitted data");
       reset();
       navigate("/BranchMasterTable");
     } catch (error) {
@@ -143,20 +123,18 @@ export default function BranchMasterForm() {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p className="error">{error}</p>;
-  if (statusError)
-    return (
-      <p className="error">Failed to fetch status options: {statusError}</p>
-    );
-  if (companyError)
-    return (
-      <p className="error">Failed to fetch Company options: {companyError}</p>
-    );
-  if (cuidError)
-    return <p className="error">Failed to fetch User options: {cuidError}</p>;
+  if (statusError) return <p className="error">Failed to fetch status options: {statusError}</p>;
+  if (companyError) return <p className="error">Failed to fetch Company options: {companyError}</p>;
+  if (cuidError) return <p className="error">Failed to fetch User options: {cuidError}</p>;
 
   return (
     <>
       <Form
+        onSubmit={handleSubmit(onSubmit)}
+        className="form"
+        style={{ height: "530px", overflow: "auto", padding: "20px", marginTop: "20px" }}
+      >
+        <Form
         onSubmit={handleSubmit(onSubmit)}
         className="form"
         style={{
@@ -497,6 +475,7 @@ export default function BranchMasterForm() {
             </Col>
           </Row>
         </Container>
+      </Form>
       </Form>
       <Footer
         className="footer"

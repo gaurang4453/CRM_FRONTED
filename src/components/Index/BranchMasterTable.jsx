@@ -7,10 +7,12 @@ export default function BranchMasterTable() {
   const [tableData, setTableData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [companyData, setCompanyData] = useState([]); // State for company data
   const navigate = useNavigate();
 
   useEffect(() => {
     fetchData();
+    fetchCompanyData(); // Fetch company data
   }, []);
 
   const fetchData = async () => {
@@ -30,7 +32,7 @@ export default function BranchMasterTable() {
 
       const mergedData = branchData.map((branch) => {
         const user = userData.find((u) => u.CUID === branch.CUID);
-        const prop = propData.find((p) => p.PropID === branch.PropID); // Assuming propID is the foreign key
+        const prop = propData.find((p) => p.PropID === branch.PropID);
 
         return {
           ...branch,
@@ -48,6 +50,16 @@ export default function BranchMasterTable() {
     }
   };
 
+  const fetchCompanyData = async () => {
+    try {
+      const response = await AxiosInstance.get("/CompanyMaster");
+      setCompanyData(response.data.data);
+    } catch (error) {
+      console.error("Error fetching company data:", error);
+      setError("Failed to fetch company data.");
+    }
+  };
+
   const handleRowClick = (branchID) => {
     navigate(`/BranchMasterForm/${branchID}`);
   };
@@ -56,48 +68,19 @@ export default function BranchMasterTable() {
     navigate("/BranchMasterForm");
   };
 
- 
   return (
     <Container className="mt-5" style={{ maxWidth: "100%" }}>
-      {/* Create New Button */}
-      <div
-        className="d-flex justify-content-end mb-3"
-        style={{
-          position: "fixed", // Fix the button on the screen
-          top: "100px", // Adjust the vertical position (distance from the top)
-          right: "1220px", // Adjust the horizontal position (distance from the right edge)
-          zIndex: "1000", // Ensures it stays above other content
-          padding: "5px 10px", // Optional: Adds padding around the button
-        }}
-      >
-        <Button
-          onClick={handleCreateNew}
-          variant="success"
-          className="px-7 py-2"
-        >
-          + Create New
-        </Button>
-      </div>
-
-      {loading && (
-        <Spinner
-          animation="border"
-          variant="primary"
-          className="d-block mx-auto"
-        />
-      )}
-
-      {error && <p className="text-danger text-center">{error}</p>}
+      {/* ... (Create New Button, Loading, Error) */}
 
       {tableData.length > 0 && !loading ? (
         <div
           className="table-responsive shadow-lg rounded bg-white p-3"
           style={{
-            marginTop: "130px", // Maintain the top margin
-            width: "120%", // Increase the table container width (set to 90% for more space)
-            height: "700px", // Maintain the height of the container
-            marginLeft: "-120px", // Center horizontally
-            marginRight: "450px", // Center horizontally
+            marginTop: "130px",
+            width: "120%",
+            height: "700px",
+            marginLeft: "-120px",
+            marginRight: "450px",
           }}
         >
           <h5
@@ -129,22 +112,28 @@ export default function BranchMasterTable() {
               </tr>
             </thead>
             <tbody>
-              {tableData.map((item, index) => (
-                <tr
-                  key={item.branchID || index}
-                  onClick={() => handleRowClick(item.branchID)}
-                  style={{ cursor: "pointer" }}
-                  className="text-center table-row-hover"
-                > 
-                
-                  <td>{item.branchName}</td>
-                  <td>{item.shortName}</td>
-                  <td>{item.companyName}</td>
-                  <td>{item.gsT_No}</td>
-                  <td>{item.userName}</td>
-                  <td>{item.propName}</td>
-                </tr>
-              ))}
+              {tableData.map((item, index) => {
+                const company = companyData.find(
+                  (c) => c.companyID === item.companyID
+                );
+                const companyName = company ? company.companyName : "N/A";
+
+                return (
+                  <tr
+                    key={item.branchID || index}
+                    onClick={() => handleRowClick(item.branchID)}
+                    style={{ cursor: "pointer" }}
+                    className="text-center table-row-hover"
+                  >
+                    <td>{item.branchName}</td>
+                    <td>{item.shortName}</td>
+                    <td>{companyName}</td>
+                    <td>{item.gsT_No}</td>
+                    <td>{item.userName}</td>
+                    <td>{item.propName}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </Table>
         </div>

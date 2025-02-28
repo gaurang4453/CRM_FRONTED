@@ -66,7 +66,7 @@ export default function UserMasterForm() {
       ItemNo: data.ItemNo || 0,
       ItemName: data.ItemName,
       Description: data.Description,
-      TaxType: data.TaxType,
+      TaxType: parseInt(data.TaxType, 10) || 0,
       HSNCOde: data.HSNCOde,
       UOMID: data.UOMID || data.uomid,
       Status: data.Status,
