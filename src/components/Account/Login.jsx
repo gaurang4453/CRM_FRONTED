@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Home from '../Home';
-import AxiosInstance from "/src/AxiosInstance";
+import AxiosInstance from '/src/AxiosInstance';
 
-function Login() {
+function Login({ onLoginSuccess }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -12,22 +11,20 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError(''); // Clear any previous error messages
-console.log(username);
+    setError('');
+
     try {
       const response = await AxiosInstance.post('/login', {
-         userName: username, password: password ,
+        userName: username,
+        password: password,
       });
 
-      const data = await response.json();
-
-      if (response.ok && data.Status === 1) {
-        // Login successful
-        localStorage.setItem('user', JSON.stringify(data.User));
-        navigate('/App'); // Redirect to the home page
+      if (response.data.status === 1) { // Corrected line
+        localStorage.setItem('user', JSON.stringify(response.data.user)); // Corrected line
+        onLoginSuccess();
+        navigate('/home');
       } else {
-        // Login failed
-        setError(data.Message || 'Login failed. Please check your credentials.');
+        setError(response.data.message || 'Login failed. Please check your credentials.'); // Corrected line
       }
     } catch (err) {
       setError('An error occurred during login.');
@@ -45,7 +42,9 @@ console.log(username);
               {error && <div className="alert alert-danger">{error}</div>}
               <form onSubmit={handleLogin}>
                 <div className="mb-3">
-                  <label htmlFor="username" className="form-label">Username</label>
+                  <label htmlFor="username" className="form-label">
+                    Username
+                  </label>
                   <input
                     type="text"
                     className="form-control"
@@ -56,7 +55,9 @@ console.log(username);
                   />
                 </div>
                 <div className="mb-3">
-                  <label htmlFor="password" className="form-label">Password</label>
+                  <label htmlFor="password" className="form-label">
+                    Password
+                  </label>
                   <input
                     type="password"
                     className="form-control"
@@ -66,7 +67,9 @@ console.log(username);
                     required
                   />
                 </div>
-                <button type="submit" className="btn btn-primary">Login</button>
+                <button type="submit" className="btn btn-primary">
+                  Login
+                </button>
               </form>
             </div>
           </div>
