@@ -211,7 +211,7 @@ export default function PropMasterForm() {
                 </option>
                 {cuidOptions?.length > 0 ? (
                   cuidOptions.map((entryby, index) => (
-                    <option key={entryby.value} value={entryby.value}>
+                    <option key={entryby.id} value={entryby.id}>
                       {entryby.value || "Unnamed User"}
                     </option>
                   ))
