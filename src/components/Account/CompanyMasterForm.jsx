@@ -58,7 +58,7 @@ export default function CompanyMasterForm() {
             setValue("AuthPerson", company.authPerson || "");
             setValue("Col1", company.col1 || "");
             setValue("status", company.status || "");
-            setValue("CUID", company.cuid || "");
+            setValue("entryby", company.cuid || company.CUID);
           } else {
             console.warn("No data found for companyID:", id);
           }
@@ -142,15 +142,15 @@ export default function CompanyMasterForm() {
         onSubmit={handleSubmit(onSubmit)}
         style={{
           height: "950px",
-        //   overflow: "auto",
-        //   padding: "20px",
+          //   overflow: "auto",
+          //   padding: "20px",
           marginTop: "70px",
 
-        //   marginBottom: "0px",
+          //   marginBottom: "0px",
         }}
       >
-       <h1 className="ribbon" >
-        {id ? "Edit Property" : "Company Master Form"}
+        <h1 className="ribbon">
+          {id ? "Edit Property" : "Company Master Form"}
         </h1>
         <Container>
           <Row>
@@ -720,8 +720,8 @@ export default function CompanyMasterForm() {
                 className="form-select"
                 defaultValue=""
                 style={{
-                  height: "30px", 
-                  border: "2px solid rgb(243, 185, 78)",// Decrease the height
+                  height: "30px",
+                  border: "2px solid rgb(243, 185, 78)", // Decrease the height
                   padding: "0.2rem", // Reduce padding
                   fontSize: "14px",
                   width: "290px",
@@ -755,8 +755,8 @@ export default function CompanyMasterForm() {
                 className="form-select"
                 defaultValue=""
                 style={{
-                  height: "30px", 
-                  border: "2px solid rgb(243, 185, 78)",// Decrease the height
+                  height: "30px",
+                  border: "2px solid rgb(243, 185, 78)", // Decrease the height
                   padding: "0.2rem", // Reduce padding
                   fontSize: "14px",
                   width: "100%", // Add padding to match input boxes

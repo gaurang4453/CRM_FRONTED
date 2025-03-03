@@ -35,7 +35,7 @@ export default function PropMasterForm() {
           setValue("propName", property.propName || "");
           setValue("propValue", property.propValue || "");
           setValue("status", property.status || "");
-          setValue("CUID", property.cuid || "");
+          setValue("entryby", property.cuid || property.CUID);
         } catch (err) {
           setError("Failed to fetch property details.");
         } finally {
@@ -55,7 +55,7 @@ export default function PropMasterForm() {
       propName: data.propName,
       propValue: data.propValue,
       status: data.status,
-      CUID: data.CUID,
+      entryby: data.CUID,
     };
 
     try {
@@ -94,9 +94,7 @@ export default function PropMasterForm() {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)} className="form">
-        <h1 className="ribbon">
-          {id ? "Edit Property" : "Prop Master Form"}
-        </h1>
+        <h1 className="ribbon">{id ? "Edit Property" : "Prop Master Form"}</h1>
         <Container>
           <Row className="mb-3">
             <Col md={3} className="d-flex align-items-center">
