@@ -1,9 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "/src/components/style/Navbar.css";
-import PropMasterTable from "../Index/PropMasterTable";
-
+import { TbLogout2 } from "react-icons/tb";
+import { RiUserFill } from "react-icons/ri";
 const Navbar = () => {
+  const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("user")); // Retrieve user from localStorage
+
+  const handleLogout = () => {
+    localStorage.removeItem("user"); // Clear user from localStorage
+    navigate("/"); // Redirect to login page
+  };
+
   return (
     <header className="navbar-container">
       <nav className="navbar">
@@ -44,12 +52,12 @@ const Navbar = () => {
               </li>
               <li>
                 <Link className="dropdown-item" to="/ItemMasterTable">
-                 Item Master
+                  Item Master
                 </Link>
               </li>
               <li>
                 <Link className="dropdown-item" to="/UOMMasterTable">
-                 UOM Master
+                  UOM Master
                 </Link>
               </li>
             </ul>
@@ -64,29 +72,18 @@ const Navbar = () => {
             Settings
           </Link>
 
-          <div className="dropdown">
-            <button className="dropdown-toggle">Profile</button>
-            <ul className="dropdown-menu">
-              <li>
-                <Link className="dropdown-item" to="/account">
-                  My Account
-                </Link>
-              </li>
-              <li>
-                <Link className="dropdown-item" to="/orders">
-                  Orders
-                </Link>
-              </li>
-              <li>
-                <hr className="dropdown-divider" />
-              </li>
-              <li>
-                <Link className="dropdown-item" to="/logout">
-                  Logout
-                </Link>
-              </li>
-            </ul>
-          </div>
+          {user && ( // Conditionally render username and logout
+            <div className="dropdown"><RiUserFill style={{ fontSize: '1.36rem' }}/>
+              <button className="dropdown-toggle">{user.userName}</button>
+              <ul className="dropdown-menu">
+                <li>
+                  <button className="dropdown-item" onClick={handleLogout}>
+                  <TbLogout2 />   Logout
+                  </button>
+                </li>
+              </ul>
+            </div>
+          )}
         </div>
       </nav>
     </header>

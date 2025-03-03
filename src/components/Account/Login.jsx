@@ -19,12 +19,12 @@ function Login({ onLoginSuccess }) {
         password: password,
       });
 
-      if (response.data.status === 1) { // Corrected line
-        localStorage.setItem('user', JSON.stringify(response.data.user)); // Corrected line
+      if (response.data.status === 1) {
+        localStorage.setItem('user', JSON.stringify(response.data.user));
         onLoginSuccess();
         navigate('/home');
       } else {
-        setError(response.data.message || 'Login failed. Please check your credentials.'); // Corrected line
+        setError(response.data.message || 'Login failed. Please check your credentials.');
       }
     } catch (err) {
       setError('An error occurred during login.');
@@ -34,13 +34,17 @@ function Login({ onLoginSuccess }) {
 
   return (
     <div className="container mt-5">
-      <div className="row justify-content-center">
-        <div className="col-md-6">
+      {/* <div className="row justify-content-center"> */}
+        <div className="col-md-12"> {/* Reduced col-md-12 to col-md-8, col-lg-6 */}
           <div className="card">
-            <div className="card-header">Login</div>
-            <div className="card-body">
-              {error && <div className="alert alert-danger">{error}</div>}
-              <form onSubmit={handleLogin}>
+            <div className="card-header text-center font-weight-bold"><h1>login</h1></div>
+
+            {error && <div className="alert alert-danger">{error}</div>}
+
+
+            
+            <div className="d-flex justify-content-center"> {/* Centered the form */}
+              <form onSubmit={handleLogin} style={{ width: '80%' }}> {/* Increased width from 50% to 80% if needed */}
                 <div className="mb-3">
                   <label htmlFor="username" className="form-label">
                     Username
@@ -67,14 +71,16 @@ function Login({ onLoginSuccess }) {
                     required
                   />
                 </div>
-                <button type="submit" className="btn btn-primary">
-                  Login
-                </button>
+                <div className="d-grid mt-3">
+                  <button type="submit" className="btn btn-primary">
+                    Login
+                  </button>
+                </div>
               </form>
             </div>
           </div>
         </div>
-      </div>
+      {/* </div> */}
     </div>
   );
 }
