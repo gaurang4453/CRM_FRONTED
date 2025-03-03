@@ -15,7 +15,7 @@ function Login() {
     setError(''); // Clear any previous error messages
 console.log(username);
     try {
-      const response = await AxiosInstance.post('/UserMaster/login', {
+      const response = await AxiosInstance.post('/login', {
          userName: username, password: password ,
       });
 
