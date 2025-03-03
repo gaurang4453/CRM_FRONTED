@@ -122,8 +122,8 @@ export default function UOMMasterForm() {
           marginTop: "20px",
         }}
       >
-        <h1 className="ribbon" style={{ marginBottom: "30px", width: "300px" }}>
-          UOM Master Form
+        <h1 className="ribbon" >
+        {id ? "Edit Property" : "UOM Master Form"}
         </h1>
         <Container>
           <Row>

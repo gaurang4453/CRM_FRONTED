@@ -91,8 +91,8 @@ export default function RoleMasterForm() {
   return (
     <>
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <h1 className="ribbon" style={{ marginBottom: "30px" }}>
-          Role Master Form
+       <h1 className="ribbon" >
+        {id ? "Edit Property" : "Role Master Form"}
         </h1>
         <Container>
           {/* Role Name */}

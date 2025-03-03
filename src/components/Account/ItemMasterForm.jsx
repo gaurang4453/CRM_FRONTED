@@ -125,7 +125,9 @@ export default function UserMasterForm() {
           marginBottom: "70px",
         }}
       >
-        <h1 className="ribbon">Item Master Form</h1>
+        <h1 className="ribbon" >
+        {id ? "Edit Property" : "Item Master Form"}
+        </h1>
         <Container>
           <Row>
             <Col md={2} className="d-flex align-items-center">

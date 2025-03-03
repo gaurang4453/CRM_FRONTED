@@ -42,7 +42,10 @@ export default function UserMasterForm() {
             setValue("MobileNo", user.MobileNo || user.mobileNo || "");
             setValue("EmailID", user.EmailID || user.emailID || "");
             setValue("EmailPassword", user.emailPassword || "");
-            setValue("OutSideAccess", user.OutSideAccess || user.outSideAccess || "");
+            setValue(
+              "OutSideAccess",
+              user.OutSideAccess || user.outSideAccess || ""
+            );
             setValue("EmailPort", user.EmailPort || user.emailPort || "");
             setValue("EmailHost", user.EmailHost || user.emailHost || "");
             setValue("EmailSSL", user.EmailSSL || user.emailSSL || "");
@@ -80,7 +83,7 @@ export default function UserMasterForm() {
       EmailSSL: data.EmailSSL,
       OTP: data.OTP,
       Status: data.Status,
-      
+
       CUID: parseInt(data.CUID, 10) || 0,
     };
 
@@ -128,7 +131,7 @@ export default function UserMasterForm() {
           marginTop: "20px",
         }}
       >
-        <h1 className="ribbon" style={{ marginBottom: "30px" }}>User Master Form</h1>
+        <h1 className="ribbon">{id ? "Edit Property" : "User Master Form"}</h1>{" "}
         <Container>
           {/* RoleID DropDown */}
           <Row>
@@ -386,12 +389,12 @@ export default function UserMasterForm() {
                 className="form-select"
                 defaultValue=""
                 style={{
-                               
-                height: "30px", // Decrease the height
-                padding: "0.2rem", // Reduce padding
-                border: "2px solid rgb(133, 132, 130)",
-                fontSize: "14px",
-                width: "360px",}}
+                  height: "30px", // Decrease the height
+                  padding: "0.2rem", // Reduce padding
+                  border: "2px solid rgb(133, 132, 130)",
+                  fontSize: "14px",
+                  width: "360px",
+                }}
               >
                 <option value="">--Select--</option>
                 {statusOptions?.length > 0 ? (
@@ -422,7 +425,8 @@ export default function UserMasterForm() {
                   padding: "0.2rem", // Reduce padding
                   border: "2px solid rgb(133, 132, 130)",
                   fontSize: "14px",
-                  width: "360px"                }}
+                  width: "360px",
+                }}
               >
                 <option value="" disabled>
                   --Select--

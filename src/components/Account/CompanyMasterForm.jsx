@@ -149,8 +149,8 @@ export default function CompanyMasterForm() {
         //   marginBottom: "0px",
         }}
       >
-        <h1 className="ribbon" style={{ marginBottom: "30px", width: "300px" }}>
-          Company Master Form
+       <h1 className="ribbon" >
+        {id ? "Edit Property" : "Company Master Form"}
         </h1>
         <Container>
           <Row>

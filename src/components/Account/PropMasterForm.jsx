@@ -94,7 +94,9 @@ export default function PropMasterForm() {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)} className="form">
-        <h1 className="ribbon">{id ? "Edit Property" : "Prop Master Form"}</h1>
+        <h1 className="ribbon">
+          {id ? "Edit Property" : "Prop Master Form"}
+        </h1>
         <Container>
           <Row className="mb-3">
             <Col md={3} className="d-flex align-items-center">
@@ -102,7 +104,8 @@ export default function PropMasterForm() {
             </Col>
             <Col md={8}>
               <input
-                id="propTypeName" placeholder="Enter Property Type Name."
+                id="propTypeName"
+                placeholder="Enter Property Type Name."
                 {...register("propTypeName", { required: true })}
                 className="line-textbox"
               />
@@ -118,7 +121,8 @@ export default function PropMasterForm() {
             </Col>
             <Col md={8}>
               <input
-                id="propName" placeholder="Enter Property Name."
+                id="propName"
+                placeholder="Enter Property Name."
                 {...register("propName", { required: true })}
                 className="line-textbox"
               />
@@ -134,7 +138,8 @@ export default function PropMasterForm() {
             </Col>
             <Col md={8}>
               <input
-                id="propValue" placeholder="Enter Property Value."
+                id="propValue"
+                placeholder="Enter Property Value."
                 {...register("propValue", { required: true })}
                 className="line-textbox"
               />
@@ -150,7 +155,7 @@ export default function PropMasterForm() {
             </Col>
             <Col md={6}>
               <select
-                id="status" 
+                id="status"
                 {...register("status", { required: "Please select a status" })}
                 className="form-select"
                 defaultValue=""
@@ -200,7 +205,7 @@ export default function PropMasterForm() {
                   borderRadius: "4px", // Slightly rounded corners for better appearance
                   padding: "5px", // Padding for better spacing inside the dropdown
                   backgroundColor: "#fff", // White background
-                  fontSize: "14px" // Add padding to match input boxes
+                  fontSize: "14px", // Add padding to match input boxes
                 }}
               >
                 <option value="" disabled>

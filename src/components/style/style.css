@@ -3,28 +3,25 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  
+
 }
 
 body {
   font-size: 15px;
   font-family: Arial, sans-serif;
-  background-color: #ffffff;
+  background-color: #e0eefa;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  padding: 10px;
 }
 
 form {
-  position: relative; /* Make form the parent container for absolute positioning */
+  position: relative;
   background-color: #ffffff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-  width: 1200px;
-  margin-top: 30px;
+  width: 1300px;
+  margin-top: 20px;
   margin-bottom: 0px;
-  /* margin-right: 100px; */
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -34,54 +31,40 @@ form {
 form h1 {
   text-align: center;
   background-color: #f5f8fa;
-  margin-bottom: 20px;
+  margin-top: -8px;
   margin-left: 10px;
   color: rgb(255, 254, 254);
-  width: 200px;
+  width: 230px;
   height: 40px;
-  font-size: 20px; /* Increase the size of the title */
+  font-size: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   padding-left: 0px;
-         /* Dark shadow for depth */
   position: relative;
   overflow: hidden;
- 
 }
 
 /* Ribbon effect for the h1 element */
 .ribbon {
-  position: absolute; /* Position the ribbon absolutely */
-  top: 5px;          /* Space from the top of the container */
-  left: -20px;   /* Position it to the left outside the form */
-  z-index: 10;        
-  transform: rotate(deg); /* Rotate the ribbon for a diagonal effect */
-  display: inline-block;
+  position: absolute;
+  top: 4px;
+  left: -20px;
   padding: 10px;
-  background-color: #007bff; /* Ribbon color */
+  background-color: #007bff;
   color: #fff;
   font-size: 15px;
   text-transform: uppercase;
-  white-space: nowrap;
-  
-}
+  z-index: 1;
 
-/* Align form fields with the label on the left */
-.form-field {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
 }
 
 label {
   color: #444649;
-  margin-bottom: 10px;  /* Space between label and input */
-  font-size: 14px;      /* Increase the font size */
+  margin-bottom: 10px;
+  font-size: 14px;
   white-space: nowrap;
-  
 }
 
-Input styles
-input[type="text"],
+Input styles input[type="text"],
 input[type="number"],
 select.form-select {
   width: 100%;
@@ -109,6 +92,29 @@ input[type="submit"]:hover {
   background-color: #143e6c;
 }
 
+input {
+  border: none;
+  border-bottom: 2px solid rgb(133, 132, 130);
+  outline: none;
+  padding: 5px 0;
+  width: 100%;
+  border-radius: 0;
+}
+
+.input-required {
+  border: none;
+  border-bottom: 2px solid rgb(243, 185, 78);
+  outline: none;
+  padding: 5px 0;
+  width: 100%;
+  border-radius: 0;
+}
+
+.input-error {
+  color: red;
+  font-size: 12px;
+}
+
 .submit-container {
   width: 100%;
   display: flex;
@@ -117,14 +123,14 @@ input[type="submit"]:hover {
 }
 
 .line-textbox {
-  border: none;             
-  border-bottom: 2px solid rgb(243, 185, 78); /* Solid line at the bottom */
-  outline: none;            /* Remove outline (focus ring) */
-  padding: 8px;             /* Space inside the textbox */
-  font-size: 13px;          /* Text size */
-  width: 55%;              /* Ensure it takes the full available width in its container */
-  /* max-width: 500px;  */
+  border: none;
+  border-bottom: 2px solid rgb(243, 185, 78);
+  outline: none;
+  padding: 8px;
+  font-size: 13px;
+  width: 55%;
 }
+
 .line-textbox:focus {
   border-bottom: 2px solid blue;
 }
@@ -132,37 +138,35 @@ input[type="submit"]:hover {
 /* Adjust spacing between form fields */
 .form-field {
   display: flex;
-  align-items: center; /* Aligns label and input vertically */
-  margin-bottom: 1rem; /* Space between fields */
+  align-items: center;
+  margin-bottom: 1rem;
 }
 
-/* Adjust space between the dropdown and submit button */
 select.form-select {
-  margin-bottom: 20px; /* Adding space below the dropdown */
+  margin-bottom: 20px;
 }
 
-.container{
+.container {
   margin-top: 50px;
 }
 
 /* Adjust the width of the dropdown */
 select.form-select {
-  width: 55%; /* You can change this to a percentage or a fixed value like 200px */
-  margin-bottom: 20px; /* Optional: Adjust the margin if needed */
+  width: 55%;
+  margin-bottom: 20px;
 }
 
-footer{
+footer {
   height: 130px;
-  
 }
 
 .custom-footer {
   background-color: #143e6c;
-  padding-top: 20px;  /* Adjust top padding */
-  padding-bottom: 20px;  /* Adjust bottom padding */
-  height: auto;  /* Ensure the height adjusts based on padding */
+  padding-top: 20px;
+  padding-bottom: 20px;
+  height: auto;
 }
 
 option.highlighted {
-  color: #FF5733; /* Text color of Option 2 */
+  color: #FF5733;
 }

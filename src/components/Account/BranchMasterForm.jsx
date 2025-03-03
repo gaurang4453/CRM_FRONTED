@@ -22,7 +22,8 @@ export default function BranchMasterForm() {
   } = useForm();
 
   const { data: statusOptions, error: statusError } = useDropdownData("status");
-  const { data: companyOptions, error: companyError } = useDropdownData("companies");
+  const { data: companyOptions, error: companyError } =
+    useDropdownData("companies");
   const { data: cuidOptions, error: cuidError } = useDropdownData("entryby");
 
   useEffect(() => {
@@ -153,18 +154,9 @@ export default function BranchMasterForm() {
 
   return (
     <>
-      <Form
-        onSubmit={handleSubmit(onSubmit)}
-        className="form"
-        style={{
-          height: "530px",
-          // overflow: "auto",
-          // padding: "20px",
-          marginTop: "20px",
-        }}
-      >
-        <h1 className="ribbon" style={{ marginBottom: "30px", width: "300px" }}>
-          Branch Master Form
+      <form onSubmit={handleSubmit(onSubmit)} className="form">
+        <h1 className="ribbon">
+          {id ? "Edit Property" : "Branch Master Form"}
         </h1>
         <Container>
           <Row>
@@ -188,13 +180,6 @@ export default function BranchMasterForm() {
                   borderRadius: "0", // Decreases the width of the input box
                 }}
               />
-              <style>
-                {`
-      input::placeholder {
-        font-size: 12px;  // Adjust the font size to your preference
-      }
-    `}
-              </style>
             </Col>
 
             <Col md={2} className="d-flex align-items-center">
@@ -204,19 +189,11 @@ export default function BranchMasterForm() {
               <Form.Group controlId="CurrencyCode">
                 <Form.Control
                   type="text"
-                  placeholder="Enter your CurrencyCode"
+                  placeholder="Enter your CurrencyCode."
                   {...register("CurrencyCode", {
-                    required: "CurrencyCode is required",
+                    required: "CurrencyCode is required.",
                   })}
-                  style={{
-                    border: "none",
-                    borderBottom: "2px solid rgb(243, 185, 78)",
-                    outline: "none",
-                    boxShadow: "none",
-                    padding: "5px 0",
-                    width: "100%",
-                    borderRadius: "0",
-                  }}
+                  className="input-required"
                 />
                 {errors.CurrencyCode && (
                   <p style={{ color: "red" }}>{errors.CurrencyCode.message}</p>
@@ -232,15 +209,11 @@ export default function BranchMasterForm() {
             <Col md={4}>
               <Form.Control
                 type="text"
-                placeholder="Enter ShortName"
+                placeholder="Enter ShortName."
                 {...register("ShortName", {
-                  required: "ShortName is required",
+                  required: "ShortName is required.",
                 })}
-                style={{
-                  border: "none",
-                  borderBottom: "2px solid rgb(243, 185, 78)",
-                  borderRadius: "0",
-                }}
+                className="input-required"
               />
               {errors.ShortName && (
                 <p style={{ color: "red" }}>{errors.ShortName.message}</p>
@@ -254,7 +227,9 @@ export default function BranchMasterForm() {
             <Col md={4}>
               <select
                 id="CompanyID"
-                {...register("CompanyID", { required: true })}
+                {...register("CompanyID", {
+                  required: "CompanyID is required.",
+                })}
                 className="form-select"
                 defaultValue=""
                 style={{
@@ -494,7 +469,7 @@ export default function BranchMasterForm() {
             </Col>
           </Row>
         </Container>
-      </Form>
+      </form>
 
       <Footer
         className="footer"
