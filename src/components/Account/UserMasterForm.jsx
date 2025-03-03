@@ -51,7 +51,7 @@ export default function UserMasterForm() {
             setValue("EmailSSL", user.EmailSSL || user.emailSSL || "");
             setValue("OTP", user.OTP || user.otp || "");
             setValue("Status", user.Status || user.status || "");
-            setValue("CUID", user.CUID || user.cuid || "");
+            setValue("entryby", user.CUID || user.cuid || "");
           } else {
             console.warn("No data found for roleID:", id);
           }

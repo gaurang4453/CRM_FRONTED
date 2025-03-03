@@ -55,7 +55,7 @@ export default function RoleMasterForm() {
       roleID: id || 0,
       roleName: data.roleName,
       status: data.status,
-      CUID: data.CUID,
+      CUID: parseInt(data.CUID, 10) || 0,
     };
 
     try {
@@ -171,8 +171,8 @@ export default function RoleMasterForm() {
             </Col>
             <Col md={10}>
               <select
-                id="entryby"
-                {...register("entryby", { required: true })}
+                id="CUID"
+                {...register("CUID", { required: true })}
                 className="form-select"
                 defaultValue=""
                 style={{
@@ -188,7 +188,7 @@ export default function RoleMasterForm() {
                 </option>
                 {cuidOptions?.length > 0 ? (
                   cuidOptions.map((entryby, index) => (
-                    <option key={entryby.value} value={entryby.value}>
+                    <option key={entryby.id} value={entryby.id}>
                       {entryby.value || "Unnamed User"}
                     </option>
                   ))
