@@ -62,7 +62,20 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-          <Link className="nav-link" to="/clients">
+
+
+
+          <div className="dropdown">
+            <button className="dropdown-toggle">Marketing</button>
+            <ul className="dropdown-menu">
+              <li>
+                <Link className="dropdown-item" to="/InquiryMasterTable">
+                Inquiry Master
+                </Link>
+              </li>
+            </ul>
+          </div>
+          {/* <Link className="nav-link" to="/clients">
             Clients
           </Link>
           <Link className="nav-link" to="/reports">
@@ -70,7 +83,7 @@ const Navbar = () => {
           </Link>
           <Link className="nav-link" to="/settings">
             Settings
-          </Link>
+          </Link> */}
 
           {user && ( // Conditionally render username and logout
             <div className="dropdown"><RiUserFill style={{ fontSize: '1.36rem' }}/>

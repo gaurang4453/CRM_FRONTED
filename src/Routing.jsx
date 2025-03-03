@@ -20,7 +20,8 @@ import ItemMasterForm from "./components/Account/ItemMasterForm";
 import ItemMasterTable from "./components/Index/ItemMasterTable";
 import UOMMasterTable from "./components/Index/UOMMasterTable";
 import UOMMasterForm from "./components/Account/UOMMasterForm";
-
+import InquiryMasterTable from "./components/Index/InquiryMasterTable";
+import InquiryMasterForm from "./components/Account/InquiryMasterForm";
 import Login from "./components/Account/Login";
 import Navbar from "./components/Navbar/Navbar";
 
@@ -44,8 +45,7 @@ export default function Routing() {
             element={<Login onLoginSuccess={handleLoginSuccess} />}
           />
           <Route
-            path="/home"
-            element={
+            path="/home" element={
               <PrivateRoute>
                 <Navbar />
                 <Home />
@@ -116,6 +116,30 @@ export default function Routing() {
               </PrivateRoute>
             }
           />
+<Route
+            path="/InquiryMasterTable"
+            element={
+              <PrivateRoute>
+                <Navbar />
+                <InquiryMasterTable />
+              </PrivateRoute>
+            }
+          />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
           <Route
             path="/PropMasterForm/:id"
@@ -180,6 +204,32 @@ export default function Routing() {
               </PrivateRoute>
             }
           />
+<Route
+            path="/InquiryMasterForm/:id"
+            element={
+              <PrivateRoute>
+                <Navbar />
+                <InquiryMasterForm />
+              </PrivateRoute>
+            }
+          />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
           <Route
             path="/RoleMasterForm"
@@ -241,6 +291,15 @@ export default function Routing() {
               <PrivateRoute>
                 <Navbar />
                 <UOMMasterForm />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/InquiryMasterForm"
+            element={
+              <PrivateRoute>
+                <Navbar />
+                <InquiryMasterForm />
               </PrivateRoute>
             }
           />
