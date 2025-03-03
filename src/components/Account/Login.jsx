@@ -37,82 +37,92 @@ function Login({ onLoginSuccess }) {
   };
 
   return (
-    <Container style={{ marginTop: "40px" }}>
-      <form
-        onSubmit={handleLogin}
-        style={{
-          height: "350px",
-          width: "400px",
-          borderRadius: "8px",
-        }}
-      >
-        {error && <div className="alert alert-danger">{error}</div>}
-        <label htmlFor="username" style={{ position: "left", font: "icon" }}>
-          Username:
-        </label>
-        <input
-          type="text"
-          id="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
+    <div
+      style={{
+        background: "linear-gradient(135deg, #1B8AF1, #B58DED)",
+        minHeight: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Container style={{ marginTop: "40px" }}>
+        <h1 style={{ textAlign: "center", text: "bold" }}>Login</h1>
+        <form
+          onSubmit={handleLogin}
           style={{
-            border: "none",
-            borderBottom: "2px solid #007bff", // Change the color as needed
-            outline: "none",
-            boxShadow: "none",
-            background: "transparent",
-            paddingLeft: "0",
-            width: "270px",
-            height: "30px",
-            
+            height: "350px",
+            width: "400px",
+            borderRadius: "8px",
           }}
-          onFocus={(e) => (e.target.style.borderBottom = "2px solid #0056b3")} // Change color when focused
-          onBlur={(e) => (e.target.style.borderBottom = "2px solid #007bff")}
-        />
-
-        <label htmlFor="username" style={{ position: "left", font: "icon" }}>
-          Password:
-        </label>
-        <input
-          type="password"
-          className="form-control"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          style={{
-            border: "none",
-            borderBottom: "2px solid #007bff", // Change the color as needed
-            outline: "none",
-            boxShadow: "none",
-            background: "transparent",
-            paddingLeft: "0",
-            width: "270px",
-            height: "30px",
-          }}
-          onFocus={(e) => (e.target.style.borderBottom = "2px solid #0056b3")} // Change color when focused
-          onBlur={(e) => (e.target.style.borderBottom = "2px solid #007bff")}
-        />
-
-        <div>
-          <button
-            type="submit"
+        >
+          {error && <div className="alert alert-danger">{error}</div>}
+          <label htmlFor="username" style={{ position: "left", font: "icon" }}>
+            Username:
+          </label>
+          <input
+            type="text"
+            id="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
             style={{
-              position: "justify",
-              width: "300px",
               border: "none",
-              borderRadius: "30px",
-              height: "35px",
-              backgroundColor: "#007bff",
-              marginBottom: "-20px",
+              borderBottom: "2px solid #007bff", // Change the color as needed
+              outline: "none",
+              boxShadow: "none",
+              background: "transparent",
+              paddingLeft: "0",
+              width: "270px",
+              height: "30px",
             }}
-          >
-            Login
-          </button>
-        </div>
-      </form>
-    </Container>
+            onFocus={(e) => (e.target.style.borderBottom = "2px solid #0056b3")} // Change color when focused
+            onBlur={(e) => (e.target.style.borderBottom = "2px solid #007bff")}
+          />
+
+          <label htmlFor="username" style={{ position: "left", font: "icon" }}>
+            Password:
+          </label>
+          <input
+            type="password"
+            className="form-control"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            style={{
+              border: "none",
+              borderBottom: "2px solid #007bff", // Change the color as needed
+              outline: "none",
+              boxShadow: "none",
+              background: "transparent",
+              paddingLeft: "0",
+              width: "270px",
+              height: "30px",
+            }}
+            onFocus={(e) => (e.target.style.borderBottom = "2px solid #0056b3")} // Change color when focused
+            onBlur={(e) => (e.target.style.borderBottom = "2px solid #007bff")}
+          />
+
+          <div>
+            <button
+              type="submit"
+              style={{
+                position: "justify",
+                width: "300px",
+                border: "none",
+                borderRadius: "30px",
+                height: "35px",
+                backgroundColor: "#007bff",
+                marginBottom: "-20px",
+              }}
+            >
+              Login
+            </button>
+          </div>
+        </form>
+      </Container>
+    </div>
   );
 }
 
