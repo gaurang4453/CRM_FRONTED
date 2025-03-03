@@ -58,7 +58,7 @@ export default function CompanyMasterForm() {
             setValue("AuthPerson", company.authPerson || "");
             setValue("Col1", company.col1 || "");
             setValue("status", company.status || "");
-            setValue("CUID", company.cuid || "");
+            setValue("CUID", company.cuid); // Corrected line
           } else {
             console.warn("No data found for companyID:", id);
           }
@@ -102,7 +102,7 @@ export default function CompanyMasterForm() {
       AuthPerson: data.AuthPerson,
       Col1: data.Col1,
       status: data.status,
-      CUID: data.CUID,
+      CUID: parseInt(data.CUID, 10) || 0,
     };
 
     try {
@@ -750,8 +750,8 @@ export default function CompanyMasterForm() {
             </Col>
             <Col md={4}>
               <select
-                id="entryby"
-                {...register("entryby", { required: true })}
+                id="CUID"
+                {...register("CUID", { required: true })}
                 className="form-select"
                 defaultValue=""
                 style={{
@@ -766,9 +766,9 @@ export default function CompanyMasterForm() {
                   --Select--
                 </option>
                 {cuidOptions?.length > 0 ? (
-                  cuidOptions.map((entryby, index) => (
-                    <option key={entryby.id} value={entryby.id}>
-                      {entryby.value || "Unnamed User"}
+                  cuidOptions.map((user, index) => (
+                    <option key={user.id} value={user.id}>
+                      {user.value || "Unnamed User"}
                     </option>
                   ))
                 ) : (
