@@ -8,7 +8,7 @@ const Navbar = () => {
     <header className="navbar-container">
       <nav className="navbar">
         <div className="navbar-left h1">
-          <Link className="navbar-brand" to="/">
+          <Link className="navbar-brand" to="/home">
             CRM Dashboard
           </Link>
         </div>
