@@ -1,87 +1,118 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import AxiosInstance from '/src/AxiosInstance';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import AxiosInstance from "/src/AxiosInstance";
+import { Container } from "react-bootstrap";
 
 function Login({ onLoginSuccess }) {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError('');
+    setError("");
 
     try {
-      const response = await AxiosInstance.post('/login', {
+      const response = await AxiosInstance.post("/login", {
         userName: username,
         password: password,
       });
 
       if (response.data.status === 1) {
-        localStorage.setItem('user', JSON.stringify(response.data.user));
+        localStorage.setItem("user", JSON.stringify(response.data.user));
         onLoginSuccess();
-        navigate('/home');
+        navigate("/home");
       } else {
-        setError(response.data.message || 'Login failed. Please check your credentials.');
+        setError(
+          response.data.message ||
+            "Login failed. Please check your credentials."
+        );
       }
     } catch (err) {
-      setError('An error occurred during login.');
-      console.error('Login error:', err);
+      setError("An error occurred during login.");
+      console.error("Login error:", err);
     }
   };
 
   return (
-    <div className="container mt-5">
-      {/* <div className="row justify-content-center"> */}
-        <div className="col-md-12"> {/* Reduced col-md-12 to col-md-8, col-lg-6 */}
-          <div className="card">
-            <div className="card-header text-center font-weight-bold"><h1>login</h1></div>
-
-            {error && <div className="alert alert-danger">{error}</div>}
-
-
+    <Container style={{ marginTop: "40px" }}>
+      <form
+        onSubmit={handleLogin}
+        style={{
+          height: "350px",
+          width: "400px",
+          borderRadius: "8px",
+        }}
+      >
+        {error && <div className="alert alert-danger">{error}</div>}
+        <label htmlFor="username" style={{ position: "left", font: "icon" }}>
+          Username:
+        </label>
+        <input
+          type="text"
+          id="username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+          style={{
+            border: "none",
+            borderBottom: "2px solid #007bff", // Change the color as needed
+            outline: "none",
+            boxShadow: "none",
+            background: "transparent",
+            paddingLeft: "0",
+            width: "270px",
+            height: "30px",
             
-            <div className="d-flex justify-content-center"> {/* Centered the form */}
-              <form onSubmit={handleLogin} style={{ width: '80%' }}> {/* Increased width from 50% to 80% if needed */}
-                <div className="mb-3">
-                  <label htmlFor="username" className="form-label">
-                    Username
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    required
-                  />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="password" className="form-label">
-                    Password
-                  </label>
-                  <input
-                    type="password"
-                    className="form-control"
-                    id="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                  />
-                </div>
-                <div className="d-grid mt-3">
-                  <button type="submit" className="btn btn-primary">
-                    Login
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
+          }}
+          onFocus={(e) => (e.target.style.borderBottom = "2px solid #0056b3")} // Change color when focused
+          onBlur={(e) => (e.target.style.borderBottom = "2px solid #007bff")}
+        />
+
+        <label htmlFor="username" style={{ position: "left", font: "icon" }}>
+          Password:
+        </label>
+        <input
+          type="password"
+          className="form-control"
+          id="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+          style={{
+            border: "none",
+            borderBottom: "2px solid #007bff", // Change the color as needed
+            outline: "none",
+            boxShadow: "none",
+            background: "transparent",
+            paddingLeft: "0",
+            width: "270px",
+            height: "30px",
+          }}
+          onFocus={(e) => (e.target.style.borderBottom = "2px solid #0056b3")} // Change color when focused
+          onBlur={(e) => (e.target.style.borderBottom = "2px solid #007bff")}
+        />
+
+        <div>
+          <button
+            type="submit"
+            style={{
+              position: "justify",
+              width: "300px",
+              border: "none",
+              borderRadius: "30px",
+              height: "35px",
+              backgroundColor: "#007bff",
+              marginBottom: "-20px",
+            }}
+          >
+            Login
+          </button>
         </div>
-      {/* </div> */}
-    </div>
+      </form>
+    </Container>
   );
 }
 
