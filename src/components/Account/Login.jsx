@@ -72,7 +72,7 @@ function Login({ onLoginSuccess }) {
             />
           </div>
           <div className="input-group mb-3 justify-content-center">
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn1">
               Login
             </button>
           </div>
