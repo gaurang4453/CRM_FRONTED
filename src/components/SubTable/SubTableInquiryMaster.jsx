@@ -74,15 +74,15 @@ const SubTableInquiryMaster = () => {
         <div className="table-responsive">
           <table
             className="table table-bordered w-100"
-            style={{ minWidth: "95vw" }}
+            style={{ minWidth: "75vw" }}
           >
             <thead className="bg-dark text-white text-center">
               <tr>
-                <th style={{ width: "5%" }}>SeqNo</th>
-                <th style={{ width: "35%" }}>Item Name / Description</th>
-                <th style={{ width: "20%" }}>UOM / Qty</th>
-                <th style={{ width: "25%" }}>Remarks</th>
-                <th style={{ width: "15%" }}>Actions</th>
+                <th style={{ width: "3%" }}>SeqNo</th>
+                <th style={{ width: "7%" }}>Item Name / Description</th>
+                <th style={{ width: "7%" }}>UOM / Qty</th>
+                <th style={{ width: "7%" }}>Remarks</th>
+                <th style={{ width: "5%" }}>Actions</th>
               </tr>
             </thead>
             <tbody>
