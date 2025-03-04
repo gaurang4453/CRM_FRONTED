@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import AxiosInstance from "/src/AxiosInstance"; // Adjust path as needed
 import "../style/Login.css";
 
+
 function Login({ onLoginSuccess }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -36,9 +37,9 @@ function Login({ onLoginSuccess }) {
   };
 
   return (
-    <div className="content justify-content-center align-items-center body">
+    <div className="content justify-content-center align-items-center body1">
       <div className="col-md-12 form-container">
-        <form className="mt-0" onSubmit={handleLogin}> {/* Added onSubmit */}
+        <form className="mt-0 loginform" onSubmit={handleLogin}> {/* Added onSubmit */}
           <div className="header-text mb-4">
             <h2 className="h1">Login</h2>
           </div>

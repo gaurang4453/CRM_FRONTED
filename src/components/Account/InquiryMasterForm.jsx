@@ -213,6 +213,7 @@ export default function InquiryMasterForm() {
     );
   return (
     <>
+    <div style={{ marginTop: "80px" }}></div>
       <Form
         onSubmit={handleSubmit(onSubmit)}
         className="form"
@@ -224,10 +225,10 @@ export default function InquiryMasterForm() {
         <Container>
           {/* Main Form Fields */}
           <Row>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center ">
               <Form.Label>InquiryNo :</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={3}>
               <Form.Control
                 type="text"
                 placeholder="Enter your Inquiry."
@@ -238,7 +239,7 @@ export default function InquiryMasterForm() {
                   outline: "none",
                   boxShadow: "none",
                   padding: "5px 0",
-                  width: "100%",
+                  width: "85%",
                   borderRadius: "0",
                 }}
               />
@@ -246,12 +247,10 @@ export default function InquiryMasterForm() {
                 <p style={{ color: "red" }}>{errors.Inquiry.message}</p>
               )}
             </Col>
-          </Row>
-          <Row>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>Date :</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={3}>
               <Form.Group controlId="Date">
                 <Form.Control
                   type="Date"
@@ -265,7 +264,7 @@ export default function InquiryMasterForm() {
                     outline: "none",
                     boxShadow: "none",
                     padding: "5px 0",
-                    width: "80%",
+                    width: "85%",
                     borderRadius: "0",
                   }}
                 />
@@ -274,47 +273,48 @@ export default function InquiryMasterForm() {
                 )}
               </Form.Group>
             </Col>
-          </Row>
-          <Col md={2} className="d-flex align-items-center">
-            <Form.Label>BranchID:</Form.Label>
-          </Col>
-          <Col md={4}>
-            <select
-              id="BranchID"
-              {...register("BranchID", { required: true })}
-              className="form-select"
-              defaultValue=""
-              style={{
-                height: "30px",
-                padding: "0.2rem",
-                border: "2px solid rgb(243, 185, 78)",
-                fontSize: "14px",
-                width: "360px",
-              }}
-            >
-              <option value="" disabled>
-                --Select--
-              </option>
-              {branchesOptions?.length > 0 ? (
-                branchesOptions.map((branches) => (
-                  <option key={branches.id} value={branches.id}>
-                    {branches.value || "Unnamed branch"}
-                  </option>
-                ))
-              ) : (
-                <option disabled>No branches options available</option>
+          
+            <Col md={1} className="d-flex align-items-center">
+              <Form.Label>BranchID:</Form.Label>
+            </Col>
+            <Col md={2}>
+              <select
+                id="BranchID"
+                {...register("BranchID", { required: true })}
+                className="form-select"
+                defaultValue=""
+                style={{
+                  height: "30px",
+                  padding: "0.2rem",
+                  border: "2px solid rgb(243, 185, 78)",
+                  fontSize: "14px",
+                  width: "295px",
+                }}
+              >
+                <option value="" disabled>
+                  --Select--
+                </option>
+                {branchesOptions?.length > 0 ? (
+                  branchesOptions.map((branches) => (
+                    <option key={branches.id} value={branches.id}>
+                      {branches.value || "Unnamed branch"}
+                    </option>
+                  ))
+                ) : (
+                  <option disabled>No branches options available</option>
+                )}
+              </select>
+              {errors.branches && (
+                <p className="error-text">Please select a branch.</p>
               )}
-            </select>
-            {errors.branches && (
-              <p className="error-text">Please select a branch.</p>
-            )}
-          </Col>
-
-          <Row>
-            <Col md={2} className="d-flex align-items-center">
+            </Col>
+</Row>
+<br/>
+<Row>
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>CompanyID:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={3}>
               <select
                 id="companies"
                 {...register("companies")}
@@ -325,7 +325,7 @@ export default function InquiryMasterForm() {
                   padding: "0.2rem",
                   border: "2px solid rgb(133, 132, 130)",
                   fontSize: "14px",
-                  width: "360px",
+                  width: "85%",
                 }}
               >
                 <option value="" disabled>
@@ -345,13 +345,11 @@ export default function InquiryMasterForm() {
                 <p className="error-text">Please select a company.</p>
               )}
             </Col>
-          </Row>
-
-          <Row>
-            <Col md={2} className="d-flex align-items-center">
+         
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>ReferenceBy:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={3}>
               <select
                 id="Status"
                 {...register("Status", { required: true })}
@@ -362,7 +360,7 @@ export default function InquiryMasterForm() {
                   padding: "0.2rem",
                   border: "2px solid rgb(243, 185, 78)",
                   fontSize: "14px",
-                  width: "360px",
+                 width: "85%",
                 }}
               >
                 <option value="" disabled>
@@ -382,403 +380,348 @@ export default function InquiryMasterForm() {
                 <p className="error-text">Please select a status.</p>
               )}
             </Col>
-          </Row>
-          <Col md={2} className="d-flex align-items-center">
-            <Form.Label>PartyName :</Form.Label>
-          </Col>
-          <Col md={4}>
-            <Form.Control
-              type="text"
-              placeholder="Enter your PartyName."
-              {...register("PartyName", { required: "PartyName is required." })}
-              style={{
-                border: "none",
-                borderBottom: "2px solid rgb(243, 185, 78)",
-                outline: "none",
-                boxShadow: "none",
-                padding: "5px 0",
-                width: "100%",
-                borderRadius: "0",
-              }}
-            />
-            {errors.PartyName && (
-              <p style={{ color: "red" }}>{errors.PartyName.message}</p>
-            )}
-          </Col>
 
-          <Col md={2} className="d-flex align-items-center">
-            <Form.Label>Address :</Form.Label>
-          </Col>
-          <Col md={4}>
-            <Form.Control
-              as="textarea"
-              rows={2}
-              {...register("Address", { required: "Address is required." })}
-              placeholder="Enter your text here..."
-              style={{
-                border: "none",
-                borderBottom: "2px solid rgb(243, 185, 78)",
-                outline: "none",
-                boxShadow: "none",
-                padding: "5px 0",
-                width: "100%",
-                borderRadius: "0",
-              }}
-            />
-            {errors.Address && (
-              <p style={{ color: "red" }}>{errors.Address.message}</p>
-            )}
-          </Col>
-          <Col md={2} className="d-flex align-items-center">
-            <Form.Label>Area :</Form.Label>
-          </Col>
-          <Col md={4}>
-            <Form.Control
-              type="text"
-              placeholder="Enter your Area."
-              {...register("Area", { required: "Area is required." })}
-              style={{
-                border: "none",
-                borderBottom: "2px solid rgb(243, 185, 78)",
-                outline: "none",
-                boxShadow: "none",
-                padding: "5px 0",
-                width: "100%",
-                borderRadius: "0",
-              }}
-            />
-            {errors.Area && (
-              <p style={{ color: "red" }}>{errors.Area.message}</p>
-            )}
-          </Col>
-          <Col md={2} className="d-flex align-items-center">
-            <Form.Label>State :</Form.Label>
-          </Col>
-          <Col md={4}>
-            <Form.Control
-              type="text"
-              placeholder="Enter your State."
-              {...register("State", { required: "State is required." })}
-              style={{
-                border: "none",
-                borderBottom: "2px solid rgb(243, 185, 78)",
-                outline: "none",
-                boxShadow: "none",
-                padding: "5px 0",
-                width: "100%",
-                borderRadius: "0",
-              }}
-            />
-            {errors.State && (
-              <p style={{ color: "red" }}>{errors.State.message}</p>
-            )}
-          </Col>
-          <Col md={2} className="d-flex align-items-center">
-            <Form.Label>ContactName :</Form.Label>
-          </Col>
-          <Col md={4}>
-            <Form.Control
-              type="text"
-              placeholder="Enter your ContactName."
-              {...register("ContactName", {
-                required: "ContactName is required.",
-              })}
-              style={{
-                border: "none",
-                borderBottom: "2px solid rgb(243, 185, 78)",
-                outline: "none",
-                boxShadow: "none",
-                padding: "5px 0",
-                width: "100%",
-                borderRadius: "0",
-              }}
-            />
-            {errors.ContactName && (
-              <p style={{ color: "red" }}>{errors.ContactName.message}</p>
-            )}
-          </Col>
-          <Col md={2} className="d-flex align-items-center">
-            <Form.Label>Mobile :</Form.Label>
-          </Col>
-          <Col md={4}>
-            <Form.Control
-              type="text"
-              placeholder="Enter your Mobile."
-              {...register("Mobile", { required: "Mobile is required." })}
-              style={{
-                border: "none",
-                borderBottom: "2px solid rgb(243, 185, 78)",
-                outline: "none",
-                boxShadow: "none",
-                padding: "5px 0",
-                width: "100%",
-                borderRadius: "0",
-              }}
-            />
-            {errors.Mobile && (
-              <p style={{ color: "red" }}>{errors.Mobile.message}</p>
-            )}
-          </Col>
-          <Col md={2} className="d-flex align-items-center">
-            <Form.Label>Mobile2 :</Form.Label>
-          </Col>
-          <Col md={4}>
-            <Form.Control
-              type="text"
-              placeholder="Enter your second Mobile."
-              {...register("Mobile2", {
-                required: "Second Mobile is required.",
-              })}
-              style={{
-                border: "none",
-                borderBottom: "2px solid rgb(243, 185, 78)",
-                outline: "none",
-                boxShadow: "none",
-                padding: "5px 0",
-                width: "100%",
-                borderRadius: "0",
-              }}
-            />
-            {errors.Mobile2 && (
-              <p style={{ color: "red" }}>{errors.Mobile2.message}</p>
-            )}
-          </Col>
-          <Col md={2} className="d-flex align-items-center">
-            <Form.Label>Email :</Form.Label>
-          </Col>
-          <Col md={4}>
-            <Form.Control
-              type="email"
-              placeholder="Enter your Email."
-              {...register("EmailID", { required: "Email is required." })}
-              style={{
-                border: "none",
-                borderBottom: "2px solid rgb(243, 185, 78)",
-                outline: "none",
-                boxShadow: "none",
-                padding: "5px 0",
-                width: "100%",
-                borderRadius: "0",
-              }}
-            />
-            {errors.EmailID && (
-              <p style={{ color: "red" }}>{errors.EmailID.message}</p>
-            )}
-          </Col>
-          <Col md={2} className="d-flex align-items-center">
-            <Form.Label>EmailID2 :</Form.Label>
-          </Col>
-          <Col md={4}>
-            <Form.Control
-              type="email"
-              placeholder="Enter your second Email."
-              {...register("EmailID2", {
-                required: "Second Email is required.",
-              })}
-              style={{
-                border: "none",
-                borderBottom: "2px solid rgb(243, 185, 78)",
-                outline: "none",
-                boxShadow: "none",
-                padding: "5px 0",
-                width: "100%",
-                borderRadius: "0",
-              }}
-            />
-            {errors.EmailID2 && (
-              <p style={{ color: "red" }}>{errors.EmailID2.message}</p>
-            )}
-          </Col>
-          <Col md={2} className="d-flex align-items-center">
-            <Form.Label>Remarks :</Form.Label>
-          </Col>
-          <Col md={4}>
-            <Form.Control
-              as="textarea"
-              rows={2}
-              placeholder="Enter your Remarks."
-              {...register("Remarks")}
-              style={{
-                border: "none",
-                borderBottom: "2px solid rgb(243, 185, 78)",
-                outline: "none",
-                boxShadow: "none",
-                padding: "5px 0",
-                width: "100%",
-                borderRadius: "0",
-              }}
-            />
-            {errors.Remarks && (
-              <p style={{ color: "red" }}>{errors.Remarks.message}</p>
-            )}
-          </Col>
-          <Col md={2} className="d-flex align-items-center">
-            <Form.Label>Currency :</Form.Label>
-          </Col>
-          <Col md={4}>
-            <Form.Control
-              type="text"
-              placeholder="Enter your Currency."
-              {...register("Currency", { required: "Currency is required." })}
-              style={{
-                border: "none",
-                borderBottom: "2px solid rgb(243, 185, 78)",
-                outline: "none",
-                boxShadow: "none",
-                padding: "5px 0",
-                width: "100%",
-                borderRadius: "0",
-              }}
-            />
-            {errors.Currency && (
-              <p style={{ color: "red" }}>{errors.Currency.message}</p>
-            )}
-          </Col>
-          <Col md={2} className="d-flex align-items-center">
-            <Form.Label>CF :</Form.Label>
-          </Col>
-          <Col md={4}>
-            <Form.Control
-              type="text"
-              placeholder="Enter your CF."
-              {...register("CF", { required: "CF is required." })}
-              style={{
-                border: "none",
-                borderBottom: "2px solid rgb(243, 185, 78)",
-                outline: "none",
-                boxShadow: "none",
-                padding: "5px 0",
-                width: "100%",
-                borderRadius: "0",
-              }}
-            />
-            {errors.CF && <p style={{ color: "red" }}>{errors.CF.message}</p>}
-          </Col>
-          <Col md={2} className="d-flex align-items-center">
-            <Form.Check
-              type="checkbox"
-              label="Send Mail"
-              {...register("SendMail")}
-            />
-          </Col>
-          <Row>
-            <Col md={2} className="d-flex align-items-center">
-              <Form.Label>Status:</Form.Label>
+            <Col md={1} className="d-flex align-items-center">
+              <Form.Label>PartyName :</Form.Label>
             </Col>
-            <Col md={4}>
-              <select
-                id="Status"
-                {...register("Status", { required: true })}
-                className="form-select"
-                defaultValue=""
+            <Col md={3}>
+              <Form.Control
+                type="text"
+                placeholder="Enter your PartyName."
+                {...register("PartyName", {
+                  required: "PartyName is required.",
+                })}
                 style={{
-                  height: "30px",
-                  padding: "0.2rem",
-                  border: "2px solid rgb(243, 185, 78)",
-                  fontSize: "14px",
-                  width: "360px",
+                  border: "none",
+                  borderBottom: "2px solid rgb(243, 185, 78)",
+                  outline: "none",
+                  boxShadow: "none",
+                  padding: "5px 0",
+                  width: "100%",
+                  borderRadius: "0",
                 }}
-              >
-                <option value="" disabled>
-                  --Select--
-                </option>
-                {statusOptions?.length > 0 ? (
-                  statusOptions.map((status) => (
-                    <option key={status.id} value={status.id}>
-                      {status.value || "Unnamed Status"}
-                    </option>
-                  ))
-                ) : (
-                  <option disabled>No status options available</option>
-                )}
-              </select>
-              {errors.Status && (
-                <p className="error-text">Please select a status.</p>
+              />
+              {errors.PartyName && (
+                <p style={{ color: "red" }}>{errors.PartyName.message}</p>
               )}
             </Col>
           </Row>
           <br />
-
-          <Col md={2} className="d-flex align-items-center">
-            <Form.Label>MktBy:</Form.Label>
-          </Col>
-          <Col md={4}>
-            <select
-              id="MktBy"
-              {...register("MktBy", { required: true })}
-              className="form-select"
-              defaultValue=""
-              style={{
-                height: "30px",
-                padding: "0.2rem",
-                border: "2px solid rgb(243, 185, 78)",
-                fontSize: "14px",
-                width: "360px",
-              }}
-            >
-              <option value="" disabled>
-                --Select--
-              </option>
-              {cuidOptions?.length > 0 ? (
-                cuidOptions.map((user) => (
-                  <option key={user.id} value={user.id}>
-                    {user.value || "Unnamed User"}
-                  </option>
-                ))
-              ) : (
-                <option disabled>No User options available</option>
-              )}
-            </select>
-            {errors.MktBy && (
-              <p className="error-text">Please select a User.</p>
-            )}
-          </Col>
-          <Col md={2} className="d-flex align-items-center">
-            <Form.Check type="checkbox" label="Auth" {...register("Auth")} />
-          </Col>
-
           <Row>
-            <Col md={2} className="d-flex align-items-center">
-              <Form.Label>AuthBy:</Form.Label>
+            <Col md={1} className="d-flex align-items-center">
+              <Form.Label>Address :</Form.Label>
+            </Col>
+            <Col md={11}>
+              <Form.Control
+                as="textarea"
+                rows={2}
+                {...register("Address", { required: "Address is required." })}
+                placeholder="Enter your text here..."
+                style={{
+                  border: "none",
+                  borderBottom: "2px solid rgb(243, 185, 78)",
+                  outline: "none",
+                  boxShadow: "none",
+                  padding: "5px 0",
+                  width: "100%",
+                  borderRadius: "0",
+                }}
+              />
+              {errors.Address && (
+                <p style={{ color: "red" }}>{errors.Address.message}</p>
+              )}
+            </Col>
+          </Row>
+          <br />
+          <Row>
+            <Col md={1} className="d-flex align-items-center">
+              <Form.Label>Area :</Form.Label>
+            </Col>
+            <Col md={5}>
+              <Form.Control
+                type="text"
+                placeholder="Enter your Area."
+                {...register("Area", { required: "Area is required." })}
+                style={{
+                  border: "none",
+                  borderBottom: "2px solid rgb(243, 185, 78)",
+                  outline: "none",
+                  boxShadow: "none",
+                  padding: "5px 0",
+                  width: "85%",
+                                    borderRadius: "0",
+                }}
+              />
+              {errors.Area && (
+                <p style={{ color: "red" }}>{errors.Area.message}</p>
+              )}
+            </Col>
+            <Col md={1} className="d-flex align-items-center">
+              <Form.Label>State :</Form.Label>
+            </Col>
+            <Col md={5}>
+              <Form.Control
+                type="text"
+                placeholder="Enter your State."
+                {...register("State", { required: "State is required." })}
+                style={{
+                  border: "none",
+                  borderBottom: "2px solid rgb(243, 185, 78)",
+                  outline: "none",
+                  boxShadow: "none",
+                  padding: "5px 0",
+                  width: "100%",
+                  borderRadius: "0",
+                }}
+              />
+              {errors.State && (
+                <p style={{ color: "red" }}>{errors.State.message}</p>
+              )}
+            </Col>
+          </Row>
+          <br />
+          <Row>
+            <Col md={1} className="d-flex align-items-center">
+              <Form.Label>ContactName :</Form.Label>
+            </Col>
+            <Col md={3}>
+              <Form.Control
+                type="text"
+                placeholder="Enter your ContactName."
+                {...register("ContactName", {
+                  required: "ContactName is required.",
+                })}
+                style={{
+                  border: "none",
+                  borderBottom: "2px solid rgb(243, 185, 78)",
+                  outline: "none",
+                  boxShadow: "none",
+                  padding: "5px 0",
+                  width: "85%",
+                  borderRadius: "0",
+                }}
+              />
+              {errors.ContactName && (
+                <p style={{ color: "red" }}>{errors.ContactName.message}</p>
+              )}
+            </Col>
+            <Col md={1} className="d-flex align-items-center">
+              <Form.Label>Mobile :</Form.Label>
+            </Col>
+            <Col md={3}>
+              <Form.Control
+                type="text"
+                placeholder="Enter your Mobile."
+                {...register("Mobile", { required: "Mobile is required." })}
+                style={{
+                  border: "none",
+                  borderBottom: "2px solid rgb(243, 185, 78)",
+                  outline: "none",
+                  boxShadow: "none",
+                  padding: "5px 0",
+                  width: "85%",
+                  borderRadius: "0",
+                }}
+              />
+              {errors.Mobile && (
+                <p style={{ color: "red" }}>{errors.Mobile.message}</p>
+              )}
+            </Col>
+
+            <Col md={1} className="d-flex align-items-center">
+              <Form.Label>Mobile2 :</Form.Label>
+            </Col>
+            <Col md={3}>
+              <Form.Control
+                type="text"
+                placeholder="Enter your second Mobile."
+                {...register("Mobile2", {
+                  required: "Second Mobile is required.",
+                })}
+                style={{
+                  border: "none",
+                  borderBottom: "2px solid rgb(243, 185, 78)",
+                  outline: "none",
+                  boxShadow: "none",
+                  padding: "5px 0",
+                  width: "100%",
+                  borderRadius: "0",
+                }}
+              />
+              {errors.Mobile2 && (
+                <p style={{ color: "red" }}>{errors.Mobile2.message}</p>
+              )}
+            </Col>
+          </Row>
+          <br />
+          <Row>
+            <Col md={1} className="d-flex align-items-center">
+              <Form.Label>Email :</Form.Label>
             </Col>
             <Col md={4}>
+              <Form.Control
+                type="email"
+                placeholder="Enter your Email."
+                {...register("EmailID", { required: "Email is required." })}
+                style={{
+                  border: "none",
+                  borderBottom: "2px solid rgb(243, 185, 78)",
+                  outline: "none",
+                  boxShadow: "none",
+                  padding: "5px 0",
+                  width: "90%",
+                  borderRadius: "0",
+                }}
+              />
+              {errors.EmailID && (
+                <p style={{ color: "red" }}>{errors.EmailID.message}</p>
+              )}
+            </Col>
+
+            <Col md={1} className="d-flex align-items-center">
+            
+                <Form.Check
+                  type="checkbox"
+                  {...register("SendMail")}
+                  label="Send Mail"
+                />
+             
+            </Col>
+            <Col md={1} className="d-flex align-items-center">
+              <Form.Label>EmailID2 :</Form.Label>
+            </Col>
+            <Col md={4}>
+              <Form.Control
+                type="email"
+                placeholder="Enter your second Email."
+                {...register("EmailID2", {
+                  required: "Second Email is required.",
+                })}
+                style={{
+                  border: "none",
+                  borderBottom: "2px solid rgb(243, 185, 78)",
+                  outline: "none",
+                  boxShadow: "none",
+                  padding: "5px 0",
+                  width: "125%",
+                  borderRadius: "0",
+                }}
+              />
+              {errors.EmailID2 && (
+                <p style={{ color: "red" }}>{errors.EmailID2.message}</p>
+              )}
+            </Col>
+          </Row>
+          <br />
+          <Row>
+            <Col md={1} className="d-flex align-items-center">
+              <Form.Label>Remarks :</Form.Label>
+            </Col>
+            <Col md={5}>
+              <Form.Control
+                as="textarea"
+                rows={2}
+                placeholder="Enter your Remarks."
+                {...register("Remarks")}
+                style={{
+                  border: "none",
+                  borderBottom: "2px solid rgb(133, 132, 130)",
+                  outline: "none",
+                  boxShadow: "none",
+                  padding: "5px 0",
+                  width: "100%",
+                  borderRadius: "0",
+                }}
+              />
+              {errors.Remarks && (
+                <p style={{ color: "red" }}>{errors.Remarks.message}</p>
+              )}
+            </Col>
+            <Col md={1} className="d-flex align-items-center">
+              <Form.Label>Currency :</Form.Label>
+            </Col>
+            <Col md={5}>
+              <Form.Control
+                type="text"
+                placeholder="Enter your Currency."
+                {...register("Currency", { required: "Currency is required." })}
+                style={{
+                  border: "none",
+                  borderBottom: "2px solid rgb(243, 185, 78)",
+                  outline: "none",
+                  boxShadow: "none",
+                  padding: "5px 0",
+                  width: "100%",
+                  borderRadius: "0",
+                }}
+              />
+              {errors.Currency && (
+                <p style={{ color: "red" }}>{errors.Currency.message}</p>
+              )}
+            </Col>
+          </Row>
+          <br />
+          <Row>
+            <Col md={1} className="d-flex align-items-center">
+              <Form.Label>CF :</Form.Label>
+            </Col>
+            <Col md={3}>
+              <Form.Control
+                type="text"
+                placeholder="Enter your CF."
+                {...register("CF", { required: "CF is required." })}
+                style={{
+                  border: "none",
+                  borderBottom: "2px solid rgb(243, 185, 78)",
+                  outline: "none",
+                  boxShadow: "none",
+                  padding: "5px 0",
+                  width: "100%",
+                  borderRadius: "0",
+                }}
+              />
+              {errors.CF && <p style={{ color: "red" }}>{errors.CF.message}</p>}
+            </Col>
+           
+
+            <Col md={1} className="d-flex align-items-center">
+              <Form.Label>Status:</Form.Label>
+            </Col>
+            <Col md={3}>
               <select
-                id="AuthBy"
-                {...register("AuthBy", { required: true })}
+                id="Status"
+                {...register("Status", { required: true })}
                 className="form-select"
                 defaultValue=""
                 style={{
                   height: "30px",
                   padding: "0.2rem",
-                  border: "2px solid rgb(133, 132, 130)",
+                  border: "2px solid rgb(243, 185, 78)",
                   fontSize: "14px",
-                  width: "360px",
+                  width: "295px",
                 }}
               >
                 <option value="" disabled>
                   --Select--
                 </option>
-                {cuidOptions?.length > 0 ? (
-                  cuidOptions.map((user) => (
-                    <option key={user.id} value={user.id}>
-                      {user.value || "Unnamed User"}
+                {statusOptions?.length > 0 ? (
+                  statusOptions.map((status) => (
+                    <option key={status.id} value={status.id}>
+                      {status.value || "Unnamed Status"}
                     </option>
                   ))
                 ) : (
-                  <option disabled>No User options available</option>
+                  <option disabled>No status options available</option>
                 )}
               </select>
-              {errors.AuthBy && (
-                <p className="error-text">Please select a User.</p>
+              {errors.Status && (
+                <p className="error-text">Please select a status.</p>
               )}
             </Col>
-          </Row>
-
-          <Row>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>CUID:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={3}>
               <select
                 id="CUID"
                 {...register("CUID", { required: true })}
@@ -789,7 +732,7 @@ export default function InquiryMasterForm() {
                   padding: "0.2rem",
                   border: "2px solid rgb(243, 185, 78)",
                   fontSize: "14px",
-                  width: "360px",
+                  width: "295px",
                 }}
               >
                 <option value="" disabled>
@@ -810,104 +753,86 @@ export default function InquiryMasterForm() {
               )}
             </Col>
           </Row>
-
-          {/* Item Master Sub-Table */}
-          {/* <Row className="mt-4">
-            <Col>
-              <Table bordered>
-                <thead>
-                  <tr>
-                    <th>S.No.</th>
-                    <th>Item Name</th>
-                    <th>Description</th>
-                    <th>UOM</th>
-                    <th>Quantity</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {items.map((item, index) => (
-                    <tr key={index}>
-                      <td>{index + 1}</td>
-                      <td>
-                        <select
-                          value={item.ItemID}
-                          onChange={(e) =>
-                            handleItemChange(index, "ItemID", e.target.value)
-                          }
-                          className="form-select"
-                        >
-                          <option value="">Select Item</option>
-                          {itemMasterOptions.map((option) => (
-                            <option key={option.id} value={option.id}>
-                              {option.ItemName}
-                            </option>
-                          ))}
-                        </select>
-                      </td>
-                      <td>
-                        <textarea
-                          value={item.Description}
-                          onChange={(e) =>
-                            handleItemChange(
-                              index,
-                              "Description",
-                              e.target.value
-                            )
-                          }
-                          className="form-control"
-                        />
-                      </td>
-                      <td>
-                        <select
-                          value={item.UOM}
-                          onChange={(e) =>
-                            handleItemChange(index, "UOM", e.target.value)
-                          }
-                          className="form-select"
-                        >
-                          <option value="" disabled>
-                            --Select--
-                          </option>
-                          {uomidOptions?.length > 0 ? (
-                            uomidOptions.map((uoms, index) => (
-                              <option key={uoms.id} value={uoms.id}>
-                                {uoms.value || "Unnamed unit"}
-                              </option>
-                            ))
-                          ) : (
-                            <option disabled>No unit options available</option>
-                          )}
-                        </select>
-                      </td>
-                      <td>
-                        <input
-                          type="number"
-                          value={item.Quantity}
-                          onChange={(e) =>
-                            handleItemChange(index, "Quantity", e.target.value)
-                          }
-                          className="form-control"
-                        />
-                      </td>
-                      <td>
-                        <Button
-                          variant="danger"
-                          size="sm"
-                          onClick={() => deleteItem(index)}
-                        >
-                          -
-                        </Button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </Table>
-              <Button variant="primary" onClick={addItem}>
-                +
-              </Button>
+          <br />
+          <Row>
+            <Col md={1} className="d-flex align-items-center">
+              <Form.Label>MktBy:</Form.Label>
             </Col>
-          </Row> */}
+            <Col md={3}>
+              <select
+                id="MktBy"
+                {...register("MktBy", { required: true })}
+                className="form-select"
+                defaultValue=""
+                style={{
+                  height: "30px",
+                  padding: "0.2rem",
+                  border: "2px solid rgb(243, 185, 78)",
+                  fontSize: "14px",
+                  width: "295px",
+                }}
+              >
+                <option value="" disabled>
+                  --Select--
+                </option>
+                {cuidOptions?.length > 0 ? (
+                  cuidOptions.map((user) => (
+                    <option key={user.id} value={user.id}>
+                      {user.value || "Unnamed User"}
+                    </option>
+                  ))
+                ) : (
+                  <option disabled>No User options available</option>
+                )}
+              </select>
+              {errors.MktBy && (
+                <p className="error-text">Please select a User.</p>
+              )}
+            </Col>
+
+            <Col md={2} className="d-flex align-items-center">
+              <Form.Check type="checkbox" label="Auth" {...register("Auth")} />
+            </Col>
+
+            <Col md={1} className="d-flex align-items-center">
+              <Form.Label>AuthBy:</Form.Label>
+            </Col>
+            <Col md={3}>
+              <select
+                id="AuthBy"
+                {...register("AuthBy", { required: true })}
+                className="form-select"
+                defaultValue=""
+                style={{
+                  height: "30px",
+                  padding: "0.2rem",
+                  border: "2px solid rgb(133, 132, 130)",
+                  fontSize: "14px",
+                  width: "173%",
+                }}
+              >
+                <option value="" disabled>
+                  --Select--
+                </option>
+                {cuidOptions?.length > 0 ? (
+                  cuidOptions.map((user) => (
+                    <option key={user.id} value={user.id}>
+                      {user.value || "Unnamed User"}
+                    </option>
+                  ))
+                ) : (
+                  <option disabled>No User options available</option>
+                )}
+              </select>
+              {errors.AuthBy && (
+                <p className="error-text">Please select a User.</p>
+              )}
+            </Col>
+          </Row>
+          <br />
+          <Row>
+           
+          </Row>
         </Container>
       </Form>
       <Footer

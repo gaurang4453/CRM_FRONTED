@@ -17,6 +17,7 @@ body {
 }
 
 form {
+  padding: 10px;
   position: relative;
   background-color: #ffffff;
   width: 1300px;
@@ -25,7 +26,7 @@ form {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  height: 530px;
+  height: 900px;
 }
 
 form h1 {
@@ -47,7 +48,8 @@ form h1 {
 .ribbon {
   position: absolute;
   top: 4px;
-  left: -20px;
+  height: 45px;
+  left: -12px;
   padding: 10px;
   background-color: #007bff;
   color: #fff;
@@ -60,7 +62,7 @@ form h1 {
 label {
   color: #444649;
   margin-bottom: 10px;
-  font-size: 14px;
+  font-size: 15px;
   white-space: nowrap;
 }
 
@@ -170,3 +172,4 @@ footer {
 option.highlighted {
   color: #FF5733;
 }
+
