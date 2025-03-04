@@ -833,8 +833,9 @@ export default function InquiryMasterForm() {
            
           </Row>
         </Container>
-        <SubTableInquiryMaster/>
+        
       </Form>
+      <SubTableInquiryMaster/>
       <Footer
         className="footer"
         onSave={handleSubmit(onSubmit)}
