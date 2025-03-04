@@ -6,6 +6,7 @@ import "../style/style.css";
 import Footer from "/src/components/Footer/Footer";
 import useDropdownData from "../UseDropdownData";
 import AxiosInstance from "/src/AxiosInstance";
+import SubTableInquiryMaster from "../SubTable/SubTableInquiryMaster";
 
 export default function InquiryMasterForm() {
   const { id } = useParams();
@@ -13,7 +14,6 @@ export default function InquiryMasterForm() {
   const [loading, setLoading] = useState(!!id);
   const [error, setError] = useState(null);
   const [items, setItems] = useState([]);
-  const [itemMasterOptions, setItemMasterOptions] = useState([]);
 
   const {
     register,
@@ -25,7 +25,6 @@ export default function InquiryMasterForm() {
 
   const { data: statusOptions, error: statusError } = useDropdownData("status");
   const { data: cuidOptions, error: cuidError } = useDropdownData("entryby");
-  const { data: uomOptions, error: uomError } = useDropdownData("uom");
   const { data: branchesOptions, error: branchesError } =
     useDropdownData("branches");
   const { data: companiesOptions, error: companiesError } =
@@ -834,6 +833,7 @@ export default function InquiryMasterForm() {
            
           </Row>
         </Container>
+        <SubTableInquiryMaster/>
       </Form>
       <Footer
         className="footer"
