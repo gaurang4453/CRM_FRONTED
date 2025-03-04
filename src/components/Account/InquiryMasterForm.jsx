@@ -6,6 +6,7 @@ import "../style/style.css";
 import Footer from "/src/components/Footer/Footer";
 import useDropdownData from "../UseDropdownData";
 import AxiosInstance from "/src/AxiosInstance";
+import SubTableInquiryMaster from "../SubTable/SubTableInquiryMaster";
 
 export default function InquiryMasterForm() {
   const { id } = useParams();
@@ -13,7 +14,6 @@ export default function InquiryMasterForm() {
   const [loading, setLoading] = useState(!!id);
   const [error, setError] = useState(null);
   const [items, setItems] = useState([]);
-  const [itemMasterOptions, setItemMasterOptions] = useState([]);
 
   const {
     register,
@@ -25,7 +25,6 @@ export default function InquiryMasterForm() {
 
   const { data: statusOptions, error: statusError } = useDropdownData("status");
   const { data: cuidOptions, error: cuidError } = useDropdownData("entryby");
-  const { data: uomOptions, error: uomError } = useDropdownData("uom");
   const { data: branchesOptions, error: branchesError } =
     useDropdownData("branches");
   const { data: companiesOptions, error: companiesError } =
@@ -810,105 +809,10 @@ export default function InquiryMasterForm() {
               )}
             </Col>
           </Row>
-
-          {/* Item Master Sub-Table */}
-          {/* <Row className="mt-4">
-            <Col>
-              <Table bordered>
-                <thead>
-                  <tr>
-                    <th>S.No.</th>
-                    <th>Item Name</th>
-                    <th>Description</th>
-                    <th>UOM</th>
-                    <th>Quantity</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {items.map((item, index) => (
-                    <tr key={index}>
-                      <td>{index + 1}</td>
-                      <td>
-                        <select
-                          value={item.ItemID}
-                          onChange={(e) =>
-                            handleItemChange(index, "ItemID", e.target.value)
-                          }
-                          className="form-select"
-                        >
-                          <option value="">Select Item</option>
-                          {itemMasterOptions.map((option) => (
-                            <option key={option.id} value={option.id}>
-                              {option.ItemName}
-                            </option>
-                          ))}
-                        </select>
-                      </td>
-                      <td>
-                        <textarea
-                          value={item.Description}
-                          onChange={(e) =>
-                            handleItemChange(
-                              index,
-                              "Description",
-                              e.target.value
-                            )
-                          }
-                          className="form-control"
-                        />
-                      </td>
-                      <td>
-                        <select
-                          value={item.UOM}
-                          onChange={(e) =>
-                            handleItemChange(index, "UOM", e.target.value)
-                          }
-                          className="form-select"
-                        >
-                          <option value="" disabled>
-                            --Select--
-                          </option>
-                          {uomidOptions?.length > 0 ? (
-                            uomidOptions.map((uoms, index) => (
-                              <option key={uoms.id} value={uoms.id}>
-                                {uoms.value || "Unnamed unit"}
-                              </option>
-                            ))
-                          ) : (
-                            <option disabled>No unit options available</option>
-                          )}
-                        </select>
-                      </td>
-                      <td>
-                        <input
-                          type="number"
-                          value={item.Quantity}
-                          onChange={(e) =>
-                            handleItemChange(index, "Quantity", e.target.value)
-                          }
-                          className="form-control"
-                        />
-                      </td>
-                      <td>
-                        <Button
-                          variant="danger"
-                          size="sm"
-                          onClick={() => deleteItem(index)}
-                        >
-                          -
-                        </Button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </Table>
-              <Button variant="primary" onClick={addItem}>
-                +
-              </Button>
-            </Col>
-          </Row> */}
+          
+          
         </Container>
+        <SubTableInquiryMaster/>
       </Form>
       <Footer
         className="footer"

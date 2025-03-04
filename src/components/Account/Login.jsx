@@ -36,7 +36,7 @@ function Login({ onLoginSuccess }) {
   };
 
   return (
-    <div className="content justify-content-center align-items-center body">
+    <div className="loginbody content justify-content-center align-items-center body">
       <div className="col-md-12 form-container">
         <form className="mt-0" onSubmit={handleLogin}> {/* Added onSubmit */}
           <div className="header-text mb-4">
