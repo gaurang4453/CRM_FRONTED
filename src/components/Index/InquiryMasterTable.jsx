@@ -82,7 +82,7 @@ export default function InquiryMasterTable() {
               fontWeight: "bold",
             }}
           >
-            UOM Master Table
+            Inquiry Master Table
           </h5>
           <Table
             striped
