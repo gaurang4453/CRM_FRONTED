@@ -22,11 +22,11 @@ form {
   background-color: #ffffff;
   width: 1300px;
   margin-top: 20px;
-  margin-bottom: 0px;
+  margin-bottom: 110px;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  height: 700px;
+  height: 1100px;
 }
 
 form h1 {
