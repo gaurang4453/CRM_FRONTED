@@ -110,8 +110,8 @@ export default function InquiryMasterTable() {
             <tbody>
               {tableData.map((inquiry, index) => (
                 <tr
-                  key={inquiry.inquiryid || index}
-                  onClick={() => handleRowClick(inquiry.inquiryid)}
+                  key={inquiry.inquiryID || index}
+                  onClick={() => handleRowClick(inquiry.inquiryID)}
                   style={{ cursor: "pointer" }}
                   className="text-center table-row-hover"
                 >
