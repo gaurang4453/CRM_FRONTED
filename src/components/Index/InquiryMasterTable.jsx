@@ -67,10 +67,10 @@ export default function InquiryMasterTable() {
           className="table-responsive shadow-lg rounded bg-white p-3"
           style={{
             marginTop: "100px", // Maintain the top margin
-            width: "120%", // Increase the table container width (set to 90% for more space)
+            width: "1100px", // Increase the table container width (set to 90% for more space)
             height: "500px", // Maintain the height of the container
-            marginLeft: "-120px", // Center horizontally
-            marginRight: "450px", // Center horizontally
+            // marginLeft: "-120px", // Center horizontally
+            // marginRight: "450px", // Center horizontally
           }}
         >
           <h5
@@ -93,8 +93,8 @@ export default function InquiryMasterTable() {
               marginTop: "120px", // Maintain the top margin
               width: "100%", // Increase the table container width (set to 90% for more space)
               // height: "500px", // Maintain the height of the container
-              marginLeft: "-55x", // Center horizontally
-              marginRight: "550px",
+              // marginLeft: "-55x", // Center horizontally
+              // marginRight: "550px",
             }}
           >
             <thead className="bg-primary text-white text-center">

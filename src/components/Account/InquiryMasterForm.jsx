@@ -212,7 +212,7 @@ export default function InquiryMasterForm() {
     );
   return (
     <>
-    <div style={{ marginTop: "80px" }}></div>
+      <div style={{ marginTop: "80px" }}></div>
       <Form
         onSubmit={handleSubmit(onSubmit)}
         className="form"
@@ -272,7 +272,7 @@ export default function InquiryMasterForm() {
                 )}
               </Form.Group>
             </Col>
-          
+
             <Col md={1} className="d-flex align-items-center">
               <Form.Label>BranchID:</Form.Label>
             </Col>
@@ -307,9 +307,9 @@ export default function InquiryMasterForm() {
                 <p className="error-text">Please select a branch.</p>
               )}
             </Col>
-</Row>
-<br/>
-<Row>
+          </Row>
+          <br />
+          <Row>
             <Col md={1} className="d-flex align-items-center">
               <Form.Label>CompanyID:</Form.Label>
             </Col>
@@ -344,7 +344,7 @@ export default function InquiryMasterForm() {
                 <p className="error-text">Please select a company.</p>
               )}
             </Col>
-         
+
             <Col md={1} className="d-flex align-items-center">
               <Form.Label>ReferenceBy:</Form.Label>
             </Col>
@@ -359,7 +359,7 @@ export default function InquiryMasterForm() {
                   padding: "0.2rem",
                   border: "2px solid rgb(243, 185, 78)",
                   fontSize: "14px",
-                 width: "85%",
+                  width: "85%",
                 }}
               >
                 <option value="" disabled>
@@ -448,7 +448,7 @@ export default function InquiryMasterForm() {
                   boxShadow: "none",
                   padding: "5px 0",
                   width: "85%",
-                                    borderRadius: "0",
+                  borderRadius: "0",
                 }}
               />
               {errors.Area && (
@@ -578,13 +578,11 @@ export default function InquiryMasterForm() {
             </Col>
 
             <Col md={1} className="d-flex align-items-center">
-            
-                <Form.Check
-                  type="checkbox"
-                  {...register("SendMail")}
-                  label="Send Mail"
-                />
-             
+              <Form.Check
+                type="checkbox"
+                {...register("SendMail")}
+                label="Send Mail"
+              />
             </Col>
             <Col md={1} className="d-flex align-items-center">
               <Form.Label>EmailID2 :</Form.Label>
@@ -681,7 +679,6 @@ export default function InquiryMasterForm() {
               />
               {errors.CF && <p style={{ color: "red" }}>{errors.CF.message}</p>}
             </Col>
-           
 
             <Col md={1} className="d-flex align-items-center">
               <Form.Label>Status:</Form.Label>
@@ -829,19 +826,16 @@ export default function InquiryMasterForm() {
             </Col>
           </Row>
           <br />
-          <Row>
-           
-          </Row>
+          <Row></Row>
         </Container>
-        
       </Form>
-      <SubTableInquiryMaster/>
       <Footer
         className="footer"
         onSave={handleSubmit(onSubmit)}
         onDelete={id ? handleDelete : undefined}
         onCancel={() => navigate("/InquiryMasterTable")}
       />
+      <SubTableInquiryMaster />
     </>
   );
 }

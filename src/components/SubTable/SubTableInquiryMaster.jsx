@@ -9,17 +9,17 @@ import AxiosInstance from "../../AxiosInstance";
 import useDropdownData from "../UseDropdownData";
 
 const SubTableInquiryMaster = () => {
-    const { id } = useParams();
-    
+  const { id } = useParams();
+
   const [rows, setRows] = useState([
     { id: 1, itemName: "", description: "", uom: "", qty: 0, remarks: "" }, // qty initialized to 0
   ]);
 
   const {
-      register,
-      
-      formState: { errors },
-    } = useForm();
+    register,
+
+    formState: { errors },
+  } = useForm();
   const addRow = () => {
     setRows([
       ...rows,
@@ -44,8 +44,6 @@ const SubTableInquiryMaster = () => {
       .map((row, index) => ({ ...row, id: index + 1 }));
     setRows(updatedRows);
   };
-
- 
 
   const saveInquiry = async () => {
     try {
@@ -74,7 +72,7 @@ const SubTableInquiryMaster = () => {
         <div className="table-responsive">
           <table
             className="table table-bordered w-100"
-            style={{ minWidth: "75vw" }}
+            style={{ minWidth: "85vw", marginLeft: "-10px" }}
           >
             <thead className="bg-dark text-white text-center">
               <tr>
@@ -112,7 +110,7 @@ const SubTableInquiryMaster = () => {
                         {itemsOptions?.length > 0 ? (
                           itemsOptions.map((item) => (
                             <option key={item.id} value={item.id}>
-                              {item.value }
+                              {item.value}
                             </option>
                           ))
                         ) : (
