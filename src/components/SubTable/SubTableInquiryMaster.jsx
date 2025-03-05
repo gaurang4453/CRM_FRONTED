@@ -171,11 +171,12 @@ const SubTableInquiryMaster = () => {
                     />
                   </td>
                   <td className="text-center align-middle">
-                    <button className="btn btn-primary me-2" onClick={addRow}>
+                    <button type="button" className="btn btn-primary me-2" onClick={addRow}>
                       <FaPlus />
                     </button>
                     {rows.length > 1 && (
                       <button
+                      type="button"
                         className="btn btn-danger"
                         onClick={() => removeRow(row.id)}
                       >
