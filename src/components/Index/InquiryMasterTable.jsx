@@ -18,7 +18,7 @@ export default function InquiryMasterTable() {
     try {
       const response = await AxiosInstance.get("/InquiryMaster");
       const data = response.data.data;
-      //console.log("Fetched Data:", data); // Debugging
+      // console.log("Fetched Data:", data); // Debugging
       setTableData(data);
     } catch (error) {
       setError("Something went wrong!");
@@ -26,13 +26,15 @@ export default function InquiryMasterTable() {
       setLoading(false);
     }
   };
-  const handleRowClick = (InquiryID) => {
-    navigate(`/InquiryMasterForm/${InquiryID}`);
+
+  const handleRowClick = (inquiryID) => {
+    navigate(`/InquiryMasterForm/${inquiryID}`);
   };
 
   const handleCreateNew = () => {
     navigate("/InquiryMasterForm");
   };
+
   return (
     <Container className="mt-5" style={{ maxWidth: "100%" }}>
       {/* Create New Button */}
@@ -54,6 +56,7 @@ export default function InquiryMasterTable() {
           + Create New
         </Button>
       </div>
+
       {loading && (
         <Spinner
           animation="border"
@@ -61,7 +64,9 @@ export default function InquiryMasterTable() {
           className="d-block mx-auto"
         />
       )}
+
       {error && <p className="text-danger text-center">{error}</p>}
+
       {tableData.length > 0 && !loading ? (
         <div
           className="table-responsive shadow-lg rounded bg-white p-3"
@@ -69,8 +74,6 @@ export default function InquiryMasterTable() {
             marginTop: "100px", // Maintain the top margin
             width: "1300px", // Increase the table container width (set to 90% for more space)
             height: "500px", // Maintain the height of the container
-            // marginLeft: "-120px", // Center horizontally
-            // marginRight: "450px", // Center horizontally
           }}
         >
           <h5
@@ -101,7 +104,7 @@ export default function InquiryMasterTable() {
                 <th>PartyName</th>
                 <th>MobileNo</th>
                 <th>EmailID</th>
-                <th>VoucherType</th>
+                {/* <th>VoucherType</th> */}
                 <th>Status</th>
                 <th>CUID</th>
                 <th>MktBy</th>
@@ -110,20 +113,27 @@ export default function InquiryMasterTable() {
             <tbody>
               {tableData.map((inquiry, index) => (
                 <tr
-                  key={inquiry.inquiryid || index}
-                  onClick={() => handleRowClick(inquiry.inquiryid)}
+                  key={inquiry.inquiryID || index}
+                  onClick={() =>
+                    handleRowClick(inquiry.inquiryid || inquiry.inquiryID)
+                  }
                   style={{ cursor: "pointer" }}
                   className="text-center table-row-hover"
                 >
-                  {" "}
                   <td style={{ width: "4%" }}>{inquiry.inquiryNo}</td>
-                  <td style={{ width: "4%" }}>{inquiry.date}</td>
+                  <td style={{ width: "4%" }}>
+                    {inquiry.date || inquiry.Date}
+                  </td>
                   <td style={{ width: "4%" }}>{inquiry.partyName}</td>
-                  <td style={{ width: "4%" }}>{inquiry.mobileNo}</td>
+                  <td style={{ width: "4%" }}>
+                    {inquiry.mobileNo || inquiry.mobile}
+                  </td>
                   <td style={{ width: "4%" }}>{inquiry.emailID}</td>
-                  <td style={{ width: "4%" }}>{inquiry.voucherType}</td>
+                  {/* <td style={{ width: "4%" }}>{inquiry.voucherType}</td> */}
                   <td style={{ width: "4%" }}>{inquiry.status}</td>
-                  <td style={{ width: "4%" }}>{inquiry.cUID}</td>
+                  <td style={{ width: "4%" }}>
+                    {inquiry.cUID || inquiry.cuid}
+                  </td>
                   <td style={{ width: "4%" }}>{inquiry.mktBy}</td>
                 </tr>
               ))}
