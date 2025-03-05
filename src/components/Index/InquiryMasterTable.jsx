@@ -41,7 +41,7 @@ export default function InquiryMasterTable() {
         style={{
           position: "fixed", // Fix the button on the screen
           top: "100px", // Adjust the vertical position (distance from the top)
-          right: "1320px", // Adjust the horizontal position (distance from the right edge)
+          right: "1285px", // Adjust the horizontal position (distance from the right edge)
           zIndex: "1000", // Ensures it stays above other content
           padding: "5px 10px", // Optional: Adds padding around the button
         }}
@@ -67,7 +67,7 @@ export default function InquiryMasterTable() {
           className="table-responsive shadow-lg rounded bg-white p-3"
           style={{
             marginTop: "100px", // Maintain the top margin
-            width: "1100px", // Increase the table container width (set to 90% for more space)
+            width: "1300px", // Increase the table container width (set to 90% for more space)
             height: "500px", // Maintain the height of the container
             // marginLeft: "-120px", // Center horizontally
             // marginRight: "450px", // Center horizontally
@@ -91,10 +91,7 @@ export default function InquiryMasterTable() {
             className="mt-4"
             style={{
               marginTop: "120px", // Maintain the top margin
-              width: "100%", // Increase the table container width (set to 90% for more space)
-              // height: "500px", // Maintain the height of the container
-              // marginLeft: "-55x", // Center horizontally
-              // marginRight: "550px",
+              width: "100%",
             }}
           >
             <thead className="bg-primary text-white text-center">
