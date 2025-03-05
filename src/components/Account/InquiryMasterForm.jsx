@@ -827,7 +827,8 @@ export default function InquiryMasterForm() {
           </Row>
           <br />
           <Row></Row>
-        </Container>
+        </Container> 
+        <SubTableInquiryMaster />
       </Form>
       <Footer
         className="footer"
@@ -835,7 +836,7 @@ export default function InquiryMasterForm() {
         onDelete={id ? handleDelete : undefined}
         onCancel={() => navigate("/InquiryMasterTable")}
       />
-      <SubTableInquiryMaster />
+     
     </>
   );
 }
