@@ -154,38 +154,31 @@ export default function BranchMasterForm() {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)} className="form">
+      <form onSubmit={handleSubmit(onSubmit)} className="allform">
         <h1 className="ribbon">
           {id ? "Edit Property" : "Branch Master Form"}
         </h1>
         <Container>
           <Row>
-            <Col md={2} className="d-flex align-items-center">
-              <Form.Label>BranchName :</Form.Label>
+            <Col md={1} className="d-flex align-items-center">
+              <Form.Label>BranchName:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Control
                 type="text"
                 placeholder="Enter your Branch name."
                 {...register("BranchName", {
                   required: "BranchName is required",
                 })}
-                style={{
-                  border: "none", // Removes the border
-                  borderBottom: "2px solid rgb(243, 185, 78)", // Adds a bottom border with new color
-                  outline: "none", // Removes the outline when focused
-                  boxShadow: "none", // Removes the shadow on focus
-                  padding: "5px 0", // Adds padding to the top and bottom for better appearance
-                  width: "100%",
-                  borderRadius: "0", // Decreases the width of the input box
-                }}
+                className="requiredinputfieldstyle {
+"
               />
             </Col>
 
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>CurrencyCode:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Group controlId="CurrencyCode">
                 <Form.Control
                   type="text"
@@ -193,7 +186,7 @@ export default function BranchMasterForm() {
                   {...register("CurrencyCode", {
                     required: "CurrencyCode is required.",
                   })}
-                  className="input-required"
+                  className="requiredinputfieldstyle"
                 />
                 {errors.CurrencyCode && (
                   <p style={{ color: "red" }}>{errors.CurrencyCode.message}</p>
@@ -203,41 +196,36 @@ export default function BranchMasterForm() {
           </Row>
           <br />
           <Row>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>ShortName:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Control
                 type="text"
                 placeholder="Enter ShortName."
                 {...register("ShortName", {
                   required: "ShortName is required.",
                 })}
-                className="input-required"
+                className="requiredinputfieldstyle"
               />
               {errors.ShortName && (
                 <p style={{ color: "red" }}>{errors.ShortName.message}</p>
               )}
             </Col>
 
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>CompanyID:</Form.Label>
             </Col>
 
-            <Col md={4}>
+            <Col md={5}>
               <select
                 id="CompanyID"
                 {...register("CompanyID", {
                   required: "CompanyID is required.",
                 })}
-                className="form-select"
+                className="requireddropdown"
                 defaultValue=""
-                style={{
-                  height: "30px",
-                  padding: "0.2rem",
-                  fontSize: "14px",
-                  width: "100%",
-                }}
+                
               >
                 <option value="" disabled>
                   --Select--
@@ -259,44 +247,33 @@ export default function BranchMasterForm() {
           </Row>
           <br />
           <Row>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>Remarks:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Control
                 type="text"
                 placeholder="Enter Remarks."
                 {...register("Remarks")}
-                style={{
-                  border: "none",
-                  borderBottom: "2px solid rgb(133, 132, 130)", // Custom underline
-                  borderRadius: "0", // Removes rounded corners
-                  padding: "5px 0", // Adds padding to vertically align the text
-                  lineHeight: "1.5", // Adjust line height to align text vertically
-                  fontSize: "14px", // Adjust font size to match the input size
-                }}
+                className="inputfieldstyle"
               />
               {errors.Remarks && (
                 <p style={{ color: "red" }}>{errors.Remarks.message}</p>
               )}
             </Col>
 
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>Address:</Form.Label>
             </Col>
 
-            <Col md={4}>
+            <Col md={5}>
               <Form.Control
                 type="text"
                 placeholder="Enter your Address"
                 {...register("Address", {
                   required: "Address is required",
                 })}
-                style={{
-                  border: "none",
-                  borderBottom: "2px solid rgb(243, 185, 78)",
-                  borderRadius: "0",
-                }}
+                className="requiredinputfieldstyle"
               />
               {errors.Address && (
                 <p style={{ color: "red" }}>{errors.Address.message}</p>
@@ -305,10 +282,10 @@ export default function BranchMasterForm() {
           </Row>
           <br />
           <Row>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>Bank:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Group controlId="Bank">
                 <Form.Control
                   type="text"
@@ -316,104 +293,74 @@ export default function BranchMasterForm() {
                   {...register("Bank", {
                     required: "Bank is required",
                   })}
-                  style={{
-                    border: "none",
-                    borderBottom: "2px solid rgb(243, 185, 78)",
-                    outline: "none",
-                    boxShadow: "none",
-                    padding: "5px 0",
-                    width: "100%",
-                    borderRadius: "0",
-                  }}
+                  className="requiredinputfieldstyle"
                 />
                 {errors.Bank && (
                   <p style={{ color: "red" }}>{errors.Bank.message}</p>
                 )}
               </Form.Group>
             </Col>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>Description:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Control
                 type="text"
                 placeholder="Enter Description"
                 {...register("Description")}
-                style={{
-                  border: "none",
-                  borderBottom: "2px solid rgb(133, 132, 130)",
-                  borderRadius: "0",
-                }}
+              className="inputfieldstyle"
               />
             </Col>
           </Row>
           <br />
           <Row>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>TaxDescription:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Control
                 type="text"
                 placeholder="Enter TaxDescription"
                 {...register("TaxDescription")}
-                style={{
-                  border: "none",
-                  borderBottom: "2px solid rgb(133, 132, 130)",
-                  borderRadius: "0",
-                }}
+               className="inputfieldstyle"
               />
             </Col>
-            <Col md={2} className="d-flex align-items-center">
-              <Form.Label>CertifyDescription:</Form.Label>
+            <Col md={1} className="d-flex align-items-center">
+              <Form.Label>Certify Description:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Control
                 type="text"
                 placeholder="Enter CertifyDescription"
                 {...register("CertifyDescription")}
-                style={{
-                  border: "none",
-                  borderBottom: "2px solid rgb(133, 132, 130)",
-                  borderRadius: "0",
-                }}
+               className="inputfieldstyle"
               />
             </Col>
           </Row>
           <br />
           <Row>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>GST_No:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Control
                 type="text"
                 placeholder="Enter your GST_No"
                 {...register("GST_No")}
-                style={{
-                  border: "none",
-                  borderBottom: "2px solid rgb(243, 185, 78)",
-                  borderRadius: "0",
-                }}
+                className="inputfieldstyle"
               />
             </Col>
 
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>Status:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <select
                 id="Status"
                 {...register("Status", { required: true })}
-                className="form-select"
+                className="form-select requireddropdown"
                 defaultValue=""
-                style={{
-                  height: "30px", // Decrease the height
-                  padding: "0.2rem", // Reduce padding
-                  fontSize: "14px",
-                  width: "100%",
-                }}
-              >
+                             >
                 <option value="" disabled>
                   --Select--
                 </option>
@@ -434,21 +381,16 @@ export default function BranchMasterForm() {
           </Row>
           <br />
           <Row>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>CUID:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <select
                 id="CUID"
                 {...register("CUID", { required: true })}
-                className="form-select"
+                className="form-select requireddropdown"
                 defaultValue=""
-                style={{
-                  height: "30px", // Decrease the height
-                  padding: "0.2rem", // Reduce padding
-                  fontSize: "14px",
-                  width: "100%",
-                }}
+                
               >
                 <option value="" disabled>
                   --Select--

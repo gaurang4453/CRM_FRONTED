@@ -39,15 +39,8 @@ function PropMasterTable() {
     <Container className="mt-5" style={{ padding: "0", margin: "0" }}>
       {/* Create New Button */}
       <div
-        className="d-flex justify-content-end mb-3"
-        style={{
-          position: "fixed", // Fix the button on the screen
-          top: "100px", // Adjust the vertical position (distance from the top)
-          right: "1290px", // Adjust the horizontal position (distance from the right edge)
-          zIndex: "1000", // Ensures it stays above other content
-          padding: "5px 10px", // Optional: Adds padding around the button
-        }}
-      >
+        className="d-flex justify-content-end mb-3 tablebutton"
+             >
         <Button
           onClick={handleCreateNew}
           variant="success"

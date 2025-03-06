@@ -85,101 +85,127 @@ const SubTableInquiryMaster = ({ id, initialRows = [], onRowsUpdate }) => {
           className="table table-bordered w-100"
           style={{ minWidth: "85vw", marginLeft: "-10px" }}
         >
-          <thead className="bg-dark text-white text-center">
-            <tr>
-              <th>SeqNo</th>
-              <th>Item Name / Description</th>
-              <th>UOM / Qty</th>
-              <th>Remarks</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((row, index) => (
-              <tr key={row.id}>
-                <td className="text-center">{row.id}</td>
-                <td>
-                  <select
-                    className="form-select"
-                    value={row.itemName}
-                    onChange={(e) =>
-                      updateRow(index, "itemName", e.target.value)
-                    }
-                  >
-                    <option value="" disabled>
-                      --Select--
-                    </option>
-                    {itemsOptions?.map((item) => (
-                      <option key={item.id} value={item.value}>
-                        {item.value}
-                      </option>
-                    ))}
-                  </select>
-                  <textarea
-                    className="form-control mt-2"
-                    placeholder="Description"
-                    value={row.description}
-                    onChange={(e) =>
-                      updateRow(index, "description", e.target.value)
-                    }
-                  ></textarea>
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="UOM"
-                    value={row.uomid}
-                    onChange={(e) => updateRow(index, "uomid", e.target.value)}
-                  />
-                  <input
-                    type="number"
-                    className="form-control mt-2"
-                    placeholder="Qty"
-                    value={row.qty}
-                    min="1"
-                    onChange={(e) =>
-                      updateRow(
-                        index,
-                        "qty",
-                        Math.max(1, parseInt(e.target.value, 10) || 1)
-                      )
-                    }
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Remarks"
-                    value={row.remarks}
-                    onChange={(e) =>
-                      updateRow(index, "remarks", e.target.value)
-                    }
-                  />
-                </td>
-                <td className="text-center">
-                  <button
-                    type="button"
-                    className="btn btn-primary me-2"
-                    onClick={addRow}
-                  >
-                    <FaPlus />
-                  </button>
-                  {rows.length > 1 && (
-                    <button
-                      type="button"
-                      className="btn btn-danger"
-                      onClick={() => removeRow(row.id)}
-                    >
-                      <FaTrash />
-                    </button>
-                  )}
-                </td>
+          Item Master Table
+        </h5>
+        <div className="table-responsive">
+          <table
+            className="table table-bordered w-100"
+            style={{ minWidth: "85vw", marginLeft: "-10px" }}
+          >
+            <thead className="bg-dark text-white text-center">
+              <tr>
+                <th style={{ width: "3%" }}>SeqNo</th>
+                <th style={{ width: "7%" }}>Item Name / Description</th>
+                <th style={{ width: "7%" }}>UOM / Qty</th>
+                <th style={{ width: "7%" }}>Remarks</th>
+                <th style={{ width: "5%" }}>Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {rows.map((row, index) => (
+                <tr key={row.id} style={{ height: "80px" }}>
+                  <td className="text-center bg-light align-middle">
+                    {row.id}
+                  </td>
+                  <td>
+                    <div className="d-flex align-items-center">
+                      <select
+                        id="items"
+                        {...register("items", { required: true })}
+                        className="form-select"
+                        defaultValue=""
+                        style={{
+                          height: "30px",
+                          padding: "0.2rem",
+                          border: "2px solid rgb(243, 185, 78)",
+                          fontSize: "14px",
+                          width: "360px",
+                        }}
+                      >
+                        <option value="" disabled>
+                          --Select--
+                        </option>
+                        {itemsOptions?.length > 0 ? (
+                          itemsOptions.map((item) => (
+                            <option key={item.id} value={item.id}>
+                              {item.value}
+                            </option>
+                          ))
+                        ) : (
+                          <option disabled>No item options available</option>
+                        )}
+                      </select>
+                    </div>
+                    <textarea
+                      className="form-control mt-2"
+                      placeholder="Description"
+                      rows="2"
+                      value={row.description}
+                      onChange={(e) => {
+                        const updatedRows = [...rows];
+                        updatedRows[index].description = e.target.value;
+                        setRows(updatedRows);
+                      }}
+                    ></textarea>
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="UOM"
+                      value={row.uom}
+                      onChange={(e) => {
+                        const updatedRows = [...rows];
+                        updatedRows[index].uom = e.target.value;
+                        setRows(updatedRows);
+                      }}
+                    />
+                    <input
+                      type="number"
+                      className="form-control mt-2"
+                      placeholder="Qty"
+                      value={row.qty}
+                      onChange={(e) => {
+                        const updatedRows = [...rows];
+                        const parsedQty = parseInt(e.target.value, 10);
+                        updatedRows[index].qty = isNaN(parsedQty)
+                          ? 0
+                          : parsedQty;
+                        setRows(updatedRows);
+                      }}
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Remarks"
+                      value={row.remarks}
+                      onChange={(e) => {
+                        const updatedRows = [...rows];
+                        updatedRows[index].remarks = e.target.value;
+                        setRows(updatedRows);
+                      }}
+                    />
+                  </td>
+                  <td className="text-center align-middle">
+                    <button type="button" className="btn btn-primary me-2" onClick={addRow}>
+                      <FaPlus />
+                    </button>
+                    {rows.length > 1 && (
+                      <button type="button"
+                        className="btn btn-danger"
+                        onClick={() => removeRow(row.id)}
+                      >
+                        <FaTrash />
+                      </button>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

@@ -93,19 +93,19 @@ export default function PropMasterForm() {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)} className="form">
+      <form onSubmit={handleSubmit(onSubmit)} className="allform" >
         <h1 className="ribbon">{id ? "Edit Property" : "Prop Master Form"}</h1>
-        <Container>
-          <Row className="mb-3">
-            <Col md={3} className="d-flex align-items-center">
+        <Container style={{marginTop: "-100px"}}>
+          <Row className="mb-3 ">
+            <Col md={2} className="d-flex align-items-center">
               <label htmlFor="propTypeName">Property Type Name:</label>
             </Col>
-            <Col md={8}>
+            <Col md={4}>
               <input
                 id="propTypeName"
                 placeholder="Enter Property Type Name."
                 {...register("propTypeName", { required: true })}
-                className="line-textbox"
+                className="requiredinputfieldstyle"
               />
               {errors.propTypeName && (
                 <p className="error-text">This field is required.</p>
@@ -114,16 +114,15 @@ export default function PropMasterForm() {
           </Row>
 
           <Row className="mb-3">
-            <Col md={3} className="d-flex align-items-center">
+            <Col md={2} className="d-flex align-items-center">
               <label htmlFor="propName">Property Name:</label>
             </Col>
-            <Col md={8}>
+            <Col md={4}>
               <input
                 id="propName"
                 placeholder="Enter Property Name."
                 {...register("propName", { required: true })}
-                className="line-textbox"
-              />
+                className="requiredinputfieldstyle"              />
               {errors.propName && (
                 <p className="error-text">This field is required.</p>
               )}
@@ -131,40 +130,33 @@ export default function PropMasterForm() {
           </Row>
 
           <Row className="mb-3">
-            <Col md={3} className="d-flex align-items-center">
+            <Col md={2} className="d-flex align-items-center">
               <label htmlFor="propValue">Property Value:</label>
             </Col>
-            <Col md={8}>
+            <Col md={4}>
               <input
                 id="propValue"
                 placeholder="Enter Property Value."
                 {...register("propValue", { required: true })}
-                className="line-textbox"
+               className="requiredinputfieldstyle"
               />
               {errors.propValue && (
                 <p className="error-text">This field is required.</p>
               )}
             </Col>
           </Row>
-
+<br/>
           <Row>
-            <Col md={3} className="d-flex align-items-center">
+            <Col md={2} className="d-flex align-items-center">
               <label htmlFor="status">Status:</label>
             </Col>
-            <Col md={6}>
+            <Col md={4}>
               <select
                 id="status"
                 {...register("status", { required: "Please select a status" })}
-                className="form-select"
+                className="form-select requireddropdown"
                 defaultValue=""
-                style={{
-                  width: "75%", // Full width to match the form layout
-                  border: "1px solid rgb(243, 185, 78)", // Custom border for dropdown
-                  borderRadius: "4px", // Slightly rounded corners for better appearance
-                  padding: "5px", // Padding for better spacing inside the dropdown
-                  backgroundColor: "#fff", // White background
-                  fontSize: "14px", // Font size for the options
-                }}
+                
               >
                 <option value="" disabled>
                   --Select--
@@ -186,25 +178,18 @@ export default function PropMasterForm() {
               )}
             </Col>
           </Row>
-
+<br/>
           <Row className="mb-3">
-            <Col md={3} className="d-flex align-items-center">
+            <Col md={2} className="d-flex align-items-center">
               <label htmlFor="CUID">CUID:</label>
             </Col>
-            <Col md={6}>
+            <Col md={4}>
               <select
                 id="entryby"
                 {...register("entryby", { required: true })}
-                className="form-select"
+                className="form-select requireddropdown"
                 defaultValue=""
-                style={{
-                  width: "75%", // Full width to match the form layout
-                  border: "1px solid rgb(243, 185, 78)", // Custom border for dropdown
-                  borderRadius: "4px", // Slightly rounded corners for better appearance
-                  padding: "5px", // Padding for better spacing inside the dropdown
-                  backgroundColor: "#fff", // White background
-                  fontSize: "14px", // Add padding to match input boxes
-                }}
+                
               >
                 <option value="" disabled>
                   --Select--

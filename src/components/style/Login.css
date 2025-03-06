@@ -1,32 +1,37 @@
-.body1 {
+/* .body1 {
     background: #ebedef;
     text-align: center;
     height: "100px";
-    width: "1000px";
+    width: "100px";
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
     border-radius: 50px;
     padding-top: 0 !important;
-}
+} */
+ 
 
-h2 {
+.h2 {
     /* font-family: 'Segoe UI', bold; */
     font-size: 35px;
-    margin-top: 4rem;
-    margin-bottom: 2rem;
+    margin-top: 1.5rem;
+    margin-left: 115px;
+    /* margin-bottom: 2rem; */
     height: 70px;
     background-color: #fefdff;
+    position: center;
+    justify-content: center;
 }
 
 .form1 {
     display: inline-block;
     align-items: center;
-    height: 400px;
+    height: 420px;
     width: 350px;
     box-shadow: 0 0 8px 0 rgba(219, 215, 215, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 9px;
+    /* min-height: none; */
 }
 
 .text_area {
@@ -55,7 +60,7 @@ h2 {
     width: 320px;
     height: 38px;
     border-radius: 30px;
-    background: #7972f7;
+    background: #143e6c;
     border: none;
     font-family: 'Montserrat';
     font-size: 20px;
@@ -97,7 +102,51 @@ form h1 {
     margin: 0 auto;
 }
 
-.label {
+.label1 {
     font-size: 21px;
     color: #454458;
 }
+
+body {
+    margin: 0;
+    font-family: var(--bs-body-font-family);
+    font-size: var(--bs-body-font-size);
+    font-weight: var(--bs-body-font-weight);
+    line-height: none;
+    color: var(--bs-body-color);
+    text-align: var(--bs-body-text-align);
+    background-color: var(--bs-body-bg);
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+}
+
+form {
+    padding: 10px;
+    position: relative;
+    background-color: #ffffff;
+    width: 1300px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    min-height: none;
+    height: 500px;
+}
+
+.input-icon-wrapper {
+    position: relative;
+}
+
+.input-with-icon {
+    padding-right: 30px;
+    width: 100%;
+}
+
+.input-icon {
+    position: absolute;
+    right: 8px;
+    top: 65%;
+    transform: translateY(-50%);
+}
+

@@ -15,7 +15,7 @@ export default function UserMasterForm() {
 
   const {
     register,
-    handleSubmit, 
+    handleSubmit,
     setValue,
     reset,
     formState: { errors },
@@ -114,26 +114,14 @@ export default function UserMasterForm() {
     return <p className="error">Failed to fetch uom options: {uomidError}</p>;
   return (
     <>
-      <Form
-        onSubmit={handleSubmit(onSubmit)}
-        className="form"
-        style={{
-          height: "700px",
-          // overflow: "auto",
-          // padding: "20px",
-          marginTop: "70px",
-          marginBottom: "70px",
-        }}
-      >
-        <h1 className="ribbon" >
-        {id ? "Edit Property" : "Item Master Form"}
-        </h1>
-        <Container>
+      <Form onSubmit={handleSubmit(onSubmit)} className="allform">
+        <h1 className="ribbon">{id ? "Edit Property" : "Item Master Form"}</h1>
+        <Container style={{ marginTop: "-160px" }}>
           <Row>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>ItemNo:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Group controlId="ItemNo">
                 <Form.Control
                   type="text"
@@ -141,25 +129,17 @@ export default function UserMasterForm() {
                   {...register("ItemNo", {
                     required: "ItemNo is required.",
                   })}
-                  style={{
-                    border: "none",
-                    borderBottom: "2px solid rgb(243, 185, 78)",
-                    outline: "none",
-                    boxShadow: "none",
-                    padding: "5px 0",
-                    width: "100%",
-                    borderRadius: "0",
-                  }}
+                  className="requiredinputfieldstyle"
                 />
                 {errors.ItemNo && (
                   <p style={{ color: "red" }}>{errors.ItemNo.message}</p>
                 )}
               </Form.Group>
             </Col>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>ItemName:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Group controlId="ItemName">
                 <Form.Control
                   type="text"
@@ -167,15 +147,7 @@ export default function UserMasterForm() {
                   {...register("ItemName", {
                     required: "ItemName is required.",
                   })}
-                  style={{
-                    border: "none",
-                    borderBottom: "2px solid rgb(243, 185, 78)",
-                    outline: "none",
-                    boxShadow: "none",
-                    padding: "5px 0",
-                    width: "100%",
-                    borderRadius: "0",
-                  }}
+                  className="requiredinputfieldstyle"
                 />
                 {errors.ItemName && (
                   <p style={{ color: "red" }}>{errors.ItemName.message}</p>
@@ -185,10 +157,10 @@ export default function UserMasterForm() {
           </Row>
           <br />
           <Row>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>Description:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Group controlId="Description">
                 <Form.Control
                   type="text"
@@ -196,37 +168,22 @@ export default function UserMasterForm() {
                   {...register("Description", {
                     required: "Description is require.",
                   })}
-                  style={{
-                    border: "none",
-                    borderBottom: "2px solid rgb(243, 185, 78)",
-                    outline: "none",
-                    boxShadow: "none",
-                    padding: "5px 0",
-                    width: "100%",
-                    borderRadius: "0",
-                  }}
+                  className="requiredinputfieldstyle"
                 />
                 {errors.Description && (
                   <p style={{ color: "red" }}>{errors.Description.message}</p>
                 )}
               </Form.Group>
             </Col>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>TaxType:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <select
                 id="taxTypes"
                 {...register("TaxType", { required: true })}
-                className="form-select"
+                className="form-select requireddropdown"
                 defaultValue=""
-                style={{
-                  border: "2px solid rgb(243, 185, 78)",
-                  height: "30px",
-                  padding: "0.2rem",
-                  fontSize: "14px",
-                  width: "100%",
-                }}
               >
                 <option value="" disabled>
                   --Select--
@@ -248,10 +205,10 @@ export default function UserMasterForm() {
           </Row>
           <br />
           <Row>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>HSNCOde:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Group controlId="HSNCOde">
                 <Form.Control
                   type="text"
@@ -259,37 +216,22 @@ export default function UserMasterForm() {
                   {...register("HSNCOde", {
                     required: "HSNCOde is required.",
                   })}
-                  style={{
-                    border: "none",
-                    borderBottom: "2px solid rgb(243, 185, 78)",
-                    outline: "none",
-                    boxShadow: "none",
-                    padding: "5px 0",
-                    width: "100%",
-                    borderRadius: "0",
-                  }}
+                  className="requiredinputfieldstyle"
                 />
                 {errors.HSNCOde && (
                   <p style={{ color: "red" }}>{errors.HSNCOde.message}</p>
                 )}
               </Form.Group>
             </Col>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>UOMID:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <select
                 id="uoms"
                 {...register("UOMID", { required: true })}
-                className="form-select"
+                className="form-select requireddropdown"
                 defaultValue=""
-                style={{
-                  height: "30px",
-                  padding: "0.2rem",
-                  border: "2px solid rgb(243, 185, 78)",
-                  fontSize: "14px",
-                  width: "100%",
-                }}
               >
                 <option value="" disabled>
                   --Select--
@@ -308,22 +250,15 @@ export default function UserMasterForm() {
           </Row>
           <br />
           <Row>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>Status:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <select
                 id="status"
                 {...register("Status", { required: true })}
-                className="form-select"
+                className="form-select requireddropdown"
                 defaultValue=""
-                style={{
-                  height: "30px",
-                  padding: "0.2rem",
-                  border: "2px solid rgb(243, 185, 78)",
-                  fontSize: "14px",
-                  width: "100%",
-                }}
               >
                 <option value="" disabled>
                   --Select--
@@ -339,22 +274,15 @@ export default function UserMasterForm() {
                 )}
               </select>
             </Col>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>CUID:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <select
                 id="entryby"
                 {...register("CUID", { required: true })}
-                className="form-select"
+                className="form-select requireddropdown"
                 defaultValue=""
-                style={{
-                  height: "30px",
-                  padding: "0.2rem",
-                  border: "2px solid rgb(243, 185, 78)",
-                  fontSize: "14px",
-                  width: "100%",
-                }}
               >
                 <option value="" disabled>
                   --Select--

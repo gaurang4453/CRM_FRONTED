@@ -138,40 +138,22 @@ export default function CompanyMasterForm() {
     return <p className="error">Failed to fetch User options: {cuidError}</p>;
   return (
     <>
-      <Form
-        onSubmit={handleSubmit(onSubmit)}
-        style={{
-          height: "950px",
-          //   overflow: "auto",
-          //   padding: "20px",
-          marginTop: "70px",
-
-          //   marginBottom: "0px",
-        }}
-      >
+      <Form onSubmit={handleSubmit(onSubmit)} className="allform">
         <h1 className="ribbon">
           {id ? "Edit Property" : "Company Master Form"}
         </h1>
-        <Container>
+        <Container style={{ marginTop: "20px" }}>
           <Row>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>Company Name:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Group controlId="CompanyName">
                 <Form.Control
                   type="text"
                   placeholder="Enter your Company name."
                   {...register("CompanyName", {})}
-                  style={{
-                    border: "none", // Removes the border
-                    borderBottom: "2px solid rgb(133, 132, 130)", // Adds a bottom border with new color
-                    outline: "none", // Removes the outline when focused
-                    boxShadow: "none", // Removes the shadow on focus
-                    padding: "5px 0", // Adds padding to the top and bottom for better appearance
-                    width: "80%", // Decreases the width of the input box
-                    borderRadius: "0", // Removes the curved corners
-                  }}
+                  className="inputfieldstyle"
                 />
                 {errors.CompanyName && (
                   <p style={{ color: "red" }}>{errors.CompanyName.message}</p>
@@ -179,21 +161,17 @@ export default function CompanyMasterForm() {
               </Form.Group>
             </Col>
 
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label> ShortCode:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Control
                 type="text"
                 placeholder="Enter ShortCode"
                 {...register("ShortCode", {
                   required: "ShortCode is required.",
                 })}
-                style={{
-                  border: "none",
-                  borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
-                  borderRadius: "0", // Removes rounded corners
-                }}
+                className="requiredinputfieldstyle"
               />
               {errors.ShortCode && (
                 <p style={{ color: "red" }}>{errors.ShortCode.message}</p>
@@ -202,10 +180,10 @@ export default function CompanyMasterForm() {
           </Row>
           <br />
           <Row>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>State:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Group controlId="State">
                 <Form.Control
                   type="text"
@@ -213,34 +191,22 @@ export default function CompanyMasterForm() {
                   {...register("State", {
                     required: "State is required.",
                   })}
-                  style={{
-                    border: "none",
-                    borderBottom: "2px solid rgb(243, 185, 78)",
-                    outline: "none",
-                    boxShadow: "none",
-                    padding: "5px 0",
-                    width: "80%",
-                    borderRadius: "0",
-                  }}
+                  className="inputfieldstyle"
                 />
                 {errors.State && (
                   <p style={{ color: "red" }}>{errors.State.message}</p>
                 )}
               </Form.Group>
             </Col>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label> TINNo:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Control
                 type="TINNo"
                 placeholder="Enter your TINNo"
                 {...register("TINNo", {})}
-                style={{
-                  border: "none",
-                  borderBottom: "2px solid rgb(133, 132, 130)",
-                  borderRadius: "0",
-                }}
+                className="inputfieldstyle"
               />
               {errors.TINNo && (
                 <p style={{ color: "red" }}>{errors.TINNo.message}</p>
@@ -249,43 +215,31 @@ export default function CompanyMasterForm() {
           </Row>
           <br />
           <Row className="g-3">
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>CST:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Group controlId="CST">
                 <Form.Control
                   type="text"
                   placeholder="Enter your CST"
                   {...register("CST", {})}
-                  style={{
-                    border: "none",
-                    borderBottom: "2px solid rgb(133, 132, 130)",
-                    outline: "none",
-                    boxShadow: "none",
-                    padding: "5px 0",
-                    width: "80%",
-                    borderRadius: "0",
-                  }}
+                  className="inputfieldstyle"
                 />
                 {errors.CST && (
                   <p style={{ color: "red" }}>{errors.CST.message}</p>
                 )}
               </Form.Group>
             </Col>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label> PANNO:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Control
                 type="text"
                 placeholder="Enter your PANNO"
                 {...register("PANNO", {})}
-                style={{
-                  border: "none",
-                  borderBottom: "2px solid rgb(133, 132, 130)",
-                  borderRadius: "0",
-                }}
+                className="inputfieldstyle"
               />
               {errors.PANNO && (
                 <p style={{ color: "red" }}>{errors.PANNO.message}</p>
@@ -295,43 +249,31 @@ export default function CompanyMasterForm() {
           <br />
 
           <Row>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>ServiceTaxNo:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Group controlId="ServiceTaxNo">
                 <Form.Control
                   type="text"
                   placeholder="Enter your ServiceTaxNo"
                   {...register("ServiceTaxNo")}
-                  style={{
-                    border: "none", // Removes the border
-                    borderBottom: "2px solid rgb(133, 132, 130)", // Adds a bottom border with new color
-                    outline: "none", // Removes the outline when focused
-                    boxShadow: "none", // Removes the shadow on focus
-                    padding: "5px 0", // Adds padding to the top and bottom for better appearance
-                    width: "80%",
-                    borderRadius: "0",
-                  }}
+                  className="inputfieldstyle"
                 />
                 {errors.ServiceTaxNo && (
                   <p style={{ color: "red" }}>{errors.ServiceTaxNo.message}</p>
                 )}
               </Form.Group>
             </Col>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label> SSINO:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Control
                 type="text"
                 placeholder="Enter SSINO"
                 {...register("SSINO")}
-                style={{
-                  border: "none",
-                  borderBottom: "2px solid rgb(133, 132, 130)", // Yellow underline using rgb(243, 185, 78)
-                  borderRadius: "0", // Removes rounded corners
-                }}
+                className="inputfieldstyle"
               />
               {errors.SSINO && (
                 <p style={{ color: "red" }}>{errors.SSINO.message}</p>
@@ -340,43 +282,31 @@ export default function CompanyMasterForm() {
           </Row>
           <br />
           <Row>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>TANNO:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Group controlId="TANNO">
                 <Form.Control
                   type="text"
                   placeholder="Enter your TANNO"
                   {...register("TANNO")}
-                  style={{
-                    border: "none", // Removes the border
-                    borderBottom: "2px solid rgb(133, 132, 130)", // Adds a bottom border with new color
-                    outline: "none", // Removes the outline when focused
-                    boxShadow: "none", // Removes the shadow on focus
-                    padding: "5px 0", // Adds padding to the top and bottom for better appearance
-                    width: "80%",
-                    borderRadius: "0", // Decreases the width of the input box
-                  }}
+                  className="inputfieldstyle"
                 />
                 {errors.TANNO && (
                   <p style={{ color: "red" }}>{errors.TANNO.message}</p>
                 )}
               </Form.Group>
             </Col>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label> ECCNo:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Control
                 type="text"
                 placeholder="Enter ECCNo"
                 {...register("ECCNo")}
-                style={{
-                  border: "none",
-                  borderBottom: "2px solid rgb(133, 132, 130)", // Yellow underline using rgb(243, 185, 78)
-                  borderRadius: "0", // Removes rounded corners
-                }}
+                className="inputfieldstyle"
               />
               {errors.ECCNo && (
                 <p style={{ color: "red" }}>{errors.ECCNo.message}</p>
@@ -385,43 +315,31 @@ export default function CompanyMasterForm() {
           </Row>
           <br />
           <Row>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>Range:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Group controlId="Range">
                 <Form.Control
                   type="text"
                   placeholder="Enter your Range"
                   {...register("Range")}
-                  style={{
-                    border: "none", // Removes the border
-                    borderBottom: "2px solid rgb(133, 132, 130)", // Adds a bottom border with new color
-                    outline: "none", // Removes the outline when focused
-                    boxShadow: "none", // Removes the shadow on focus
-                    padding: "5px 0", // Adds padding to the top and bottom for better appearance
-                    width: "80%",
-                    borderRadius: "0", // Decreases the width of the input box
-                  }}
+                  className="inputfieldstyle"
                 />
                 {errors.Range && (
                   <p style={{ color: "red" }}>{errors.Range.message}</p>
                 )}
               </Form.Group>
             </Col>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label> Division:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Control
                 type="text"
                 placeholder="Enter Division"
                 {...register("Division")}
-                style={{
-                  border: "none",
-                  borderBottom: "2px solid rgb(133, 132, 130)", // Yellow underline using rgb(243, 185, 78)
-                  borderRadius: "0", // Removes rounded corners
-                }}
+                className="inputfieldstyle"
               />
               {errors.Division && (
                 <p style={{ color: "red" }}>{errors.Division.message}</p>
@@ -430,45 +348,33 @@ export default function CompanyMasterForm() {
           </Row>
           <br />
           <Row>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>Commisioner:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Group controlId="Commisioner">
                 <Form.Control
                   type="text"
                   placeholder="Enter your Commisioner"
                   {...register("Commisioner")}
-                  style={{
-                    border: "none", // Removes the border
-                    borderBottom: "2px solid rgb(133, 132, 130)", // Adds a bottom border with new color
-                    outline: "none", // Removes the outline when focused
-                    boxShadow: "none", // Removes the shadow on focus
-                    padding: "5px 0", // Adds padding to the top and bottom for better appearance
-                    width: "80%",
-                    borderRadius: "0", // Decreases the width of the input box
-                  }}
+                  className="inputfieldstyle"
                 />
                 {errors.Commisioner && (
                   <p style={{ color: "red" }}>{errors.Commisioner.message}</p>
                 )}
               </Form.Group>
             </Col>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label> GST_No:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Control
                 type="text"
                 placeholder="Enter your GST_No"
                 {...register("GST_No", {
                   required: "GST_No is required.",
                 })}
-                style={{
-                  border: "none",
-                  borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
-                  borderRadius: "0", // Removes rounded corners
-                }}
+                className="requiredinputfieldstyle"
               />
               {errors.GST_No && (
                 <p style={{ color: "red" }}>{errors.GST_No.message}</p>
@@ -477,45 +383,33 @@ export default function CompanyMasterForm() {
           </Row>
           <br />
           <Row>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>CurrencyCode:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Group controlId="CurrencyCode">
                 <Form.Control
                   type="text"
                   placeholder="Enter your CurrencyCode"
                   {...register("CurrencyCode", {})}
-                  style={{
-                    border: "none", // Removes the border
-                    borderBottom: "2px solid rgb(133, 132, 130)", // Adds a bottom border with new color
-                    outline: "none", // Removes the outline when focused
-                    boxShadow: "none", // Removes the shadow on focus
-                    padding: "5px 0", // Adds padding to the top and bottom for better appearance
-                    width: "80%",
-                    borderRadius: "0", // Decreases the width of the input box
-                  }}
+                  className="inputfieldstyle"
                 />
                 {errors.CurrencyCode && (
                   <p style={{ color: "red" }}>{errors.CurrencyCode.message}</p>
                 )}
               </Form.Group>
             </Col>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label> Address:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Control
                 type="text"
                 placeholder="Enter your Address"
                 {...register("Address", {
                   required: "Address is required",
                 })}
-                style={{
-                  border: "none",
-                  borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
-                  borderRadius: "0", // Removes rounded corners
-                }}
+                className="requiredinputfieldstyle"
               />
               {errors.Address && (
                 <p style={{ color: "red" }}>{errors.Address.message}</p>
@@ -524,10 +418,10 @@ export default function CompanyMasterForm() {
           </Row>
           <br />
           <Row>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>Bank:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Group controlId="Bank">
                 <Form.Control
                   type="text"
@@ -535,34 +429,22 @@ export default function CompanyMasterForm() {
                   {...register("Bank", {
                     required: "Bank is required.",
                   })}
-                  style={{
-                    border: "none", // Removes the border
-                    borderBottom: "2px solid rgb(243, 185, 78)", // Adds a bottom border with new color
-                    outline: "none", // Removes the outline when focused
-                    boxShadow: "none", // Removes the shadow on focus
-                    padding: "5px 0", // Adds padding to the top and bottom for better appearance
-                    width: "80%",
-                    borderRadius: "0", // Decreases the width of the input box
-                  }}
+                  className="requiredinputfieldstyle"
                 />
                 {errors.Bank && (
                   <p style={{ color: "red" }}>{errors.Bank.message}</p>
                 )}
               </Form.Group>
             </Col>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label> Description:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Control
                 type="text"
                 placeholder="Enter Description"
                 {...register("Description")}
-                style={{
-                  border: "none",
-                  borderBottom: "2px solid rgb(133, 132, 130)", // Yellow underline using rgb(243, 185, 78)
-                  borderRadius: "0", // Removes rounded corners
-                }}
+                className="inputfieldstyle"
               />
               {errors.Description && (
                 <p style={{ color: "red" }}>{errors.Description.message}</p>
@@ -571,24 +453,16 @@ export default function CompanyMasterForm() {
           </Row>
           <br />
           <Row>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>TaxDescription:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Group controlId="TaxDescription">
                 <Form.Control
                   type="text"
                   placeholder="Enter your TaxDescription"
                   {...register("TaxDescription")}
-                  style={{
-                    border: "none", // Removes the border
-                    borderBottom: "2px solid rgb(133, 132, 130)", // Adds a bottom border with new color
-                    outline: "none", // Removes the outline when focused
-                    boxShadow: "none", // Removes the shadow on focus
-                    padding: "5px 0", // Adds padding to the top and bottom for better appearance
-                    width: "80%",
-                    borderRadius: "0", // Decreases the width of the input box
-                  }}
+                  className="inputfieldstyle"
                 />
                 {errors.TaxDescription && (
                   <p style={{ color: "red" }}>
@@ -597,19 +471,15 @@ export default function CompanyMasterForm() {
                 )}
               </Form.Group>
             </Col>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label> CertifyDescription:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Control
                 type="text"
                 placeholder="Enter CertifyDescription"
                 {...register("CertifyDescription")}
-                style={{
-                  border: "none",
-                  borderBottom: "2px solid rgb(133, 132, 130)", // Yellow underline using rgb(243, 185, 78)
-                  borderRadius: "0", // Removes rounded corners
-                }}
+                className="inputfieldstyle"
               />
               {errors.CertifyDescription && (
                 <p style={{ color: "red" }}>
@@ -620,43 +490,31 @@ export default function CompanyMasterForm() {
           </Row>
           <br />
           <Row>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>Declaration:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Group controlId="Declaration">
                 <Form.Control
                   type="text"
                   placeholder="Enter your Declaration"
                   {...register("Declaration")}
-                  style={{
-                    border: "none", // Removes the border
-                    borderBottom: "2px solid rgb(133, 132, 130)", // Adds a bottom border with new color
-                    outline: "none", // Removes the outline when focused
-                    boxShadow: "none", // Removes the shadow on focus
-                    padding: "5px 0", // Adds padding to the top and bottom for better appearance
-                    width: "80%",
-                    borderRadius: "0", // Decreases the width of the input box
-                  }}
+                  className="inputfieldstyle"
                 />
                 {errors.Declaration && (
                   <p style={{ color: "red" }}>{errors.Declaration.message}</p>
                 )}
               </Form.Group>
             </Col>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label> Jurisdiction:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Control
                 type="text"
                 placeholder="Enter Jurisdiction"
                 {...register("Jurisdiction")}
-                style={{
-                  border: "none",
-                  borderBottom: "2px solid rgb(133, 132, 130)", // Yellow underline using rgb(243, 185, 78)
-                  borderRadius: "0", // Removes rounded corners
-                }}
+                className="inputfieldstyle"
               />
               {errors.Jurisdiction && (
                 <p style={{ color: "red" }}>{errors.Jurisdiction.message}</p>
@@ -665,43 +523,31 @@ export default function CompanyMasterForm() {
           </Row>
           <br />
           <Row>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>AuthPerson:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Group controlId="AuthPerson">
                 <Form.Control
                   type="text"
                   placeholder="Enter your AuthPerson"
                   {...register("AuthPerson")}
-                  style={{
-                    border: "none", // Removes the border
-                    borderBottom: "2px solid rgb(133, 132, 130)", // Adds a bottom border with new color
-                    outline: "none", // Removes the outline when focused
-                    boxShadow: "none", // Removes the shadow on focus
-                    padding: "5px 0", // Adds padding to the top and bottom for better appearance
-                    width: "80%",
-                    borderRadius: "0", // Decreases the width of the input box
-                  }}
+                  className="inputfieldstyle"
                 />
                 {errors.AuthPerson && (
                   <p style={{ color: "red" }}>{errors.AuthPerson.message}</p>
                 )}
               </Form.Group>
             </Col>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label> Col1:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Control
                 type="text"
                 placeholder="Enter Col1"
                 {...register("Col1")}
-                style={{
-                  border: "none",
-                  borderBottom: "2px solid rgb(133, 132, 130)", // Yellow underline using rgb(243, 185, 78)
-                  borderRadius: "0", // Removes rounded corners
-                }}
+                className="inputfieldstyle"
               />
               {errors.Col1 && (
                 <p style={{ color: "red" }}>{errors.Col1.message}</p>
@@ -710,22 +556,15 @@ export default function CompanyMasterForm() {
           </Row>
           <br />
           <Row>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>Status:</Form.Label>
             </Col>
-            <Col md={4} className="d-flex align-items-center">
+            <Col md={5} className="d-flex align-items-center">
               <select
                 id="status"
                 {...register("status", { required: true })}
-                className="form-select"
+                className="form-select requireddropdown"
                 defaultValue=""
-                style={{
-                  height: "30px",
-                  border: "2px solid rgb(243, 185, 78)", // Decrease the height
-                  padding: "0.2rem", // Reduce padding
-                  fontSize: "14px",
-                  width: "290px",
-                }}
               >
                 <option value="" disabled>
                   --Select--
@@ -745,22 +584,15 @@ export default function CompanyMasterForm() {
               )}
             </Col>
 
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>CUID:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <select
                 id="CUID"
                 {...register("CUID", { required: true })}
-                className="form-select"
+                className="form-select requireddropdown"
                 defaultValue=""
-                style={{
-                  height: "30px",
-                  border: "2px solid rgb(243, 185, 78)", // Decrease the height
-                  padding: "0.2rem", // Reduce padding
-                  fontSize: "14px",
-                  width: "100%", // Add padding to match input boxes
-                }}
               >
                 <option value="" disabled>
                   --Select--

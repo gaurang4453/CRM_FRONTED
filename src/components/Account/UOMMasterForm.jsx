@@ -114,38 +114,25 @@ export default function UOMMasterForm() {
     <>
       <Form
         onSubmit={handleSubmit(onSubmit)}
-        className="form"
-        style={{
-          height: "530px",
-          // overflow: "auto",
-          // padding: "20px",
-          marginTop: "20px",
-        }}
+        className="allform"  
+       
       >
         <h1 className="ribbon" >
         {id ? "Edit Property" : "UOM Master Form"}
         </h1>
-        <Container>
+        <Container   style={{ marginTop: "-160px" }}    >
           <Row>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>UOM :</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Control
                 type="text"
                 placeholder="Enter your UOM."
                 {...register("UOM", {
                   required: "UOM is required.",
                 })}
-                style={{
-                  border: "none",
-                  borderBottom: "2px solid rgb(243, 185, 78)",
-                  outline: "none",
-                  boxShadow: "none",
-                  padding: "5px 0",
-                  width: "100%",
-                  borderRadius: "0",
-                }}
+                className="requiredinputfieldstyle"
               />
               {errors.UOM && (
                 <p style={{ color: "red" }}>{errors.UOM.message}</p>
@@ -154,47 +141,33 @@ export default function UOMMasterForm() {
           </Row>
           <br />
           <Row>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>CF:</Form.Label>
             </Col>
-            <Col md={4} className="d-flex align-items-center">
+            <Col md={5} className="d-flex align-items-center">
               <Form.Control
                 type="text"
                 placeholder="Enter your CF."
                 {...register("CF", {
                   required: "CF is required.",
                 })}
-                style={{
-                  border: "none",
-                  borderBottom: "2px solid rgb(243, 185, 78)",
-                  outline: "none",
-                  boxShadow: "none",
-                  padding: "5px 0",
-                  width: "100%",
-                  borderRadius: "0",
-                }}
+                className="requiredinputfieldstyle"
               />
               {errors.CF && <p style={{ color: "red" }}>{errors.CF.message}</p>}
             </Col>
           </Row>
           <br />
           <Row>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>Status:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <select
                 id="Status"
                 {...register("Status", { required: true })}
-                className="form-select"
+                className="form-select requireddropdown "
                 defaultValue=""
-                style={{
-                  height: "30px", // Decrease the height
-                  padding: "0.2rem", // Reduce padding
-                  border: "2px solid rgb(243, 185, 78)",
-                  fontSize: "14px",
-                  width: "360px",
-                }}
+                
               >
                 <option value="" disabled>
                   --Select--
@@ -216,22 +189,16 @@ export default function UOMMasterForm() {
           </Row>
           <br />
           <Row>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>CUID:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <select
                 id="CUID"
                 {...register("CUID", { required: true })}
-                className="form-select"
+                className="form-select requireddropdown"
                 defaultValue=""
-                style={{
-                  height: "30px", // Decrease the height
-                  padding: "0.2rem", // Reduce padding
-                  border: "2px solid rgb(243, 185, 78)",
-                  fontSize: "14px",
-                  width: "360px",
-                }}
+                
               >
                 <option value="" disabled>
                   --Select--

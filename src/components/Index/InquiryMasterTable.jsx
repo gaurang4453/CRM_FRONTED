@@ -35,6 +35,12 @@ export default function InquiryMasterTable() {
     navigate("/InquiryMasterForm");
   };
 
+  const style = {
+    overflowX: "scroll",
+    width: "2000px", // Increased width of the table
+  };
+
+ 
   return (
     <Container className="mt-5" style={{ maxWidth: "100%" }}>
       {/* Create New Button */}
@@ -91,11 +97,8 @@ export default function InquiryMasterTable() {
             striped
             bordered
             hover
-            className="mt-4"
-            style={{
-              marginTop: "120px", // Maintain the top margin
-              width: "100%",
-            }}
+            
+            className="mt-4 alltable"
           >
             <thead className="bg-primary text-white text-center">
               <tr>

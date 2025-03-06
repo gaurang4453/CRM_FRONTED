@@ -380,7 +380,7 @@ const InquiryMasterForm = () => {
       <div style={{ marginTop: "80px" }}></div>
       <Form
         onSubmit={handleSubmit(onSubmit)}
-        className="form"
+        className="allform"
         style={{ marginTop: "20px" }}
       >
         <h1 className="ribbon">
@@ -395,7 +395,7 @@ const InquiryMasterForm = () => {
             <Col md={3}>
               <Form.Control
                 type="text"
-                placeholder="Enter your Inquiry."
+                placeholder="Enter your Inquiry No."
                 {...register("InquiryNo")}
                 style={{
                   border: "none",
@@ -644,7 +644,7 @@ const InquiryMasterForm = () => {
           <br />
           <Row>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>ContactName :</Form.Label>
+              <Form.Label>ContactName:</Form.Label>
             </Col>
             <Col md={3}>
               <Form.Control

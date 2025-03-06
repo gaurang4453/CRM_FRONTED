@@ -71,17 +71,17 @@ export default function UserMasterTable() {
 
       {!loading && tableData.length > 0 ? (
         <div
-          className="table-responsive shadow-lg rounded bg-white p-3"
-          style={{
-            marginTop: "100px", // Maintain the top margin
-            width: "120%", // Increase the table container width (set to 90% for more space)
-            height: "500px", // Maintain the height of the container
-            marginLeft: "-120px", // Center horizontally
-            marginRight: "650px", // Center horizontally
-          }}
+          className="table-responsive shadow-lg rounded bg-white p-3 "
+          // style={{
+          //   marginTop: "100px", // Maintain the top margin
+          //   width: "120%", // Increase the table container width (set to 90% for more space)
+          //   height: "500px", // Maintain the height of the container
+          //   marginLeft: "-120px", // Center horizontally
+          //   marginRight: "650px", // Center horizontally
+          // }}
         >
           <h5
-            className="text-center mb-2"
+            className="text-center mb-2 tablelable"
             style={{
               backgroundColor: "#0d254b",
               color: "white",
@@ -92,7 +92,7 @@ export default function UserMasterTable() {
             User Master Table
           </h5>
 
-          <Table striped bordered hover className="mt-3">
+          <Table striped bordered hover className="alltablestyle">
             <thead className="bg-primary text-white text-center">
               <tr>
                 <th>#</th>
@@ -101,13 +101,7 @@ export default function UserMasterTable() {
                 <th>Address</th>
                 <th>Mobile No</th>
                 <th>Email ID</th>
-                {/* <th>Outside Access</th>
-                <th>Email Port</th>
-                <th>Email Host</th>
-                <th>Email SSL</th>
-                <th>OTP</th> */}
                 <th>Status</th>
-                {/* <th>CUID</th> */}
               </tr>
             </thead>
             <tbody>
@@ -118,13 +112,13 @@ export default function UserMasterTable() {
                   style={{ cursor: "pointer" }}
                   className="text-center table-row-hover"
                 >
-                  <td >{index + 1}</td>
-                  <td style={{ width: "12%" }}>{item.roleID}</td>
-                  <td style={{ width: "15%" }}>{item.userName}</td>
-                  <td style={{ width: "25%" }}>{item.address}</td>
-                  <td style={{ width: "15%" }}>{item.mobileNo}</td>
-                  <td style={{ width: "15%" }}>{item.emailID}</td>
-                  <td style={{ width: "14%" }}>{item.statusName}</td>
+                  <td style={{ width: "60px" }} >{index + 1}</td>
+                  <td style={{ width: "200px" }}>{item.roleID}</td>
+                  <td style={{ width: "200px" }}>{item.userName}</td>
+                  <td style={{ width: "200px" }}>{item.address}</td>
+                  <td style={{ width: "200px" }}>{item.mobileNo}</td>
+                  <td style={{ width: "200px" }}>{item.emailID}</td>
+                  <td style={{ width: "" }}>{item.statusName}</td>
                 </tr>
               ))}
             </tbody>

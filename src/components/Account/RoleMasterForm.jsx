@@ -90,34 +90,23 @@ export default function RoleMasterForm() {
     return <p className="error">Failed to fetch User options: {cuidError}</p>;
   return (
     <>
-      <Form onSubmit={handleSubmit(onSubmit)}>
-       <h1 className="ribbon" >
-        {id ? "Edit Property" : "Role Master Form"}
-        </h1>
+      <Form onSubmit={handleSubmit(onSubmit)} className="allform">
+        <h1 className="ribbon">{id ? "Edit Property" : "Role Master Form"}</h1>
         <Container>
           {/* Role Name */}
-          <Row style={{ marginBottom: "15px" }}>
-            <Col md={2} className="d-flex align-items-center">
+          <Row style={{ marginBottom: "15px", marginTop: "-200px" }}>
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>Role Name:</Form.Label>
             </Col>
-            <Col md={10}>
-              <Form.Group controlId="roleName">
+            <Col md={3}>
+              <Form.Group controlId="roleName requiredinputfield">
                 <Form.Control
                   type="text"
                   placeholder="Enter your role name."
                   {...register("roleName", {
                     required: "Role name is required.",
                   })}
-                  style={{
-                    border: "none", // Removes the border
-                    borderBottom: "2px solid rgb(243, 185, 78)", // Adds a bottom border with new color
-                    // Removes the outline when focused
-                    boxShadow: "none", // Removes the shadow on focus
-                    padding: "5px 0", // Adds padding to the top and bottom for better appearance
-                    width: "80%",
-                    borderRadius: "0",
-                    // Decreases the width of the input box
-                  }}
+                  className="requiredinputfieldstyle"
                 />
                 {errors.roleName && (
                   <p style={{ color: "black" }}>{errors.roleName.message}</p>
@@ -125,25 +114,19 @@ export default function RoleMasterForm() {
               </Form.Group>
             </Col>
           </Row>
-
+          <br />
           {/* Status */}
           <Row style={{ marginBottom: "15px" }}>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>Status:</Form.Label>
             </Col>
-            <Col md={10}>
+            <Col md={3}>
               <select
                 id="status"
                 {...register("status", { required: true })}
-                className="form-select"
+                className="form-select requireddropdown"
                 defaultValue=""
-                style={{
-                  height: "30px", // Decrease the height
-                  padding: "0.2rem", // Reduce padding
-                  fontSize: "14px",
-                  border: "2px solid rgb(243, 185, 78)",
-                  width: "785px",
-                }}
+                
               >
                 <option value="" disabled>
                   --Select--
@@ -163,25 +146,19 @@ export default function RoleMasterForm() {
               )}
             </Col>
           </Row>
-
+          <br />
           {/* CUID */}
           <Row style={{ marginBottom: "15px" }}>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>CUID:</Form.Label>
             </Col>
-            <Col md={10}>
+            <Col md={3}>
               <select
                 id="CUID"
                 {...register("CUID", { required: true })}
-                className="form-select"
+                className="form-select requireddropdown"
                 defaultValue=""
-                style={{
-                  height: "30px", // Decrease the height
-                  padding: "0.2rem", // Reduce padding
-                  border: "2px solid rgb(243, 185, 78)",
-                  fontSize: "14px",
-                  width: "785px",
-                }}
+               
               >
                 <option value="" disabled>
                   --Select--
