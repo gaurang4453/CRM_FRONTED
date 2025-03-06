@@ -1,28 +1,215 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Row, Col, Container, Form, Table, Button } from "react-bootstrap";
+import { Row, Col, Container, Form } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router-dom";
-import "../style/style.css";
-import Footer from "/src/components/Footer/Footer";
+import { FaPlus, FaTrash } from "react-icons/fa";
+import "bootstrap/dist/css/bootstrap.min.css";
 import useDropdownData from "../UseDropdownData";
 import AxiosInstance from "/src/AxiosInstance";
-import SubTableInquiryMaster from "../SubTable/SubTableInquiryMaster";
+import Footer from "/src/components/Footer/Footer";
+import "../style/style.css";
 
-export default function InquiryMasterForm() {
+const SubTableInquiryMaster = ({ id, initialRows = [], onRowsUpdate }) => {
+  const [rows, setRows] = useState(
+    initialRows.length > 0
+      ? initialRows
+      : [
+          {
+            id: 1,
+            SeqNo: "",
+            itemName: "",
+            description: "",
+            uomid: "",
+            qty: 1, // Ensure qty is never 0
+            remarks: "",
+          },
+        ]
+  );
+
+  const { data: itemsOptions, error: itemsError } = useDropdownData("items");
+
+  useEffect(() => {
+    onRowsUpdate(rows);
+  }, [rows, onRowsUpdate]);
+
+  useEffect(() => {
+    if (initialRows.length > 0) {
+      setRows(initialRows);
+    }
+  }, [initialRows]);
+
+  const addRow = () => {
+    const newRow = {
+      ItemID: rows.length + 1,
+      itemName: "",
+      description: "",
+      uomid: "",
+      qty: 1, // Ensure valid qty
+      remarks: "",
+    };
+    const updatedRows = [...rows, newRow];
+    setRows(updatedRows);
+    onRowsUpdate(updatedRows);
+  };
+
+  const removeRow = (rowId) => {
+    const updatedRows = rows
+      .filter((row) => row.id !== rowId)
+      .map((row, index) => ({
+        ...row,
+        id: index + 1, // Reorder IDs correctly
+      }));
+    setRows(updatedRows);
+    onRowsUpdate(updatedRows);
+  };
+
+  const updateRow = (index, field, value) => {
+    const updatedRows = [...rows];
+    updatedRows[index] = { ...updatedRows[index], [field]: value };
+    setRows(updatedRows);
+    onRowsUpdate(updatedRows);
+  };
+
+  if (itemsError) {
+    console.error("Error fetching items:", itemsError);
+  }
+
+  return (
+    <div className="container-fluid mt-4">
+      <h5
+        className="text-center mb-2"
+        style={{
+          backgroundColor: "#0d254b",
+          color: "white",
+          padding: "10px",
+          fontWeight: "bold",
+        }}
+      >
+        Item Master Table
+      </h5>
+      <div className="table-responsive">
+        <table
+          className="table table-bordered w-100"
+          style={{ minWidth: "85vw", marginLeft: "-10px" }}
+        >
+          <thead className="bg-dark text-white text-center">
+            <tr>
+              <th>SeqNo</th>
+              <th>Item Name / Description</th>
+              <th>UOM / Qty</th>
+              <th>Remarks</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row, index) => (
+              <tr key={row.id}>
+                <td className="text-center">{row.id}</td>
+                <td>
+                  <select
+                    className="form-select"
+                    value={row.itemName}
+                    onChange={(e) =>
+                      updateRow(index, "itemName", e.target.value)
+                    }
+                  >
+                    <option value="" disabled>
+                      --Select--
+                    </option>
+                    {itemsOptions?.map((item) => (
+                      <option key={item.id} value={item.value}>
+                        {item.value}
+                      </option>
+                    ))}
+                  </select>
+                  <textarea
+                    className="form-control mt-2"
+                    placeholder="Description"
+                    value={row.description}
+                    onChange={(e) =>
+                      updateRow(index, "description", e.target.value)
+                    }
+                  ></textarea>
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="UOM"
+                    value={row.uomid}
+                    onChange={(e) => updateRow(index, "uomid", e.target.value)}
+                  />
+                  <input
+                    type="number"
+                    className="form-control mt-2"
+                    placeholder="Qty"
+                    value={row.qty}
+                    min="1"
+                    onChange={(e) =>
+                      updateRow(
+                        index,
+                        "qty",
+                        Math.max(1, parseInt(e.target.value, 10) || 1)
+                      )
+                    }
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Remarks"
+                    value={row.remarks}
+                    onChange={(e) =>
+                      updateRow(index, "remarks", e.target.value)
+                    }
+                  />
+                </td>
+                <td className="text-center">
+                  <button
+                    type="button"
+                    className="btn btn-primary me-2"
+                    onClick={addRow}
+                  >
+                    <FaPlus />
+                  </button>
+                  {rows.length > 1 && (
+                    <button
+                      type="button"
+                      className="btn btn-danger"
+                      onClick={() => removeRow(row.id)}
+                    >
+                      <FaTrash />
+                    </button>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+};
+
+const InquiryMasterForm = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(!!id);
   const [error, setError] = useState(null);
-  const [items, setItems] = useState([]);
+  const [payload, setPayload] = useState({});
+  const [inquiryItemRows, setInquiryItemRows] = useState([]);
 
   const {
     register,
     handleSubmit,
     setValue,
     reset,
+    getValues,
     formState: { errors },
   } = useForm();
 
+  // Fetch dropdown data
   const { data: statusOptions, error: statusError } = useDropdownData("status");
   const { data: cuidOptions, error: cuidError } = useDropdownData("entryby");
   const { data: branchesOptions, error: branchesError } =
@@ -30,55 +217,75 @@ export default function InquiryMasterForm() {
   const { data: companiesOptions, error: companiesError } =
     useDropdownData("companies");
 
-  // useEffect(() => {
-  //   const fetchItemMasterOptions = async () => {
-  //     try {
-  //       const response = await AxiosInstance.get("/ItemMaster");
-  //       setItemMasterOptions(response.data.data);
-  //     } catch (err) {
-  //       console.error("Error fetching Item Master options:", err);
-  //     }
-  //   };
-
-  //   fetchItemMasterOptions();
-  // }, []);
+  const handleItemRowsUpdate = (updatedRows) => {
+    setInquiryItemRows(updatedRows);
+  };
 
   useEffect(() => {
     if (id && id !== "undefined") {
-      console.log("Received ID:", id);
       const fetchInquiryMaster = async () => {
         try {
           const response = await AxiosInstance.get(`/InquiryMaster/${id}`);
-          const Inquiry = response.data.data;
-          if (Inquiry) {
-            setValue("InquiryID", Inquiry.inquiryID);
-            setValue("InquiryNo", Inquiry.inquiryNo);
-            setValue("Date", Inquiry.date);
-            setValue("BranchID", Inquiry.branchID);
-            setValue("CompanyID", Inquiry.companyID);
-            setValue("ReferenceBy", Inquiry.referenceBy);
-            setValue("PartyName", Inquiry.partyName);
-            setValue("Address", Inquiry.address);
-            setValue("Area", Inquiry.area);
-            setValue("State", Inquiry.state);
-            setValue("ContactName", Inquiry.contactName);
-            setValue("Mobile", Inquiry.mobile);
-            setValue("Mobile2", Inquiry.mobile2);
-            setValue("EmailID", Inquiry.emailID);
-            setValue("EmailID2", Inquiry.emailID2);
-            setValue("Remarks", Inquiry.remarks);
-            setValue("Currency", Inquiry.currency);
-            setValue("CF", Inquiry.cf);
-            setValue("SendMail", Inquiry.sendMail);
-            setValue("MktBy", Inquiry.mktBy);
-            setValue("Auth", Inquiry.auth);
-            setValue("AuthBy", Inquiry.authBy);
-            setValue("Status", Inquiry.status);
-            setValue("CUID", Inquiry.cuid);
-          } else {
-            console.warn("No data found for InquiryID:", id);
+          const data = response.data.data;
+
+          const fieldsToSet = [
+            "InquiryNo",
+            "Date",
+            "BranchID",
+            "CompanyID",
+            "ReferenceBy",
+            "PartyName",
+            "Address",
+            "Area",
+            "State",
+            "ContactName",
+            "Mobile",
+            "Mobile2",
+            "EmailID",
+            "EmailID2",
+            "Remarks",
+            "Currency",
+            "CF",
+            "SendMail",
+            "Status",
+            "MktBy",
+            "Auth",
+            "AuthBy",
+            "CUID",
+          ];
+
+          fieldsToSet.forEach((field) => {
+            let value = data[field.charAt(0).toLowerCase() + field.slice(1)];
+
+            if (field === "Date" && value) {
+              value = value.split("T")[0];
+            }
+
+            if (field === "SendMail" || field === "Auth") {
+              value = !!value;
+            }
+
+            if (value !== undefined && value !== null) {
+              setValue(field, value);
+            }
+          });
+
+          if (data.inquiryItemList && data.inquiryItemList.length > 0) {
+            const rowsData = data.inquiryItemList.map((item) => ({
+              itemid: item.itemid || item.inquiryItemID,
+              seqNo: item.seqNo || item.SeqNo,
+              itemName: item.itemID || "",
+              description: item.description || item.Description,
+              uomid: item.uomid || item.UOMID,
+              qty: item.qty || 0,
+              remarks: item.remark || item.Remark,
+            }));
+            console.log("Updated inquiry item rows:", rowsData);
+            setInquiryItemRows([...rowsData]);
           }
+          console.log("Payload being sent:", payload);
         } catch (err) {
+          console.error("Failed to fetch InquiryMaster details:", err);
           setError("Failed to fetch InquiryMaster details.");
         } finally {
           setLoading(false);
@@ -88,47 +295,66 @@ export default function InquiryMasterForm() {
     } else {
       setLoading(false);
     }
-  }, [id, setValue, cuidOptions]);
+  }, [id, setValue]);
 
   const onSubmit = async (data) => {
+    console.log("Form data:", data); // Log form data
+    const formValues = getValues();
+
     const payload = {
-      InquiryID: id || 0,
-      InquiryNo: data.InquiryNo,
-      Date: data.Date,
-      BranchID: data.BranchID,
-      CompanyID: data.CompanyID,
-      ReferenceBy: data.ReferenceBy,
-      PartyName: data.PartyName,
-      Address: data.Address,
-      Area: data.Area,
-      State: data.State,
-      ContactName: data.ContactName,
-      Mobile: data.Mobile,
-      Mobile2: data.Mobile2,
-      EmailID: data.EmailID,
-      EmailID2: data.EmailID2,
-      Remarks: data.Remarks,
-      Currency: data.Currency,
-      CF: data.CF,
-      SendMail: data.SendMail,
-      MktBy: data.MktBy,
-      Auth: data.Auth,
-      AuthBy: data.AuthBy,
-      Status: data.Status,
-      CUID: parseInt(data.CUID, 10) || 0,
-      items: items,
+      inquiryID: id ? parseInt(id, 10) : 0,
+      inquiryNo: formValues.InquiryNo || "",
+      date: formValues.Date
+        ? new Date(formValues.Date).toISOString()
+        : new Date().toISOString(),
+      branchID: parseInt(formValues.BranchID, 10) || 0,
+      companyID: parseInt(formValues.CompanyID, 10) || 0,
+      referenceBy: formValues.ReferenceBy || "",
+      partyName: formValues.PartyName || "",
+      address: formValues.Address || "",
+      area: formValues.Area || "",
+      state: formValues.State || "",
+      contactName: formValues.ContactName || "",
+      mobile: formValues.Mobile || "",
+      mobile2: formValues.Mobile2 || "",
+      emailID: formValues.EmailID || "",
+      emailID2: formValues.EmailID2 || "",
+      remarks: formValues.Remarks || "",
+      currency: formValues.Currency || "",
+      cf: parseFloat(formValues.cf) || parseFloat(formValues.CF),
+      sendMail: !!formValues.SendMail,
+      status: formValues.Status || "",
+      mktBy: parseInt(formValues.MktBy, 10) || 0,
+      auth: !!formValues.Auth,
+      authBy: parseInt(formValues.AuthBy, 10) || 0,
+      cuid: parseInt(formValues.cuid, 10) || 0,
+
+      inquiryItemList: inquiryItemRows.map((row) => ({
+        itemid: row.itemid || row.inquiryItemID,
+        seqNo: row.seqNo || row.seqNo,
+        itemName: row.itemID || "N/A", // Prevent empty string rejection
+        description: row.description || "N/A",
+        uomid: row.uomid || 1, // Ensure it's not empty
+        qty: row.qty > 0 ? row.qty : 1, // Ensure a valid quantity
+        remark: row.remarks || row.Remarks,
+      })),
     };
 
+    console.log(
+      "Final payload before submission:",
+      JSON.stringify(payload, null, 2)
+    );
+
     try {
-      await AxiosInstance.post("/InquiryMaster", payload);
+      const response = await AxiosInstance.post("/InquiryMaster", payload);
+      console.log("API Response:", response.data);
       alert(
-        id
-          ? "InquiryMaster updated successfully!"
-          : "Successfully submitted data"
+        id ? "Inquiry updated successfully!" : "Successfully submitted data"
       );
       reset();
       navigate("/InquiryMasterTable");
     } catch (error) {
+      console.error("API Error:", error.response?.data || error.message);
       alert("Error submitting data");
     }
   };
@@ -141,27 +367,14 @@ export default function InquiryMasterForm() {
         navigate("/InquiryMasterTable");
       } catch (error) {
         alert("Failed to delete InquiryMaster");
+        console.error(error);
       }
     }
   };
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p className="error">{error}</p>;
-  if (statusError)
-    return (
-      <p className="error">Failed to fetch status options: {statusError}</p>
-    );
-  if (cuidError)
-    return <p className="error">Failed to fetch User options: {cuidError}</p>;
 
-  if (branchesError)
-    return (
-      <p className="error">Failed to fetch Branch options: {branchesError}</p>
-    );
-  if (companiesError)
-    return (
-      <p className="error">Failed to fetch Company options: {companiesError}</p>
-    );
   return (
     <>
       <div style={{ marginTop: "80px" }}></div>
@@ -206,9 +419,7 @@ export default function InquiryMasterForm() {
                 <Form.Control
                   type="Date"
                   placeholder="Enter your Date."
-                  {...register("Date", {
-                    required: "Date is required.",
-                  })}
+                  {...register("Date", { required: "Date is required." })}
                   style={{
                     border: "none",
                     borderBottom: "2px solid rgb(243, 185, 78)",
@@ -618,7 +829,7 @@ export default function InquiryMasterForm() {
               <Form.Control
                 type="text"
                 placeholder="Enter your CF."
-                {...register("CF", { required: "CF is required." })}
+                {...register("cf", { required: "CF is required." })}
                 style={{
                   border: "none",
                   borderBottom: "2px solid rgb(243, 185, 78)",
@@ -780,7 +991,11 @@ export default function InquiryMasterForm() {
           <br />
           <Row></Row>
         </Container>
-        <SubTableInquiryMaster />
+        <SubTableInquiryMaster
+          id={id}
+          initialRows={inquiryItemRows}
+          onRowsUpdate={handleItemRowsUpdate}
+        />
       </Form>
       <Footer
         className="footer"
@@ -790,4 +1005,6 @@ export default function InquiryMasterForm() {
       />
     </>
   );
-}
+};
+
+export default InquiryMasterForm;
