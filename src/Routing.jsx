@@ -25,6 +25,9 @@ import InquiryMasterForm from "./components/Account/InquiryMasterForm";
 import Login from "./components/Account/Login";
 import Navbar from "./components/Navbar/Navbar";
 
+
+
+
 export default function Routing() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -52,7 +55,7 @@ export default function Routing() {
               </PrivateRoute>
             }
           />
-
+          
           <Route
             path="/PropMasterTable"
             element={

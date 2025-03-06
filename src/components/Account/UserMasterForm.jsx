@@ -121,32 +121,18 @@ export default function UserMasterForm() {
 
   return (
     <>
-      <Form
-        onSubmit={handleSubmit(onSubmit)}
-        className="form"
-        style={{
-          height: "530px",
-          // overflow: "auto",
-          // padding: "20px",
-          marginTop: "20px",
-        }}
-      >
+      <Form onSubmit={handleSubmit(onSubmit)}  className="allform" >
         <h1 className="ribbon">{id ? "Edit Property" : "User Master Form"}</h1>{" "}
-        <Container>
+        <Container style={{marginTop:"20px"}}>
           {/* RoleID DropDown */}
           <Row>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>Role:</Form.Label>
             </Col>
-            <Col md={10}>
+            <Col md={11}>
               <Form.Select
                 {...register("RoleID", { required: "Role is required." })}
-                style={{
-                  width: "100%",
-                  padding: "5px",
-                  border: "2px solid rgb(243, 185, 78)",
-                  borderRadius: "5px",
-                }}
+                className="form-select requireddropdown"
               >
                 <option value="" disabled>
                   --Select--
@@ -163,17 +149,17 @@ export default function UserMasterForm() {
                 )}
               </Form.Select>
             </Col>
-            <Col md={2} className="d-flex align-items-center">
+            </Row>
+            <br/>
+            <Row>
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>UserName:</Form.Label>
             </Col>
-            <Col md={10}>
+            <Col md={11}>
               <Form.Control
-                {...register("UserName", { required: "UserName is required." })}
-                style={{
-                  border: "none",
-                  borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
-                  borderRadius: "0", // Removes rounded corners
-                }}
+                {...register("UserName", { required: "UserName is required." }) }
+                
+                className="requiredinputfieldstyle"
               ></Form.Control>
               {errors.RoleID && (
                 <p style={{ color: "red" }}>{errors.RoleID.message}</p>
@@ -183,37 +169,29 @@ export default function UserMasterForm() {
           <br />
           {/* Password */}
           <Row>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>Password:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Control
                 type="password"
                 placeholder="Enter password"
                 {...register("Password", { required: "Password is required." })}
-                style={{
-                  border: "none",
-                  borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
-                  borderRadius: "0", // Removes rounded corners
-                }}
+               className="requiredinputfieldstyle"
               />
               {errors.Password && (
                 <p style={{ color: "red" }}>{errors.Password.message}</p>
               )}
             </Col>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label> OldPassword:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Control
                 type="password"
                 placeholder="Enter Oldpassword"
                 {...register("OldPassword")}
-                style={{
-                  border: "none",
-                  borderBottom: "2px solid rgb(133, 132, 130)", // Yellow underline using rgb(243, 185, 78)
-                  borderRadius: "0", // Removes rounded corners
-                }}
+               className="inputfieldstyle"
               />
               {errors.oldPassword && (
                 <p style={{ color: "red" }}>{errors.oldPassword.message}</p>
@@ -224,37 +202,29 @@ export default function UserMasterForm() {
           {/* Other fields */}
 
           <Row>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>Email ID:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Control
                 type="email"
                 placeholder="Enter email"
                 {...register("EmailID", { required: "Email is required." })}
-                style={{
-                  border: "none",
-                  borderBottom: "2px solid rgb(243, 185, 78)", // Yellow underline using rgb(243, 185, 78)
-                  borderRadius: "0", // Removes rounded corners
-                }}
+                className="requiredinputfieldstyle"
               />
               {errors.EmailID && (
                 <p style={{ color: "red" }}>{errors.EmailID.message}</p>
               )}
             </Col>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>Email Password:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Control
                 type="password"
                 placeholder="Enter Email password"
                 {...register("EmailPassword")}
-                style={{
-                  border: "none",
-                  borderBottom: "2px solid rgb(133, 132, 130)", // Yellow underline using rgb(243, 185, 78)
-                  borderRadius: "0", // Removes rounded corners
-                }}
+                className="inputfieldstyle"
               />
               {errors.EmailPassword && (
                 <p style={{ color: "red" }}>{errors.EmailPassword.message}</p>
@@ -263,10 +233,10 @@ export default function UserMasterForm() {
           </Row>
           <br />
           <Row>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>Mobile No:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Control
                 type="text"
                 placeholder="Enter mobile number"
@@ -283,28 +253,24 @@ export default function UserMasterForm() {
                 <p style={{ color: "red" }}>{errors.MobileNo.message}</p>
               )}
             </Col>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>Outside Access:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={1}>
               <Form.Check type="checkbox" {...register("OutSideAccess")} />
             </Col>
           </Row>
           <br />
           <Row>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>Address:</Form.Label>
             </Col>
-            <Col md={10}>
+            <Col md={11}>
               <Form.Control
                 type="text"
                 placeholder="Enter Address"
                 {...register("Address")}
-                style={{
-                  border: "none",
-                  borderBottom: "2px solid rgb(133, 132, 130)", // Yellow underline using rgb(243, 185, 78)
-                  borderRadius: "0", // Removes rounded corners
-                }}
+               className="inputfieldstyle"
               />
               {errors.Address && (
                 <p style={{ color: "red" }}>{errors.Address.message}</p>
@@ -313,37 +279,30 @@ export default function UserMasterForm() {
           </Row>
           <br />
           <Row>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>Email Port:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Control
                 type="number"
                 placeholder="Enter Email port"
                 {...register("EmailPort")}
-                style={{
-                  border: "none",
-                  borderBottom: "2px solid rgb(133, 132, 130)", // Yellow underline using rgb(243, 185, 78)
-                  borderRadius: "0", // Removes rounded corners
-                }}
+                className="inputfieldstyle"
+
               />
               {errors.emailport && (
                 <p style={{ color: "red" }}>{errors.emailport.message}</p>
               )}
             </Col>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>Email Host:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Control
                 type="text"
                 placeholder="Enter Email host"
                 {...register("EmailHost")}
-                style={{
-                  border: "none",
-                  borderBottom: "2px solid rgb(133, 132, 130)", // Yellow underline using rgb(243, 185, 78)
-                  borderRadius: "0", // Removes rounded corners
-                }}
+                className="inputfieldstyle"
               />
               {errors.emailhost && (
                 <p style={{ color: "red" }}>{errors.emailhost.message}</p>
@@ -352,25 +311,21 @@ export default function UserMasterForm() {
           </Row>
           <br />
           <Row>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>Email Ssl:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <Form.Check type="checkbox" {...register("EmailSSL")} />
             </Col>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>OTP:</Form.Label>
             </Col>
-            <Col md={4} className="d-flex align-items-center">
+            <Col md={5} className="d-flex align-items-center ">
               <Form.Control
                 type="text"
                 placeholder="Enter OTP"
                 {...register("OTP")}
-                style={{
-                  border: "none",
-                  borderBottom: "2px solid rgb(133, 132, 130)", // Yellow underline using rgb(243, 185, 78)
-                  borderRadius: "0", // Removes rounded corners
-                }}
+                className="inputfieldstyle"
               />
               {errors.otp && (
                 <p style={{ color: "red" }}>{errors.otp.message}</p>
@@ -379,22 +334,16 @@ export default function UserMasterForm() {
           </Row>
           <br />
           <Row>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>Status:</Form.Label>
             </Col>
-            <Col md={4} className="d-flex align-items-center">
+            <Col md={5} className="d-flex align-items-center">
               <select
                 id="status"
                 {...register("Status")}
-                className="form-select"
+                className="form-select dropdown"
                 defaultValue=""
-                style={{
-                  height: "30px", // Decrease the height
-                  padding: "0.2rem", // Reduce padding
-                  border: "2px solid rgb(133, 132, 130)",
-                  fontSize: "14px",
-                  width: "360px",
-                }}
+               
               >
                 <option value="">--Select--</option>
                 {statusOptions?.length > 0 ? (
@@ -411,22 +360,16 @@ export default function UserMasterForm() {
                 <p className="error-text">Please select a status.</p>
               )}
             </Col>
-            <Col md={2} className="d-flex align-items-center">
+            <Col md={1} className="d-flex align-items-center">
               <Form.Label>CUID:</Form.Label>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <select
                 id="entryby"
                 {...register("entryby", { required: true })}
-                className="form-select"
+                className="form-select dropdown"
                 defaultValue=""
-                style={{
-                  height: "30px", // Decrease the height
-                  padding: "0.2rem", // Reduce padding
-                  border: "2px solid rgb(133, 132, 130)",
-                  fontSize: "14px",
-                  width: "360px",
-                }}
+               
               >
                 <option value="" disabled>
                   --Select--

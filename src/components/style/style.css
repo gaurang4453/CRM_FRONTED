@@ -16,49 +16,47 @@ body {
   min-height: 100vh;
 }
 
-form {
+.allform {
   padding: 10px;
   position: relative;
   background-color: #ffffff;
   width: 1300px;
-  margin-top: 20px;
-  margin-bottom: 110px;
+  margin-top: 60px;
+  margin-bottom: 60px;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  height: 1100px;
+  min-height: 500px;
+  height: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-form h1 {
-  text-align: center;
-  background-color: #f5f8fa;
-  margin-top: -8px;
-  margin-left: 10px;
-  color: rgb(255, 254, 254);
-  width: 230px;
-  height: 40px;
-  font-size: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  padding-left: 0px;
-  position: relative;
-  overflow: hidden;
-}
+
 
 /* Ribbon effect for the h1 element */
 .ribbon {
-  position: absolute;
-  top: 4px;
+  position: relative;
+  /* Or remove it for default positioning */
+  top: -3px;
+  /* Adjust as needed */
   height: 45px;
-  left: -12px;
+  left: -545px;
+  /* or a positive value */
   padding: 10px;
   background-color: #007bff;
   color: #fff;
   font-size: 15px;
   text-transform: uppercase;
   z-index: 1;
-
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
+.allform {
+  position: relative;
+  /* Add this to ensure the ribbon is positioned correctly */
+}
+
+/*
 label {
   color: #444649;
   margin-bottom: 10px;
@@ -76,7 +74,6 @@ select.form-select {
   border-radius: 4px;
 }
 
-/* Submit button styles */
 input[type="submit"] {
   background-color: #007bff;
   color: white;
@@ -137,7 +134,6 @@ input {
   border-bottom: 2px solid blue;
 }
 
-/* Adjust spacing between form fields */
 .form-field {
   display: flex;
   align-items: center;
@@ -152,7 +148,6 @@ select.form-select {
   margin-top: 50px;
 }
 
-/* Adjust the width of the dropdown */
 select.form-select {
   width: 55%;
   margin-bottom: 20px;
@@ -172,4 +167,81 @@ footer {
 option.highlighted {
   color: #FF5733;
 }
+*/
 
+/* .alltable {
+  margin-top: 100px;  
+  width: auto;       
+  height: auto;      
+  /* margin-left: -120px; Correct: Colon, semicolon */
+/* margin-right: 650px; Correct: Colon, semicolon */
+/* } */
+
+.inputfieldstyle {
+  border: none;
+  border-Bottom: 2px solid rgb(133, 132, 130);
+  outline: none;
+  box-Shadow: none;
+  padding: 5px 0;
+  width: 95%;
+  border-Radius: 0px;
+}
+
+.requiredinputfieldstyle {
+  border: none;
+  border-Bottom: 2px solid rgb(243, 185, 78);
+  outline: none;
+  box-Shadow: none;
+  padding: 5px 0;
+  width: 95%;
+  border-Radius: 0px;
+}
+
+.dropdown{
+  height: 30px;
+  border: 2px solid rgb(133, 132, 130);
+  padding: 0.2rem;
+  font-Size: 14px;
+  width: 95%;
+  border-radius: 6px;
+}
+
+.requireddropdown{
+  height: 30px;
+  border: 2px solid rgb(243, 185, 78);
+  padding: 0.2rem;
+  font-Size: 14px;
+  width: 95%;
+  border-radius: 6px;
+}
+/* ----------------------------TABLE--------------------- */
+.alltablestyle {
+  margin-Top: 60px;
+  width: 50px;
+  height: auto;
+  /* margin-Left: 450px;  */
+  /* margin-Right: 450px; */
+}
+
+.tablebutton {
+  position: fixed;
+  top: 100px;
+  right: 1310px;
+  z-Index: 1000;
+  padding: 5px 10px
+}
+
+form h1 {
+  text-align: center;
+  background-color: #f5f8fa;
+  margin-top: -8px;
+  margin-left: 10px;
+  color: rgb(255, 254, 254);
+  width: 230px;
+  height: 40px;
+  font-size: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  padding-left: 0px;
+  position: relative;
+  overflow: hidden;
+}

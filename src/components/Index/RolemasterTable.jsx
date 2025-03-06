@@ -68,14 +68,14 @@ export default function RoleMasterTable() {
 
       {tableData.length > 0 && !loading ? (
         <div
-          className="table-responsive shadow-lg rounded bg-white p-3"
-          style={{
-            marginTop: "20px", // Increase the margin-top
-            width: "100%", // Set the table container width to 80% of the screen
-            height: "450px", // Maintain a fixed height
-            marginLeft: "auto", // Center horizontally
-            marginRight: "auto", // Center horizontally
-          }}
+          className="table-responsive shadow-lg rounded bg-white p-3 alltablestyle"
+          // style={{
+          //   marginTop: "20px", // Increase the margin-top
+          //   width: "100%", // Set the table container width to 80% of the screen
+          //   height: "450px", // Maintain a fixed height
+          //   marginLeft: "auto", // Center horizontally
+          //   marginRight: "auto", // Center horizontally
+          // }}
         >
           <h5  className="text-center mb-2"
             style={{

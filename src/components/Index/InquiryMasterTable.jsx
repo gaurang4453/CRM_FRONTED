@@ -33,6 +33,13 @@ export default function InquiryMasterTable() {
   const handleCreateNew = () => {
     navigate("/InquiryMasterForm");
   };
+
+  const style = {
+    overflowX: "scroll",
+    width: "2000px", // Increased width of the table
+  };
+
+ 
   return (
     <Container className="mt-5" style={{ maxWidth: "100%" }}>
       {/* Create New Button */}
@@ -63,16 +70,7 @@ export default function InquiryMasterTable() {
       )}
       {error && <p className="text-danger text-center">{error}</p>}
       {tableData.length > 0 && !loading ? (
-        <div
-          className="table-responsive shadow-lg rounded bg-white p-3"
-          style={{
-            marginTop: "100px", // Maintain the top margin
-            width: "1300px", // Increase the table container width (set to 90% for more space)
-            height: "500px", // Maintain the height of the container
-            // marginLeft: "-120px", // Center horizontally
-            // marginRight: "450px", // Center horizontally
-          }}
-        >
+        <div className="   p-3 table">
           <h5
             className="text-center mb-2"
             style={{
@@ -88,11 +86,8 @@ export default function InquiryMasterTable() {
             striped
             bordered
             hover
-            className="mt-4"
-            style={{
-              marginTop: "120px", // Maintain the top margin
-              width: "100%",
-            }}
+            
+            className="mt-4 alltable"
           >
             <thead className="bg-primary text-white text-center">
               <tr>
@@ -116,7 +111,7 @@ export default function InquiryMasterTable() {
                   className="text-center table-row-hover"
                 >
                   {" "}
-                  <td style={{ width: "4%" }}>{inquiry.inquiryNo}</td>
+                  <td style={{ width: "5%" }}>{inquiry.inquiryNo}</td>
                   <td style={{ width: "4%" }}>{inquiry.date}</td>
                   <td style={{ width: "4%" }}>{inquiry.partyName}</td>
                   <td style={{ width: "4%" }}>{inquiry.mobileNo}</td>
