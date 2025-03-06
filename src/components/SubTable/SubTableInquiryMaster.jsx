@@ -47,7 +47,7 @@ const SubTableInquiryMaster = () => {
 
   const saveInquiry = async () => {
     try {
-      await AxiosInstance.post("/InquiryMaster", rows);
+      await AxiosInstance.post("/InquiryItem", rows);
       alert("Inquiry saved successfully!");
     } catch (error) {
       console.error("Error saving inquiry:", error);
@@ -67,7 +67,7 @@ const SubTableInquiryMaster = () => {
             fontWeight: "bold",
           }}
         >
-          User Master Table
+          Item Master Table
         </h5>
         <div className="table-responsive">
           <table

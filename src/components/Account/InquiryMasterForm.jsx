@@ -30,81 +30,51 @@ export default function InquiryMasterForm() {
   const { data: companiesOptions, error: companiesError } =
     useDropdownData("companies");
 
-  useEffect(() => {
-    const fetchItemMasterOptions = async () => {
-      try {
-        const response = await AxiosInstance.get("/ItemMaster");
-        setItemMasterOptions(response.data.data);
-      } catch (err) {
-        console.error("Error fetching Item Master options:", err);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchItemMasterOptions = async () => {
+  //     try {
+  //       const response = await AxiosInstance.get("/ItemMaster");
+  //       setItemMasterOptions(response.data.data);
+  //     } catch (err) {
+  //       console.error("Error fetching Item Master options:", err);
+  //     }
+  //   };
 
-    fetchItemMasterOptions();
-  }, []);
+  //   fetchItemMasterOptions();
+  // }, []);
 
   useEffect(() => {
     if (id && id !== "undefined") {
+      console.log("Received ID:", id);
       const fetchInquiryMaster = async () => {
         try {
           const response = await AxiosInstance.get(`/InquiryMaster/${id}`);
-          const InquiryMaster = response.data.data;
-          if (InquiryMaster) {
-            setValue(
-              "InquiryNo",
-              InquiryMaster.InquiryNo || InquiryMaster.inquiryNo
-            );
-            setValue("Date", InquiryMaster.Date || InquiryMaster.date);
-            setValue(
-              "BranchID",
-              InquiryMaster.BranchID || InquiryMaster.branchID
-            );
-            setValue(
-              "CompanyID",
-              InquiryMaster.CompanyID || InquiryMaster.companyID
-            );
-            setValue(
-              "ReferenceBy",
-              InquiryMaster.ReferenceBy || InquiryMaster.referenceBy
-            );
-            setValue(
-              "PartyName",
-              InquiryMaster.PartyName || InquiryMaster.partyName
-            );
-            setValue("Address", InquiryMaster.Address || InquiryMaster.address);
-            setValue("Area", InquiryMaster.Area || InquiryMaster.area);
-            setValue("State ", InquiryMaster.State || InquiryMaster.state);
-            setValue(
-              "ContactName",
-              InquiryMaster.ContactName || InquiryMaster.contactName
-            );
-            setValue("Mobile", InquiryMaster.Mobile || InquiryMaster.mobile);
-            setValue("Mobile2", InquiryMaster.Mobile2 || InquiryMaster.mobile2);
-            setValue("EmailID", InquiryMaster.EmailID || InquiryMaster.emailID);
-            setValue(
-              "EmailID2",
-              InquiryMaster.EmailID2 || InquiryMaster.emailID2
-            );
-            setValue("Remarks", InquiryMaster.Remarks || InquiryMaster.remarks);
-            setValue(
-              "Currency",
-              InquiryMaster.Currency || InquiryMaster.currency
-            );
-            setValue("CF", InquiryMaster.CF || InquiryMaster.cf);
-            setValue(
-              "SendMail",
-              InquiryMaster.SendMail || InquiryMaster.sendMail
-            );
-            setValue("MktBy", InquiryMaster.MktBy || InquiryMaster.mktBy);
-            setValue("Auth", InquiryMaster.Auth || InquiryMaster.auth);
-            setValue("AuthBy", InquiryMaster.AuthBy || InquiryMaster.authBy);
-            setValue("Status", InquiryMaster.Status || InquiryMaster.status);
-            setValue("CUID", InquiryMaster.cuid || InquiryMaster.CUID);
-
-            const itemsResponse = await AxiosInstance.get(
-              `/InquiryMasterItems/${id}`
-            );
-            setItems(itemsResponse.data.data || []);
+          const Inquiry = response.data.data;
+          if (Inquiry) {
+            setValue("InquiryID", Inquiry.inquiryID);
+            setValue("InquiryNo", Inquiry.inquiryNo);
+            setValue("Date", Inquiry.date);
+            setValue("BranchID", Inquiry.branchID);
+            setValue("CompanyID", Inquiry.companyID);
+            setValue("ReferenceBy", Inquiry.referenceBy);
+            setValue("PartyName", Inquiry.partyName);
+            setValue("Address", Inquiry.address);
+            setValue("Area", Inquiry.area);
+            setValue("State", Inquiry.state);
+            setValue("ContactName", Inquiry.contactName);
+            setValue("Mobile", Inquiry.mobile);
+            setValue("Mobile2", Inquiry.mobile2);
+            setValue("EmailID", Inquiry.emailID);
+            setValue("EmailID2", Inquiry.emailID2);
+            setValue("Remarks", Inquiry.remarks);
+            setValue("Currency", Inquiry.currency);
+            setValue("CF", Inquiry.cf);
+            setValue("SendMail", Inquiry.sendMail);
+            setValue("MktBy", Inquiry.mktBy);
+            setValue("Auth", Inquiry.auth);
+            setValue("AuthBy", Inquiry.authBy);
+            setValue("Status", Inquiry.status);
+            setValue("CUID", Inquiry.cuid);
           } else {
             console.warn("No data found for InquiryID:", id);
           }
@@ -122,6 +92,7 @@ export default function InquiryMasterForm() {
 
   const onSubmit = async (data) => {
     const payload = {
+      InquiryID: id || 0,
       InquiryNo: data.InquiryNo,
       Date: data.Date,
       BranchID: data.BranchID,
@@ -174,24 +145,6 @@ export default function InquiryMasterForm() {
     }
   };
 
-  const addItem = () => {
-    setItems([
-      ...items,
-      { ItemID: "", Description: "", UOM: "", Quantity: "", Remarks: "" },
-    ]);
-  };
-
-  const deleteItem = (index) => {
-    const updatedItems = items.filter((_, i) => i !== index);
-    setItems(updatedItems);
-  };
-
-  const handleItemChange = (index, field, value) => {
-    const updatedItems = [...items];
-    updatedItems[index][field] = value;
-    setItems(updatedItems);
-  };
-
   if (loading) return <p>Loading...</p>;
   if (error) return <p className="error">{error}</p>;
   if (statusError)
@@ -200,8 +153,7 @@ export default function InquiryMasterForm() {
     );
   if (cuidError)
     return <p className="error">Failed to fetch User options: {cuidError}</p>;
-  // if (uomError)
-  //   return <p className="error">Failed to fetch UOM options: {uomError}</p>;
+
   if (branchesError)
     return (
       <p className="error">Failed to fetch Branch options: {branchesError}</p>
@@ -315,8 +267,8 @@ export default function InquiryMasterForm() {
             </Col>
             <Col md={3}>
               <select
-                id="companies"
-                {...register("companies")}
+                id="CompanyID"
+                {...register("CompanyID")}
                 className="form-select"
                 defaultValue=""
                 style={{
@@ -827,7 +779,7 @@ export default function InquiryMasterForm() {
           </Row>
           <br />
           <Row></Row>
-        </Container> 
+        </Container>
         <SubTableInquiryMaster />
       </Form>
       <Footer
@@ -836,7 +788,6 @@ export default function InquiryMasterForm() {
         onDelete={id ? handleDelete : undefined}
         onCancel={() => navigate("/InquiryMasterTable")}
       />
-     
     </>
   );
 }
