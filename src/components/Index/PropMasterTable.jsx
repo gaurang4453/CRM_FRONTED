@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AxiosInstance from "../../AxiosInstance";
 import { Spinner, Table, Container, Button } from "react-bootstrap";
+import "../style/style.css";
 
 function PropMasterTable() {
   const [tableData, setTableData] = useState([]);
@@ -36,16 +37,10 @@ function PropMasterTable() {
   };
 
   return (
-    <Container className="mt-5" style={{ padding: "0", margin: "0" }}>
+    <Container className="allcontainer">
       {/* Create New Button */}
-      <div
-        className="d-flex justify-content-end mb-3 tablebutton"
-             >
-        <Button
-          onClick={handleCreateNew}
-          variant="success"
-          className="px-7 py-2"
-        >
+      <div className="createbutton">
+        <Button onClick={handleCreateNew} variant="success">
           + Create New
         </Button>
       </div>
@@ -61,30 +56,10 @@ function PropMasterTable() {
       {error && <p className="text-danger text-center">{error}</p>}
 
       {tableData.length > 0 && !loading ? (
-        <div
-          className="table-responsive shadow-lg rounded bg-white p-3"
-          style={{
-            marginTop: "0px",
-            paddingTop: "0px",
-            width: "100%",
-            height: "450px",
-            marginLeft: "auto",
-            marginRight: "auto",
-          }}
-        >
-          {" "}
-          {/* Increase the margin-top */}
-          <h5  className="text-center mb-2"
-            style={{
-              backgroundColor: "#0d254b",
-              color: "white",
-              padding: "10px",
-              fontWeight: "bold"
-            }}>
-            Property Master Table
-          </h5>
-          <Table striped bordered hover className="mt-3">
-            <thead className="bg-primary text-white text-center">
+        <div className="shadow-lg table-h1">
+          <h5 className="text-center h1label">Property Master Table</h5>
+          <Table striped bordered hover className="alltablestyle">
+            <thead className="text-center">
               <tr>
                 <th style={{ width: "200px" }}>#</th>
                 <th style={{ width: "1000px" }}>Property Type Name</th>

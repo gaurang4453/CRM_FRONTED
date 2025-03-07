@@ -1,46 +1,31 @@
+import React, { useState, useEffect } from "react";
+import "./CementTruckAnimation.css";
+import truck2 from '../assets/truck2.png';
 
-import React, { useState, useEffect, useRef } from "react";
-import "./CementTruckAnimation.css"; // Create this CSS file
-// import truck1 from "../assets/truck1.png";
 export default function CementTruckAnimation() {
-
-  const [truckX, setTruckX] = useState(0); // Initial horizontal position
-  const [cementTrail, setCementTrail] = useState([]); // Array to store cement positions
-  const truckRef = useRef(null); //reference to the truck element
-
-
+  const [truckX, setTruckX] = useState(window.innerWidth); // Start on the right edge
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setTruckX((prevX) => prevX + 5); // Move the truck 5 pixels to the right
-      setCementTrail((prevTrail) => [
-        ...prevTrail,
-        { x: truckX, y: truckRef.current.offsetTop + truckRef.current.offsetHeight / 2 },
-      ]);
-    }, 100); // Run every 100 milliseconds (adjust for speed)
-  
-    return () => clearInterval(interval); // Cleanup: clear the interval when the component unmounts
-  }, [truckX]);
+      setTruckX((prevX) => {
+        if (prevX < -200) { // Check if it's off-screen to the left
+          return window.innerWidth; // Reset to the right edge
+        }
+        return prevX - 3; // Move left
+      });
+    }, 20);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <div className="container">
-      <div
-        ref={truckRef}
-        className="truck"
+    <div className="truck-container">
+      <img
+        src={truck2}
+        alt="Moving Truck"
+        className="moving-truck"
         style={{ left: `${truckX}px` }}
-      >
-  <img src={('../assets/truck1.png')} alt="Cement Truck" style={{ width: '100%', height: '100%' }}/>
-  </div>
-      <div className="cement-trail">
-        {cementTrail.map((cement, index) => (
-          <div
-            key={index}
-            className="cement"
-            style={{ left: `${cement.x}px`, top: `${cement.y}px` }}
-          />
-        ))}
-      </div>
+      />
     </div>
   );
 }
-
-

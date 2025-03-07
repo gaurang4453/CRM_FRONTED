@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AxiosInstance from "../../AxiosInstance";
 import { Spinner, Table, Container, Button } from "react-bootstrap";
+import "../style/style.css";
 
 export default function BranchMasterTable() {
   const [tableData, setTableData] = useState([]);
@@ -69,14 +70,10 @@ export default function BranchMasterTable() {
   };
 
   return (
-    <Container className="mt-5" style={{ maxWidth: "100%" }}>
+    <Container className="allcontainer">
       {/* ... (Create New Button, Loading, Error) */}
-      <div className="d-flex justify-content-end mb-3 tablebutton">
-        <Button
-          onClick={handleCreateNew}
-          variant="success"
-          className="px-7 py-2"
-        >
+      <div className="createbutton">
+        <Button onClick={handleCreateNew} variant="success">
           + Create New
         </Button>
       </div>
@@ -90,26 +87,10 @@ export default function BranchMasterTable() {
       {error && <p className="text-danger text-center">{error}</p>}
 
       {tableData.length > 0 && !loading ? (
-        <div className="table-responsive shadow-lg rounded bg-white p-3 alltablestyle">
-          <h5
-            className="text-center mb-2"
-            style={{
-              backgroundColor: "#0d254b",
-              color: "white",
-              padding: "10px",
-              fontWeight: "bold",
-            }}
-          >
-            Branch Master Table
-          </h5>
-          <Table
-            striped
-            bordered
-            hover
-            className="mt-4"
-            style={{ width: "100%" }}
-          >
-            <thead className="bg-primary text-white text-center">
+        <div className=" shadow-lg table-h1" style={{ marginTop: "-220px" }}>
+          <h5 className="text-center h1label">Branch Master Table</h5>
+          <Table striped bordered hover className="alltablestyle">
+            <thead className="text-center">
               <tr>
                 <th>Branch name</th>
                 <th>ShortName</th>

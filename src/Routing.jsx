@@ -24,7 +24,8 @@ import InquiryMasterTable from "./components/Index/InquiryMasterTable";
 import InquiryMasterForm from "./components/Account/InquiryMasterForm";
 import Login from "./components/Account/Login";
 import Navbar from "./components/Navbar/Navbar";
-
+// import InquiryFollowupMasterForm from "./components/Account/InquiryFollowupMasterForm";
+// import InquiryFollowupMasterTable from "./components/Index/InquiryFollowupMasterTable";
 
 
 
@@ -128,6 +129,15 @@ export default function Routing() {
               </PrivateRoute>
             }
           />
+          {/* <Route
+            path="/InquiryFollowupMasterTable"
+            element={
+              <PrivateRoute>
+                <Navbar />
+                <InquiryFollowupMasterTable />
+              </PrivateRoute>
+            }
+          /> */}
 
 
 
@@ -216,6 +226,15 @@ export default function Routing() {
               </PrivateRoute>
             }
           />
+          {/* <Route
+            path="/InquiryFollowupMasterForm/:id"
+            element={
+              <PrivateRoute>
+                <Navbar />
+                <InquiryFollowupMasterForm />
+              </PrivateRoute>
+            }
+          /> */}
 
 
 
@@ -306,6 +325,15 @@ export default function Routing() {
               </PrivateRoute>
             }
           />
+          {/* <Route
+            path="/InquiryFollowupMasterForm"
+            element={
+              <PrivateRoute>
+                <Navbar />
+                <InquiryFollowupMasterForm />
+              </PrivateRoute>
+            }
+          /> */}
         </Routes>
       </Router>
     </>

@@ -1,71 +1,89 @@
-import React, { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
-
-import { FaPlus, FaTrash, FaSearch } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+import { FaPlus, FaTrash } from "react-icons/fa";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Footer from "../Footer/Footer";
-import AxiosInstance from "../../AxiosInstance";
 import useDropdownData from "../UseDropdownData";
 
-const SubTableInquiryMaster = () => {
-  const { id } = useParams();
+const SubTableInquiryMaster = ({ id, initialRows = [], onRowsUpdate }) => {
+  const [rows, setRows] = useState(
+    initialRows.length > 0  
+      ? initialRows
+      : [
+          {
+            id: 1,
+            itemName: "",
+            description: "",
+            uomid: "",
+            qty: 1, // Ensure qty is never 0
+            remarks: "",
+          },
+        ]
+  );
 
-  const [rows, setRows] = useState([
-    { id: 1, itemName: "", description: "", uom: "", qty: 0, remarks: "" }, // qty initialized to 0
-  ]);
-
-  const {
-    register,
-
-    formState: { errors },
-  } = useForm();
-  const addRow = () => {
-    setRows([
-      ...rows,
-      {
-        id: rows.length + 1,
-        itemName: "",
-        description: "",
-        uom: "",
-        qty: 0, // qty initialized to 0
-        remarks: "",
-      },
-    ]);
-  };
   const { data: itemsOptions, error: itemsError } = useDropdownData("items");
+
+  useEffect(() => {
+    onRowsUpdate(rows);
+  }, [rows, onRowsUpdate]);
+
+  useEffect(() => {
+    if (initialRows.length > 0) {
+      setRows(initialRows);
+    }
+  }, [initialRows]);
+
+  const addRow = () => {
+    const newRow = {
+      id: rows.length + 1,
+      itemName: "",
+      description: "",
+      uomid: "",
+      qty: 1, // Ensure valid qty
+      remarks: "",
+    };
+    const updatedRows = [...rows, newRow];
+    setRows(updatedRows);
+    onRowsUpdate(updatedRows);
+  };
+
+  const removeRow = (rowId) => {
+    const updatedRows = rows
+      .filter((row) => row.id !== rowId)
+      .map((row, index) => ({
+        ...row,
+        id: index + 1, // Reorder IDs correctly
+      }));
+    setRows(updatedRows);
+    onRowsUpdate(updatedRows);
+  };
+
+  const updateRow = (index, field, value) => {
+    const updatedRows = [...rows];
+    updatedRows[index] = { ...updatedRows[index], [field]: value };
+    setRows(updatedRows);
+    onRowsUpdate(updatedRows);
+  };
 
   if (itemsError) {
     console.error("Error fetching items:", itemsError);
   }
-  const removeRow = (id) => {
-    const updatedRows = rows
-      .filter((row) => row.id !== id)
-      .map((row, index) => ({ ...row, id: index + 1 }));
-    setRows(updatedRows);
-  };
-
-  const saveInquiry = async () => {
-    try {
-      await AxiosInstance.post("/InquiryItem", rows);
-      alert("Inquiry saved successfully!");
-    } catch (error) {
-      console.error("Error saving inquiry:", error);
-      alert("Failed to save inquiry.");
-    }
-  };
 
   return (
-    <>
-      <div className="container-fluid mt-4">
-        <h5
-          className="text-center mb-2"
-          style={{
-            backgroundColor: "#0d254b",
-            color: "white",
-            padding: "10px",
-            fontWeight: "bold",
-          }}
+    <div className="container-fluid mt-4">
+      <h5
+        className="text-center mb-2"
+        style={{
+          backgroundColor: "#0d254b",
+          color: "white",
+          padding: "10px",
+          fontWeight: "bold",
+        }}
+      >
+        Item Master Table
+      </h5>
+      <div className="table-responsive">
+        <table
+          className="table table-bordered w-100"
+          style={{ minWidth: "85vw", marginLeft: "-10px" }}
         >
           Item Master Table
         </h5>
@@ -189,8 +207,7 @@ const SubTableInquiryMaster = () => {
           </table>
         </div>
       </div>
-      <Footer onSave={saveInquiry} onCancel={() => console.log("Cancel")} />
-    </>
+    </div>
   );
 };
 
