@@ -993,7 +993,11 @@ const InquiryMasterForm = () => {
           <br />
           <Row></Row>
         </Container>
-        <SubTableInquiryMaster />
+        <SubTableInquiryMaster 
+        id={id}
+        initialRows={inquiryItemRows}
+        onRowsUpdate={handleItemRowsUpdate}
+        />
       
       </Form>
       </div>
