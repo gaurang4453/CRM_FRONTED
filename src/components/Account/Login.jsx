@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import AxiosInstance from "/src/AxiosInstance";
 import "../style/Login.css";
-import "bootstrap-icons/font/bootstrap-icons.css";
-import CementTruckAnimation from "../../Animation/CementTruckAnimation";  
+import CementTruckAnimation from "../../Animation/CementTruckAnimation";
 function Login({ onLoginSuccess }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -26,9 +25,7 @@ function Login({ onLoginSuccess }) {
         onLoginSuccess();
         navigate("/home");
       } else {
-        setError(
-          response.data.message || "Incorrect username or password."
-        );
+        setError(response.data.message || "Incorrect username or password.");
       }
     } catch (err) {
       setError("Network error. Please try again later.");
@@ -43,7 +40,7 @@ function Login({ onLoginSuccess }) {
           <div className="header-text">
             <h2 className="h2">Login</h2>
           </div>
-          
+
           <div className="mb-4 p-2 input-icon-wrapper">
             <label htmlFor="username" className="form-label">
               Username:

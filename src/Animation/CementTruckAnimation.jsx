@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
 import "./CementTruckAnimation.css";
-import truck2 from '../assets/truck2.png';
-
-import React, { useState, useEffect, useRef } from "react";
+import truck2 from "../assets/truck2.png";
 import "./CementTruckAnimation.css"; // Create this CSS file
-// import truck1 from "../assets/truck1.png"; 
+// import truck1 from "../assets/truck1.png";
 export default function CementTruckAnimation() {
   const [truckX, setTruckX] = useState(window.innerWidth); // Start on the right edge
 
   useEffect(() => {
     const interval = setInterval(() => {
       setTruckX((prevX) => {
-        if (prevX < -200) { // Check if it's off-screen to the left
+        if (prevX < -200) {
+          // Check if it's off-screen to the left
           return window.innerWidth; // Reset to the right edge
         }
         return prevX - 3; // Move left
