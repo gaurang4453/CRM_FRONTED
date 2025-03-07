@@ -204,10 +204,8 @@ option.highlighted {
   font-Size: 14px;
   border-radius: 6px;
 }
-.dropdown-toggle::after {
-  margin-left: 5px;
-}
-.requireddropdown{
+
+.requireddropdown {
   height: 30px;
   border: 2px solid rgb(243, 185, 78);
   padding: 0.2rem;

@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import "./CementTruckAnimation.css";
 import truck2 from '../assets/truck2.png';
 
+import React, { useState, useEffect, useRef } from "react";
+import "./CementTruckAnimation.css"; // Create this CSS file
+// import truck1 from "../assets/truck1.png"; 
 export default function CementTruckAnimation() {
   const [truckX, setTruckX] = useState(window.innerWidth); // Start on the right edge
 
