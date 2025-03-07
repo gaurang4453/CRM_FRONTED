@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+
 import "./CementTruckAnimation.css";
 import truck2 from "../assets/truck2.png";
 import "./CementTruckAnimation.css"; // Create this CSS file
