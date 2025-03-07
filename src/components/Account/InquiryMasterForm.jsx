@@ -27,29 +27,39 @@ const SubTableInquiryMaster = ({ id, initialRows = [], onRowsUpdate }) => {
   );
 
   const { data: itemsOptions, error: itemsError } = useDropdownData("items");
+  const { data: uomsOptions, error: uomError } = useDropdownData("uoms");
 
   useEffect(() => {
     onRowsUpdate(rows);
   }, [rows, onRowsUpdate]);
 
   useEffect(() => {
+    console.log("initialRows received in SubTableInquiryMaster:", initialRows);
     if (initialRows.length > 0) {
       setRows(initialRows);
     }
   }, [initialRows]);
 
+  const updateRow = (index, field, value) => {
+    const updatedRows = [...rows];
+    updatedRows[index] = { ...updatedRows[index], [field]: value };
+    setRows(updatedRows);
+    onRowsUpdate(updatedRows); // Ensure this is called
+  };
+
   const addRow = () => {
     const newRow = {
-      ItemID: rows.length + 1,
+      id: rows.length + 1,
+      itemid: "",
       itemName: "",
       description: "",
       uomid: "",
-      qty: 1, // Ensure valid qty
+      qty: 1,
       remarks: "",
     };
     const updatedRows = [...rows, newRow];
     setRows(updatedRows);
-    onRowsUpdate(updatedRows);
+    onRowsUpdate(updatedRows); // Ensure this is called
   };
 
   const removeRow = (rowId) => {
@@ -57,23 +67,18 @@ const SubTableInquiryMaster = ({ id, initialRows = [], onRowsUpdate }) => {
       .filter((row) => row.id !== rowId)
       .map((row, index) => ({
         ...row,
-        id: index + 1, // Reorder IDs correctly
+        id: index + 1,
       }));
     setRows(updatedRows);
-    onRowsUpdate(updatedRows);
-  };
-
-  const updateRow = (index, field, value) => {
-    const updatedRows = [...rows];
-    updatedRows[index] = { ...updatedRows[index], [field]: value };
-    setRows(updatedRows);
-    onRowsUpdate(updatedRows);
+    onRowsUpdate(updatedRows); // Ensure this is called
   };
 
   if (itemsError) {
     console.error("Error fetching items:", itemsError);
   }
-
+  if (uomError) {
+    console.error("Error fetching items:", uomError);
+  }
   return (
     <div className="container-fluid mt-4">
       <h5
@@ -117,7 +122,7 @@ const SubTableInquiryMaster = ({ id, initialRows = [], onRowsUpdate }) => {
                       --Select--
                     </option>
                     {itemsOptions?.map((item) => (
-                      <option key={item.id} value={item.value}>
+                      <option key={item.id} value={item.id}>
                         {item.value}
                       </option>
                     ))}
@@ -132,13 +137,20 @@ const SubTableInquiryMaster = ({ id, initialRows = [], onRowsUpdate }) => {
                   ></textarea>
                 </td>
                 <td>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="UOM"
-                    value={row.uomid}
-                    onChange={(e) => updateRow(index, "uomid", e.target.value)}
-                  />
+                  <select
+                    className="form-select"
+                    value={row.UOM || ""}
+                    onChange={(e) => updateRow(index, "UOM", e.target.value)}
+                  >
+                    <option value="" disabled>
+                      --Select--
+                    </option>
+                    {uomsOptions?.map((uom) => (
+                      <option key={uom.id} value={uom.id}>
+                        {uom.value}
+                      </option>
+                    ))}
+                  </select>
                   <input
                     type="number"
                     className="form-control mt-2"
@@ -220,13 +232,15 @@ const InquiryMasterForm = () => {
   const handleItemRowsUpdate = (updatedRows) => {
     setInquiryItemRows(updatedRows);
   };
-
   useEffect(() => {
     if (id && id !== "undefined") {
       const fetchInquiryMaster = async () => {
         try {
           const response = await AxiosInstance.get(`/InquiryMaster/${id}`);
           const data = response.data.data;
+
+          // Log the fetched data to verify its contents
+          console.log("Fetched data:", data);
 
           const fieldsToSet = [
             "InquiryNo",
@@ -271,19 +285,19 @@ const InquiryMasterForm = () => {
           });
 
           if (data.inquiryItemList && data.inquiryItemList.length > 0) {
-            const rowsData = data.inquiryItemList.map((item) => ({
-              itemid: item.itemid || item.inquiryItemID,
-              seqNo: item.seqNo || item.SeqNo,
-              itemName: item.itemID || "",
-              description: item.description || item.Description,
-              uomid: item.uomid || item.UOMID,
-              qty: item.qty || 0,
-              remarks: item.remark || item.Remark,
+            const rowsData = data.inquiryItemList.map((item, index) => ({
+              id: index + 1,
+              itemid: item.itemid || "", // Ensure it's not undefined
+              itemName: item.itemID || item.itemid || "",
+              description: item.description || "",
+              uomid: item.uomid || "",
+              qty: item.qty > 0 ? item.qty : 1, // Default to 1
+              remarks: item.remark || "", // Prevent undefined value
             }));
+
             console.log("Updated inquiry item rows:", rowsData);
             setInquiryItemRows([...rowsData]);
           }
-          console.log("Payload being sent:", payload);
         } catch (err) {
           console.error("Failed to fetch InquiryMaster details:", err);
           setError("Failed to fetch InquiryMaster details.");
@@ -358,7 +372,6 @@ const InquiryMasterForm = () => {
       alert("Error submitting data");
     }
   };
-
   const handleDelete = async () => {
     if (window.confirm("Are you sure you want to delete this InquiryMaster?")) {
       try {
