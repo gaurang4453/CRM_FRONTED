@@ -9,11 +9,12 @@
 body {
   font-size: 15px;
   font-family: Arial, sans-serif;
-  background-color: #e8eaeb;
+  /* background-color: #e8eaeb; */
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  
 }
 
 .allform {
@@ -197,16 +198,14 @@ option.highlighted {
   border-Radius: 0px;
 }
 
-.dropdown{
+.dropdown {
   height: 30px;
-  border: 2px solid rgb(133, 132, 130);
   padding: 0.2rem;
   font-Size: 14px;
-  width: 95%;
   border-radius: 6px;
 }
 
-.requireddropdown{
+.requireddropdown {
   height: 30px;
   border: 2px solid rgb(243, 185, 78);
   padding: 0.2rem;
@@ -214,24 +213,17 @@ option.highlighted {
   width: 95%;
   border-radius: 6px;
 }
+
 /* ----------------------------TABLE--------------------- */
 .alltablestyle {
-  margin-Top: 60px;
-  width: 50px;
+  margin-Top: 10px;
+  width: 1350px;
   height: auto;
   /* margin-Left: 450px;  */
   /* margin-Right: 450px; */
 }
 
-.tablebutton {
-  position: fixed;
-  top: 100px;
-  right: 1310px;
-  z-Index: 1000;
-  padding: 5px 10px
-}
-
-form h1 {
+.form-h1 {
   text-align: center;
   background-color: #f5f8fa;
   margin-top: -8px;
@@ -244,4 +236,36 @@ form h1 {
   padding-left: 0px;
   position: relative;
   overflow: hidden;
+}
+
+.allcontainer {
+  margin-top: 60px;
+  max-Width: 100%
+}
+
+.createbutton {
+  position: absolute;
+  top: 100px;
+  right: 1320px;
+  padding: 5px 2px
+}
+
+.table-h1 {
+  margin-Top: 120px;
+  width: 100%;
+  /* min-Height: 500px; */
+  height: auto;
+ 
+  padding: 10px;
+  margin-Left: auto;
+  margin-Right: auto
+}
+
+.h1label{
+  background-Color: #0d254b;
+  color: white;
+  padding: 10px;
+  font-Weight: bold;
+  justify-content: center;
+  display: flex;
 }

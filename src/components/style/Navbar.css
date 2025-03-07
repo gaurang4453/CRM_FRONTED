@@ -5,7 +5,7 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  background-color: #0d254b; /* Flipkart-style blue #0d254b*/
+  background-color: #0d254b;
   padding: 10px 20px;
   font-weight: normal;
   color: white;
@@ -21,8 +21,10 @@
 /* Logo */
 .navbar-container .navbar-brand {
   font-size: 22px;
-  color: white; /* Set the logo color to white */
-  text-decoration: none;  
+  color: white;
+  text-decoration: none;
+  margin-right: 20px;
+  margin-left: 30px; /* Add margin to separate CRM from other elements */
 }
 
 /* Navbar Links */
@@ -30,6 +32,11 @@
   display: flex;
   align-items: center;
   gap: 20px;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
 }
 
 .nav-link {
@@ -41,7 +48,7 @@
 }
 
 .navbar-left h1 {
-  color: white; /* Set the color to white for the h1 element */
+  color: white;
 }
 
 .nav-link:hover {
@@ -50,10 +57,10 @@
   color: rgb(236, 221, 221);
 }
 
-
 /* Profile Dropdown */
 .dropdown {
   position: relative;
+  margin-right: 10px; /*added margin to seperate dropdowns*/
 }
 
 .dropdown-toggle {
@@ -62,6 +69,10 @@
   border: none;
   font-size: 16px;
   cursor: pointer;
+  margin-left: 10px;
+}
+.dropdown-toggle::after {
+  margin-left: 9px;
 }
 
 .dropdown-menu {

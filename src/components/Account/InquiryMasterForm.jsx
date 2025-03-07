@@ -390,12 +390,14 @@ const InquiryMasterForm = () => {
 
   return (
     <>
-      <div style={{ marginTop: "80px" }}></div>
+     
+      <div style={{ marginTop: "80px" }}>
       <Form
         onSubmit={handleSubmit(onSubmit)}
         className="allform"
-        style={{ marginTop: "20px" }}
+        // style={{ marginTop: "20px" }}
       >
+      
         <h1 className="ribbon">
           {id ? "Edit Property" : "Inquiry Master Form"}
         </h1>
@@ -557,7 +559,7 @@ const InquiryMasterForm = () => {
             </Col>
 
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>PartyName :</Form.Label>
+              <Form.Label>PartyName</Form.Label>
             </Col>
             <Col md={3}>
               <Form.Control
@@ -584,7 +586,7 @@ const InquiryMasterForm = () => {
           <br />
           <Row>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>Address :</Form.Label>
+              <Form.Label>Address</Form.Label>
             </Col>
             <Col md={11}>
               <Form.Control
@@ -610,7 +612,7 @@ const InquiryMasterForm = () => {
           <br />
           <Row>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>Area :</Form.Label>
+              <Form.Label>Area</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Control
@@ -1004,12 +1006,10 @@ const InquiryMasterForm = () => {
           <br />
           <Row></Row>
         </Container>
-        <SubTableInquiryMaster
-          id={id}
-          initialRows={inquiryItemRows}
-          onRowsUpdate={handleItemRowsUpdate}
-        />
+        <SubTableInquiryMaster />
+      
       </Form>
+      </div>
       <Footer
         className="footer"
         onSave={handleSubmit(onSubmit)}

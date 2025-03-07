@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AxiosInstance from "../../AxiosInstance";
 import { Spinner, Table, Container, Button } from "react-bootstrap";
+import "../style/style.css";
 
 export default function RoleMasterTable() {
   const [tableData, setTableData] = useState([]);
@@ -35,23 +36,10 @@ export default function RoleMasterTable() {
   };
 
   return (
-    <Container className="mt-5" style={{ maxWidth: "100%" }}>
+    <Container className="allcontainer">
       {/* Create New Button */}
-      <div
-        className="d-flex justify-content-end mb-3"
-        style={{
-          position: "fixed", // Fix the button on the screen
-          top: "100px", // Adjust the vertical position (distance from the top)
-          right: "1320px", // Adjust the horizontal position (distance from the right edge)
-          zIndex: "1000", // Ensures it stays above other content
-          padding: "5px 10px", // Optional: Adds padding around the button
-        }}
-      >
-        <Button
-          onClick={handleCreateNew}
-          variant="success"
-          className="px-7 py-2"
-        >
+      <div className="createbutton">
+        <Button onClick={handleCreateNew} variant="success">
           + Create New
         </Button>
       </div>
@@ -67,30 +55,15 @@ export default function RoleMasterTable() {
       {error && <p className="text-danger text-center">{error}</p>}
 
       {tableData.length > 0 && !loading ? (
-        <div
-          className="table-responsive shadow-lg rounded bg-white p-3 alltablestyle"
-          // style={{
-          //   marginTop: "20px", // Increase the margin-top
-          //   width: "100%", // Set the table container width to 80% of the screen
-          //   height: "450px", // Maintain a fixed height
-          //   marginLeft: "auto", // Center horizontally
-          //   marginRight: "auto", // Center horizontally
-          // }}
-        >
-          <h5  className="text-center mb-2"
-            style={{
-              backgroundColor: "#0d254b",
-              color: "white",
-              padding: "10px",
-              fontWeight: "bold",
-            }}>Role Master Table</h5>
-          <Table striped bordered hover className="mt-4" style={{ width: "100%" }}>
-            <thead className="bg-primary text-white text-center">
+        <div className="shadow-lg table-h1">
+          <h5 className="text-center  h1label"  style={{marginTop:"10px"}}>Role Master Table</h5>
+          <Table striped bordered hover className="alltablestyle">
+            <thead className="text-center">
               <tr>
-                <th style={{ width: "6%" }}>#</th> {/* Adjust width for column 1 */}
-                <th style={{ width: "1200px" }}>Role name</th> {/* Adjust width for column 2 */}
-                <th style={{ width: "30%" }}>Status</th> {/* Adjust width for column 3 */}
-                <th style={{ width: "30%" }}>CUID</th> {/* Adjust width for column 4 */}
+                <th style={{ width: "6%" }}>#</th>{" "}
+                <th style={{ width: "1200px" }}>Role name</th>{" "}
+                <th style={{ width: "30%" }}>Status</th>{" "}
+                <th style={{ width: "30%" }}>CUID</th>{" "}
               </tr>
             </thead>
             <tbody>
