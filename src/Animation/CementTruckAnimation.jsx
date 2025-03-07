@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import "./CementTruckAnimation.css"; // Create this CSS file
-// import truck1 from "../assets/truck1.png";
+// import truck1 from "../assets/truck1.png"; 
 export default function CementTruckAnimation() {
 
   const [truckX, setTruckX] = useState(0); // Initial horizontal position

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AxiosInstance from "../../AxiosInstance";
 import { Spinner, Table, Container, Button } from "react-bootstrap";
+import "../style/style.css";
 
 export default function CompanyMasterTable() {
   const [tableData, setTableData] = useState([]);
@@ -36,23 +37,10 @@ export default function CompanyMasterTable() {
   };
 
   return (
-    <Container className="mt-5" style={{ maxWidth: "100%" }}>
+    <Container className="allcontainer">
       {/* Create New Button */}
-      <div
-        className="d-flex justify-content-end mb-3"
-        style={{
-          position: "fixed", // Fix the button on the screen
-          top: "100px", // Adjust the vertical position (distance from the top)
-          right: "1340px", // Adjust the horizontal position (distance from the right edge)
-          zIndex: "1000", // Ensures it stays above other content
-          padding: "5px 10px", // Optional: Adds padding around the button
-        }}
-      >
-        <Button
-          onClick={handleCreateNew}
-          variant="success"
-          className="px-7 py-2"
-        >
+      <div className="createbutton">
+        <Button onClick={handleCreateNew} variant="success">
           + Create New
         </Button>
       </div>
@@ -68,35 +56,10 @@ export default function CompanyMasterTable() {
       {error && <p className="text-danger text-center">{error}</p>}
 
       {tableData.length > 0 && !loading ? (
-        <div
-          className="table-responsive shadow-lg rounded bg-white p-3"
-          style={{
-            marginTop: "130px", // Maintain the top margin
-            width: "120%", // Increase the table container width (set to 90% for more space)
-            height: "700px", // Maintain the height of the container
-            marginLeft: "-120px", // Center horizontally
-            marginRight: "430px", // Center horizontally
-          }}
-        >
-          <h5
-            className="text-center mb-2"
-            style={{
-              backgroundColor: "#0d254b",
-              color: "white",
-              padding: "10px",
-              fontWeight: "bold",
-            }}
-          >
-            Company Master Table
-          </h5>
-          <Table
-            striped
-            bordered
-            hover
-            className="mt-4"
-            style={{ width: "100%" }}
-          >
-            <thead className="bg-primary text-white text-center">
+        <div className="shadow-lg table-h1" style={{ marginTop: "-250px" }}>
+          <h5 className="text-center h1label">Company Master Table</h5>
+          <Table striped bordered hover className="alltablestyle">
+            <thead className="text-center">
               <tr>
                 <th>Company name</th>
                 <th>ShortCode</th>
