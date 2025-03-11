@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import AxiosInstance from "../../AxiosInstance";
 import { Spinner, Table, Container, Button } from "react-bootstrap";
 
-export default function InquiryMasterTable() {
+export default function NewinquiryList() {
   const [tableData, setTableData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -16,8 +16,12 @@ export default function InquiryMasterTable() {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const response = await AxiosInstance.get("/InquiryMaster");
-      setTableData(response.data.data);
+      const response = await AxiosInstance.get(
+        "/InquiryMaster/GetNewInquiryList"
+      );
+      const data = response.data.data;
+      console.log("Fetched Data new inquiry:", data); // Debugging
+      setTableData(data);
     } catch (error) {
       setError("Something went wrong!");
     } finally {
@@ -26,46 +30,20 @@ export default function InquiryMasterTable() {
   };
 
   const handleRowClick = (inquiryID) => {
-    navigate(`/InquiryMasterForm/${inquiryID}`);
+    navigate(`/InquiryFollowupMasterForm/${inquiryID}`);
   };
 
-  const handleCreateNew = () => {
-    navigate("/InquiryMasterForm");
-  };
-
-  // ✅ Manually defining CUID mappings
-  const cuidMapping = {
-    17: "Gaurang",
-    14: "vama",
-    19: "Priya",
-    20: "Amit",
-    21: "Sneha",
-    // Add more CUID mappings as needed
+  const style = {
+    overflowX: "scroll",
+    width: "2000px", // Increased width of the table
   };
 
   return (
     <Container className="allcontainer">
-      {/* Create New Button */}
-      <div className="createbutton">
-        <Button onClick={handleCreateNew} variant="success">
-          + Create New
-        </Button>
-      </div>
-
-      {loading && (
-        <Spinner
-          animation="border"
-          variant="primary"
-          className="d-block mx-auto"
-        />
-      )}
-
-      {error && <p className="text-danger text-center">{error}</p>}
-
       {tableData.length > 0 && !loading ? (
-        <div className="shadow-lg table-h1">
+        <div className=" shadow-lg table-h1">
           <h5 className="text-center h1label" style={{ marginTop: "-160px" }}>
-            Inquiry Master Table
+            New Inquiry
           </h5>
           <Table striped bordered hover className="alltablestyle">
             <thead className="text-center">
@@ -75,8 +53,9 @@ export default function InquiryMasterTable() {
                 <th>PartyName</th>
                 <th>MobileNo</th>
                 <th>EmailID</th>
+                {/* <th>VoucherType</th> */}
                 <th>Status</th>
-                <th>CUID</th>
+                <th>Entry by</th>
                 <th>MktBy</th>
               </tr>
             </thead>
@@ -97,12 +76,10 @@ export default function InquiryMasterTable() {
                     {inquiry.mobileNo || inquiry.mobile}
                   </td>
                   <td style={{ width: "4%" }}>{inquiry.emailID}</td>
+                  {/* <td style={{ width: "4%" }}>{inquiry.voucherType}</td> */}
                   <td style={{ width: "4%" }}>{inquiry.status}</td>
                   <td style={{ width: "4%" }}>
-                    {cuidMapping[inquiry.CUID] ||
-                      cuidMapping[inquiry.cuid] ||
-                      inquiry.CUID ||
-                      inquiry.cuid}
+                    {inquiry.cUID || inquiry.cuid}
                   </td>
                   <td style={{ width: "4%" }}>{inquiry.mktBy}</td>
                 </tr>

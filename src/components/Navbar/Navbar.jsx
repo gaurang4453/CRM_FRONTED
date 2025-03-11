@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "/src/components/style/Navbar.css";
@@ -10,7 +9,8 @@ const Navbar = () => {
   const user = JSON.parse(localStorage.getItem("user"));
 
   const handleLogout = () => {
-    localStorage.removeItem("user");
+    localStorage.clear();
+    window.location.reload(); // Force a full app refresh
     navigate("/");
   };
 
@@ -70,8 +70,16 @@ const Navbar = () => {
                 </Link>
               </li>
               <li>
-                <Link className="dropdown-item" to="/InquiryFollowupMasterTable">
+                <Link
+                  className="dropdown-item"
+                  to="/InquiryFollowupMasterTable"
+                >
                   Inquiry Follow-up Master
+                </Link>
+              </li>
+              <li>
+                <Link className="dropdown-item" to="/NewinquiryList">
+                  New Inquiry List
                 </Link>
               </li>
             </ul>
