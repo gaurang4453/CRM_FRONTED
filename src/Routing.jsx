@@ -26,6 +26,7 @@ import Login from "./components/Account/Login";
 import Navbar from "./components/Navbar/Navbar";
 import InquiryFollowupMasterForm from "./components/Account/InquiryFollowupMasterForm";
 import InquiryFollowupMasterTable from "./components/Index/InquiryFollowupMasterTable";
+import NewinquiryList from "./components/Index/NewinquiryList";
 
 export default function Routing() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -134,6 +135,15 @@ export default function Routing() {
               <PrivateRoute>
                 <Navbar />
                 <InquiryFollowupMasterTable />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/NewinquiryList"
+            element={
+              <PrivateRoute>
+                <Navbar />
+                <NewinquiryList />
               </PrivateRoute>
             }
           />

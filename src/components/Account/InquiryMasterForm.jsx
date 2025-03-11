@@ -52,6 +52,8 @@ const SubTableInquiryMaster = ({ id, initialRows = [], onRowsUpdate }) => {
     updatedRows[index] = {
       ...updatedRows[index],
       [field]: value,
+      inquiryItemID:
+        updatedRows[index].inquiryItemID || rows[index].inquiryItemID, // Preserve inquiryItemID
     };
     setRows(updatedRows);
     onRowsUpdate(updatedRows);
@@ -177,8 +179,9 @@ const SubTableInquiryMaster = ({ id, initialRows = [], onRowsUpdate }) => {
                   />
                 </td>
                 <td>
-                  <textarea
-                    className="form-control mt-2"
+                  <input
+                    type="textarea"
+                    className="form-control"
                     placeholder="Remarks"
                     value={row.remarks}
                     onChange={(e) =>
@@ -301,8 +304,8 @@ const InquiryMasterForm = () => {
               itemName: item.itemID || item.itemid || "",
               description: item.description || "",
               uomid: item.uomid || "",
-              qty: item.qty > 0 ? item.qty : 1,
-              Remarks: item.remarks !== undefined ? item.remarks : "",
+              qty: item.qty > 0 ? item.qty : 1, // Default to 1
+              remarks: item.remark || "", // Prevent undefined value
             }));
 
             console.log("Updated inquiry item rows:", rowsData);
@@ -360,7 +363,7 @@ const InquiryMasterForm = () => {
         description: row.description || "",
         uomid: row.uomid || "",
         qty: row.qty > 0 ? row.qty : 1,
-        remarks: row.remarks || row.Remarks || "",
+        remarks: row.remarks || "",
       })),
     };
 
@@ -401,14 +404,19 @@ const InquiryMasterForm = () => {
   return (
     <>
       <div style={{ marginTop: "80px" }}>
-        <Form onSubmit={handleSubmit(onSubmit)} className="allform">
+        <Form
+          onSubmit={handleSubmit(onSubmit)}
+          className="allform"
+          // style={{ marginTop: "20px" }}
+        >
           <h1 className="ribbon">
             {id ? "Edit Property" : "Inquiry Master Form"}
           </h1>
-          <Container style={{marginTop:"20px"}}>
+          <Container>
+            {/* Main Form Fields */}
             <Row>
               <Col md={1} className="d-flex align-items-center ">
-                <Form.Label>InquiryNo </Form.Label>
+                <Form.Label>InquiryNo :</Form.Label>
               </Col>
               <Col md={3}>
                 <Form.Control
