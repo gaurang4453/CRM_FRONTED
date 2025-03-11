@@ -112,18 +112,12 @@ export default function UOMMasterForm() {
 
   return (
     <>
-      <Form
-        onSubmit={handleSubmit(onSubmit)}
-        className="allform"  
-       
-      >
-        <h1 className="ribbon" >
-        {id ? "Edit Property" : "UOM Master Form"}
-        </h1>
-        <Container   style={{ marginTop: "-160px" }}    >
+      <Form onSubmit={handleSubmit(onSubmit)} className=" alltablestyle">
+        <h1 className="ribbon">{id ? "Edit Property" : "UOM Master Form"}</h1>
+        <Container style={{ marginTop: "-160px" }}>
           <Row>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>UOM :</Form.Label>
+              <Form.Label>UOM </Form.Label>
             </Col>
             <Col md={5}>
               <Form.Control
@@ -142,7 +136,7 @@ export default function UOMMasterForm() {
           <br />
           <Row>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>CF:</Form.Label>
+              <Form.Label>CF</Form.Label>
             </Col>
             <Col md={5} className="d-flex align-items-center">
               <Form.Control
@@ -159,7 +153,7 @@ export default function UOMMasterForm() {
           <br />
           <Row>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>Status:</Form.Label>
+              <Form.Label>Status</Form.Label>
             </Col>
             <Col md={5}>
               <select
@@ -167,7 +161,6 @@ export default function UOMMasterForm() {
                 {...register("Status", { required: true })}
                 className="form-select requireddropdown "
                 defaultValue=""
-                
               >
                 <option value="" disabled>
                   --Select--
@@ -190,7 +183,7 @@ export default function UOMMasterForm() {
           <br />
           <Row>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>CUID:</Form.Label>
+              <Form.Label>CUID</Form.Label>
             </Col>
             <Col md={5}>
               <select
@@ -198,7 +191,6 @@ export default function UOMMasterForm() {
                 {...register("CUID", { required: true })}
                 className="form-select requireddropdown"
                 defaultValue=""
-                
               >
                 <option value="" disabled>
                   --Select--

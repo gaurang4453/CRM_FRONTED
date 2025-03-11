@@ -161,7 +161,7 @@ export default function BranchMasterForm() {
         <Container>
           <Row>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>BranchName:</Form.Label>
+              <Form.Label>Branch Name</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Control
@@ -176,7 +176,7 @@ export default function BranchMasterForm() {
             </Col>
 
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>CurrencyCode:</Form.Label>
+              <Form.Label>Currency Code</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Group controlId="CurrencyCode">
@@ -197,7 +197,7 @@ export default function BranchMasterForm() {
           <br />
           <Row>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>ShortName:</Form.Label>
+              <Form.Label>Short Name</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Control
@@ -214,7 +214,7 @@ export default function BranchMasterForm() {
             </Col>
 
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>CompanyID:</Form.Label>
+              <Form.Label>Company ID</Form.Label>
             </Col>
 
             <Col md={5}>
@@ -225,7 +225,6 @@ export default function BranchMasterForm() {
                 })}
                 className="requireddropdown"
                 defaultValue=""
-                
               >
                 <option value="" disabled>
                   --Select--
@@ -248,7 +247,7 @@ export default function BranchMasterForm() {
           <br />
           <Row>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>Remarks:</Form.Label>
+              <Form.Label>Remarks</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Control
@@ -263,7 +262,7 @@ export default function BranchMasterForm() {
             </Col>
 
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>Address:</Form.Label>
+              <Form.Label>Address</Form.Label>
             </Col>
 
             <Col md={5}>
@@ -283,7 +282,7 @@ export default function BranchMasterForm() {
           <br />
           <Row>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>Bank:</Form.Label>
+              <Form.Label>Bank</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Group controlId="Bank">
@@ -308,39 +307,39 @@ export default function BranchMasterForm() {
                 type="text"
                 placeholder="Enter Description"
                 {...register("Description")}
-              className="inputfieldstyle"
+                className="inputfieldstyle"
               />
             </Col>
           </Row>
           <br />
           <Row>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>TaxDescription:</Form.Label>
+              <Form.Label>Tax Description</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Control
                 type="text"
                 placeholder="Enter TaxDescription"
                 {...register("TaxDescription")}
-               className="inputfieldstyle"
+                className="inputfieldstyle"
               />
             </Col>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>Certify Description:</Form.Label>
+              <Form.Label>Certify Description</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Control
                 type="text"
                 placeholder="Enter CertifyDescription"
                 {...register("CertifyDescription")}
-               className="inputfieldstyle"
+                className="inputfieldstyle"
               />
             </Col>
           </Row>
           <br />
           <Row>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>GST_No:</Form.Label>
+              <Form.Label>GST_No</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Control
@@ -352,7 +351,7 @@ export default function BranchMasterForm() {
             </Col>
 
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>Status:</Form.Label>
+              <Form.Label>Status</Form.Label>
             </Col>
             <Col md={5}>
               <select
@@ -360,7 +359,7 @@ export default function BranchMasterForm() {
                 {...register("Status", { required: true })}
                 className="form-select requireddropdown"
                 defaultValue=""
-                             >
+              >
                 <option value="" disabled>
                   --Select--
                 </option>
@@ -382,7 +381,7 @@ export default function BranchMasterForm() {
           <br />
           <Row>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>CUID:</Form.Label>
+              <Form.Label>CUID</Form.Label>
             </Col>
             <Col md={5}>
               <select
@@ -390,7 +389,6 @@ export default function BranchMasterForm() {
                 {...register("CUID", { required: true })}
                 className="form-select requireddropdown"
                 defaultValue=""
-                
               >
                 <option value="" disabled>
                   --Select--

@@ -119,7 +119,7 @@ export default function UserMasterForm() {
         <Container style={{ marginTop: "-160px" }}>
           <Row>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>ItemNo:</Form.Label>
+              <Form.Label>ItemNo</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Group controlId="ItemNo">
@@ -137,7 +137,7 @@ export default function UserMasterForm() {
               </Form.Group>
             </Col>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>ItemName:</Form.Label>
+              <Form.Label>ItemName</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Group controlId="ItemName">
@@ -158,7 +158,7 @@ export default function UserMasterForm() {
           <br />
           <Row>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>Description:</Form.Label>
+              <Form.Label>Description</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Group controlId="Description">
@@ -176,7 +176,7 @@ export default function UserMasterForm() {
               </Form.Group>
             </Col>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>TaxType:</Form.Label>
+              <Form.Label>TaxType</Form.Label>
             </Col>
             <Col md={5}>
               <select
@@ -206,7 +206,7 @@ export default function UserMasterForm() {
           <br />
           <Row>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>HSNCOde:</Form.Label>
+              <Form.Label>HSNCOde</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Group controlId="HSNCOde">
@@ -224,7 +224,7 @@ export default function UserMasterForm() {
               </Form.Group>
             </Col>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>UOMID:</Form.Label>
+              <Form.Label>UOMID</Form.Label>
             </Col>
             <Col md={5}>
               <select
@@ -251,7 +251,7 @@ export default function UserMasterForm() {
           <br />
           <Row>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>Status:</Form.Label>
+              <Form.Label>Status</Form.Label>
             </Col>
             <Col md={5}>
               <select
@@ -275,7 +275,7 @@ export default function UserMasterForm() {
               </select>
             </Col>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>CUID:</Form.Label>
+              <Form.Label>CUID</Form.Label>
             </Col>
             <Col md={5}>
               <select

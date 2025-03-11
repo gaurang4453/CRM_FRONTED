@@ -36,7 +36,7 @@ export default function RoleMasterTable() {
   };
 
   return (
-    <Container className="allcontainer">
+    <Container className="allcontainer" style={{marginTop: "40px"}}>
       {/* Create New Button */}
       <div className="createbutton">
         <Button onClick={handleCreateNew} variant="success">
@@ -55,8 +55,8 @@ export default function RoleMasterTable() {
       {error && <p className="text-danger text-center">{error}</p>}
 
       {tableData.length > 0 && !loading ? (
-        <div className="shadow-lg table-h1">
-          <h5 className="text-center  h1label"  style={{marginTop:"10px"}}>Role Master Table</h5>
+        <div className="shadow-lg table-h1" style={{marginTop: "105px"}}>
+          <h5 className="text-center  h1label"  >Role Master Table</h5>
           <Table striped bordered hover className="alltablestyle">
             <thead className="text-center">
               <tr>

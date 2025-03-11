@@ -138,14 +138,14 @@ export default function CompanyMasterForm() {
     return <p className="error">Failed to fetch User options: {cuidError}</p>;
   return (
     <>
-      <Form onSubmit={handleSubmit(onSubmit)} className="allform">
+      <Form onSubmit={handleSubmit(onSubmit)} className="allform" style={{ marginTop: "45px" }}>
         <h1 className="ribbon">
           {id ? "Edit Property" : "Company Master Form"}
         </h1>
         <Container style={{ marginTop: "20px" }}>
           <Row>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>Company Name:</Form.Label>
+              <Form.Label>Company Name</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Group controlId="CompanyName">
@@ -162,7 +162,7 @@ export default function CompanyMasterForm() {
             </Col>
 
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label> ShortCode:</Form.Label>
+              <Form.Label> Short Code</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Control
@@ -181,7 +181,7 @@ export default function CompanyMasterForm() {
           <br />
           <Row>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>State:</Form.Label>
+              <Form.Label>State</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Group controlId="State">
@@ -199,7 +199,7 @@ export default function CompanyMasterForm() {
               </Form.Group>
             </Col>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label> TINNo:</Form.Label>
+              <Form.Label> TIN No</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Control
@@ -216,7 +216,7 @@ export default function CompanyMasterForm() {
           <br />
           <Row className="g-3">
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>CST:</Form.Label>
+              <Form.Label>CST</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Group controlId="CST">
@@ -232,7 +232,7 @@ export default function CompanyMasterForm() {
               </Form.Group>
             </Col>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label> PANNO:</Form.Label>
+              <Form.Label> PAN NO</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Control
@@ -250,7 +250,7 @@ export default function CompanyMasterForm() {
 
           <Row>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>ServiceTaxNo:</Form.Label>
+              <Form.Label>Service Tax No</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Group controlId="ServiceTaxNo">
@@ -266,7 +266,7 @@ export default function CompanyMasterForm() {
               </Form.Group>
             </Col>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label> SSINO:</Form.Label>
+              <Form.Label> SSI NO</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Control
@@ -283,7 +283,7 @@ export default function CompanyMasterForm() {
           <br />
           <Row>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>TANNO:</Form.Label>
+              <Form.Label>TAN NO</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Group controlId="TANNO">
@@ -299,7 +299,7 @@ export default function CompanyMasterForm() {
               </Form.Group>
             </Col>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label> ECCNo:</Form.Label>
+              <Form.Label> ECC  No</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Control
@@ -316,7 +316,7 @@ export default function CompanyMasterForm() {
           <br />
           <Row>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>Range:</Form.Label>
+              <Form.Label>Range</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Group controlId="Range">
@@ -332,7 +332,7 @@ export default function CompanyMasterForm() {
               </Form.Group>
             </Col>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label> Division:</Form.Label>
+              <Form.Label> Division</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Control
@@ -349,7 +349,7 @@ export default function CompanyMasterForm() {
           <br />
           <Row>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>Commisioner:</Form.Label>
+              <Form.Label>Commisioner</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Group controlId="Commisioner">
@@ -365,7 +365,7 @@ export default function CompanyMasterForm() {
               </Form.Group>
             </Col>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label> GST_No:</Form.Label>
+              <Form.Label> GST_No</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Control
@@ -384,7 +384,7 @@ export default function CompanyMasterForm() {
           <br />
           <Row>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>CurrencyCode:</Form.Label>
+              <Form.Label>Currency Code</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Group controlId="CurrencyCode">
@@ -400,7 +400,7 @@ export default function CompanyMasterForm() {
               </Form.Group>
             </Col>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label> Address:</Form.Label>
+              <Form.Label> Address</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Control
@@ -419,7 +419,7 @@ export default function CompanyMasterForm() {
           <br />
           <Row>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>Bank:</Form.Label>
+              <Form.Label>Bank</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Group controlId="Bank">
@@ -437,7 +437,7 @@ export default function CompanyMasterForm() {
               </Form.Group>
             </Col>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label> Description:</Form.Label>
+              <Form.Label> Description</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Control
@@ -454,7 +454,7 @@ export default function CompanyMasterForm() {
           <br />
           <Row>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>TaxDescription:</Form.Label>
+              <Form.Label>Tax Description</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Group controlId="TaxDescription">
@@ -472,7 +472,7 @@ export default function CompanyMasterForm() {
               </Form.Group>
             </Col>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label> CertifyDescription:</Form.Label>
+              <Form.Label> Certify Description</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Control
@@ -491,7 +491,7 @@ export default function CompanyMasterForm() {
           <br />
           <Row>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>Declaration:</Form.Label>
+              <Form.Label>Declaration</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Group controlId="Declaration">
@@ -507,7 +507,7 @@ export default function CompanyMasterForm() {
               </Form.Group>
             </Col>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label> Jurisdiction:</Form.Label>
+              <Form.Label> Jurisdiction</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Control
@@ -524,7 +524,7 @@ export default function CompanyMasterForm() {
           <br />
           <Row>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>AuthPerson:</Form.Label>
+              <Form.Label>Auth Person</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Group controlId="AuthPerson">
@@ -540,7 +540,7 @@ export default function CompanyMasterForm() {
               </Form.Group>
             </Col>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label> Col1:</Form.Label>
+              <Form.Label> Col1</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Control
@@ -557,7 +557,7 @@ export default function CompanyMasterForm() {
           <br />
           <Row>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>Status:</Form.Label>
+              <Form.Label>Status</Form.Label>
             </Col>
             <Col md={5} className="d-flex align-items-center">
               <select
@@ -585,7 +585,7 @@ export default function CompanyMasterForm() {
             </Col>
 
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>CUID:</Form.Label>
+              <Form.Label>CUID</Form.Label>
             </Col>
             <Col md={5}>
               <select

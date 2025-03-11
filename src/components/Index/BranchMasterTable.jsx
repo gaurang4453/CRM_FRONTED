@@ -87,7 +87,7 @@ export default function BranchMasterTable() {
       {error && <p className="text-danger text-center">{error}</p>}
 
       {tableData.length > 0 && !loading ? (
-        <div className=" shadow-lg table-h1" style={{ marginTop: "-220px" }}>
+        <div className=" shadow-lg table-h1" style={{ marginTop: "-205px" }}>
           <h5 className="text-center h1label">Branch Master Table</h5>
           <Table striped bordered hover className="alltablestyle">
             <thead className="text-center">

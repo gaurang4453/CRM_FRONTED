@@ -24,10 +24,8 @@ import InquiryMasterTable from "./components/Index/InquiryMasterTable";
 import InquiryMasterForm from "./components/Account/InquiryMasterForm";
 import Login from "./components/Account/Login";
 import Navbar from "./components/Navbar/Navbar";
-// import InquiryFollowupMasterForm from "./components/Account/InquiryFollowupMasterForm";
-// import InquiryFollowupMasterTable from "./components/Index/InquiryFollowupMasterTable";
-
-
+import InquiryFollowupMasterForm from "./components/Account/InquiryFollowupMasterForm";
+import InquiryFollowupMasterTable from "./components/Index/InquiryFollowupMasterTable";
 
 export default function Routing() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -49,14 +47,15 @@ export default function Routing() {
             element={<Login onLoginSuccess={handleLoginSuccess} />}
           />
           <Route
-            path="/home" element={
+            path="/home"
+            element={
               <PrivateRoute>
                 <Navbar />
                 <Home />
               </PrivateRoute>
             }
           />
-          
+
           <Route
             path="/PropMasterTable"
             element={
@@ -120,7 +119,7 @@ export default function Routing() {
               </PrivateRoute>
             }
           />
-<Route
+          <Route
             path="/InquiryMasterTable"
             element={
               <PrivateRoute>
@@ -129,7 +128,7 @@ export default function Routing() {
               </PrivateRoute>
             }
           />
-          {/* <Route
+          <Route
             path="/InquiryFollowupMasterTable"
             element={
               <PrivateRoute>
@@ -137,22 +136,7 @@ export default function Routing() {
                 <InquiryFollowupMasterTable />
               </PrivateRoute>
             }
-          /> */}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+          />
 
           <Route
             path="/PropMasterForm/:id"
@@ -217,7 +201,7 @@ export default function Routing() {
               </PrivateRoute>
             }
           />
-<Route
+          <Route
             path="/InquiryMasterForm/:id"
             element={
               <PrivateRoute>
@@ -226,7 +210,7 @@ export default function Routing() {
               </PrivateRoute>
             }
           />
-          {/* <Route
+          <Route
             path="/InquiryFollowupMasterForm/:id"
             element={
               <PrivateRoute>
@@ -234,24 +218,7 @@ export default function Routing() {
                 <InquiryFollowupMasterForm />
               </PrivateRoute>
             }
-          /> */}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+          />
 
           <Route
             path="/RoleMasterForm"
@@ -325,7 +292,7 @@ export default function Routing() {
               </PrivateRoute>
             }
           />
-          {/* <Route
+          <Route
             path="/InquiryFollowupMasterForm"
             element={
               <PrivateRoute>
@@ -333,7 +300,7 @@ export default function Routing() {
                 <InquiryFollowupMasterForm />
               </PrivateRoute>
             }
-          /> */}
+          />
         </Routes>
       </Router>
     </>

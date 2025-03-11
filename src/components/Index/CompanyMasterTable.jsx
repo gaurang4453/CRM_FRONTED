@@ -56,7 +56,7 @@ export default function CompanyMasterTable() {
       {error && <p className="text-danger text-center">{error}</p>}
 
       {tableData.length > 0 && !loading ? (
-        <div className="shadow-lg table-h1" style={{ marginTop: "-250px" }}>
+        <div className="shadow-lg table-h1" style={{ marginTop: "-227px" }}>
           <h5 className="text-center h1label">Company Master Table</h5>
           <Table striped bordered hover className="alltablestyle">
             <thead className="text-center">

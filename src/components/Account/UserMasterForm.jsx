@@ -121,13 +121,13 @@ export default function UserMasterForm() {
 
   return (
     <>
-      <Form onSubmit={handleSubmit(onSubmit)}  className="allform" >
+      <Form onSubmit={handleSubmit(onSubmit)}  className="allform" style={{marginTop:"45px"}}>
         <h1 className="ribbon">{id ? "Edit Property" : "User Master Form"}</h1>{" "}
         <Container style={{marginTop:"20px"}}>
           {/* RoleID DropDown */}
           <Row>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>Role:</Form.Label>
+              <Form.Label>Role</Form.Label>
             </Col>
             <Col md={11}>
               <Form.Select
@@ -153,7 +153,7 @@ export default function UserMasterForm() {
             <br/>
             <Row>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>UserName:</Form.Label>
+              <Form.Label>UserName</Form.Label>
             </Col>
             <Col md={11}>
               <Form.Control
@@ -170,7 +170,7 @@ export default function UserMasterForm() {
           {/* Password */}
           <Row>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>Password:</Form.Label>
+              <Form.Label>Password</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Control
@@ -184,7 +184,7 @@ export default function UserMasterForm() {
               )}
             </Col>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label> OldPassword:</Form.Label>
+              <Form.Label> OldPassword</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Control
@@ -203,7 +203,7 @@ export default function UserMasterForm() {
 
           <Row>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>Email ID:</Form.Label>
+              <Form.Label>Email ID</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Control
@@ -217,7 +217,7 @@ export default function UserMasterForm() {
               )}
             </Col>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>Email Password:</Form.Label>
+              <Form.Label>Email Password</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Control
@@ -234,7 +234,7 @@ export default function UserMasterForm() {
           <br />
           <Row>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>Mobile No:</Form.Label>
+              <Form.Label>Mobile No</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Control
@@ -254,7 +254,7 @@ export default function UserMasterForm() {
               )}
             </Col>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>Outside Access:</Form.Label>
+              <Form.Label>Outside Access</Form.Label>
             </Col>
             <Col md={1}>
               <Form.Check type="checkbox" {...register("OutSideAccess")} />
@@ -263,7 +263,7 @@ export default function UserMasterForm() {
           <br />
           <Row>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>Address:</Form.Label>
+              <Form.Label>Address</Form.Label>
             </Col>
             <Col md={11}>
               <Form.Control
@@ -280,7 +280,7 @@ export default function UserMasterForm() {
           <br />
           <Row>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>Email Port:</Form.Label>
+              <Form.Label>Email Port</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Control
@@ -295,7 +295,7 @@ export default function UserMasterForm() {
               )}
             </Col>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>Email Host:</Form.Label>
+              <Form.Label>Email Host</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Control
@@ -312,13 +312,13 @@ export default function UserMasterForm() {
           <br />
           <Row>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>Email Ssl:</Form.Label>
+              <Form.Label>Email Ssl</Form.Label>
             </Col>
             <Col md={5}>
               <Form.Check type="checkbox" {...register("EmailSSL")} />
             </Col>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>OTP:</Form.Label>
+              <Form.Label>OTP</Form.Label>
             </Col>
             <Col md={5} className="d-flex align-items-center ">
               <Form.Control
@@ -335,13 +335,13 @@ export default function UserMasterForm() {
           <br />
           <Row>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>Status:</Form.Label>
+              <Form.Label>Status</Form.Label>
             </Col>
             <Col md={5} className="d-flex align-items-center">
               <select
                 id="status"
                 {...register("Status")}
-                className="form-select dropdown"
+                className="dropdown"
                 defaultValue=""
                
               >
@@ -361,13 +361,13 @@ export default function UserMasterForm() {
               )}
             </Col>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>CUID:</Form.Label>
+              <Form.Label>CUID</Form.Label>
             </Col>
             <Col md={5}>
               <select
                 id="entryby"
                 {...register("entryby", { required: true })}
-                className="form-select dropdown"
+                className="dropdown"
                 defaultValue=""
                
               >

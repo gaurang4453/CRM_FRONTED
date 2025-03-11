@@ -37,9 +37,9 @@ function PropMasterTable() {
   };
 
   return (
-    <Container className="allcontainer">
+    <Container className="allcontainer" style={{marginTop: "95px"}}>
       {/* Create New Button */}
-      <div className="createbutton">
+      <div className="createbutton" style={{marginTop: "-5px"}}>
         <Button onClick={handleCreateNew} variant="success">
           + Create New
         </Button>
@@ -56,7 +56,7 @@ function PropMasterTable() {
       {error && <p className="text-danger text-center">{error}</p>}
 
       {tableData.length > 0 && !loading ? (
-        <div className="shadow-lg table-h1">
+        <div className="shadow-lg table-h1" style={{marginTop: "35px"}}>
           <h5 className="text-center h1label">Property Master Table</h5>
           <Table striped bordered hover className="alltablestyle">
             <thead className="text-center">

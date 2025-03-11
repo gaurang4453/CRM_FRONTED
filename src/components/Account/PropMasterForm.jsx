@@ -93,12 +93,12 @@ export default function PropMasterForm() {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)} className="allform" >
+      <form onSubmit={handleSubmit(onSubmit)} className="allform">
         <h1 className="ribbon">{id ? "Edit Property" : "Prop Master Form"}</h1>
-        <Container style={{marginTop: "-100px"}}>
+        <Container style={{ marginTop: "-100px" }}>
           <Row className="mb-3 ">
             <Col md={2} className="d-flex align-items-center">
-              <label htmlFor="propTypeName">Property Type Name:</label>
+              <label htmlFor="propTypeName">Property Type Name</label>
             </Col>
             <Col md={4}>
               <input
@@ -115,14 +115,15 @@ export default function PropMasterForm() {
 
           <Row className="mb-3">
             <Col md={2} className="d-flex align-items-center">
-              <label htmlFor="propName">Property Name:</label>
+              <label htmlFor="propName">Property Name</label>
             </Col>
             <Col md={4}>
               <input
                 id="propName"
                 placeholder="Enter Property Name."
                 {...register("propName", { required: true })}
-                className="requiredinputfieldstyle"              />
+                className="requiredinputfieldstyle"
+              />
               {errors.propName && (
                 <p className="error-text">This field is required.</p>
               )}
@@ -131,24 +132,24 @@ export default function PropMasterForm() {
 
           <Row className="mb-3">
             <Col md={2} className="d-flex align-items-center">
-              <label htmlFor="propValue">Property Value:</label>
+              <label htmlFor="propValue">Property Value</label>
             </Col>
             <Col md={4}>
               <input
                 id="propValue"
                 placeholder="Enter Property Value."
                 {...register("propValue", { required: true })}
-               className="requiredinputfieldstyle"
+                className="requiredinputfieldstyle"
               />
               {errors.propValue && (
                 <p className="error-text">This field is required.</p>
               )}
             </Col>
           </Row>
-<br/>
+          <br />
           <Row>
             <Col md={2} className="d-flex align-items-center">
-              <label htmlFor="status">Status:</label>
+              <label htmlFor="status">Status</label>
             </Col>
             <Col md={4}>
               <select
@@ -156,7 +157,6 @@ export default function PropMasterForm() {
                 {...register("status", { required: "Please select a status" })}
                 className="form-select requireddropdown"
                 defaultValue=""
-                
               >
                 <option value="" disabled>
                   --Select--
@@ -178,10 +178,10 @@ export default function PropMasterForm() {
               )}
             </Col>
           </Row>
-<br/>
+          <br />
           <Row className="mb-3">
             <Col md={2} className="d-flex align-items-center">
-              <label htmlFor="CUID">CUID:</label>
+              <label htmlFor="CUID">CUID</label>
             </Col>
             <Col md={4}>
               <select
@@ -189,7 +189,6 @@ export default function PropMasterForm() {
                 {...register("entryby", { required: true })}
                 className="form-select requireddropdown"
                 defaultValue=""
-                
               >
                 <option value="" disabled>
                   --Select--

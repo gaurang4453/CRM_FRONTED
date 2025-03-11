@@ -96,7 +96,7 @@ export default function RoleMasterForm() {
           {/* Role Name */}
           <Row style={{ marginBottom: "15px", marginTop: "-200px" }}>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>Role Name:</Form.Label>
+              <Form.Label>Role Name</Form.Label>
             </Col>
             <Col md={3}>
               <Form.Group controlId="roleName requiredinputfield">
@@ -118,7 +118,7 @@ export default function RoleMasterForm() {
           {/* Status */}
           <Row style={{ marginBottom: "15px" }}>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>Status:</Form.Label>
+              <Form.Label>Status</Form.Label>
             </Col>
             <Col md={3}>
               <select
@@ -150,7 +150,7 @@ export default function RoleMasterForm() {
           {/* CUID */}
           <Row style={{ marginBottom: "15px" }}>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>CUID:</Form.Label>
+              <Form.Label>CUID</Form.Label>
             </Col>
             <Col md={3}>
               <select
