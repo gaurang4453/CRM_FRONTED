@@ -40,7 +40,7 @@ export default function InquiryFollowupMasterTable() {
     <Container className="allcontainer">
      
       {tableData.length > 0 && !loading ? (
-        <div className=" shadow-lg table-h1" style={{ marginTop: "-130px" }}>
+        <div className=" shadow-lg table-h1" style={{ marginTop: "-170px" }}>
           <h5 className="text-center h1label">Inquiry Followup Master Table</h5>
           <Table striped bordered hover className="alltablestyle">
             <thead className="text-center">

@@ -165,9 +165,9 @@ export default function InquiryFollowUpMasterForm() {
     <>
       <form onSubmit={handleSubmit(onSubmit)} className="allform">
         <h1 className="ribbon">
-          {id ? "Edit Property" : "Inquiry Followup Master"}
+          {id ?  "Inquiry Followup Master" : "Inquiry Followup Master"}
         </h1>
-        <Container style={{ marginTop: "-15px" }}>
+        <Container style={{ marginTop: "15px" }}>
           <Row>
             <Col md={1} className="d-flex align-items-center">
               <Form.Label>Inquiry Followup No</Form.Label>
@@ -362,7 +362,7 @@ export default function InquiryFollowUpMasterForm() {
             <Col md={1} className="d-flex align-items-center">
               <Form.Label>Status</Form.Label>
             </Col>
-            <Col md={5} className="d-flex align-items-center">
+            <Col md={3} className="d-flex align-items-center">
               <select
                 id="status"
                 {...register("Status")}
@@ -388,7 +388,7 @@ export default function InquiryFollowUpMasterForm() {
             <Col md={1} className="d-flex align-items-center">
               <Form.Label>CUID</Form.Label>
             </Col>
-            <Col md={5}>
+            <Col md={3} className="d-flex align-items-center">
               <select
                 id="entryby"
                 {...register("entryby", { required: true })}
@@ -413,15 +413,16 @@ export default function InquiryFollowUpMasterForm() {
               )}
             </Col>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>Inquiry Followup No</Form.Label>
+              <Form.Label>Inquiry FollowupNo</Form.Label>
             </Col>
-            <Col md={3}>
+            <Col md={3} className="d-flex align-items-center">
               <Form.Group controlId="InquiryFollowupNo">
                 <Form.Control
                   type="text"
                   placeholder="Enter your Inquiry Followup No.."
                   {...register("InquiryFollowupNo", {})}
                   className="inputfieldstyle"
+                  style={{width:"150%"}}
                   disabled
                 />
                 {errors.InquiryFollowupNo && (

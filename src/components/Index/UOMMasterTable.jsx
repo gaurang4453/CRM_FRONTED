@@ -35,55 +35,57 @@ export default function UOMMasterTable() {
     navigate("/UOMMasterForm");
   };
   return (
-    <Container className="allcontainer">
-      {/* Create New Button */}
-      <div className="createbutton">
-        <Button onClick={handleCreateNew} variant="success">
-          + Create New
-        </Button>
-      </div>
-
-      {loading && (
-        <Spinner
-          animation="border"
-          variant="primary"
-          className="d-block mx-auto"
-        />
-      )}
-      {error && <p className="text-danger text-center">{error}</p>}
-
-      {tableData.length > 0 && !loading ? (
-        <div className=" shadow-lg table-h1" style={{marginTop: "70px"}}>
-          <h5 className="text-center  h1label">UOM Master Table</h5>
-          <Table striped bordered hover className="alltablestyle">
-            <thead className="text-center">
-              <tr>
-                <th style={{ width: "140px" }}>UOM</th>{" "}
-                <th style={{ width: "140px" }}>CF</th>{" "}
-                <th style={{ width: "140px" }}>Status</th>{" "}
-                <th style={{ width: "140px" }}>CUID</th>{" "}
-              </tr>
-            </thead>
-            <tbody>
-              {tableData.map((uom, index) => (
-                <tr
-                  key={uom.uomid || index}
-                  onClick={() => handleRowClick(uom.uomid)}
-                  style={{ cursor: "pointer" }}
-                  className="text-center table-row-hover"
-                >
-                  <td >{uom.uOM || uom.uom}</td>
-                  <td >{uom.cF || uom.cf}</td>
-                  <td >{uom.status || uom.status}</td>
-                  <td >{uom.cUID || uom.cuid}</td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
+    <div className="app-wrapper"> {/* Added app-wrapper here */}
+      <Container className="allcontainer">
+        {/* Create New Button */}
+        <div className="createbutton">
+          <Button onClick={handleCreateNew} variant="success">
+            + Create New
+          </Button>
         </div>
-      ) : (
-        !loading && <p className="text-center text-muted">No data available.</p>
-      )}
-    </Container>
+
+        {loading && (
+          <Spinner
+            animation="border"
+            variant="primary"
+            className="d-block mx-auto"
+          />
+        )}
+        {error && <p className="text-danger text-center">{error}</p>}
+
+        {tableData.length > 0 && !loading ? (
+          <div className=" shadow-lg table-h1">
+            <h5 className="text-center  h1label">UOM Master Table</h5>
+            <Table striped bordered hover className="alltablestyle">
+              <thead className="text-center">
+                <tr>
+                  <th style={{ width: "140px" }}>UOM</th>
+                  <th style={{ width: "140px" }}>CF</th>
+                  <th style={{ width: "140px" }}>Status</th>
+                  <th style={{ width: "140px" }}>CUID</th>
+                </tr>
+              </thead>
+              <tbody>
+                {tableData.map((uom, index) => (
+                  <tr
+                    key={uom.uomid || index}
+                    onClick={() => handleRowClick(uom.uomid)}
+                    style={{ cursor: "pointer" }}
+                    className="text-center table-row-hover"
+                  >
+                    <td>{uom.uOM || uom.uom}</td>
+                    <td>{uom.cF || uom.cf}</td>
+                    <td>{uom.status || uom.status}</td>
+                    <td>{uom.cUID || uom.cuid}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          </div>
+        ) : (
+          !loading && <p className="text-center text-muted">No data available.</p>
+        )}
+      </Container>
+    </div> //closing app-wrapper here
   );
 }

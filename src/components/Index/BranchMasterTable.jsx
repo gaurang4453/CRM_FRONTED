@@ -8,12 +8,12 @@ export default function BranchMasterTable() {
   const [tableData, setTableData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [companyData, setCompanyData] = useState([]); // State for company data
+  const [companyData, setCompanyData] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     fetchData();
-    fetchCompanyData(); // Fetch company data
+    fetchCompanyData();
   }, []);
 
   const fetchData = async () => {
@@ -70,65 +70,66 @@ export default function BranchMasterTable() {
   };
 
   return (
-    <Container className="allcontainer">
-      {/* ... (Create New Button, Loading, Error) */}
-      <div className="createbutton">
-        <Button onClick={handleCreateNew} variant="success">
-          + Create New
-        </Button>
-      </div>
-      {loading && (
-        <Spinner
-          animation="border"
-          variant="primary"
-          className="d-block mx-auto"
-        />
-      )}
-      {error && <p className="text-danger text-center">{error}</p>}
-
-      {tableData.length > 0 && !loading ? (
-        <div className=" shadow-lg table-h1" style={{ marginTop: "-165px" }}>
-          <h5 className="text-center h1label">Branch Master Table</h5>
-          <Table striped bordered hover className="alltablestyle">
-            <thead className="text-center">
-              <tr>
-                <th>Branch name</th>
-                <th>ShortName</th>
-                <th>Company name</th>
-                <th>GST_No</th>
-                <th>UserName</th>
-                <th>PropName</th>
-              </tr>
-            </thead>
-            <tbody>
-              {tableData.map((item, index) => {
-                const company = companyData.find(
-                  (c) => c.companyID === item.companyID
-                );
-                const companyName = company ? company.companyName : "N/A";
-
-                return (
-                  <tr
-                    key={item.branchID || index}
-                    onClick={() => handleRowClick(item.branchID)}
-                    style={{ cursor: "pointer" }}
-                    className="text-center table-row-hover"
-                  >
-                    <td>{item.branchName}</td>
-                    <td>{item.shortName}</td>
-                    <td>{companyName}</td>
-                    <td>{item.gsT_No}</td>
-                    <td>{item.userName}</td>
-                    <td>{item.propName}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </Table>
+    <div className="app-wrapper"> {/* Add app-wrapper here */}
+      <Container className="allcontainer">
+        <div className="createbutton">
+          <Button onClick={handleCreateNew} variant="success">
+            + Create New
+          </Button>
         </div>
-      ) : (
-        !loading && <p className="text-center text-muted">No data available.</p>
-      )}
-    </Container>
+        {loading && (
+          <Spinner
+            animation="border"
+            variant="primary"
+            className="d-block mx-auto"
+          />
+        )}
+        {error && <p className="text-danger text-center">{error}</p>}
+
+        {tableData.length > 0 && !loading ? (
+          <div className=" shadow-lg table-h1">
+            <h5 className="text-center h1label">Branch Master Table</h5>
+            <Table striped bordered hover className="alltablestyle">
+              <thead className="text-center">
+                <tr>
+                  <th>Branch name</th>
+                  <th>ShortName</th>
+                  <th>Company name</th>
+                  <th>GST_No</th>
+                  <th>UserName</th>
+                  <th>PropName</th>
+                </tr>
+              </thead>
+              <tbody>
+                {tableData.map((item, index) => {
+                  const company = companyData.find(
+                    (c) => c.companyID === item.companyID
+                  );
+                  const companyName = company ? company.companyName : "N/A";
+
+                  return (
+                    <tr
+                      key={item.branchID || index}
+                      onClick={() => handleRowClick(item.branchID)}
+                      style={{ cursor: "pointer" }}
+                      className="text-center table-row-hover"
+                    >
+                      <td>{item.branchName}</td>
+                      <td>{item.shortName}</td>
+                      <td>{companyName}</td>
+                      <td>{item.gsT_No}</td>
+                      <td>{item.userName}</td>
+                      <td>{item.propName}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </Table>
+          </div>
+        ) : (
+          !loading && <p className="text-center text-muted">No data available.</p>
+        )}
+      </Container>
+    </div> //close app-wrapper
   );
 }
