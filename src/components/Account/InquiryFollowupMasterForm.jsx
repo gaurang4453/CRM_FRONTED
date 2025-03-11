@@ -195,7 +195,7 @@ export default function InquiryFollowUpMasterForm() {
               <select
                 id="BranchID"
                 {...register("BranchID", {})}
-                className="dropdown"
+                className="dropdownform"
                 defaultValue=""
               >
                 <option value="" disabled>
@@ -223,7 +223,7 @@ export default function InquiryFollowUpMasterForm() {
               <select
                 id="OnAcID"
                 {...register("OnAcID", {})}
-                className="dropdown"
+                className="dropdownform"
                 style={{ width: "270px" }}
                 defaultValue=""
               >
@@ -268,7 +268,7 @@ export default function InquiryFollowUpMasterForm() {
               <select
                 id="NextProcess"
                 {...register("NextProcess", {})}
-                className="dropdown"
+                className="dropdownform"
                 defaultValue=""
               >
                 <option value="" disabled>
@@ -364,7 +364,7 @@ export default function InquiryFollowUpMasterForm() {
               <select
                 id="status"
                 {...register("Status")}
-                className="dropdown"
+                className="dropdownform"
                 defaultValue=""
               >
                 <option value="">--Select--</option>
@@ -390,7 +390,7 @@ export default function InquiryFollowUpMasterForm() {
               <select
                 id="entryby"
                 {...register("entryby", { required: true })}
-                className="dropdown"
+                className="dropdownform"
                 defaultValue=""
               >
                 <option value="" disabled>

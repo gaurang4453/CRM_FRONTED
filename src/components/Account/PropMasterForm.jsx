@@ -95,7 +95,7 @@ export default function PropMasterForm() {
     <>
       <form onSubmit={handleSubmit(onSubmit)} className="allform">
         <h1 className="ribbon">{id ? "Edit Property" : "Prop Master Form"}</h1>
-        <Container style={{ marginTop: "-100px" }}>
+        <Container style={{ marginTop: "-140px" }}>
           <Row className="mb-3 ">
             <Col md={2} className="d-flex align-items-center">
               <label htmlFor="propTypeName">Property Type Name</label>
@@ -146,7 +146,7 @@ export default function PropMasterForm() {
               )}
             </Col>
           </Row>
-          <br />
+          
           <Row>
             <Col md={2} className="d-flex align-items-center">
               <label htmlFor="status">Status</label>
@@ -155,7 +155,7 @@ export default function PropMasterForm() {
               <select
                 id="status"
                 {...register("status", { required: "Please select a status" })}
-                className="form-select requireddropdown"
+                className="requireddropdownform"
                 defaultValue=""
               >
                 <option value="" disabled>
@@ -187,7 +187,7 @@ export default function PropMasterForm() {
               <select
                 id="entryby"
                 {...register("entryby", { required: true })}
-                className="form-select requireddropdown"
+                className="requireddropdownform"
                 defaultValue=""
               >
                 <option value="" disabled>

@@ -59,7 +59,7 @@
 }
 
 /* Profile Dropdown */
-.dropdown {
+.navbardropdown {
   position: relative;
   margin-right: 10px; /*added margin to seperate dropdowns*/
 }

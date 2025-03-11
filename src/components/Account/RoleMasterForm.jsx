@@ -124,7 +124,7 @@ export default function RoleMasterForm() {
               <select
                 id="status"
                 {...register("status", { required: true })}
-                className="form-select requireddropdown"
+                className="requireddropdownform"
                 defaultValue=""
                 
               >
@@ -156,7 +156,7 @@ export default function RoleMasterForm() {
               <select
                 id="CUID"
                 {...register("CUID", { required: true })}
-                className="form-select requireddropdown"
+                className="requireddropdownform"
                 defaultValue=""
                
               >

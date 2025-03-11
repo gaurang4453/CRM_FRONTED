@@ -88,7 +88,7 @@ const Navbar = () => {
 
         <div className="navbar-right">
           {user && (
-            <div className="dropdown">
+            <div className="navbardropdown">
               <RiUserFill style={{ fontSize: "1.36rem" }} />
               <button className="dropdown-toggle">{user.userName}</button>
               <ul className="dropdown-menu">

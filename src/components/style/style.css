@@ -14,7 +14,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  
+
 }
 
 .allform {
@@ -58,126 +58,6 @@ body {
   /* Add this to ensure the ribbon is positioned correctly */
 }
 
-/*
-label {
-  color: #444649;
-  margin-bottom: 10px;
-  font-size: 15px;
-  white-space: nowrap;
-}
-
-Input styles input[type="text"],
-input[type="number"],
-select.form-select {
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-input[type="submit"] {
-  background-color: #007bff;
-  color: white;
-  cursor: pointer;
-  border: none;
-  transition: background-color 0.3s;
-  padding: 8px 50px;
-  font-size: 14px;
-  border-radius: 4px;
-  width: auto;
-  margin-top: 20px;
-}
-
-input[type="submit"]:hover {
-  background-color: #143e6c;
-}
-
-input {
-  border: none;
-  border-bottom: 2px solid rgb(133, 132, 130);
-  outline: none;
-  padding: 5px 0;
-  width: 100%;
-  border-radius: 0;
-}
-
-.input-required {
-  border: none;
-  border-bottom: 2px solid rgb(243, 185, 78);
-  outline: none;
-  padding: 5px 0;
-  width: 100%;
-  border-radius: 0;
-}
-
-.input-error {
-  color: red;
-  font-size: 12px;
-}
-
-.submit-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.line-textbox {
-  border: none;
-  border-bottom: 2px solid rgb(243, 185, 78);
-  outline: none;
-  padding: 8px;
-  font-size: 13px;
-  width: 55%;
-}
-
-.line-textbox:focus {
-  border-bottom: 2px solid blue;
-}
-
-.form-field {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-select.form-select {
-  margin-bottom: 20px;
-}
-
-.container {
-  margin-top: 50px;
-}
-
-select.form-select {
-  width: 55%;
-  margin-bottom: 20px;
-}
-
-footer {
-  height: 130px;
-}
-
-.custom-footer {
-  background-color: #143e6c;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  height: auto;
-}
-
-option.highlighted {
-  color: #FF5733;
-}
-*/
-
-/* .alltable {
-  margin-top: 100px;  
-  width: auto;       
-  height: auto;      
-  /* margin-left: -120px; Correct: Colon, semicolon */
-/* margin-right: 650px; Correct: Colon, semicolon */
-/* } */
 
 .inputfieldstyle {
   border: none;
@@ -199,22 +79,27 @@ option.highlighted {
   border-Radius: 0px;
 }
 
-.dropdown {
+.dropdownform {
   height: 30px;
   padding: 0.2rem;
   font-Size: 14px;
-  border-radius: 6px;
+  /* border-radius: 6px; */
+  border: none;
+  border-Bottom: 2px solid rgb(165, 164, 161);
+
   width: 95%;
   /* border: 2px solid rgb(165, 164, 161); */
 }
 
-.requireddropdown {
+.requireddropdownform {
   height: 30px;
-  border: 2px solid rgb(243, 185, 78);
+  border: none;
+
+  border-bottom: 2px solid rgb(243, 185, 78);
   padding: 0.2rem;
   font-Size: 14px;
   width: 95%;
-  border-radius: 6px;
+  /* border-radius: 6px; */
 }
 
 /* ----------------------------TABLE------------------------ */
@@ -254,17 +139,16 @@ option.highlighted {
 }
 
 .table-h1 {
-  margin-Top: 120px;
+  margin-Top: -200px;
   width: 100%;
   /* min-Height: 500px; */
   height: auto;
- 
   padding: 10px;
   margin-Left: auto;
   margin-Right: auto
 }
 
-.h1label{
+.h1label {
   background-Color: #0d254b;
   color: white;
   padding: 10px;

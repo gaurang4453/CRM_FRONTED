@@ -132,7 +132,8 @@ export default function UserMasterForm() {
             <Col md={11}>
               <Form.Select
                 {...register("RoleID", { required: "Role is required." })}
-                className="form-select requireddropdown"
+                className="requiredinputfieldstyle"
+                style={{ width: "98%" }}
               >
                 <option value="" disabled>
                   --Select--
@@ -158,7 +159,7 @@ export default function UserMasterForm() {
             <Col md={11}>
               <Form.Control
                 {...register("UserName", { required: "UserName is required." }) }
-                
+                style={{ width: "98%" }}
                 className="requiredinputfieldstyle"
               ></Form.Control>
               {errors.RoleID && (
@@ -271,6 +272,7 @@ export default function UserMasterForm() {
                 placeholder="Enter Address"
                 {...register("Address")}
                className="inputfieldstyle"
+               style={{ width: "98%" }}
               />
               {errors.Address && (
                 <p style={{ color: "red" }}>{errors.Address.message}</p>
@@ -341,7 +343,7 @@ export default function UserMasterForm() {
               <select
                 id="status"
                 {...register("Status")}
-                className="dropdown"
+                className="dropdownform"
                 defaultValue=""
                
               >
@@ -367,7 +369,7 @@ export default function UserMasterForm() {
               <select
                 id="entryby"
                 {...register("entryby", { required: true })}
-                className="dropdown"
+                className="dropdownform"
                 defaultValue=""
                
               >
