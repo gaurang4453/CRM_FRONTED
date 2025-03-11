@@ -32,6 +32,14 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
+.app-wrapper {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column; /* Or row, depending on your layout */
+  min-height: 100vh; /* If you want the wrapper to fill the viewport */
+  /* justify-content: center; */ /* Remove, if you don't need vertical centering*/
+  /* align-items: center; */ /* remove, if you don't need horizontal centering*/
+}
 
 
 /* Ribbon effect for the h1 element */
@@ -139,7 +147,7 @@ body {
 }
 
 .table-h1 {
-  margin-Top: -200px;
+  /* margin-Top: -200px; */
   width: 100%;
   /* min-Height: 500px; */
   height: auto;

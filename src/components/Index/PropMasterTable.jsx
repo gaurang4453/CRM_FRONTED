@@ -26,72 +26,71 @@ function PropMasterTable() {
     }
   };
 
-  // Navigate to Edit Page when clicking on a row
   const handleRowClick = (propID) => {
     navigate(`/PropMasterForm/${propID}`);
   };
 
-  // Navigate to PropMasterForm Page
   const handleCreateNew = () => {
-    navigate("/PropMasterForm"); // Redirects to PropMasterForm
+    navigate("/PropMasterForm");
   };
 
   return (
-    <Container className="allcontainer" style={{marginTop: "95px"}}>
-      {/* Create New Button */}
-      <div className="createbutton" style={{marginTop: "-5px"}}>
-        <Button onClick={handleCreateNew} variant="success">
-          + Create New
-        </Button>
-      </div>
-
-      {loading && (
-        <Spinner
-          animation="border"
-          variant="primary"
-          className="d-block mx-auto"
-        />
-      )}
-
-      {error && <p className="text-danger text-center">{error}</p>}
-
-      {tableData.length > 0 && !loading ? (
-        <div className="shadow-lg table-h1" style={{marginTop: "35px"}}>
-          <h5 className="text-center h1label">Property Master Table</h5>
-          <Table striped bordered hover className="alltablestyle">
-            <thead className="text-center">
-              <tr>
-                <th style={{ width: "200px" }}>#</th>
-                <th style={{ width: "1000px" }}>Property Type Name</th>
-                <th style={{ width: "1200px" }}>Property Name</th>
-                <th style={{ width: "1200px" }}>Property Value</th>
-                <th style={{ width: "1000px" }}>Status</th>
-                <th style={{ width: "800px" }}>CUID</th>
-              </tr>
-            </thead>
-            <tbody>
-              {tableData.map((item, index) => (
-                <tr
-                  key={item.propID || index}
-                  onClick={() => handleRowClick(item.propID)}
-                  style={{ cursor: "pointer" }}
-                  className="text-center table-row-hover"
-                >
-                  <td>{index + 1}</td>
-                  <td>{item.propTypeName}</td>
-                  <td>{item.propName}</td>
-                  <td>{item.propValue}</td>
-                  <td>{item.status}</td>
-                  <td>{item.CUID || item.cuid}</td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
+    <div className="app-wrapper"> {/* Add app-wrapper here */}
+      <Container className="allcontainer"> {/* Remove inline marginTop */}
+        <div className="createbutton"> {/* Remove inline marginTop */}
+          <Button onClick={handleCreateNew} variant="success">
+            + Create New
+          </Button>
         </div>
-      ) : (
-        !loading && <p className="text-center text-muted">No data available.</p>
-      )}
-    </Container>
+
+        {loading && (
+          <Spinner
+            animation="border"
+            variant="primary"
+            className="d-block mx-auto"
+          />
+        )}
+
+        {error && <p className="text-danger text-center">{error}</p>}
+
+        {tableData.length > 0 && !loading ? (
+          <div className="shadow-lg table-h1"> {/* Remove inline marginTop */}
+            <h5 className="text-center h1label">Property Master Table</h5>
+            <Table striped bordered hover className="alltablestyle">
+              <thead className="text-center">
+                <tr>
+                  <th style={{ width: "200px" }}>#</th>
+                  <th style={{ width: "1000px" }}>Property Type Name</th>
+                  <th style={{ width: "1200px" }}>Property Name</th>
+                  <th style={{ width: "1200px" }}>Property Value</th>
+                  <th style={{ width: "1000px" }}>Status</th>
+                  <th style={{ width: "800px" }}>CUID</th>
+                </tr>
+              </thead>
+              <tbody>
+                {tableData.map((item, index) => (
+                  <tr
+                    key={item.propID || index}
+                    onClick={() => handleRowClick(item.propID)}
+                    style={{ cursor: "pointer" }}
+                    className="text-center table-row-hover"
+                  >
+                    <td>{index + 1}</td>
+                    <td>{item.propTypeName}</td>
+                    <td>{item.propName}</td>
+                    <td>{item.propValue}</td>
+                    <td>{item.status}</td>
+                    <td>{item.CUID || item.cuid}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          </div>
+        ) : (
+          !loading && <p className="text-center text-muted">No data available.</p>
+        )}
+      </Container>
+    </div> //close app-wrapper
   );
 }
 
