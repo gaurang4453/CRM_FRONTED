@@ -112,7 +112,7 @@ export default function UOMMasterForm() {
 
   return (
     <>
-      <Form onSubmit={handleSubmit(onSubmit)} className=" alltablestyle">
+      <Form onSubmit={handleSubmit(onSubmit)} className=" allform">
         <h1 className="ribbon">{id ? "Edit Property" : "UOM Master Form"}</h1>
         <Container style={{ marginTop: "-160px" }}>
           <Row>
@@ -159,7 +159,7 @@ export default function UOMMasterForm() {
               <select
                 id="Status"
                 {...register("Status", { required: true })}
-                className="form-select requireddropdown "
+                className="requireddropdownform"
                 defaultValue=""
               >
                 <option value="" disabled>
@@ -189,7 +189,7 @@ export default function UOMMasterForm() {
               <select
                 id="CUID"
                 {...register("CUID", { required: true })}
-                className="form-select requireddropdown"
+                className="requireddropdownform"
                 defaultValue=""
               >
                 <option value="" disabled>

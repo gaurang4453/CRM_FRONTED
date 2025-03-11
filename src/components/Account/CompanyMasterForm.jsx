@@ -563,7 +563,7 @@ export default function CompanyMasterForm() {
               <select
                 id="status"
                 {...register("status", { required: true })}
-                className="form-select requireddropdown"
+                className="requireddropdownform"
                 defaultValue=""
               >
                 <option value="" disabled>
@@ -591,7 +591,7 @@ export default function CompanyMasterForm() {
               <select
                 id="CUID"
                 {...register("CUID", { required: true })}
-                className="form-select requireddropdown"
+                className="requireddropdownform"
                 defaultValue=""
               >
                 <option value="" disabled>

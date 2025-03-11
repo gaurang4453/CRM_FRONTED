@@ -182,7 +182,7 @@ export default function UserMasterForm() {
               <select
                 id="taxTypes"
                 {...register("TaxType", { required: true })}
-                className="form-select requireddropdown"
+                className="requireddropdownform"
                 defaultValue=""
               >
                 <option value="" disabled>
@@ -230,7 +230,7 @@ export default function UserMasterForm() {
               <select
                 id="uoms"
                 {...register("UOMID", { required: true })}
-                className="form-select requireddropdown"
+                className="requireddropdownform"
                 defaultValue=""
               >
                 <option value="" disabled>
@@ -257,7 +257,7 @@ export default function UserMasterForm() {
               <select
                 id="status"
                 {...register("Status", { required: true })}
-                className="form-select requireddropdown"
+                className="requireddropdownform"
                 defaultValue=""
               >
                 <option value="" disabled>
@@ -281,7 +281,7 @@ export default function UserMasterForm() {
               <select
                 id="entryby"
                 {...register("CUID", { required: true })}
-                className="form-select requireddropdown"
+                className="requireddropdownform"
                 defaultValue=""
               >
                 <option value="" disabled>

@@ -223,7 +223,7 @@ export default function BranchMasterForm() {
                 {...register("CompanyID", {
                   required: "CompanyID is required.",
                 })}
-                className="requireddropdown"
+                className="requireddropdownform"
                 defaultValue=""
               >
                 <option value="" disabled>
@@ -357,7 +357,7 @@ export default function BranchMasterForm() {
               <select
                 id="Status"
                 {...register("Status", { required: true })}
-                className="form-select requireddropdown"
+                className="requireddropdownform"
                 defaultValue=""
               >
                 <option value="" disabled>
@@ -387,7 +387,7 @@ export default function BranchMasterForm() {
               <select
                 id="CUID"
                 {...register("CUID", { required: true })}
-                className="form-select requireddropdown"
+                className="requireddropdownform"
                 defaultValue=""
               >
                 <option value="" disabled>

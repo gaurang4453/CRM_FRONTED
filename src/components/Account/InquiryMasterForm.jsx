@@ -186,7 +186,7 @@ const SubTableInquiryMaster = ({ id, initialRows = [], onRowsUpdate }) => {
                     onChange={(e) =>
                       updateRow(index, "remarks", e.target.value)
                     }
-                  ></textarea>
+                  ></input>
                 </td>
                 <td className="text-center">
                   <button
@@ -410,7 +410,7 @@ const InquiryMasterForm = () => {
           // style={{ marginTop: "20px" }}
         >
           <h1 className="ribbon">
-            {id ? "Edit Property" : "Inquiry Master Form"}
+            {id ? "Inquiry Master Form" : "Inquiry Master Form"}
           </h1>
           <Container>
             {/* Main Form Fields */}
@@ -455,7 +455,7 @@ const InquiryMasterForm = () => {
                 <select
                   id="BranchID"
                   {...register("BranchID", { required: true })}
-                  className="requireddropdown"
+                  className="requireddropdownform"
                   defaultValue=""
                   style={{ width: "153%" }}
                 >
@@ -479,14 +479,14 @@ const InquiryMasterForm = () => {
             </Row>
             <br />
             <Row>
-              <Col md={1} className="d-flex align-items-center">
+              <Col md={1} className="d-flex align-items-center ">
                 <Form.Label>CompanyID</Form.Label>
               </Col>
               <Col md={3}>
                 <select
                   id="CompanyID"
                   {...register("CompanyID")}
-                  className="dropdown"
+                  className="dropdownform"
                   defaultValue=""
                   style={{ width: "95%" }}
                 >
@@ -515,7 +515,7 @@ const InquiryMasterForm = () => {
                 <select
                   id="Status"
                   {...register("Status", { required: true })}
-                  className="requireddropdown"
+                  className="requireddropdownform"
                   defaultValue=""
                 >
                   <option value="" disabled>
@@ -768,6 +768,7 @@ const InquiryMasterForm = () => {
                 <Form.Control
                   type="text"
                   {...register("cf", { required: "CF is required." })}
+                   placeholder="CF"
                   className="requiredinputfieldstyle"
                   style={{ width: "100%" }}
                 />
@@ -785,7 +786,7 @@ const InquiryMasterForm = () => {
                 <select
                   id="Status"
                   {...register("Status", { required: true })}
-                  className="requireddropdown"
+                  className="requireddropdownform"
                   defaultValue=""
                   style={{ width: "100%" }}
                 >
@@ -813,7 +814,7 @@ const InquiryMasterForm = () => {
                 <select
                   id="CUID"
                   {...register("cuid", { required: true })}
-                  className="requireddropdown"
+                  className="requireddropdownform"
                   defaultValue=""
                   style={{ width: "100%" }}
                 >
@@ -844,7 +845,7 @@ const InquiryMasterForm = () => {
                 <select
                   id="MktBy"
                   {...register("MktBy", { required: true })}
-                  className="requireddropdown"
+                  className="requireddropdownform"
                   defaultValue=""
                   style={{ width: "90%" }}
                 >
@@ -880,7 +881,7 @@ const InquiryMasterForm = () => {
                 <select
                   id="AuthBy"
                   {...register("AuthBy", { required: true })}
-                  className="dropdown"
+                  className="dropdownform"
                   defaultValue=""
                   style={{ width: "100%" }}
                 >
