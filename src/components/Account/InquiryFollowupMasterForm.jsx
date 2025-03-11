@@ -6,13 +6,13 @@ import "../style/style.css";
 import Footer from "/src/components/Footer/Footer";
 import useDropdownData from "../UseDropdownData";
 import AxiosInstance from "/src/AxiosInstance";
+const today = new Date().toISOString().split("T")[0];
 
 export default function InquiryFollowUpMasterForm() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(!!id);
   const [error, setError] = useState(null);
-  const today = new Date().toISOString().split("T")[0];
 
   const {
     register,
@@ -29,7 +29,7 @@ export default function InquiryFollowUpMasterForm() {
   const { data: inquiryidOptions, error: inquiryidError } =
     useDropdownData("inquiryid");
   const { data: nextprocessOptions, error: nextprocesssError } =
-    useDropdownData("status");
+    useDropdownData("nextprocess");
   const { data: statusOptions, error: statusError } = useDropdownData("status");
   const { data: cuidOptions, error: cuidError } = useDropdownData("entryby");
 
@@ -69,7 +69,7 @@ export default function InquiryFollowUpMasterForm() {
               "Remarks",
               followupmaster.Remarks || followupmaster.remarks
             );
-            setValue("Status", followupmaster.Status || followupmaster.status);
+            setValue("Status", followupmaster.status||followupmaster.Status);
             setValue("CUID", followupmaster.CUID || followupmaster.cuid);
             setValue(
               "NextFollowupDate",
@@ -179,6 +179,7 @@ export default function InquiryFollowUpMasterForm() {
                   placeholder="Enter your Inquiry Followup No.."
                   {...register("InquiryFollowupNo", {})}
                   className="inputfieldstyle"
+                  disabled
                 />
                 {errors.InquiryFollowupNo && (
                   <p style={{ color: "red" }}>
@@ -275,9 +276,9 @@ export default function InquiryFollowUpMasterForm() {
                   --Select--
                 </option>
                 {nextprocessOptions?.length > 0 ? (
-                  nextprocessOptions.map((status) => (
-                    <option key={status.id} value={status.id}>
-                      {status.value || "Unnamed status"}
+                  nextprocessOptions.map((NP) => (
+                    <option key={NP.id} value={NP.id}>
+                      {NP.id || "Unnamed Next Process"}
                     </option>
                   ))
                 ) : (
@@ -333,6 +334,7 @@ export default function InquiryFollowUpMasterForm() {
                 type="date"
                 {...register("NextFollowupDate")}
                 className="inputfieldstyle"
+                defaultValue={today}
               />
               {errors.NextFollowupDate && (
                 <p style={{ color: "red" }}>
@@ -409,6 +411,25 @@ export default function InquiryFollowUpMasterForm() {
               {errors.cuidError && (
                 <p className="error-text">Please select a User.</p>
               )}
+            </Col>
+            <Col md={1} className="d-flex align-items-center">
+              <Form.Label>Inquiry Followup No</Form.Label>
+            </Col>
+            <Col md={3}>
+              <Form.Group controlId="InquiryFollowupNo">
+                <Form.Control
+                  type="text"
+                  placeholder="Enter your Inquiry Followup No.."
+                  {...register("InquiryFollowupNo", {})}
+                  className="inputfieldstyle"
+                  disabled
+                />
+                {errors.InquiryFollowupNo && (
+                  <p style={{ color: "red" }}>
+                    {errors.InquiryFollowupNo.message}
+                  </p>
+                )}
+              </Form.Group>
             </Col>
           </Row>
         </Container>

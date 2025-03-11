@@ -179,8 +179,7 @@ const SubTableInquiryMaster = ({ id, initialRows = [], onRowsUpdate }) => {
                   />
                 </td>
                 <td>
-                  <input
-                    type="textarea"
+                  <textarea
                     className="form-control"
                     placeholder="Remarks"
                     value={row.remarks}
@@ -223,6 +222,7 @@ const InquiryMasterForm = () => {
   const [error, setError] = useState(null);
   const [payload, setPayload] = useState({});
   const [inquiryItemRows, setInquiryItemRows] = useState([]);
+  const today = new Date().toISOString().split("T")[0];
 
   const {
     register,
@@ -440,6 +440,7 @@ const InquiryMasterForm = () => {
                     {...register("Date", { required: "Date is required." })}
                     onChange={(e) => setValue("Date", e.target.value)}
                     className="requiredinputfieldstyle"
+                    defaultValue={today}
                   />
                   {errors.Date && (
                     <p style={{ color: "red" }}>{errors.Date.message}</p>

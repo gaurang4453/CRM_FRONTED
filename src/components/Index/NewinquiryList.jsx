@@ -78,10 +78,9 @@ export default function NewinquiryList() {
                   <td style={{ width: "4%" }}>{inquiry.emailID}</td>
                   {/* <td style={{ width: "4%" }}>{inquiry.voucherType}</td> */}
                   <td style={{ width: "4%" }}>{inquiry.status}</td>
-                  <td style={{ width: "4%" }}>
-                    {inquiry.cUID || inquiry.cuid}
-                  </td>
-                  <td style={{ width: "4%" }}>{inquiry.mktBy}</td>
+                  <td style={{ width: "4%" }}>{inquiry.userName}</td>
+
+                  <td style={{ width: "4%" }}>{inquiry.mktByName}</td>
                 </tr>
               ))}
             </tbody>

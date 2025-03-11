@@ -38,22 +38,7 @@ export default function InquiryFollowupMasterTable() {
 
   return (
     <Container className="allcontainer">
-      {/* Create New Button */}
-      <div className="createbutton">
-        <Button onClick={handleCreateNew} variant="success">
-          + Create New
-        </Button>
-      </div>
-
-      {loading && (
-        <Spinner
-          animation="border"
-          variant="primary"
-          className="d-block mx-auto"
-        />
-      )}
-      {error && <p className="text-danger text-center">{error}</p>}
-
+     
       {tableData.length > 0 && !loading ? (
         <div className=" shadow-lg table-h1" style={{ marginTop: "-170px" }}>
           <h5 className="text-center h1label">Inquiry Followup Master Table</h5>

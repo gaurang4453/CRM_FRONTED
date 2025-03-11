@@ -33,16 +33,6 @@ export default function InquiryMasterTable() {
     navigate("/InquiryMasterForm");
   };
 
-  // ✅ Manually defining CUID mappings
-  const cuidMapping = {
-    17: "Gaurang",
-    14: "vama",
-    19: "Priya",
-    20: "Amit",
-    21: "Sneha",
-    // Add more CUID mappings as needed
-  };
-
   return (
     <Container className="allcontainer">
       {/* Create New Button */}
@@ -96,13 +86,9 @@ export default function InquiryMasterTable() {
                   </td>
                   <td style={{ width: "4%" }}>{inquiry.emailID}</td>
                   <td style={{ width: "4%" }}>{inquiry.status}</td>
-                  <td style={{ width: "4%" }}>
-                    {cuidMapping[inquiry.CUID] ||
-                      cuidMapping[inquiry.cuid] ||
-                      inquiry.CUID ||
-                      inquiry.cuid}
-                  </td>
-                  <td style={{ width: "4%" }}>{inquiry.mktBy}</td>
+                  <td style={{ width: "4%" }}>{inquiry.userName}</td>
+
+                  <td style={{ width: "4%" }}>{inquiry.mktByName}</td>
                 </tr>
               ))}
             </tbody>
