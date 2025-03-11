@@ -179,7 +179,8 @@ const SubTableInquiryMaster = ({ id, initialRows = [], onRowsUpdate }) => {
                   />
                 </td>
                 <td>
-                  <textarea
+                  <input
+                    type="textarea"
                     className="form-control"
                     placeholder="Remarks"
                     value={row.remarks}

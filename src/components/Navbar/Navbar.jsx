@@ -82,6 +82,11 @@ const Navbar = () => {
                   New Inquiry List
                 </Link>
               </li>
+              <li>
+                <Link className="dropdown-item" to="/PendingInquiryList">
+                  Pending Inquiry List
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
