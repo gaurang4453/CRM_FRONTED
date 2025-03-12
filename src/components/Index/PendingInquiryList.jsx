@@ -17,7 +17,7 @@ export default function NewinquiryList() {
     setLoading(true);
     try {
       const response = await AxiosInstance.get(
-        "/InquiryMaster/GetNewInquiryList"
+        "/InquiryFollowupMaster/GetFollowups"
       );
       const data = response.data.data;
       console.log("Fetched Data new inquiry:", data); // Debugging
