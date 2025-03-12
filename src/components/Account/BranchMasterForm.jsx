@@ -156,7 +156,7 @@ export default function BranchMasterForm() {
     <>
       <form onSubmit={handleSubmit(onSubmit)} className="allform">
         <h1 className="ribbon">
-          {id ? "Edit Property" : "Branch Master Form"}
+          {id ? "Branch Master Form" : "Branch Master Form"}
         </h1>
         <Container>
           <Row>

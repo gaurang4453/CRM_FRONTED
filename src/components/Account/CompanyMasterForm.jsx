@@ -140,7 +140,7 @@ export default function CompanyMasterForm() {
     <>
       <Form onSubmit={handleSubmit(onSubmit)} className="allform" style={{ marginTop: "45px" }}>
         <h1 className="ribbon">
-          {id ? "Edit Property" : "Company Master Form"}
+          {id ? "Company Master Form" : "Company Master Form"}
         </h1>
         <Container style={{ marginTop: "20px" }}>
           <Row>

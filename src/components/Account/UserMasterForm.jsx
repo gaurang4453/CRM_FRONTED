@@ -122,7 +122,7 @@ export default function UserMasterForm() {
   return (
     <>
       <Form onSubmit={handleSubmit(onSubmit)}  className="allform" style={{marginTop:"45px"}}>
-        <h1 className="ribbon">{id ? "Edit Property" : "User Master Form"}</h1>{" "}
+        <h1 className="ribbon">{id ? "User Master Form" : "User Master Form"}</h1>{" "}
         <Container style={{marginTop:"20px"}}>
           {/* RoleID DropDown */}
           <Row>

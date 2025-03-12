@@ -413,7 +413,7 @@ export default function InquiryFollowUpMasterForm() {
               )}
             </Col>
             <Col md={1} className="d-flex align-items-center">
-              <Form.Label>Inquiry FollowupNo</Form.Label>
+              <Form.Label>Ref Inquiry FollowupId</Form.Label>
             </Col>
             <Col md={3} className="d-flex align-items-center">
               <Form.Group controlId="InquiryFollowupNo">
