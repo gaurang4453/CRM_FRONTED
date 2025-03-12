@@ -107,15 +107,19 @@ const SubTableInquiryMaster = ({ id, initialRows = [], onRowsUpdate }) => {
       <div className="table-responsive">
         <table
           className="table table-bordered w-100"
-          style={{ /*minWidth: "85vw" marginLeft: "-10px"*/ }}
+          style={
+            {
+              /*minWidth: "85vw" marginLeft: "-10px"*/
+            }
+          }
         >
           <thead className="bg-dark text-white text-center">
             <tr>
-              <th style={{ width: "2%" }} >SeqNo</th>
-              <th style={{ width: "10%" }} >Item Name / Description</th>
-              <th style={{ width: "10%" }} >UOM / Qty</th>
-              <th style={{ width: "10%" }} >Remarks</th>
-              <th style={{ width: "6%" }} >Actions</th>
+              <th style={{ width: "2%" }}>SeqNo</th>
+              <th style={{ width: "10%" }}>Item Name / Description</th>
+              <th style={{ width: "10%" }}>UOM / Qty</th>
+              <th style={{ width: "10%" }}>Remarks</th>
+              <th style={{ width: "6%" }}>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -148,7 +152,7 @@ const SubTableInquiryMaster = ({ id, initialRows = [], onRowsUpdate }) => {
                     }
                   ></textarea>
                 </td>
-                <td>                  
+                <td>
                   <select
                     className="form-select"
                     value={row.uomid || ""}
@@ -627,25 +631,16 @@ const InquiryMasterForm = () => {
                   placeholder="Enter your Email."
                   {...register("EmailID", { required: "Email is required." })}
                   className="requiredinputfieldstyle"
-                  style={{ width: "95%" }} 
+                  style={{ width: "95%" }}
                 />
                 {errors.EmailID && (
                   <p style={{ color: "red" }}>{errors.EmailID.message}</p>
                 )}
               </Col>
-
-              <Col md={2} className="d-flex align-items-center">
-                <Form.Check
-                  type="checkbox"
-                  {...register("SendMail")}
-                  label="Send Mail"
-                  reverse
-                />
-              </Col>
               <Col md={1} className="d-flex align-items-center">
                 <Form.Label>EmailID2</Form.Label>
               </Col>
-              <Col md={4}>
+              <Col md={3}>
                 <Form.Control
                   type="email"
                   placeholder="Enter your second Email."
@@ -654,12 +649,20 @@ const InquiryMasterForm = () => {
                   })}
                   className="requiredinputfieldstyle"
                   style={{
-                    width: "125%",
+                    width: "95%",
                   }}
                 />
                 {errors.EmailID2 && (
                   <p style={{ color: "red" }}>{errors.EmailID2.message}</p>
                 )}
+              </Col>
+              <Col md={3} className="d-flex align-items-center">
+                <Form.Check
+                  type="checkbox"
+                  {...register("SendMail")}
+                  label="Send Mail"
+                  reverse
+                />
               </Col>
             </Row>
             <br />
@@ -721,7 +724,7 @@ const InquiryMasterForm = () => {
               </Col>
             </Row>
             <br />
-            
+
             <Row>
               <Col md={1} className="d-flex align-items-center">
                 <Form.Label>Remarks</Form.Label>
@@ -769,7 +772,7 @@ const InquiryMasterForm = () => {
                 <Form.Control
                   type="text"
                   {...register("cf", { required: "CF is required." })}
-                   placeholder="CF"
+                  placeholder="CF"
                   className="requiredinputfieldstyle"
                   style={{ width: "100%" }}
                 />
@@ -842,13 +845,13 @@ const InquiryMasterForm = () => {
               <Col md={1} className="d-flex align-items-center">
                 <Form.Label>MktBy</Form.Label>
               </Col>
-              <Col md={4}>
+              <Col md={3}>
                 <select
                   id="MktBy"
                   {...register("MktBy", { required: true })}
                   className="requireddropdownform"
                   defaultValue=""
-                  style={{ width: "90%" }}
+                  style={{ width: "95%" }}
                 >
                   <option value="" disabled>
                     --Select--
@@ -867,7 +870,7 @@ const InquiryMasterForm = () => {
                   <p className="error-text">Please select a User.</p>
                 )}
               </Col>
-              <Col md={1} className="d-flex align-items-center">
+              <Col md={2} className="d-flex align-items-center">
                 <Form.Check
                   type="checkbox"
                   label="Auth"
@@ -878,13 +881,13 @@ const InquiryMasterForm = () => {
               <Col md={1} className="d-flex align-items-center">
                 <Form.Label>AuthBy</Form.Label>
               </Col>
-              <Col md={5}>
+              <Col md={3}>
                 <select
                   id="AuthBy"
                   {...register("AuthBy", { required: true })}
                   className="dropdownform"
                   defaultValue=""
-                  style={{ width: "100%" }}
+                  style={{ width: "172%" }}
                 >
                   <option value="" disabled>
                     --Select--

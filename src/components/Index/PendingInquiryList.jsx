@@ -39,11 +39,11 @@ export default function NewinquiryList() {
   };
 
   return (
-    <Container className="allcontainer">
+    <Container className="allcontainer " style={{ marginTop: "20px" }}>
       {tableData.length > 0 && !loading ? (
         <div className=" shadow-lg table-h1">
-          <h5 className="text-center h1label" style={{ marginTop: "-160px" }}>
-            New Inquiry
+          <h5 className="text-center h1label" >
+            Pending Inquiry
           </h5>
           <Table striped bordered hover className="alltablestyle">
             <thead className="text-center">

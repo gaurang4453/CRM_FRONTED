@@ -113,7 +113,7 @@ export default function UOMMasterForm() {
   return (
     <>
       <Form onSubmit={handleSubmit(onSubmit)} className=" allform">
-        <h1 className="ribbon">{id ? "Edit Property" : "UOM Master Form"}</h1>
+        <h1 className="ribbon">{id ? "UOM Master Form" : "UOM Master Form"}</h1>
         <Container style={{ marginTop: "-160px" }}>
           <Row>
             <Col md={1} className="d-flex align-items-center">

@@ -115,7 +115,7 @@ export default function UserMasterForm() {
   return (
     <>
       <Form onSubmit={handleSubmit(onSubmit)} className="allform">
-        <h1 className="ribbon">{id ? "Edit Property" : "Item Master Form"}</h1>
+        <h1 className="ribbon">{id ? "Item Master Form" : "Item Master Form"}</h1>
         <Container style={{ marginTop: "-160px" }}>
           <Row>
             <Col md={1} className="d-flex align-items-center">

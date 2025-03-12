@@ -94,7 +94,7 @@ export default function PropMasterForm() {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)} className="allform">
-        <h1 className="ribbon">{id ? "Edit Property" : "Prop Master Form"}</h1>
+        <h1 className="ribbon">{id ? "Prop Master Form" : "Prop Master Form"}</h1>
         <Container style={{ marginTop: "-140px" }}>
           <Row className="mb-3 ">
             <Col md={2} className="d-flex align-items-center">
