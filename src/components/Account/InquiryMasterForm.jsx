@@ -110,6 +110,7 @@ const SubTableInquiryMaster = ({ id, initialRows = [], onRowsUpdate }) => {
           style={
             {
               /*minWidth: "85vw" marginLeft: "-10px"*/
+              // width: "100%",
             }
           }
         >
